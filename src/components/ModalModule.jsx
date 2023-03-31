@@ -201,7 +201,7 @@ export const ModalModule = ({children}) => {
     }
     const handleVentas = async() => {
         try {
-            let modules = "ventas"
+            let modules = "venta"
             let data ={
                 idAccount:id,
                 module:modules
@@ -877,36 +877,36 @@ export const ModalModule = ({children}) => {
                          <div className="toogle flex items-center">
                              <span className='mx-1.5'>Activar</span>
                              <button onClick={handleVentas} className={
-                                 moduleUsers.filter(moduleUser => moduleUser.titulo === "ventas").length > 0 ? 'w-12 rounded-full  relative h-[1.48rem] bg-green-400' : '  w-12 rounded-full relative  h-[1.48rem] bg-gray-400'
+                                 moduleUsers.filter(moduleUser => moduleUser.titulo === "venta").length > 0 ? 'w-12 rounded-full  relative h-[1.48rem] bg-green-400' : '  w-12 rounded-full relative  h-[1.48rem] bg-gray-400'
                              }>
-                                 <span className={moduleUsers.filter(moduleUser => moduleUser.titulo === "ventas").length > 0 ? 'w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]' : 'w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]'}></span>
+                                 <span className={moduleUsers.filter(moduleUser => moduleUser.titulo === "venta").length > 0 ? 'w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]' : 'w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]'}></span>
                                  
                              </button>
                          </div>
                          <div className="toogle flex items-center">
                              <span className='mx-1'>Actualizar</span>
                              <button  className={
-                                 moduleUsers.filter(moduleUser => moduleUser.titulo === "ventas").length > 0 ? 'w-12 rounded-full  relative h-[1.48rem] bg-green-400' : '  w-12 rounded-full relative  h-[1.48rem] bg-gray-400'
+                                 moduleUsers.filter(moduleUser => moduleUser.titulo === "venta").length > 0 ? 'w-12 rounded-full  relative h-[1.48rem] bg-green-400' : '  w-12 rounded-full relative  h-[1.48rem] bg-gray-400'
                              }>
-                                 <span className={moduleUsers.filter(moduleUser => moduleUser.titulo === "ventas").length > 0 ? 'w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]' : 'w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]'}></span>
+                                 <span className={moduleUsers.filter(moduleUser => moduleUser.titulo === "venta").length > 0 ? 'w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]' : 'w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]'}></span>
                                  
                              </button>
                          </div>
                          <div className="toogle flex items-center ">
                              <span className='mx-1'>Editar</span>
                              <button  className={
-                                 moduleUsers.filter(moduleUser => moduleUser.titulo === "ventas").length > 0 ? 'w-12 rounded-full  relative h-[1.48rem] bg-green-400' : '  w-12 rounded-full relative  h-[1.48rem] bg-gray-400'
+                                 moduleUsers.filter(moduleUser => moduleUser.titulo === "venta").length > 0 ? 'w-12 rounded-full  relative h-[1.48rem] bg-green-400' : '  w-12 rounded-full relative  h-[1.48rem] bg-gray-400'
                              }>
-                                 <span className={moduleUsers.filter(moduleUser => moduleUser.titulo === "ventas").length > 0 ? 'w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]' : 'w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]'}></span>
+                                 <span className={moduleUsers.filter(moduleUser => moduleUser.titulo === "venta").length > 0 ? 'w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]' : 'w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]'}></span>
                                  
                              </button>
                          </div>
                          <div className="toogle flex items-center">
                              <span className='mx-1'>Eliminar</span>
                              <button  className={
-                                 moduleUsers.filter(moduleUser => moduleUser.titulo === "ventas").length > 0 ? 'w-12 rounded-full  relative h-[1.48rem] bg-green-400' : '  w-12 rounded-full relative  h-[1.48rem] bg-gray-400'
+                                 moduleUsers.filter(moduleUser => moduleUser.titulo === "venta").length > 0 ? 'w-12 rounded-full  relative h-[1.48rem] bg-green-400' : '  w-12 rounded-full relative  h-[1.48rem] bg-gray-400'
                              }>
-                                 <span className={moduleUsers.filter(moduleUser => moduleUser.titulo === "ventas").length > 0 ? 'w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]' : 'w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]'}></span>
+                                 <span className={moduleUsers.filter(moduleUser => moduleUser.titulo === "venta").length > 0 ? 'w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]' : 'w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]'}></span>
                                  
                              </button>
                          </div>

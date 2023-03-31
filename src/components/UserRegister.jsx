@@ -25,7 +25,7 @@ export const UserRegister = ({estado=false }) => {
   const { UserRegister } = useGetUsers();
   const handleShow = () => {
     setEstado(false) 
-    console.log(estado);
+  
   }
   
  useEffect(() => {

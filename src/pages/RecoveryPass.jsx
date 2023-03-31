@@ -67,9 +67,9 @@ function RecoveryPass() {
               .required("El campo no puede estar vacio"),
           })}
           onSubmit={async (values) => {
-            console.log("wwwwwww");
+          
             const response = await recoveryPasssword(values.email);
-            console.log("ESTATUS", response.status);
+          
             if (response.status === 200) {
               toast.success("Correo enviado");
               localStorage.setItem("email", values.email);

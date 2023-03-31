@@ -45,7 +45,7 @@ export const ContextCategory = ({children}) => {
     const updateCategorys = async (id,updateData) => {
         try {
             const {data} = await updateCategorias(id,updateData)
-            console.log(data);
+            
             setDataGategorias(dataGategorias.map(item => item._id === id ? data.data : item))
             return data
 

@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AuthUser } from "../components/AuthUser";
 import { Signup } from "../components/Signup";
@@ -29,280 +29,261 @@ import axios from "axios";
 import { PlanificCalendar } from "../layout/PlanificCalendar";
 import { AyudaAdmin } from "../layout/AyudaAdmin";
 import { EditarProduct } from "../components/FormProduct/EditarProduct";
+import { Ventas } from "../layout/Ventas";
 
 export const Router = () => {
-
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
   const token1 = localStorage.getItem("token_token1");
-  let type = localStorage.getItem("type")
+  let type = localStorage.getItem("type");
   let usersData = {
-    tokeVerify:"",
+    tokeVerify: "",
     permisions: [],
   };
 
   useEffect(() => {
-    
-    async  function getModulesUser(){
-      const response = await axios.get(`http://localhost:3002/getMod/${token1}`)
-     
-      const modules = response.data.data
+    async function getModulesUser() {
+      const response = await axios.get(
+        `http://localhost:3002/getMod/${token1}`
+      );
+
+      const modules = response.data.data;
       console.log(modules);
-      modules.map((item)=>{
-       return setUsersP([...usersP,usersP.push(item.titulo)])
-      })
+      modules.map((item) => {
+        return setUsersP([...usersP, usersP.push(item.titulo)]);
+      });
     }
-    getModulesUser()
-  }, [])
+    getModulesUser();
+  }, []);
 
-  console.log(usersP);
-  
+  console.log(usersP[0]);
 
-
-
-
-  if(type === "user"){
-    const modules= localStorage.getItem("module") 
-    const obj = modules
+  if (type === "user") {
     let toke = token ? token : null;
-    usersData.tokeVerify = toke
-    // usersData.permisions = ["inventario"]
-    usersData.permisions = usersP
-  
+    usersData.tokeVerify = toke;
+    usersData.permisions = usersP;
   }
 
-  if(type === "superAdmin"){
+  if (type === "superAdmin") {
     let tokeVerify = token ? token : null;
-    usersData.permisions= [
-      "superAdmin", "inventario", "categoria", "usuario", "notificacion", "producto",
-       "proveedor", "compras", "analityc", "perfil", "dasboard","shope","ayudaAdmin"]
-    usersData.tokeVerify = tokeVerify
+    usersData.permisions = [
+      "superAdmin",
+      "inventario",
+      "categoria",
+      "usuario",
+      "notificacion",
+      "producto",
+      "proveedor",
+      "compras",
+      "analityc",
+      "perfil",
+      "dasboard",
+      "shope",
+      "ayudaAdmin",
+    ];
+    usersData.tokeVerify = tokeVerify;
   }
 
-  const [users, setUsers] = useState(usersData)
+  const [users, setUsers] = useState(usersData);
 
   return (
     <>
       <UserContextData>
-      <GetUsersContext>
-       
-       
-        <Routes>
-        <Route path="/prueba" element={<Prueba />} />
-          <Route path="*" element={<NotFount />} />
+        <GetUsersContext>
+          <Routes>
+            <Route path="/prueba" element={<Prueba />} />
+            <Route path="*" element={<NotFount />} />
 
-          <Route path="/login" element={<AuthUser />} />
-          <Route path="/Header" element={<Header />} />
-          <Route path="/newPassword+auth=true" element={<NewPassword />} />
-          <Route
-            path="/recovery+password/identify"
-            element={<RecoveryPass />}
-          />
-          <Route path="/verifyc+code/identify" element={<CodePassword />} />
-          <Route path="/signup" element={<Signup />} />
-          
-          <Route index element={<HomePage />} />
-          <Route
-            path="/inventario"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("inventario")
-                }
-              >
-                <Inventory />
-              </ProtectedRouter>
-            }
-          />
+            <Route path="/login" element={<AuthUser />} />
+            <Route path="/Header" element={<Header />} />
+            <Route path="/newPassword+auth=true" element={<NewPassword />} />
             <Route
-            path="/ayudaAdmin"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("ayudaAdmin")
-                }
-              >
-                <AyudaAdmin />
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/categorias"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("categoria")
-                }
-                redirectTo="/inventario"
-              >
-                <Category />
-              </ProtectedRouter>
-            }
-          />
-          <Route path="/dasboard"  element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("dasboard")
-                }
-              >
-                <Admin />
-              </ProtectedRouter>
-            } >
+              path="/recovery+password/identify"
+              element={<RecoveryPass />}
+            />
+            <Route path="/verifyc+code/identify" element={<CodePassword />} />
+            <Route path="/signup" element={<Signup />} />
 
-              
-            </Route>
-          <Route
-            path="/usuarios"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("usuario")
-                }
-              >
-                <Usuarios />
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/notificaciones"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("notificacion")
-                }
-              >
-                <Notification />
-              </ProtectedRouter>
-            }
-          />
-              <Route
-            path="/permisions/:id"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("superAdmin")
-                }
-              >
-                <ModalModule/>
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/notificaciones"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("notificacion")
-                }
-              >
-                <Notification />
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/admin/productos/editar/:id"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users 
-                }
-              >
-                <EditarProduct/>
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/productos"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("producto")
-                }
-              >
-                <Product />
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/categorias"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("categorias")
-                }
-              >
-                <Category />
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/proveedores"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("proveedor")
-                }
-              >
-                <Provider />
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/estadisticas"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("analityc")
-                }
-              >
-                <Analitycs />
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/perfil"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("superAdmin")
-                }
-              >
-                <Perfil/>
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/compras"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("compras")
-                }
-              >
-                <Shope />
-              </ProtectedRouter>
-            }
-          />
-          <Route
-            path="/Planificadora"
-            element={
-              <ProtectedRouter
-                isAllowed={
-                  !!users && users.permisions.includes("superAdmin")
-                }
-              >
-                <PlanificCalendar />
-              </ProtectedRouter>
-            }
-          />
-          <Route path="/somos" element={<Somos />}/>
-          <Route path="/contactanos" element={<Contactanos />}/>
-          
+            <Route index element={<HomePage />} />
+            <Route
+              path="/inventario"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("inventario")}
+                  redirectTo="/inventario"
+                >
+                  <Inventory />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/ayudaAdmin"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("ayudaAdmin")}
+                >
+                  <AyudaAdmin />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/categorias"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("categoria")}
+                  redirectTo="/categorias"
+                >
+                  <Category />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/dasboard"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("dasboard")}
+                >
+                  <Admin />
+                </ProtectedRouter>
+              }
+            ></Route>
+            <Route
+              path="/usuarios"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("usuario")}
+                  redirectTo="/usuarios"
+                >
+                  <Usuarios />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/notificacion"
+              element={
+                <ProtectedRouter
+                  isAllowed={
+                    !!users && users.permisions.includes("notificacion")
+                  }
+                  redirectTo="/notificacion"
+                >
+                  <Notification />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/permisions/:id"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("superAdmin")}
+                  redirectTo="/inventario"
+                >
+                  <ModalModule />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/notificaciones"
+              element={
+                <ProtectedRouter
+                  isAllowed={
+                    !!users && users.permisions.includes("notificacion")
+                  }
+                  redirectTo="/notificaciones"
+                >
+                  <Notification />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/admin/productos/editar/:id"
+              element={
+                <ProtectedRouter isAllowed={!!users} redirectTo="/inventario">
+                  <EditarProduct />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/producto"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("producto")}
+                  redirectTo="/producto"
+                >
+                  <Product />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/categoria"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("categorias")}
+                  redirectTo="/categoria"
+                >
+                  <Category />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/proveedor"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("proveedor")}
+                  redirectTo="/proveedor"
+                >
+                  <Provider />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/analityc"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("analityc")}
+                  redirectTo="/analityc"
+                >
+                  <Analitycs />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/perfil"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("superAdmin")}
+                >
+                  <Perfil />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/compras"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("compras")}
+                  redirectTo="/compras"
+                >
+                  <Shope />
+                </ProtectedRouter>
+              }
+            />
 
-      
-
-        </Routes>
-          </GetUsersContext>
+            <Route
+              path="/venta"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("venta")}
+                  redirectTo="/venta"
+                >
+                  <Ventas />
+                </ProtectedRouter>
+              }
+            />
+            <Route path="/somos" element={<Somos />} />
+            <Route path="/contactanos" element={<Contactanos />} />
+          </Routes>
+        </GetUsersContext>
       </UserContextData>
     </>
   );

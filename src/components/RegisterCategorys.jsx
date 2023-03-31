@@ -21,7 +21,7 @@ export const  RegisterCategorys = ({estado=false }) => {
   const [spiner, setSpiner] = useState(false);
   const handleShow = () => {
     setEstado(false) 
-    console.log(estado);
+   
   }
   
  useEffect(() => {
@@ -63,7 +63,7 @@ export const  RegisterCategorys = ({estado=false }) => {
             onSubmit={async (values) => {
                
               let response = await postDataCategorias(values);
-              console.log(response);
+             
                 if (response.status === 201) {
                  await toast.success("Exito", {
                     position: "top-right",

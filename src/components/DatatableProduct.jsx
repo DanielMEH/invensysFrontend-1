@@ -117,13 +117,7 @@ import { FormProduct } from "./FormProduct/FormProduct";
       },
     ]);
    
-  
-    const handleShowModel = () => {
-      StateModel(!stateModel);
-    };
-    const handleModelExcel = () => {
-      setExcelModel(!ExcelModel);
-    };
+
     const onBtnExport = useCallback(() => {
       gridRef.current.api.exportDataAsCsv();
     }, []);
@@ -139,58 +133,6 @@ import { FormProduct } from "./FormProduct/FormProduct";
         setNormal(api);
       }, 2000);
     }, []);
-   const  onChart1  = useCallback(() => { 
-    
-      var params = {
-        cellRange: {
-          rowStartIndex: 0,
-        rowEndIndex: 8,
-          columns: ['caducidad', 'price_f', 'priceBuy','iva'],
-        },
-       chartType: 'groupedColumn',
-      chartThemeName: 'ag-pastel',
-        chartThemeOverrides: {
-          common: {
-            title: {
-              enabled: true,
-              text: 'Productos',
-            },
-            legend: {
-              enabled: true,
-            },  
-          },
-        },
-        unlinkChart: true,
-      };
-      gridRef.current.api.createRangeChart(params);
-    }, []);
-  
-    const onChart2 = useCallback(() => {
-      let params = {
-        cellRange: {
-            rowStartIndex: 0,
-        rowEndIndex: 4,
-          columns: ['_id', 'name','price',],
-        },
-        chartType: 'groupedBar',
-        chartThemeName: 'ag-pastel',
-        chartThemeOverrides: {
-          common: {
-            title: {
-              enabled: true,
-              text: 'Todos los usuarios',
-            },
-            
-          },
-        }
-        
-      };
-      gridRef.current.api.createRangeChart(params);
-    }, []);
-  
-    
-    
-  
     const onFilterTextBoxChanged = useCallback(() => {
       gridRef.current.api.setQuickFilter(
         document.getElementById('filter-text-box').value
@@ -251,23 +193,7 @@ import { FormProduct } from "./FormProduct/FormProduct";
               </span>
               <span>Exportar a excel</span>
             </button>
-            <button className="flex items-center border mx-1 p-1 rounded-md"
-            onClick={handleModelExcel}>
-              <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="#0c6e36"
-                    d="M4 3h14a2 2 0 0 1 2 2v7.08a6.01 6.01 0 0 0-4.32.92H12v4h1.08c-.11.68-.11 1.35 0 2H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2m0 4v4h6V7H4m8 0v4h6V7h-6m-8 6v4h6v-4H4m14.44 2v2h4v2h-4v2l-3-3l3-3"
-                  />
-                </svg>
-              </span>
-              <span>Importar archivo excel </span>
-            </button>
+           
             <button onClick={onBtPrint} className="flex items-center border mx-1 p-1 rounded-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

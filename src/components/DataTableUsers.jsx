@@ -178,7 +178,7 @@ export const DataTableUsers = () => {
   }, []);
 
   const onSelectionChanged = (event)=>{
-    console.log(event);
+    
   }
   return (
     <>

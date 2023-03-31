@@ -19,7 +19,7 @@ export const UploadExcel = ({ estado = false }) => {
 
   const handleShow = () => {
     setEstado(false);
-    console.log(estado);
+  
   };
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export const UploadExcel = ({ estado = false }) => {
           <Formik
             initialValues={{ modulo: "", estado: "" }}
             onSubmit={async (values) => {
-              console.log(values);
+        
               let archivousuariocsv = csv;
               let formDataCsv = {
                 modulo: values.modulo,

@@ -74,11 +74,7 @@ export const CambioFotoPerfilAdmin = () => {
                 
     
             })
-            fileReader.addEventListener("loadend", e=>{
-    
-                console.log("File loaded");
-            })
-    
+            
             fileReader.addEventListener("load", e=>{
                 const fileUrl= e.target.result;
                 if(document.querySelector("#preview").innerHTML != ""){

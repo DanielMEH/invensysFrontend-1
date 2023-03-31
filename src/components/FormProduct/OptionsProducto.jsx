@@ -8,78 +8,72 @@ function OptionsProducto(e) {
 
     const Navigate = useNavigate()
     const {deleteProduct }= useContextProduct()
-    console.log(e.data);
+   
         const deleteId = async() => {
-        console.log(e.data);
-await  Swal.fire({
+    
+await Swal.fire({
   text: `
   ¿Deseas eliminar este producto? \n
  `,
   footer: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#F4D03F" d="M11 15h2v2h-2v-2m0-8h2v6h-2V7m1-5C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8Z"/></svg>
   <p href="" style="color:#5DADE2; margin:0px 5px"> ${e.data.name} </p>`,
-    showClass: {
-        popup: 'animate__animated animate__fadeIn',
-    },
-    background: 'white',
+  showClass: {
+    popup: "animate__animated animate__bounceInDown",
+  },
+  background: "white",
 
-    color: 'black',
-    border: '1px solid #5DADE2',
-    backdrop:"8px",
-    customClass: 'swal-wide',
-    showCancelButton: true,
-    confirmButtonColor: '#1daf53',
-    focusCancel: false,
-    focusConfirm: false,
-    cancelButtonColor: '#ccc',
-    confirmButtonText: 'Continuar',
-    cancelButtonText: 'Cancelar',
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-        let id =e.data._id
-        await deleteProduct(id)
-        
-      Swal.fire({
-        icon: 'success',
-        title: `Exito`,
-        text: "El producto se elimino correctamente",
-        customClass: 'swal-wide',
-        showClass: {
-            popup: 'animate__animated animate__fadeIn',
-        },
-        focusCancel: false,
-        focusConfirm: false,
-        confirmButtonColor: '#1daf53',
-        confirmButtonText: 'Aceptar',
-        color: 'black',
-        timer: 1000,
-        background:"white"
+  color: "black",
+  position: "top",
+  border: "1px solid #5DADE2",
+  backdrop: "8px",
+  customClass: "swal-wide",
+  showCancelButton: true,
+  confirmButtonColor: "#1daf53",
+  focusCancel: false,
+  focusConfirm: false,
+  cancelButtonColor: "#ccc",
+  confirmButtonText: "Continuar",
+  cancelButtonText: "Cancelar",
+}).then(async (result) => {
+  if (result.isConfirmed) {
+    let id = e.data._id;
+    await deleteProduct(id);
 
+    Swal.fire({
+      icon: "success",
+      title: `Exito`,
+      text: "El producto se elimino correctamente",
+      customClass: "swal-wide",
+      showClass: {
+        popup: "animate__animated animate__fadeIn",
+      },
+      focusCancel: false,
+      focusConfirm: false,
+      confirmButtonColor: "#1daf53",
+      confirmButtonText: "Aceptar",
+      color: "black",
+      timer: 1000,
+      background: "white",
+    });
+  } else if (result.isDismissed) {
+    await Swal.fire({
+      className: "swal-wide",
 
-    }
-      )
-    }else if(result.isDismissed){
-       await Swal.fire({
-        className: 'swal-wide',
-
-            text: "se cancelo la eliminacion del producto",
-            showClass: {
-                popup: 'animate__animated animate__fadeIn',
-            },
-            focusCancel: false,
-            focusConfirm: false,
-            confirmButtonColor: '#1daf53',
-            cancelButtonColor: '#ccc',
-            confirmButtonText: 'Continuar',
-            color: 'black',
-            background:"white",
-            timer: 2000,
-
-        })
-    }
-
-
-
-})
+      text: "se cancelo la eliminacion del producto",
+      showClass: {
+        popup: "animate__animated animate__fadeIn",
+      },
+      focusCancel: false,
+      focusConfirm: false,
+      confirmButtonColor: "#1daf53",
+      cancelButtonColor: "#ccc",
+      confirmButtonText: "Continuar",
+      color: "black",
+      background: "white",
+      timer: 2000,
+    });
+  }
+});
     }
     const EditId = () => {
 
@@ -87,64 +81,7 @@ await  Swal.fire({
       Navigate(`/admin/productos/editar/${e.data._id}`)
     
       
-       
-        // Swal.fire({
-        //     // implementar el componente
-             
-        //     title: 'Editar producto',
-        //     html: `<input id="swal-input1"
-        //     style="margin-bottom: 10px; background-color: #FFF;
-        //     display: block;
-        //     width: 350px;
-        //     height: 40px;
-        //     focus: none;
-        //     "
-        //     class="swal2-input"
-            
-        //     placeholder="Nombre de la categoria" value="${e.data.name_category}">
-        //     <input id="swal-input2"
-        //     style="margin-bottom: 10px; background-color: #FFF;
-        //     display: block;
-        //     width: 350px;
-        //     height: 40px;
-        //     focus: none;
-        //     "
-        //     class="swal2-input" placeholder="Descripcion de la categoria" value="${e.data.description}">
-        //     `,
-            
-        //     focusConfirm: false,
-        //     focusCancel: false,
-        //     showCancelButton: true,
-        //     confirmButtonText: 'Guardar',
-        //     cancelButtonText: 'Cancelar',
-        //     showClass: {
-        //         popup: 'animate__animated animate__fadeIn',
-        //     },
-        //     showLoaderOnConfirm: true,
-        //     preConfirm: () => {
-                
-        //         const name_category = Swal.getPopup().querySelector('#swal-input1').value
-        //         const description = Swal.getPopup().querySelector('#swal-input2').value
-        //     console.log(name_category);
-        //     console.log(description);
-        //         if (!name_category || !description) {
-        //             Swal.showValidationMessage(`El nombre de la categoria es requerido`)
-        //         }
-        //         return { name_category,description }
-        //     },
-        //     allowOutsideClick: () => !Swal.isLoading()
-        // }).then((result) => {
-        //     console.log(result.value);
-        //     if (result.isConfirmed) {
-        //         let data ={
-        //             name_category:result.value.name_category,
-        //             description:result.value.description
-        //         }
-        //         console.log(e.data._id);
-               
-               
-        //     }
-        // })
+      
     }
 
   return (

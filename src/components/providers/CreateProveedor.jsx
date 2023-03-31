@@ -1,118 +1,81 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { DatePicker } from 'antd';
+import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import moment from 'moment-with-locales-es6';
-import {getProductsId,getCategorias,updateProducto} from '../../apis/ApiData'
-const { RangePicker } = DatePicker;
-export const EditarProduct = () => {
+import { useContextProviders } from "../../hooks/context/ContextProveedores";
+import { useContextCategory } from "../../hooks/context/ContextCategory";
 
-    const navigate = useNavigate();
-    const id = useParams();
-    const [category, setCategoria] = useState([]);
-    const [producto, setProducto] = useState([]);
-    const [active, setActive] = useState(false);
+export const CreateProveedor = () => {
+  const { dataGategorias, getDataCategorias } = useContextCategory();
+  const { postProviders } = useContextProviders();
+  useEffect(() => {
+    getDataCategorias();
+  }, []);
+  const [category, setCategoria] = useState([]);
+  const [active, setActive] = useState(false);
+  const [active2, setActive2] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-    const [fecha , setFecha] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [dataGategorias, setDataGategorias] = useState([])
-    useEffect(() => {
-        (async () => {
-            const {data} = await getProductsId(id.id);
-            
-           const category = await getCategorias()
-          
-           setDataGategorias(category.data.data);
-           setProducto(data.data);
-            
-        })()
-        },[])
-      const disabledDate = (current) => {
-        moment.locale('es');
-       return current && current < moment().endOf('day')
-
-      };
-      const onChange = (value, dateString) => {
-
-          setFecha(dateString)
-      }
-    
-      const onInputChange = (e) => {
-        console.table(e.target.name,
-            e.target.iva,
-            e.target.description,
-            e.target.priceBuy,
-            e.target.price,
-            e.target.category,
-            e.target.fechaInicio,
-            e.target.fechaFin
-
-            
-            )
-        setProducto({ ...producto, [e.target.name]: e.target.value,
-            [e.target.iva]: e.target.value,
-            [e.target.description]: e.target.value,
-            [e.target.priceBuy]: e.target.value,
-            [e.target.price]: e.target.value,
-            [e.target.category]: e.target.value,
-            [e.target.fechaInicio]: e.target.value,
-            [e.target.fechaFin]: e.target.value,
-        });
-      };
-    
   return (
     <>
       <ToastContainer />
-      <div>
+      <div className={active2 ? "hidden" : "block"}>
         <div className="Formulario fixed bg-white rounded-lg inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
           <div className="sec1 w-full p-2 flex justify-between">
-            <div className="x cursor-pointer">
-              <Link to="/productos">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="40"
-                  viewBox="0 0 40 40"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M24.96 32.601L12.371 19.997l.088-.088l12.507-12.52a.661.661 0 0 0-.01-.921a.645.645 0 0 0-.458-.182a.653.653 0 0 0-.465.186l-13.004 13.02a.63.63 0 0 0-.176.49a.656.656 0 0 0 .18.523l13.014 13.031c.244.23.659.233.921-.02a.658.658 0 0 0-.008-.915z"
-                  />
-                </svg>
-              </Link>
-            </div>
             <div className="title">
-              <span className="text-xl mx-1 my-4 block">
-                Actualizar producto
+              <span className="text-xl my-4 block">
+                Crea proveedores para expandir tu negocio
               </span>
+              <p className="text-red-500 text-sm">
+                Todos los campos son requeridos
+              </p>
+            </div>
+
+            <div
+              className="x cursor-pointer"
+              onClick={() => setActive2(!active2)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  fill="currentColor"
+                  d="M204.24 195.76a6 6 0 1 1-8.48 8.48L128 136.49l-67.76 67.75a6 6 0 0 1-8.48-8.48L119.51 128L51.76 60.24a6 6 0 0 1 8.48-8.48L128 119.51l67.76-67.75a6 6 0 0 1 8.48 8.48L136.49 128Z"
+                />
+              </svg>
             </div>
           </div>
-          <p className="text-red-500 mx-4 my-2 block text-sm">
-            Todos los campos son requeridos*
-          </p>
           <div className="formulario">
             <Formik
               initialValues={{
-                name: producto.description,
-                iva: "",
-                description: "",
-                priceBuy: "",
-                price: "",
+                name: "",
+                company: "",
+                address: "",
+                email: "",
+                phone: "",
               }}
+              validationSchema={Yup.object({
+                name: Yup.string().required("Obligatorio"),
+                company: Yup.string().required("Obligatorio"),
+                address: Yup.string().required("Obligatorio"),
+                email: Yup.string().required("Obligatorio").email("no valido"),
+                phone: Yup.number()
+                  .required("Obligatorio")
+                  .positive("No valido"),
+              })}
               onSubmit={async (values) => {
                 setLoading(false);
                 const data = {
-                  name: producto.name,
-                  iva: parseInt(producto.iva),
-                  description: producto.description,
-                  priceBuy: producto.priceBuy,
-                  price: producto.price,
-                  category: category[0],
-                  fechaInicio: fecha[0],
-                  fechaFin: fecha[1],
+                  name: values.name,
+                  company: values.company,
+                  address: values.address,
+                  email: values.email,
+                  phone: values.phone,
+                  idCategory: category[0],
                 };
-
                 if (category.length === 0) {
                   setLoading(true);
                   return await toast.warning("Selecione una categoria", {
@@ -124,9 +87,13 @@ export const EditarProduct = () => {
                     draggable: true,
                     progress: undefined,
                   });
-                } else if (fecha.length === 0) {
+                }
+
+                const response = await postProviders(data);
+
+                if (response.status === 201) {
                   setLoading(true);
-                  return await toast.warning("selecione una fecha", {
+                  return await toast.success("Producto creado", {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -136,32 +103,16 @@ export const EditarProduct = () => {
                     progress: undefined,
                   });
                 } else {
-                  const response = await updateProducto(id.id, data);
-
-                  if (response.status === 200) {
-                    setLoading(true);
-                    await toast.success("Producto actualizado", {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    });
-                    return navigate("/productos");
-                  } else {
-                    setLoading(true);
-                    return await toast.error("Error al actualizar", {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                    });
-                  }
+                  setLoading(true);
+                  return await toast.error("Error al crear el proveedor", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
                 }
               }}
             >
@@ -190,10 +141,7 @@ export const EditarProduct = () => {
                       placeholder="Nombre del producto"
                       className="
                     w-full p-2 
-
                      outline-none  "
-                      value={producto.name}
-                      onChange={onInputChange}
                     />
                     <ErrorMessage
                       component="p"
@@ -205,7 +153,7 @@ export const EditarProduct = () => {
                 </div>
                 <div className="name border border-gray-300 rounded-lg">
                   <label htmlFor="descripción" className="mx-2 text-sm">
-                    Descripción
+                    Compañia
                   </label>
                   <div className="input flex items-center">
                     <div className="icon1">
@@ -222,30 +170,25 @@ export const EditarProduct = () => {
                       </svg>
                     </div>
                     <Field
-                      name="description"
+                      name="company"
                       type="text"
                       placeholder="Descripción"
                       className="
                     w-full p-2 
-                     outline-none 
-                     
-                     "
-                      // editar campo
+                     outline-none  "
+                    />
+                    <ErrorMessage
+                      component="p"
+                      className="mx-2 block text-sm text-red-600
+                                animate__animated animate__fadeInUp "
+                      name="company"
+                    />
+                  </div>
+                </div>
 
-                      value={producto.description}
-                      onChange={onInputChange}
-                    />
-                    <ErrorMessage
-                      component="p"
-                      className="mx-2 block text-sm text-red-600
-                                animate__animated animate__fadeInUp "
-                      name="description"
-                    />
-                  </div>
-                </div>
                 <div className="name border border-gray-300 rounded-lg">
-                  <label htmlFor="name" className="mx-2 text-sm ">
-                    Iva
+                  <label htmlFor="price" className="mx-2 text-sm">
+                    Correo
                   </label>
                   <div className="input flex items-center">
                     <div className="icon1">
@@ -262,98 +205,24 @@ export const EditarProduct = () => {
                       </svg>
                     </div>
                     <Field
-                      name="iva"
+                      name="email"
                       type="text"
-                      placeholder="Ejemplo 08"
+                      placeholder="example@gmail.com"
                       className="
                     w-full p-2 
                      outline-none  "
-                      value={producto.iva}
-                      onChange={onInputChange}
                     />
                     <ErrorMessage
                       component="p"
-                      className="mx-2 block text-sm text-red-600
+                      className="mx-2 block text-sm truncate text-red-600
                                 animate__animated animate__fadeInUp "
-                      name="iva"
+                      name="email"
                     />
                   </div>
                 </div>
                 <div className="name border border-gray-300 rounded-lg">
                   <label htmlFor="price" className="mx-2 text-sm">
-                    Precio compra
-                  </label>
-                  <div className="input flex items-center">
-                    <div className="icon1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="#ccc"
-                          d="M11.025 21v-2.15q-1.325-.3-2.287-1.15q-.963-.85-1.413-2.4l1.85-.75q.375 1.2 1.113 1.825q.737.625 1.937.625q1.025 0 1.738-.462q.712-.463.712-1.438q0-.875-.55-1.388q-.55-.512-2.55-1.162q-2.15-.675-2.95-1.612q-.8-.938-.8-2.288q0-1.625 1.05-2.525q1.05-.9 2.15-1.025V3h2v2.1q1.25.2 2.063.912q.812.713 1.187 1.738l-1.85.8q-.3-.8-.85-1.2q-.55-.4-1.5-.4q-1.1 0-1.675.488q-.575.487-.575 1.212q0 .825.75 1.3q.75.475 2.6 1q1.725.5 2.613 1.587q.887 1.088.887 2.513q0 1.775-1.05 2.7q-1.05.925-2.6 1.15V21Z"
-                        />
-                      </svg>
-                    </div>
-                    <Field
-                      name="price"
-                      type="text"
-                      placeholder="Ej: 12.000"
-                      className="
-                    w-full p-2 
-                     outline-none  "
-                      value={producto.price}
-                      onChange={onInputChange}
-                    />
-                    <ErrorMessage
-                      component="p"
-                      className="mx-2 block text-sm text-red-600
-                                animate__animated animate__fadeInUp "
-                      name="priceBuy"
-                    />
-                  </div>
-                </div>
-                <div className="name border border-gray-300 rounded-lg">
-                  <label htmlFor="price" className="mx-2 text-sm">
-                    Precio Venta
-                  </label>
-                  <div className="input flex items-center">
-                    <div className="icon1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          fill="#ccc"
-                          d="M11.025 21v-2.15q-1.325-.3-2.287-1.15q-.963-.85-1.413-2.4l1.85-.75q.375 1.2 1.113 1.825q.737.625 1.937.625q1.025 0 1.738-.462q.712-.463.712-1.438q0-.875-.55-1.388q-.55-.512-2.55-1.162q-2.15-.675-2.95-1.612q-.8-.938-.8-2.288q0-1.625 1.05-2.525q1.05-.9 2.15-1.025V3h2v2.1q1.25.2 2.063.912q.812.713 1.187 1.738l-1.85.8q-.3-.8-.85-1.2q-.55-.4-1.5-.4q-1.1 0-1.675.488q-.575.487-.575 1.212q0 .825.75 1.3q.75.475 2.6 1q1.725.5 2.613 1.587q.887 1.088.887 2.513q0 1.775-1.05 2.7q-1.05.925-2.6 1.15V21Z"
-                        />
-                      </svg>
-                    </div>
-                    <Field
-                      name="priceBuy"
-                      type="text"
-                      placeholder="Ej: 12.000"
-                      className="
-                    w-full p-2 
-                     outline-none  "
-                      value={producto.priceBuy}
-                      onChange={onInputChange}
-                    />
-                    <ErrorMessage
-                      component="p"
-                      className="mx-2 block text-sm text-red-600
-                                animate__animated animate__fadeInUp "
-                      name="price"
-                    />
-                  </div>
-                </div>
-                <div className="name border border-gray-300 rounded-lg">
-                  <label htmlFor="name" className="mx-2 text-sm ">
-                    Estado
+                    Dirección
                   </label>
                   <div className="input flex items-center">
                     <div className="icon1">
@@ -370,30 +239,53 @@ export const EditarProduct = () => {
                       </svg>
                     </div>
                     <Field
-                      name="estado"
+                      name="address"
                       type="text"
-                      placeholder="Ejemplo Activo"
+                      placeholder="M14 #23"
                       className="
                     w-full p-2 
                      outline-none  "
                     />
+                    <ErrorMessage
+                      component="p"
+                      className="mx-2 block text-sm text-red-600
+                                animate__animated animate__fadeInUp "
+                      name="address"
+                    />
                   </div>
                 </div>
-                <div className="name border border-gray-300 rounded-lg relative">
-                  <label htmlFor="price" className="mx-2 my-2 text-sm ">
-                    Fecha de caducidad
+                <div className="name border border-gray-300 rounded-lg">
+                  <label htmlFor="name" className="mx-2 text-sm ">
+                    Telefono
                   </label>
                   <div className="input flex items-center">
-                    <div className="fecha w-full">
-                      <RangePicker
-                        disabledDate={disabledDate}
-                        onChange={onChange}
-                        className="w-full p-2 outline-none border border-white rounded-lg
-                    
-                    focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent
-                    "
-                      />
+                    <div className="icon1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="#ccc"
+                          d="m15 16l-4 4h8c1.1 0 2-.9 2-2s-.9-2-2-2h-4zm-2.94-8.81l-8.77 8.77c-.18.18-.29.44-.29.7V19c0 .55.45 1 1 1h2.34c.27 0 .52-.11.71-.29l8.77-8.77l-3.76-3.75zm6.65.85a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83l3.75 3.75l1.83-1.83z"
+                        />
+                      </svg>
                     </div>
+                    <Field
+                      name="phone"
+                      type="text"
+                      placeholder="+57"
+                      className="
+                    w-full p-2 
+                     outline-none  "
+                    />
+                    <ErrorMessage
+                      component="p"
+                      className="mx-2 block text-sm text-red-600
+                                animate__animated animate__fadeInUp "
+                      name="phone"
+                    />
                   </div>
                 </div>
 
@@ -410,9 +302,9 @@ export const EditarProduct = () => {
                     </label>
                     {category.length > 0 ? (
                       <>
-                        <div className="input flex my-2 justify-between items-center ">
+                        <div className="input  flex my-2 justify-between items-center ">
                           <div className="iconC mt-0 mx-2">{category[1]}</div>
-                          <div className="icon2 mt-0 mx-2">
+                          <div className="icon2  mt-0 mx-2">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"
@@ -493,7 +385,7 @@ export const EditarProduct = () => {
                     >
                       <div
                         className="contenedor-category 
-                         h-44 overflow-y-scroll bg-white  bg-while shadow-2xl rounded-xl p-4 absolute grid grid-cols-3"
+                         h-auto overflow-y-scroll bg-white  bg-while shadow-2xl rounded-xl p-4 absolute grid grid-cols-3"
                       >
                         {dataGategorias.map((item) => (
                           <div
@@ -733,4 +625,4 @@ export const EditarProduct = () => {
       </div>
     </>
   );
-}
+};

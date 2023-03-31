@@ -815,7 +815,7 @@ export const Perfil = () => {
                             </span>
                           </div>
                         </div>
-                        <div className="grid grid-cols-1lg:grid-cols-2">
+                        <div className="grid grid-cols-1 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold flex">
                             Creación
                           </div>

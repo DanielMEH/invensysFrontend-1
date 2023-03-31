@@ -122,3 +122,28 @@ export const getProductsId = async (id) => await axios.get(`${urlServer}/getProd
         "id-token":accessToken
     }
 })
+
+
+// ? Path: src\apis\ApiData.jsx get Proveedores
+export const getProveedores = async () => await axios.get(`${urlServer}/providers/${accessToken}`);
+
+// ? Path: src\apis\ApiData.jsx post Proveedores
+export const postProveedores = async (data) => await axios.post(`${urlServer}/providers`, { data }, {
+    headers: {
+        "x-id-token": accessToken
+    }
+})
+
+// ? Path: src\apis\ApiData.jsx delete Proveedores
+export const deleteProveedores = async (id) => await axios.delete(`${urlServer}/providers/${id}`, {
+    headers: {
+        "x-id-token": accessToken
+    }
+})
+
+// ? Path: src\apis\ApiData.jsx update Proveedores
+export const updateProveedores = async (id, data) => await axios.put(`${urlServer}/providers/${id}`, { data }, {
+    headers: {
+        "x-id-token": accessToken
+    }
+})
