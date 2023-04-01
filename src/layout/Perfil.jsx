@@ -15,7 +15,7 @@ export const Perfil = () => {
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(true);
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     const initial = async () => {
       const initials = await getAdminDataAll();
@@ -43,22 +43,20 @@ export const Perfil = () => {
     e.preventDefault();
 
     setLoad(false);
-    
+
     let data = {
       name: e.target.name.value,
       empresa: e.target.empresa.value,
       email: e.target.email.value,
       telefono: e.target.telefono.value,
       document: e.target.document.value,
-      id:localStorage.getItem("id_admin")
+      id: localStorage.getItem("id_admin"),
     };
     const response = await updateDataAdmin(data);
     setLoad(true);
 
-    
-      navigate("/perfil");
-      window.location.reload();
- 
+    navigate("/perfil");
+    window.location.reload();
   };
   return (
     <>
@@ -71,8 +69,10 @@ export const Perfil = () => {
           <MenuLateral />
         </div>
         <div className="bg-[#eef9fd]  w-full block ">
-          <div className="container_perfil    mx-1 max-w-7xl
-           md:mx-auto relative flex flex-col md:flex-row">
+          <div
+            className="container_perfil    mx-1 max-w-7xl
+           md:mx-auto relative flex flex-col md:flex-row"
+          >
             <div className={btnSpand ? "cubo_p block" : "hidden"}></div>
             <div>
               <div
@@ -313,29 +313,78 @@ export const Perfil = () => {
                         </div>
                       </div>
                       <div className="input mx-2">
-                      {
-                        load === false? (
+                        {load === false ? (
                           <button
-                          type="button"
-                          className="bg-green-400 text-white w-full rounded-sm mt-3 
+                            type="button"
+                            className="bg-green-400 text-white w-full rounded-sm mt-3 
               duration-300 hover:bg-green-500 hover:shadow-lg justify-center p-2
                           disabled flex items-center"
-                        >
-                         <svg className="animate-spin mr-1 flex justify-center" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><defs><linearGradient id="mingcuteLoadingFill0" x1="50%" x2="50%" y1="5.271%" y2="91.793%"><stop offset="0%" stop-color="currentColor"/><stop offset="100%" stop-color="currentColor" stop-opacity=".55"/></linearGradient><linearGradient id="mingcuteLoadingFill1" x1="50%" x2="50%" y1="15.24%" y2="87.15%"><stop offset="0%" stop-color="currentColor" stop-opacity="0"/><stop offset="100%" stop-color="currentColor" stop-opacity=".55"/></linearGradient></defs><g fill="none"><path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z"/><path fill="url(#mingcuteLoadingFill0)" d="M8.749.021a1.5 1.5 0 0 1 .497 2.958A7.502 7.502 0 0 0 3 10.375a7.5 7.5 0 0 0 7.5 7.5v3c-5.799 0-10.5-4.7-10.5-10.5C0 5.23 3.726.865 8.749.021Z" transform="translate(1.5 1.625)"/><path fill="url(#mingcuteLoadingFill1)" d="M15.392 2.673a1.5 1.5 0 0 1 2.119-.115A10.475 10.475 0 0 1 21 10.375c0 5.8-4.701 10.5-10.5 10.5v-3a7.5 7.5 0 0 0 5.007-13.084a1.5 1.5 0 0 1-.115-2.118Z" transform="translate(1.5 1.625)"/></g></svg>
-                          Espere un momento...
-                        </button>
-                        ):(
-                        <button
-                          className="bg-green-400 text-white block w-full rounded-sm mt-3 p-2
+                          >
+                            <svg
+                              className="animate-spin mr-1 flex justify-center"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                            >
+                              <defs>
+                                <linearGradient
+                                  id="mingcuteLoadingFill0"
+                                  x1="50%"
+                                  x2="50%"
+                                  y1="5.271%"
+                                  y2="91.793%"
+                                >
+                                  <stop offset="0%" stop-color="currentColor" />
+                                  <stop
+                                    offset="100%"
+                                    stop-color="currentColor"
+                                    stop-opacity=".55"
+                                  />
+                                </linearGradient>
+                                <linearGradient
+                                  id="mingcuteLoadingFill1"
+                                  x1="50%"
+                                  x2="50%"
+                                  y1="15.24%"
+                                  y2="87.15%"
+                                >
+                                  <stop
+                                    offset="0%"
+                                    stop-color="currentColor"
+                                    stop-opacity="0"
+                                  />
+                                  <stop
+                                    offset="100%"
+                                    stop-color="currentColor"
+                                    stop-opacity=".55"
+                                  />
+                                </linearGradient>
+                              </defs>
+                              <g fill="none">
+                                <path d="M24 0v24H0V0h24ZM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018Zm.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01l-.184-.092Z" />
+                                <path
+                                  fill="url(#mingcuteLoadingFill0)"
+                                  d="M8.749.021a1.5 1.5 0 0 1 .497 2.958A7.502 7.502 0 0 0 3 10.375a7.5 7.5 0 0 0 7.5 7.5v3c-5.799 0-10.5-4.7-10.5-10.5C0 5.23 3.726.865 8.749.021Z"
+                                  transform="translate(1.5 1.625)"
+                                />
+                                <path
+                                  fill="url(#mingcuteLoadingFill1)"
+                                  d="M15.392 2.673a1.5 1.5 0 0 1 2.119-.115A10.475 10.475 0 0 1 21 10.375c0 5.8-4.701 10.5-10.5 10.5v-3a7.5 7.5 0 0 0 5.007-13.084a1.5 1.5 0 0 1-.115-2.118Z"
+                                  transform="translate(1.5 1.625)"
+                                />
+                              </g>
+                            </svg>
+                            Espere un momento...
+                          </button>
+                        ) : (
+                          <button
+                            className="bg-green-400 text-white block w-full rounded-sm mt-3 p-2
               duration-300 hover:bg-green-500 hover:shadow-lg "
-                        >
-                          <div className="span">
-                          Actualizar Datos
-                          </div>
-                        </button>
-
-                        )
-                      }
+                          >
+                            <div className="span">Actualizar Datos</div>
+                          </button>
+                        )}
                       </div>
                     </form>
                   ))}
@@ -428,16 +477,16 @@ export const Perfil = () => {
                       {adminGetData.map((item) => (
                         <div key={item.idUsers}>
                           {item.imgURL ? (
-                           <a href={item.imgURL} className="">
-                            <img
-                              key={item.id}
-                              className="z-30 bg-clound t-8 block 
+                            <a href={item.imgURL} className="">
+                              <img
+                                key={item.id}
+                                className="z-30 bg-clound t-8 block 
                               absolute rounded-full top-[5rem] inset-0 mx-auto "
-                              width={110}
-                              src={item.imgURL}
-                              alt="imagen de perfil"
-                            />
-                           </a>
+                                width={110}
+                                src={item.imgURL}
+                                alt="imagen de perfil"
+                              />
+                            </a>
                           ) : (
                             <img
                               className="z-30 t-8 block absolute rounded-full top-[5rem] left-[8.30rem]"
@@ -771,7 +820,33 @@ export const Perfil = () => {
                             Cuenta con:{" "}
                           </div>
                           <div className="px-4 py-2">
-                            {items.cuenta ? items.cuenta : "..."}
+                            {items.cuenta === "Google" ? (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="28"
+                                height="28"
+                                viewBox="0 0 256 262"
+                              >
+                                <path
+                                  fill="#4285F4"
+                                  d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
+                                />
+                                <path
+                                  fill="#34A853"
+                                  d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055c-34.523 0-63.824-22.773-74.269-54.25l-1.531.13l-40.298 31.187l-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"
+                                />
+                                <path
+                                  fill="#FBBC05"
+                                  d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82c0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"
+                                />
+                                <path
+                                  fill="#EB4335"
+                                  d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0C79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
+                                />
+                              </svg>
+                            ) : (
+                              items.cuenta
+                            )}
                           </div>
                         </div>
                         <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -833,14 +908,10 @@ export const Perfil = () => {
                         </div>
                       </div>
                     </div>
-                
                   </div>
                 ))}
 
                 <div className="my-4"></div>
-
-                
-                
               </div>
             )}
           </div>

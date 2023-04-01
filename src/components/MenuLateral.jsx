@@ -104,7 +104,7 @@ fixed top-0
   bg-white mr-[10rem]
  w-14 lg:w-48   b  overflow-x-hidden  "
           style={{
-            boxShadow: "0px 0px 10px 30px rgba(0,0,0,0.2)",
+            boxShadow: " 12px 2px 29px -14px rgba(182,215,217,1)",
           }}
         >
           <div

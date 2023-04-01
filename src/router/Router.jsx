@@ -30,6 +30,7 @@ import { PlanificCalendar } from "../layout/PlanificCalendar";
 import { AyudaAdmin } from "../layout/AyudaAdmin";
 import { EditarProduct } from "../components/FormProduct/EditarProduct";
 import { Ventas } from "../layout/Ventas";
+import { HomeDaboard } from "../components/screen/HomeDaboard";
 
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
@@ -138,7 +139,7 @@ export const Router = () => {
               }
             />
             <Route
-              path="/dasboard"
+              path="/dasboard/*"
               element={
                 <ProtectedRouter
                   isAllowed={!!users && users.permisions.includes("dasboard")}
@@ -146,7 +147,14 @@ export const Router = () => {
                   <Admin />
                 </ProtectedRouter>
               }
-            ></Route>
+            >
+              <Route path="" element={<HomeDaboard />} />
+              <Route path="users/:id" element={<div>Usuarios</div>} />
+              <Route path="productos/:id" element={<div>Productos</div>} />
+              <Route path="categorias/:id" element={<div>categorias</div>} />
+              <Route path="proveedores/:id" element={<div>proveedores</div>} />
+              <Route path="users/:id" element={<div>Usuarios</div>} />
+            </Route>
             <Route
               path="/usuarios"
               element={

@@ -549,7 +549,7 @@ export const CreateProveedor = () => {
                       className="bg-[#5994f5] text-white p-2 rounded-full w-full"
                       type="submit"
                     >
-                      Crear producto
+                      Crear Proveedor
                     </button>
                   ) : (
                     <span
