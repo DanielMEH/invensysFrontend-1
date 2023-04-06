@@ -228,8 +228,8 @@ export const AuthUser = () => {
                         type={typeInput === true ? "password" : "text"}
                         name="password"
                         placeholder="Contraseña"
-                        className="w-full block 
-                                    outline-none bg-white"
+                        className="w-full block outline-none bg-white"
+                        autoComplete="on"
                       />
                     </div>
                     <div

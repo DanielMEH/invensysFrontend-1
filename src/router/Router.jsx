@@ -31,6 +31,12 @@ import { AyudaAdmin } from "../layout/AyudaAdmin";
 import { EditarProduct } from "../components/FormProduct/EditarProduct";
 import { Ventas } from "../layout/Ventas";
 import { HomeDaboard } from "../components/screen/HomeDaboard";
+import { ProductoDasboard } from "../components/screen/ProductoDasboard";
+import { CategoryDasboard } from "../components/screen/CategoryDasboard";
+import { ProvidersDasboard } from "../components/screen/ProvidersDasboard";
+import { GetCategoryProvider } from "../components/screen/GetCategoryProvider";
+import { UsersDasboard } from "../components/screen/UsersDasboard";
+import { UserInfo } from "../components/screen/UserInfo";
 
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
@@ -42,24 +48,24 @@ export const Router = () => {
     permisions: [],
   };
 
-  useEffect(() => {
-    async function getModulesUser() {
-      const response = await axios.get(
-        `http://localhost:3002/getMod/${token1}`
-      );
-
-      const modules = response.data.data;
-      console.log(modules);
-      modules.map((item) => {
-        return setUsersP([...usersP, usersP.push(item.titulo)]);
-      });
-    }
-    getModulesUser();
-  }, []);
-
-  console.log(usersP[0]);
-
   if (type === "user") {
+    const Webk = () => {
+      useEffect(() => {
+        async function getModulesUser() {
+          const response = await axios.get(
+            `http://localhost:3002/getMod/${token1}`
+          );
+
+          const modules = response.data.data;
+          console.log(modules);
+          modules.map((item) => {
+            return setUsersP([...usersP, usersP.push(item.titulo)]);
+          });
+        }
+        getModulesUser();
+      }, []);
+    };
+    Webk();
     let toke = token ? token : null;
     usersData.tokeVerify = toke;
     usersData.permisions = usersP;
@@ -149,11 +155,18 @@ export const Router = () => {
               }
             >
               <Route path="" element={<HomeDaboard />} />
-              <Route path="users/:id" element={<div>Usuarios</div>} />
-              <Route path="productos/:id" element={<div>Productos</div>} />
-              <Route path="categorias/:id" element={<div>categorias</div>} />
-              <Route path="proveedores/:id" element={<div>proveedores</div>} />
-              <Route path="users/:id" element={<div>Usuarios</div>} />
+              <Route path="users/:id/*" element={<UsersDasboard />}>
+                <Route path="usersInfo/:id" element={<UserInfo />} />
+              </Route>
+              <Route path="productos/:id" element={<ProductoDasboard />} />
+              <Route path="categorias/:id" element={<CategoryDasboard />} />
+
+              <Route path="proveedores/:id/*" element={<ProvidersDasboard />}>
+                <Route
+                  path="categoryProvider/:id"
+                  element={<GetCategoryProvider />}
+                />
+              </Route>
             </Route>
             <Route
               path="/usuarios"

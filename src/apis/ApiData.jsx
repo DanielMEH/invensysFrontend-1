@@ -230,3 +230,7 @@ export const updateProveedores = async (id, data) =>
 // ? Path: src\apis\ApiData.jsx get datos de su negocio
 export const getBusiness = async () =>
   await axios.get(`${urlServer}/modules/${accessToken}`);
+
+// ? Path: src\apis\ApiData.jsx obtiene todos los servicios datos dek usuario
+export const getServices = async (id) =>
+  await axios.get(`${urlServer}/serviceId/${id}`);

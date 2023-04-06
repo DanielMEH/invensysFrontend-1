@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate, Navigate } from "react-router-dom";
 import { useContextModules } from "../hooks/context/ContextModules";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 export const InicioChart = () => {
-  const {
-    getUsersAdmins,
-    getUsers,
-   
-  } = useGetUsers();
+  const { getUsersAdmins, getUsers } = useGetUsers();
   const { getModulesTodo, dataproductM, dataCategory, dataProviderM } =
     useContextModules();
   const [state1, setState1] = useState(false);
@@ -165,12 +161,15 @@ export const InicioChart = () => {
     }
     counterNumberVentas();
   }, [countP]);
-
+  const token = localStorage.getItem("secure_token");
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
   return (
     <>
-      <div className="cards mt-8 flex gap-2  mx-auto scroll-smooth">
+      <div className="cards mt-8 flex gap-2   mx-auto scroll-smooth">
         <section className="relative">
-          <Link to="users/sdfdfdf" className="">
+          <Link to={`users/${token}`} className="">
             <div
               className="card-single bg-white rounded-md inline-block p-2
         border-b-4 border-[#00a6ed] hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
@@ -260,7 +259,7 @@ export const InicioChart = () => {
           </Link>
         </section>
         <section className="">
-          <Link to="productos/sdfdfdf" className="">
+          <Link to={`productos/${token}`} className="">
             <div
               className="card-single bg-white rounded-md inline-block p-2
         border-b-4 border-green-400 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
@@ -347,7 +346,7 @@ export const InicioChart = () => {
           </Link>
         </section>
         <section className="">
-          <Link to="categorias/sdfdfdf" className="">
+          <Link to={`categorias/${token}`} className="">
             <div
               className="card-single bg-white rounded-md inline-block p-2
         border-b-4 border-red-400 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
@@ -439,7 +438,7 @@ export const InicioChart = () => {
           </Link>
         </section>
         <section className="">
-          <Link to="proveedores/sdfdfdf" className="">
+          <Link to={`proveedores/${token}`} className="">
             <div
               className="card-single bg-white rounded-md inline-block p-2
         border-b-4 border-purple-500 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
@@ -531,7 +530,7 @@ export const InicioChart = () => {
           </Link>
         </section>
         <section className="">
-          <Link to="users/sdfdfdf" className="">
+          <Link to="/inventario" className="">
             <div
               className="card-single bg-white rounded-md inline-block p-2
         border-b-4 border-pink-500 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
@@ -553,16 +552,16 @@ export const InicioChart = () => {
               <div className="spana text-gray-500 flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="28"
-                  height="28"
-                  viewBox="0 0 20 20"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
                 >
                   <path
                     fill="currentColor"
-                    d="M10.6 9c-.4-.1-.8-.3-1.1-.6c-.3-.1-.4-.4-.4-.6c0-.2.1-.5.3-.6c.3-.2.6-.4.9-.3c.6 0 1.1.3 1.4.7l.9-1.2c-.3-.3-.6-.5-.9-.7c-.3-.2-.7-.3-1.1-.3V4H9.4v1.4c-.5.1-1 .4-1.4.8c-.4.5-.7 1.1-.6 1.7c0 .6.2 1.2.6 1.6c.5.5 1.2.8 1.8 1.1c.3.1.7.3 1 .5c.2.2.3.5.3.8c0 .3-.1.6-.3.9c-.3.3-.7.4-1 .4c-.4 0-.9-.1-1.2-.4c-.3-.2-.6-.5-.8-.8l-1 1.1c.3.4.6.7 1 1c.5.3 1.1.6 1.7.6V16h1.1v-1.5c.6-.1 1.1-.4 1.5-.8c.5-.5.8-1.3.8-2c0-.6-.2-1.3-.7-1.7c-.5-.5-1-.8-1.6-1zM10 2c-4.4 0-8 3.6-8 8s3.6 8 8 8s8-3.6 8-8s-3.6-8-8-8zm0 14.9c-3.8 0-6.9-3.1-6.9-6.9S6.2 3.1 10 3.1s6.9 3.1 6.9 6.9s-3.1 6.9-6.9 6.9z"
+                    d="M11 21H5q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h4.175q.275-.875 1.075-1.438T12 1q1 0 1.788.563T14.85 3H19q.825 0 1.413.588T21 5v5h-2V5h-2v3H7V5H5v14h6v2Zm4.5-1.075l-4.25-4.25l1.4-1.4l2.85 2.85l5.65-5.65l1.4 1.4l-7.05 7.05ZM12 5q.425 0 .713-.288T13 4q0-.425-.288-.713T12 3q-.425 0-.713.288T11 4q0 .425.288.713T12 5Z"
                   />
                 </svg>
-                Ventas
+                Inventario
               </div>
               <div className="cont flex items-center justify-between">
                 <div className="number flex items-center">
@@ -600,53 +599,7 @@ export const InicioChart = () => {
           </Link>
         </section>
       </div>
-      <div className="cards mt-4 flex gap-2  mx-auto scroll-smooth">
-        <section className="">
-          <Link to="/notificaciones" className="">
-            <div
-              className="card-single bg-white rounded-md inline-block p-2
-        border-b-4 border-[#00a6ed] hover:translate-y-[-3px] duration-200 hover:shadow-lg
-        "
-            >
-              <div className="spana text-gray-500 flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 48 48"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M11.5 19v8.75c0 .174-.036.346-.106.505L8.638 34.5h30.724l-2.755-6.245a1.25 1.25 0 0 1-.107-.505V19c0-6.904-5.596-12.5-12.5-12.5c-6.903 0-12.5 5.596-12.5 12.5ZM18 37H8.254a2.25 2.25 0 0 1-2.058-3.158L9 27.487V19c0-8.284 6.716-15 15-15c8.284 0 15 6.716 15 15v8.486l2.804 6.356A2.25 2.25 0 0 1 39.746 37H30v1a6 6 0 0 1-12 0v-1Zm9.5 0h-7v1a3.5 3.5 0 1 0 7 0v-1Z"
-                  />
-                </svg>
-                Notificaciónes
-              </div>
-              <div className="cont flex items-center justify-between">
-                <div className="number flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="28"
-                    viewBox="0 0 32 32"
-                  >
-                    <path
-                      fill="#2ECC71"
-                      d="m16 6.594l-.72.687l-12.5 12.5l1.44 1.44L16 9.437l11.78 11.78l1.44-1.437l-12.5-12.5l-.72-.686z"
-                    />
-                  </svg>
-                  <span className="text-black text-xl font-bold mx-1">
-                    <span></span>
-                    <span class="num" data-val="12">
-                      00
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </section>
-      </div>
+      <div className="cards mt-4 flex gap-2  mx-auto scroll-smooth"></div>
 
       <Outlet />
     </>

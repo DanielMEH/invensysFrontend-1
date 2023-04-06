@@ -1,17 +1,37 @@
 import React from "react";
-import moment from "moment-with-locales-es6";
+import DeviceDetector from "device-detector-js";
 
-moment.locale("es");
+// ver mi navegador
 
-let h = moment().format("YYYY-MM-DD");
+console.log(window.navigator.userAgent);
 
-let l = moment().format("Do MMMM  YYYY"); // marzo 31º 2023, 8:04:44 am
-moment().format("dddd"); // viernes
-moment().format("MMM Do YY"); // mar. 31º 23
-moment().format("YYYY [escaped] YYYY"); // 2023 escaped 2023
-moment().format();
+const deviceDetector = new DeviceDetector();
+const userAgent = window.navigator.userAgent;
+const device = deviceDetector.parse(userAgent);
 
-console.log(l);
+console.log(
+  device.client.name,
+  "-",
+  device.client.version,
+  "-",
+  device.os.name,
+  "-",
+  device.os.version,
+  "-",
+  device.os.platform,
+  "-",
+  device.os.version,
+  "-",
+  device.device.type
+);
+const x = async () => {
+  const url = "https://ipapi.co/json/";
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+};
+
+x();
 export const Prueba = () => {
   return <div>Prueba</div>;
 };

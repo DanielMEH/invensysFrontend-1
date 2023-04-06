@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
+import moment from "moment-with-locales-es6";
+moment.locale("es");
 export const HomeDaboard = () => {
+  console.log("moment", moment().format("MMMM Do YYYY, h:mm:ss a"));
   const [category, setCategory] = useState([]);
   const [products, setProducts] = useState([]);
+
   const [provider, setProvider] = useState([]);
   const [infoProducts, setInfoProducts] = useState([]);
   const [users, setUsers] = useState([]);
@@ -17,30 +21,29 @@ export const HomeDaboard = () => {
       setProvider(res.data.dataProvider);
     });
   }, []);
+  const getproductFechaDescription = products.map((item) => {
+    return {
+      x: moment(item.fechaFin).format("YYYY-MM-DD"),
+      y: parseInt(item.priceBuy),
+    };
+  });
+  console.log("pppppp", getproductFechaDescription);
   var options = {
     series: [
       {
-        name: "north",
-        data: [
-          {
-            x: 1996,
-            y: 0,
-          },
-        ],
-      },
-      {
-        name: "south",
-        data: [
-          {
-            x: 2000,
-            y: 0,
-          },
-        ],
+        name: "Productos",
+        data: getproductFechaDescription,
       },
     ],
     chart: {
       type: "area",
       height: 350,
+      animations: {
+        enabled: false,
+      },
+      zoom: {
+        enabled: false,
+      },
     },
     dataLabels: {
       enabled: false,
@@ -48,65 +51,40 @@ export const HomeDaboard = () => {
     stroke: {
       curve: "straight",
     },
-
-    title: {
-      text: "Movimiento de tu negocio",
-      align: "left",
-      style: {
-        fontSize: "14px",
+    fill: {
+      opacity: 0.8,
+      type: "pattern",
+      pattern: {
+        style: ["verticalLines", "horizontalLines"],
+        width: 5,
+        height: 6,
       },
+    },
+    markers: {
+      size: 5,
+      hover: {
+        size: 9,
+      },
+    },
+    title: {
+      text: "precio de venta de productos",
+    },
+    tooltip: {
+      intersect: true,
+      shared: false,
+    },
+    theme: {
+      palette: "palette1",
     },
     xaxis: {
       type: "datetime",
-      axisBorder: {
-        show: false,
-      },
-      axisTicks: {
-        show: false,
-      },
     },
     yaxis: {
-      tickAmount: 4,
-      floating: false,
-
-      labels: {
-        style: {
-          colors: "#8e8da4",
-        },
-        offsetY: -7,
-        offsetX: 0,
-      },
-      axisBorder: {
-        show: false,
-      },
-      axisTicks: {
-        show: false,
-      },
-    },
-    fill: {
-      opacity: 0.5,
-    },
-    tooltip: {
-      x: {
-        format: "yyyy",
-      },
-      fixed: {
-        enabled: false,
-        position: "topRight",
-      },
-    },
-    grid: {
-      yaxis: {
-        lines: {
-          offsetX: -30,
-        },
-      },
-      padding: {
-        left: 20,
+      title: {
+        text: "Analityc",
       },
     },
   };
-
   var radar = {
     series: [
       {
@@ -135,12 +113,11 @@ export const HomeDaboard = () => {
 
   return (
     <>
-      <div className="gap-2 rounded-md flex max-w-7xl mx-auto mt-4">
+      <div className="gap-2 rounded-md flex max-w-7xl  mt-4">
         <div className="bg-white">
           <Chart
             options={options}
             series={options.series}
-            type="area"
             height={350}
             width={800}
           />

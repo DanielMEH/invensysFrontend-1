@@ -114,7 +114,11 @@ export const Perfil = () => {
                 </div>
                 <div className="inputsDatos">
                   {adminGetData.map((item) => (
-                    <form className="flex flex-col" onSubmit={handleData}>
+                    <form
+                      className="flex flex-col"
+                      onSubmit={handleData}
+                      key={item.idUsers}
+                    >
                       <h2 className="text-gray-600 text-xl my-2 text-center font-sans font-medium">
                         Datos personales
                       </h2>

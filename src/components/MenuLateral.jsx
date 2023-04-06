@@ -39,27 +39,29 @@ export const MenuLateral = () => {
     permisions: [],
   };
 
-  useEffect(() => {
-    async function getModulesUser() {
-      const response = await axios.get(
-        `http://localhost:3002/getMod/${token1}`
-      );
-
-      const modules = response.data.data;
-      modules.map((item) => {
-        return setUsersP([...usersP, usersP.push(item.titulo)]);
-      });
-    }
-    getModulesUser();
-  }, []);
-
   if (type === "user") {
+    const Webk = () => {
+      useEffect(() => {
+        async function getModulesUser() {
+          const response = await axios.get(
+            `http://localhost:3002/getMod/${token1}`
+          );
+
+          const modules = response.data.data;
+          modules.map((item) => {
+            return setUsersP([...usersP, usersP.push(item.titulo)]);
+          });
+        }
+        getModulesUser();
+      }, []);
+    };
     const modules = localStorage.getItem("module");
     const obj = modules;
     let toke = token ? token : null;
     usersData.tokeVerify = toke;
     usersData.permisions = ["inventario"];
     usersData.permisions = usersP;
+    Webk();
   }
 
   if (type === "superAdmin") {

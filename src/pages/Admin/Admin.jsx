@@ -5,7 +5,7 @@ import { ContextModules } from "../../hooks/context/ContextModules";
 export const Admin = () => {
   return (
     <>
-      <div className="flex bg-[#f5f9ff] h-screen">
+      <div className="flex bg-[#f4f8ff] h-screen">
         <MenuLateral />
         <div className=" w-full block self_conte_fond ">
           <div className="content_users m-7">

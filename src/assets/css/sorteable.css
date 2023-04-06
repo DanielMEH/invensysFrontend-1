@@ -1,0 +1,43 @@
+.draggableItem {
+  padding: 10px 15px;
+  max-width: 180px;
+  margin: auto;
+  background: rgb(71, 119, 214);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.draggableItem:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.content-webkit{
+
+  background: rgb(255, 255, 255);
+
+  max-height: 20rem;
+  overflow-y: scroll;
+  border-radius: 10px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+
+.content-webkit::-webkit-scrollbar {
+  width:9px;
+  background: #fff;
+
+
+}
+
+.content-webkit::-webkit-scrollbar-thumb {
+  background: rgb(233, 233, 233);
+  border-radius: 10px;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
+}
+
+.web-b{
+  margin:4px  10px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
