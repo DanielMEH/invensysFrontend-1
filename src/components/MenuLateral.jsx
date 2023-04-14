@@ -18,6 +18,7 @@ import truck from "../assets/icons/truck.svg";
 import cloceSession from "../assets/icons/log-out.svg";
 import compras from "../assets/icons/shopping-cart.svg";
 import axios from "axios";
+import { getNotification } from "../apis/ApiData";
 export const MenuLateral = () => {
   const hundleClick = () => {
     localStorage.removeItem("secure_token");
@@ -33,12 +34,22 @@ export const MenuLateral = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
   const token1 = localStorage.getItem("token_token1");
+  const [notify, setNotify] = useState([]);
   let type = localStorage.getItem("type");
   let usersData = {
     tokeVerify: "",
     permisions: [],
   };
 
+  useEffect(() => {
+        (async () => {
+          console.log("hola");
+          const data = await getNotification();
+          console.log(data);
+          setNotify(data.data.responseNotification);
+          console.log(data.data.responseNotification);
+    })();
+  }, []);
   if (type === "user") {
     const Webk = () => {
       useEffect(() => {
@@ -53,6 +64,7 @@ export const MenuLateral = () => {
           });
         }
         getModulesUser();
+    
       }, []);
     };
     const modules = localStorage.getItem("module");
@@ -248,7 +260,12 @@ fixed top-0
                       >
                         <img src={bell} alt="" width={20} />
                         <div className="NavLinks7 pt-[2px] ml-3 whitespace-nowrap hidden lg:block ">
-                          Notificaciones
+                          Notificaciones{" "}
+                          {notify.length > 0 ? (
+                            <span className="bg-red-500 text-white rounded-full px-1 text-xs">
+                              {notify.length > 9 ? "9+" : notify.length}
+                            </span>
+                          ) : null}
                         </div>
                       </NavLink>
                     </li>

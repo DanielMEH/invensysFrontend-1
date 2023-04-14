@@ -21,6 +21,8 @@ import Header from "../components/Header";
 import "../assets/css/fuente.css";
 import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
+import SliderCount from "../components/SliderCount";
+import { Sled } from "../components/Sled";
 
 export const HomePage = () => {
   AOS.init({
@@ -102,14 +104,7 @@ export const HomePage = () => {
                 alt=""
                 className="absolute bottom-[-16.9rem] left-[-6rem] w-36"
               />
-              <img
-                src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1676216582/kodiarLogo/mockuoFrame_hbrvph.png"
-                className="h-64 lg:h-96 rounded  p-10"
-                type="imagen"
-                title="Stored"
-                alt="Stored"
-                style={{ marginBottom: "10rem" }}
-              />
+              <Sled/>
             </div>
             <div className="circle1" data-aos="zoom-in-left"></div>
             <div className="circle2" data-aos="zoom-in-right"></div>
@@ -321,7 +316,8 @@ export const HomePage = () => {
             </div>
           </div>
         </div>
-        <Slide />
+        <SliderCount/>
+        
         <Footer />
       </div>
     </>

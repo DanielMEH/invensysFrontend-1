@@ -577,9 +577,9 @@ export const InicioChart = () => {
                     />
                   </svg>
                   <span className="text-black text-xl font-bold mx-1">
-                    <span>$</span>
-                    <span class="ventas" data-va="2000000">
-                      00
+                    <span>+</span>
+                    <span class="ventas" data-va="44">
+                      0
                     </span>
                   </span>
                 </div>

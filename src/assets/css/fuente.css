@@ -540,3 +540,10 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.scrollhelping{
+
+  overflow-y: scroll;
+}
+.scrollhelping::-webkit-scrollbar {
+  width: 0.5rem;
+}

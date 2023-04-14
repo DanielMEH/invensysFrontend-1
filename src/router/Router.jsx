@@ -37,6 +37,14 @@ import { ProvidersDasboard } from "../components/screen/ProvidersDasboard";
 import { GetCategoryProvider } from "../components/screen/GetCategoryProvider";
 import { UsersDasboard } from "../components/screen/UsersDasboard";
 import { UserInfo } from "../components/screen/UserInfo";
+import { UsersNotification } from "../components/NotificationsHeader/UsersNotification";
+import { HomeNotification } from "../components/NotificationsHeader/HomeNotification";
+import { ProductNotification } from "../components/NotificationsHeader/ProductNotification";
+import { InventoryNotify } from "../components/NotificationsHeader/InventoryNotify";
+import { CategoryNotify } from "../components/NotificationsHeader/CategoryNotify";
+import { ProviderNotifyc } from "../components/NotificationsHeader/ProviderNotifyc";
+import { PedidosNotify } from "../components/NotificationsHeader/PedidosNotify";
+import { VentasNotify } from "../components/NotificationsHeader/VentasNotify";
 
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
@@ -179,19 +187,7 @@ export const Router = () => {
                 </ProtectedRouter>
               }
             />
-            <Route
-              path="/notificacion"
-              element={
-                <ProtectedRouter
-                  isAllowed={
-                    !!users && users.permisions.includes("notificacion")
-                  }
-                  redirectTo="/notificacion"
-                >
-                  <Notification />
-                </ProtectedRouter>
-              }
-            />
+
             <Route
               path="/permisions/:id"
               element={
@@ -204,7 +200,7 @@ export const Router = () => {
               }
             />
             <Route
-              path="/notificaciones"
+              path="/notificaciones/*"
               element={
                 <ProtectedRouter
                   isAllowed={
@@ -215,7 +211,31 @@ export const Router = () => {
                   <Notification />
                 </ProtectedRouter>
               }
-            />
+            >
+              <Route path="" element={<HomeNotification />} />
+              <Route
+                path="notification/users"
+                element={<UsersNotification />}
+              />
+              <Route
+                path="notification/product"
+                element={<ProductNotification />}
+              />
+              <Route
+                path="notification/inventario"
+                element={<InventoryNotify />}
+              />
+              <Route
+                path="notification/category"
+                element={<CategoryNotify />}
+              />
+              <Route
+                path="notification/provider"
+                element={<ProviderNotifyc />}
+              />
+              <Route path="notification/pedidos" element={<PedidosNotify />} />
+              <Route path="notification/ventas" element={<VentasNotify />} />
+            </Route>
             <Route
               path="/admin/productos/editar/:id"
               element={

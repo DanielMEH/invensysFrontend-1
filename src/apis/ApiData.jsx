@@ -7,7 +7,7 @@ export const postRecoveryEmail = async (email) =>
   await axios.post(`${urlServer}/recovery`, { email });
 export const recoverycode = async (data) =>
   await axios.post(`${urlServer}/recoverycode`, { data });
-export const newPassword = async (data) =>
+export const newPassword = async (data) => 
   await axios.post(`${urlServer}/newPass`, { data });
 export const AuthGoogle = async (data) =>
   await axios.post(`${urlServer}/authgoogleAccount`, { data });
@@ -234,3 +234,11 @@ export const getBusiness = async () =>
 // ? Path: src\apis\ApiData.jsx obtiene todos los servicios datos dek usuario
 export const getServices = async (id) =>
   await axios.get(`${urlServer}/serviceId/${id}`);
+
+//  ? Path: src\apis\ApiData.jsx obtine todas las motificaciones
+export const getNotification = async () =>
+  await axios.get(`${urlServer}/notification/${accessToken}`);
+
+// ? Path: src\apis\ApiData.jsx DELETE motificaciones
+export const deleteNotification = async (id) =>
+  await axios.delete(`${urlServer}/notification/${id}`);
