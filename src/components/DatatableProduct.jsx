@@ -80,35 +80,15 @@ import { FormProduct } from "./FormProduct/FormProduct";
         filter: "agTextColumnFilter",
         chartDataType: 'series',
       },
-      {
-        headerName: "Precio de compra",
-        field: "price",
-        chartDataType: 'series',
-        filter: "agTextColumnFilter",
-        sort: "desc"
-         
-      },
-      {
-        headerName: "Precio de venta",
-        field: "priceBuy",
-       chartDataType: 'series',
-        filter: "agTextColumnFilter",
-        sort: "desc",
-      },
+     
       
       {
-        headerName: "Caducidad",
+        headerName: "Fecha de creación",
         field: "caducidad",
         chartDataType: 'category',
         filter: "agTextColumnFilter",
       },
-      {
-        headerName: "Iva",
-        field: "iva",
-        chartDataType: 'series',
-        
-        
-      },
+      
       {
         headerName: "Opciones",
         field: "Settings",
@@ -281,13 +261,8 @@ import { FormProduct } from "./FormProduct/FormProduct";
                   _id: item._id,
                   name: item.name,
                   description: item.description,
-                  price: ("$ "+item.priceBuy).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), // ponser signo de pesos
-                  priceBuy: ("$ "+item.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
                   // ponser signo de pesos
-                   caducidad:moment(item.fechaFin).endOf('day').fromNow(),
-                 
-                  
-                  iva: ("0,"+item.iva+"%").toString().replace(/\B(?=(\d{2})+(?!\d))/g, ","),
+                  caducidad: moment(item.createdAt).format("LLLL"),
                 };
               })
             

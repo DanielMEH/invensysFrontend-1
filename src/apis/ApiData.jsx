@@ -7,7 +7,7 @@ export const postRecoveryEmail = async (email) =>
   await axios.post(`${urlServer}/recovery`, { email });
 export const recoverycode = async (data) =>
   await axios.post(`${urlServer}/recoverycode`, { data });
-export const newPassword = async (data) => 
+export const newPassword = async (data) =>
   await axios.post(`${urlServer}/newPass`, { data });
 export const AuthGoogle = async (data) =>
   await axios.post(`${urlServer}/authgoogleAccount`, { data });
@@ -242,3 +242,50 @@ export const getNotification = async () =>
 // ? Path: src\apis\ApiData.jsx DELETE motificaciones
 export const deleteNotification = async (id) =>
   await axios.delete(`${urlServer}/notification/${id}`);
+
+// ? Path: src\apis\ApiData.jsx get inventario
+export const getInventario = async () =>
+  await axios.get(`${urlServer}/inventory/${accessToken}`);
+
+// ? Path: src\apis\ApiData.jsx post inventario
+export const postInventario = async (data) =>
+  await axios.post(
+    `${urlServer}/inventory`,
+    { data },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  );
+
+// ? Path: src\apis\ApiData.jsx delete inventario
+export const deleteInventario = async (id) =>
+  await axios.delete(`${urlServer}/inventory/${id}`, {
+    headers: {
+      authorization: accessToken,
+    },
+  });
+// ? Path: src\apis\ApiData.jsx update inventario
+export const updateInventario = async (id, data) =>
+  await axios.put(
+    `${urlServer}/inventory/${id}`,
+    { data },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  );
+
+// ? Path: src\apis\ApiData.jsx get ventas
+export const UploadSubProducts = async (id, data) =>
+  await axios.post(
+    `${urlServer}/subProducts`,
+    { data },
+    {
+      headers: {
+        authorization: accessToken,
+      },
+    }
+  );

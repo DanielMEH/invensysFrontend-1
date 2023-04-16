@@ -45,7 +45,8 @@ import { CategoryNotify } from "../components/NotificationsHeader/CategoryNotify
 import { ProviderNotifyc } from "../components/NotificationsHeader/ProviderNotifyc";
 import { PedidosNotify } from "../components/NotificationsHeader/PedidosNotify";
 import { VentasNotify } from "../components/NotificationsHeader/VentasNotify";
-
+import { ConfigInventory } from "../container/ConfigInventory";
+import inventoryImg from "../assets/img/inventorys.jpg";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -95,6 +96,7 @@ export const Router = () => {
       "dasboard",
       "shope",
       "ayudaAdmin",
+      "venta",
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -121,7 +123,7 @@ export const Router = () => {
 
             <Route index element={<HomePage />} />
             <Route
-              path="/inventario"
+              path="/inventario/*"
               element={
                 <ProtectedRouter
                   isAllowed={!!users && users.permisions.includes("inventario")}
@@ -130,7 +132,23 @@ export const Router = () => {
                   <Inventory />
                 </ProtectedRouter>
               }
-            />
+            >
+              <Route path="inventory/:id" element={<ConfigInventory />} />
+              <Route
+                path=""
+                element={
+                  <div>
+                    <img
+                      src={inventoryImg}
+                      alt="inventory"
+                      width={"50%"}
+                      height={200}
+                      style={{ margin: "auto" }}
+                    />
+                  </div>
+                }
+              />
+            </Route>
             <Route
               path="/ayudaAdmin"
               element={
