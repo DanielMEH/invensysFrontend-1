@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getCategorias } from "../apis/ApiData";
 import { ImportProducts } from "./ImportProducts";
 import "animate.css";
+import { Link } from "react-router-dom";
 export const CategoryInventory = ({ element, id, estadoModel }) => {
   const [category, setCategory] = useState([]);
   const [arrayId, setArrayId] = useState([]);
@@ -40,9 +41,29 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
           }
         >
           <h2 className="font-bold m-4 text-xl">Categorias</h2>
-          <p className="mx-4">
-            Seleciona las categorias para la importacion de los productos
-          </p>
+          {category.length > 0 ? (
+            <p className="mx-4">
+              Seleciona las categorias para la importacion de los productos
+            </p>
+          ) : (
+            <p className="mx-4 my-4">
+              No se encontraron categorias, crea tu primer categoria
+              <Link
+                className="
+                    
+                    text-blue-500
+                    font-bold
+                    hover:text-blue-600
+                    text-sm
+                    ml-2
+
+                    "
+                to={`/categorias`}
+              >
+                Crear categoria
+              </Link>
+            </p>
+          )}
           {loading ? (
             <div className="m-4 block">
               <svg
@@ -59,7 +80,7 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
                     attributeName="transform"
                     dur="0.75s"
                     repeatCount="indefinite"
-                    type="rotate"
+                    type="rotate"Flog
                     values="0 12 12;360 12 12"
                   />
                 </path>

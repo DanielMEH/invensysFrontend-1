@@ -7,6 +7,9 @@ import * as Yup from "yup";
 import { useInventario } from "../hooks/context/ContextInventario";
 import moment from "moment-with-locales-es6";
 import { CategoryInventory } from "./CategoryInventory";
+import { getSubProducts } from "../apis/ApiData";
+import { DataSubProducts } from "../components/DataSubProducts";
+import Swal from "sweetalert2";
 moment.locale("es");
 export const ConfigInventory = () => {
   const [loading, setLoading] = useState(false);
@@ -14,17 +17,45 @@ export const ConfigInventory = () => {
   const [load, setLoad] = useState(false);
   const [estado, setEstado] = useState(false);
   const [estado2, setEstado2] = useState(false);
+  const [estadoSup, setEstadoSup] = useState(false);
+  const [subProducts, setSubProducts] = useState([]);
   const { id } = useParams();
+
   const [inventoryData, setInventoryData] = useState([]);
   const { DeleteInventario, GetInventario, inventario, UpdateInventario } =
     useInventario();
   const navigate = useNavigate();
   const inventarioSelect = inventario.find((item) => item._id === id);
+
+  const validaDelete = () => {
+    Swal.fire({
+      title: "¿Estas seguro de eliminar este inventario?  ",
+      text: "se eliminara todo lo relacionado a este inventario incluyendo subproductos. No podras revertir esta accion!",
+      showClass: {
+        popup: "animate__animated animate__bounceInDown",
+      },
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "eliminar!",
+      position: "top",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        DeleteInventory();
+      } else {
+      }
+    });
+  };
+
   useEffect(() => {
     (async () => {
       setLoading(true);
+      setEstadoSup(true);
       await GetInventario();
+      let resposneSubProducs = await getSubProducts(id);
+      setSubProducts(resposneSubProducs.data.response);
       setLoading(false);
+      setEstadoSup(false);
     })();
     setInventoryData(inventarioSelect);
   }, [id]);
@@ -70,7 +101,7 @@ export const ConfigInventory = () => {
   return (
     <>
       <ToastContainer />
-      <div className="bg-white  max-w-7xl px-3 py-1 border shadow-md rounded-sm">
+      <div className="bg-white  max-w-7xl px-3 py-1 border  rounded-sm">
         <div className="iconst_config flex items-center justify-between gap-4 max-7xl mx-auto">
           <div className="sec1 flex items-center gap-4">
             {loading2 ? (
@@ -96,7 +127,7 @@ export const ConfigInventory = () => {
             ) : (
               <span
                 onClick={() => {
-                  DeleteInventory();
+                  validaDelete();
                 }}
                 className="cursor-pointer"
               >
@@ -184,7 +215,7 @@ export const ConfigInventory = () => {
                             })();
                           }}
                         >
-                          <Form className="flex  ">
+                          <Form className="flex items-center ">
                             <div className="flex flex-col w-full ">
                               <div
                                 className="Fiel-email border bg-white flex items-center my-1
@@ -246,11 +277,11 @@ export const ConfigInventory = () => {
                                 <button
                                   type="submit"
                                   className="bg-[#5994f5] text-white rounded-full relative
-                                p-1  w-5/6 mx-auto my-2 hover:opacity-[0.85] transition
-                                h-9 flex justify-center"
+                                 w-5/6 mx-auto  hover:opacity-[0.85] transition
+                                p-1 flex justify-center"
                                 >
                                   <span className="text-base font-medium">
-                                    Actualizar inventario
+                                    Actualizar
                                   </span>
                                 </button>
                               ) : (
@@ -349,6 +380,7 @@ export const ConfigInventory = () => {
                 </g>
               </svg>
             </Link>
+            <div className="div truncate">{inventarioSelect.description}</div>
           </div>
           <div className="sec2">
             {loading ? (
@@ -375,7 +407,7 @@ export const ConfigInventory = () => {
               <>
                 <div className="flex">
                   <div className="text-gray-500 mx-1">
-                    {moment(inventarioSelect.createdAt).format("LLLL")}{" "}
+                    {moment(inventarioSelect.createdAt).format("Do MMMM  YYYY")}{" "}
                   </div>
                   <div> {inventarioSelect.name_inventory}</div>
                 </div>
@@ -384,48 +416,83 @@ export const ConfigInventory = () => {
           </div>
         </div>
       </div>
-      <div
-        className={
-          estado2
-            ? "importInventor  max-w-7xl  flex justify-start "
-            : " importInventor  max-w-7xl  flex justify-center"
-        }
-      >
-        <div
-          className={
-            estado2
-              ? `subproducts w-fit h-fit  rounded-md mt-2 
-        cursor-pointer bg-[#5994f5] inline-block text-start`
-              : `subproducts w-fit h-fit  text-center only:rounded-md mt-2 
-        cursor-pointer bg-[#5994f5] inline-block`
-          }
-          onClick={() => setEstado2(!estado2)}
-        >
-          <div className="flex justify-center p-3 ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
+
+      {estadoSup ? (
+        <div className="m-10 ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="35"
+            height="35"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="#777777"
+              d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"
             >
-              <path
-                fill="white"
-                d="M3 3h4v7.5c0 1.93 1.57 3.5 3.5 3.5H13v-4l7 6l-7 6v-4h-2.5C6.36 18 3 14.64 3 10.5V3Z"
+              <animateTransform
+                attributeName="transform"
+                dur="0.75s"
+                repeatCount="indefinite"
+                type="rotate"
+                values="0 12 12;360 12 12"
               />
-            </svg>
-            <span className="text-white">Importar productos</span>
-          </div>
+            </path>
+          </svg>
         </div>
-      </div>
-      {estado2 ? (
-        <div className="mt-[-4rem]">
-          <CategoryInventory
-            element={inventarioSelect}
-            id={id}
-            estadoModel={estado}
-          />
-        </div>
-      ) : null}
+      ) : (
+        <>
+          {subProducts.length > 0 ? (
+            <>
+              <DataSubProducts dataInventorySubProducts={subProducts} />
+            </>
+          ) : (
+            <>
+              <div
+                className={
+                  estado2
+                    ? "importInventor  max-w-7xl  flex justify-start "
+                    : " importInventor  max-w-7xl  flex justify-center"
+                }
+              >
+                <div
+                  className={
+                    estado2
+                      ? `subproducts w-fit h-fit  rounded-md mt-2 
+        cursor-pointer bg-[#5994f5] inline-block text-start`
+                      : `subproducts w-fit h-fit  text-center only:rounded-md mt-2 
+        cursor-pointer bg-[#5994f5] inline-block`
+                  }
+                  onClick={() => setEstado2(!estado2)}
+                >
+                  <div className="flex justify-center p-3 ">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="white"
+                        d="M3 3h4v7.5c0 1.93 1.57 3.5 3.5 3.5H13v-4l7 6l-7 6v-4h-2.5C6.36 18 3 14.64 3 10.5V3Z"
+                      />
+                    </svg>
+                    <span className="text-white">Importar productos</span>
+                  </div>
+                </div>
+              </div>
+              {estado2 ? (
+                <div className="mt-[-4rem]">
+                  <CategoryInventory
+                    element={inventarioSelect}
+                    id={id}
+                    estadoModel={estado}
+                  />
+                </div>
+              ) : null}
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };

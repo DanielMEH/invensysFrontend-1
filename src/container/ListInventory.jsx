@@ -28,7 +28,7 @@ export const ListInventory = () => {
     
   return (
       <div className="notf block rounded-md bg-white px-3">
-          <h2 className="mx- font-bold">Lista de inventario</h2>
+          <h2 className="mx-2 font-bold">Lista de inventario</h2>
           {
               inventario.length > 0 ? (
                   <Swiper

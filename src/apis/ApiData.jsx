@@ -289,3 +289,10 @@ export const UploadSubProducts = async (id, data) =>
       },
     }
   );
+
+export const getSubProducts = async (id) =>
+  await axios.get(`${urlServer}/subProducts/${id}`, {
+    headers: {
+      authorization: accessToken,
+    },
+  });

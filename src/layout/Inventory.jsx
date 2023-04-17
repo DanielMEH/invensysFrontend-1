@@ -21,7 +21,7 @@ export const Inventory = () => {
               </p>
             </div>
 
-            <div className="container_cont">
+            <div className="container_cont max-w-7xl">
               <ContextInventario>
                 <div className="flex gap- items-end">
                   <FormInventory />
