@@ -290,7 +290,7 @@ fixed top-0
                       >
                         <img src={grid} alt="" width={20} />
                         <div className="NavLinks2 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
-                          inventario
+                          Bodegas
                         </div>
                       </NavLink>
                     </li>

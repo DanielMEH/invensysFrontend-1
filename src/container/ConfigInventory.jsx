@@ -101,7 +101,7 @@ export const ConfigInventory = () => {
   return (
     <>
       <ToastContainer />
-      <div className="bg-white  max-w-7xl px-3 py-1 border  rounded-sm">
+      <div className="bg-white  w-full px-3 py-1 border  rounded-sm">
         <div className="iconst_config flex items-center justify-between gap-4 max-7xl mx-auto">
           <div className="sec1 flex items-center gap-4">
             {loading2 ? (
@@ -226,7 +226,7 @@ export const ConfigInventory = () => {
                                   <Field
                                     type="text"
                                     name="name_inventory"
-                                    placeholder="Nombre del inventario"
+                                    placeholder="Nombre de la bodega"
                                     className="w-full block
                                          outline-none p-2"
                                     value={inventoryData.name_inventory}
@@ -254,7 +254,7 @@ export const ConfigInventory = () => {
                                   <Field
                                     type="text"
                                     name="description"
-                                    placeholder="Descripción del inventario"
+                                    placeholder="Ubicación de la bodega"
                                     className="w-full block
                                          outline-none p-2 "
                                     value={inventoryData.description}
@@ -451,7 +451,7 @@ export const ConfigInventory = () => {
                 className={
                   estado2
                     ? "importInventor  max-w-7xl  flex justify-start "
-                    : " importInventor  max-w-7xl  flex justify-center"
+                    : " importInventor  max-w-7xl  flex justify-start"
                 }
               >
                 <div
@@ -476,7 +476,7 @@ export const ConfigInventory = () => {
                         d="M3 3h4v7.5c0 1.93 1.57 3.5 3.5 3.5H13v-4l7 6l-7 6v-4h-2.5C6.36 18 3 14.64 3 10.5V3Z"
                       />
                     </svg>
-                    <span className="text-white">Importar productos</span>
+                    <span className="text-white">Trasladar productos</span>
                   </div>
                 </div>
               </div>

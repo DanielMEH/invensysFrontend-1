@@ -40,10 +40,10 @@ export const FormInventory = () => {
       <ToastContainer />
       <div
         className="form_Login   rounded-md border  flex   animate__animated animate__fadeIn bg-white 
-        form md:w-[40rem]   mt-9 mb-2 drop-shadow-md "
+        form md:w-full   mt-9 mb-2 drop-shadow-md "
       >
         <div className="login bg-white z-20 relative rounded-md w-full ">
-          <h3 className="mx-4 text-xl text-gray-500 mt-1 ">Crear invenario</h3>
+          <h3 className="mx-4 text-xl text-gray-500 mt-1 ">Crear bodega</h3>
           <div className="">
             <div className="">
               <Formik
@@ -97,7 +97,7 @@ export const FormInventory = () => {
                         <Field
                           type="text"
                           name="name_inventory"
-                          placeholder="Nombre del inventario"
+                          placeholder="Nombre del la bodega"
                           className="w-full block
                                          outline-none p-2"
                         />
@@ -123,7 +123,7 @@ export const FormInventory = () => {
                         <Field
                           type="text"
                           name="description"
-                          placeholder="Descripción del inventario"
+                          placeholder="Ubicación de la bodega"
                           className="w-full block
                                          outline-none p-2 "
                         />
@@ -148,7 +148,7 @@ export const FormInventory = () => {
                                 h-9 flex justify-center"
                       >
                         <span className="text-base font-medium">
-                          Crear Inventario
+                          Crear Bodega
                         </span>
                       </button>
                     ) : (

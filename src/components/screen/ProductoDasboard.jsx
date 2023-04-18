@@ -172,9 +172,9 @@ export const ProductoDasboard = () => {
       ) : (
         <div className="animate__animated animate__fadeIn">
           <div className="cards_p">
-            <h2 className="text-2xl my-1">Informes generales</h2>
+            <h2 className="text-2xl my-1 text-start 2xl:text-center">Informes generales</h2>
             {products.length > 0 ? (
-              <div className="cards_content flex gap-2" id="lista">
+              <div className="cards_content flex justify-start flex-wrap 2xl:justify-center  gap-2" id="lista">
                 <section className="bg-white rounded-md inline-block">
                   <h3 className="m-1 text-gay-600">Total de productos</h3>
                   <div className="flex items-center justify-center">

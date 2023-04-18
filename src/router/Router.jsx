@@ -139,7 +139,7 @@ export const Router = () => {
                 element={
                   <div>
                     <img
-                      src={inventoryImg}
+                      src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1681822432/stored/11668796_20945371-removebg-preview_ja7xon.png"
                       alt="inventory"
                       width={"50%"}
                       height={200}

@@ -13,15 +13,15 @@ export const Inventory = () => {
           <div className="content_users m-7">
             <div className="content_users_title">
               <h2 className="text-4xl font-bold text-gray-700 font-sans mx-0">
-                Inventario
+                Bodega
               </h2>
               <p className="text-xl text-gray-600 mx-0">
-                Crea, administra tu inventario para sus procesos de producción y
-                ventas.
+                Crea, administra tus bodegas para sus procesos de producción y
+                salidas.
               </p>
             </div>
 
-            <div className="container_cont max-w-7xl">
+            <div className="container_cont lg:min-w-7xl">
               <ContextInventario>
                 <div className="flex gap- items-end">
                   <FormInventory />

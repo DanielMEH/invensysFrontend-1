@@ -167,7 +167,7 @@ export const InicioChart = () => {
   }
   return (
     <>
-      <div className="cards mt-8 flex gap-2   mx-auto scroll-smooth">
+      <div className="cards mt-8 flex gap-2 justify-start flex-wrap 2xl:justify-center  mx-auto scroll-smooth">
         <section className="relative">
           <Link to={`users/${token}`} className="">
             <div

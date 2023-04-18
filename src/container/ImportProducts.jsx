@@ -51,7 +51,7 @@ export const ImportProducts = ({ idCategorias }) => {
     <>
       <ToastContainer />
       {productsFilter.length > 0 ? (
-        <div className="bg-white shadow-md border rounded-md z-50  max-w-6xl overflow-x-scroll mb-4  mt-20">
+        <div className="bg-white shadow-md border mx-auto rounded-md w-fit z-50 flex flex-col justify-center overflow-x-auto mb-4  mt-20">
           <div className="flex justify-between items-center">
             <div className="des">
               <h1
@@ -190,69 +190,8 @@ export const ImportProducts = ({ idCategorias }) => {
                             draggable: true,
                             progress: undefined,
                           });
-                          return;
+                         
                         } else {
-                          if (values.priceCompra > values.priceVenta) {
-                            toast.warning(
-                              "El precio de venta debe ser mayor o igual al de compra",
-                              {
-                                position: "top-right",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              }
-                            );
-                            return;
-                          } else {
-                            if (values.stockMaximo < values.stockMinimo) {
-                              toast.warning(
-                                "El stock maximo debe ser mayor o igual al minimo",
-                                {
-                                  position: "top-right",
-                                  autoClose: 3000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              );
-                            } else {
-                              if (
-                                values.stockMinimo < 0 ||
-                                values.stockMaximo < 0
-                              ) {
-                                toast.warning(
-                                  "El stock no puede ser negativo",
-                                  {
-                                    position: "top-right",
-                                    autoClose: 3000,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                  }
-                                );
-                              } else {
-                                if (values.unidad < 0) {
-                                  toast.warning(
-                                    "La unidad no puede ser negativa",
-                                    {
-                                      position: "top-right",
-                                      autoClose: 3000,
-                                      hideProgressBar: false,
-                                      closeOnClick: true,
-                                      pauseOnHover: true,
-                                      draggable: true,
-                                      progress: undefined,
-                                    }
-                                  );
-                                  return;
-                                } else {
                                   const data = {
                                     name: product.name,
                                     priceCompra: values.priceCompra,
@@ -304,14 +243,11 @@ export const ImportProducts = ({ idCategorias }) => {
                                     }
                                   })();
                                 }
-                              }
-                            }
-                          }
-                        }
+                            
                       }
                     }}
                   >
-                    <Form className="px-4 flex gap-1">
+                    <Form className="px-4 flex just gap-1">
                       <div className="content-fit flex gap-2">
                         <div className="input flex flex-col w-36">
                           <label
@@ -362,7 +298,7 @@ export const ImportProducts = ({ idCategorias }) => {
                             placeholder="Ej: 2.000"
                           />
                         </div>
-                        <div className="input flex flex-col my-1 w-32">
+                        <div className="input flex flex-col my-1 w-fit">
                           <label
                             htmlFor="
                                 Nombre del producto
@@ -432,6 +368,22 @@ export const ImportProducts = ({ idCategorias }) => {
                           </label>
                           <Field
                             name="stockMinimo"
+                            type="text"
+                            className="border rounded-md p-2 outline-none"
+                            placeholder="Ej: 23"
+                          />
+                        </div>
+                        <div className="input flex flex-col my-1 w-36">
+                          <label
+                            htmlFor="
+                                Nombre del producto
+
+                                "
+                          >
+                            Iva
+                          </label>
+                          <Field
+                            name="iva"
                             type="text"
                             className="border rounded-md p-2 outline-none"
                             placeholder="Ej: 23"

@@ -104,7 +104,9 @@ export const uploadImg = async (imgData) =>
       },
     }
   );
+
 // ? Path: src\apis\ApiData.jsx actualizar datos ADMINISTRADORE
+
 export const UpdateAdminAll = async (data) =>
   await axios.put(
     `${urlServer}/updateAdminALL`,
