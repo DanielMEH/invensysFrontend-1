@@ -348,7 +348,7 @@ export const ConfigInventory = () => {
                                         transform="translate(1.5 1.625)"
                                       />
                                     </g>
-                                  </svg>
+                                  </svg >
                                   Espere un momento...
                                 </span>
                               )}
@@ -380,7 +380,16 @@ export const ConfigInventory = () => {
                 </g>
               </svg>
             </Link>
-            <div className="div truncate">{inventarioSelect.description}</div>
+            <div className="div truncate flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#777777" d="M14.55 20c.45.76.95 1.44 1.36 2H6c-1.11 0-2-.89-2-2V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6.22c-.5-.14-1-.22-1.5-.22c-.17 0-.33 0-.5.03V4h-5v8l-2.5-2.25L8 12V4H6v16h8.55M22 15.5c0 2.6-3.5 6.5-3.5 6.5S15 18.1 15 15.5c0-1.9 1.6-3.5 3.5-3.5s3.5 1.6 3.5 3.5m-2.3.1c0-.6-.6-1.2-1.2-1.2s-1.2.5-1.2 1.2c0 .6.5 1.2 1.2 1.2s1.3-.6 1.2-1.2Z"/></svg>
+            <span className="mx-[2px]"> · </span>
+              {inventarioSelect.description}</div>
+            <div className="div truncate flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 512">
+              <path fill="#777777" d="M224 256a128 128 0 1 0 0-256a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512h362.9c-5.4-9.4-8.6-20.3-8.6-32V352c0-2.1.1-4.2.3-6.3c-31-26-71-41.7-114.6-41.7h-91.4zM528 240c17.7 0 32 14.3 32 32v48h-64v-48c0-17.7 14.3-32 32-32zm-80 32v48c-17.7 0-32 14.3-32 32v128c0 17.7 14.3 32 32 32h160c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32v-48c0-44.2-35.8-80-80-80s-80 35.8-80 80z"/></svg>
+              <span className="mx-[2px] block"> · </span>
+              Responsable: {inventarioSelect.responsableInventory
+}</div>
           </div>
           <div className="sec2">
             {loading ? (
@@ -407,9 +416,9 @@ export const ConfigInventory = () => {
               <>
                 <div className="flex">
                   <div className="text-gray-500 mx-1">
-                    {moment(inventarioSelect.createdAt).format("Do MMMM  YYYY")}{" "}
+                    {moment(inventarioSelect.createdAt).format("llll")}{" "}
                   </div>
-                  <div> {inventarioSelect.name_inventory}</div>
+                  <div> <span> · </span> {inventarioSelect.name_inventory}</div>
                 </div>
               </>
             )}

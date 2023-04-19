@@ -1,6 +1,7 @@
 import axios from "axios";
 let urlServer = "http://localhost:3002";
 let accessToken = localStorage.getItem("secure_token");
+let type = localStorage.getItem("type");
 export const PostDataUser = async (postDataUser) =>
   await axios.post(`${urlServer}/login`, { postDataUser });
 export const postRecoveryEmail = async (email) =>
@@ -257,6 +258,7 @@ export const postInventario = async (data) =>
     {
       headers: {
         authorization: accessToken,
+        typeAutorization:type
       },
     }
   );
