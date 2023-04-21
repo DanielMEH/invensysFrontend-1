@@ -2,24 +2,18 @@ import React, { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
-import plus from "../assets/icons/plus.svg";
+
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
-import OpcionesCategory from "./OpcionesCategory";
-import { RegisterCategorys } from "./RegisterCategorys";
-import { checkboxSelection } from "./ChackSelection";
-import { headerCheckboxSelection } from "./ChackSelection";
 import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
-import UploadExcel from "./UploadExcel";
+import { Link, Outlet } from "react-router-dom";
 
 moment.locale("es");
-
-export const DataSubProducts = ({ dataInventorySubProducts }) => {
+export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
   // count categorias
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
@@ -142,28 +136,26 @@ export const DataSubProducts = ({ dataInventorySubProducts }) => {
     gridRef.current.api.createRangeChart(params);
   }, []);
 
+  const totalSuma = dataInventorySubProducts.map(
+    (item) => item.priceVenta * item.unidad
+  );
 
-   
-    const totalSuma  = dataInventorySubProducts.map(
-      (item) => item.priceVenta * item.unidad
-    )
+  const sumaTotal = () => {
+    const money = new Intl.NumberFormat("en-CO", {
+      style: "currency",
+      currency: "COP",
+      minimumFractionDigits: 2,
+    });
 
-    const sumaTotal = ()=>{
-      const money = new Intl.NumberFormat("en-CO", {
-        style: "currency",
-        currency: "COP",
-        minimumFractionDigits: 2,
-      });
-    
-      let total = 0
-      for(let i = 0; i < totalSuma.length; i++){
-        total += totalSuma[i]
-      }
-      return money.format(total)
+    let total = 0;
+    for (let i = 0; i < totalSuma.length; i++) {
+      total += totalSuma[i];
     }
+    return money.format(total);
+  };
 
-    console.log("tttttttt",totalSuma)
-  
+  console.log("tttttttt", totalSuma);
+
   const onChart2 = useCallback(() => {
     var params = {
       cellRange: {
@@ -195,6 +187,7 @@ export const DataSubProducts = ({ dataInventorySubProducts }) => {
 
   return (
     <>
+     
       <div className="panel_opciones bg-white w-[100%] mx-auto mt-4 mb-4  rounded-md p-2">
         <div className="plus_panel flex justify-between items-center">
           <section className="flex ">
@@ -255,20 +248,51 @@ export const DataSubProducts = ({ dataInventorySubProducts }) => {
               </svg>
               <span>Imprimir</span>
             </button>
-            <button
-              onClick={onBtPrint}
+            <Link
+              to={`TrasladarProduct/${id}`}
               className="flex items-center border mx-1 p-1 rounded-md"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48"><path fill="#FFCCBC" d="M7 40V8c0-2.2 1.8-4 4-4h24c2.2 0 4 1.8 4 4v32c0 2.2-1.8 4-4 4H11c-2.2 0-4-1.8-4-4z"/><g fill="#FF5722"><path d="M42.7 24L32 33V15z"/><path d="M14 21h23v6H14z"/></g></svg>
-
-              <span>Trasladar productos</span>
-            </button>
-            <div
-             
-              className="flex items-center border mx-1 p-1 rounded-md"
-            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 48 48"
+              >
+                <path
+                  fill="#FFCCBC"
+                  d="M7 40V8c0-2.2 1.8-4 4-4h24c2.2 0 4 1.8 4 4v32c0 2.2-1.8 4-4 4H11c-2.2 0-4-1.8-4-4z"
+                />
+                <g fill="#FF5722">
+                  <path d="M42.7 24L32 33V15z" />
+                  <path d="M14 21h23v6H14z" />
+                </g>
+              </svg>
+              <span>Trasladar productos </span>
+            </Link>
+            <div className="flex items-center border mx-1 p-1 rounded-md">
               <span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48"><path fill="#78909C" d="M40 41H8c-2.2 0-4-1.8-4-4V16.1c0-1.3.6-2.5 1.7-3.3L24 0l18.3 12.8c1.1.7 1.7 2 1.7 3.3V37c0 2.2-1.8 4-4 4z"/><path fill="#AED581" d="M14 1h20v31H14z"/><g fill="#558B2F"><path d="M13 0v33h22V0H13zm20 31H15V2h18v29z"/><path d="M34 3c0 1.7-.3 3-2 3s-3-1.3-3-3s1.3-2 3-2s2 .3 2 2zM16 1c1.7 0 3 .3 3 2s-1.3 3-3 3s-2-1.3-2-3s.3-2 2-2z"/><circle cx="24" cy="8" r="2"/><circle cx="24" cy="20" r="6"/></g><path fill="#CFD8DC" d="M40 41H8c-2.2 0-4-1.8-4-4V17l20 13l20-13v20c0 2.2-1.8 4-4 4z"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 48 48"
+                >
+                  <path
+                    fill="#78909C"
+                    d="M40 41H8c-2.2 0-4-1.8-4-4V16.1c0-1.3.6-2.5 1.7-3.3L24 0l18.3 12.8c1.1.7 1.7 2 1.7 3.3V37c0 2.2-1.8 4-4 4z"
+                  />
+                  <path fill="#AED581" d="M14 1h20v31H14z" />
+                  <g fill="#558B2F">
+                    <path d="M13 0v33h22V0H13zm20 31H15V2h18v29z" />
+                    <path d="M34 3c0 1.7-.3 3-2 3s-3-1.3-3-3s1.3-2 3-2s2 .3 2 2zM16 1c1.7 0 3 .3 3 2s-1.3 3-3 3s-2-1.3-2-3s.3-2 2-2z" />
+                    <circle cx="24" cy="8" r="2" />
+                    <circle cx="24" cy="20" r="6" />
+                  </g>
+                  <path
+                    fill="#CFD8DC"
+                    d="M40 41H8c-2.2 0-4-1.8-4-4V17l20 13l20-13v20c0 2.2-1.8 4-4 4z"
+                  />
+                </svg>
               </span>
               <span>Total de bodega : {sumaTotal()} </span>
             </div>
@@ -306,6 +330,7 @@ export const DataSubProducts = ({ dataInventorySubProducts }) => {
       </div>
       <div className="buttons"></div>
       <div className="panel_second_h w-[100%] mx-auto flex justify-between items-center"></div>
+
       <div
         className="ag-theme-alpine shadow-2xl mx-auto "
         id="myGrid"

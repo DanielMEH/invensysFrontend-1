@@ -51,7 +51,10 @@ export const ImportProducts = ({ idCategorias }) => {
     <>
       <ToastContainer />
       {productsFilter.length > 0 ? (
-        <div className="bg-white shadow-md border mx-auto rounded-md w-fit z-50 flex flex-col justify-center overflow-x-auto mb-4  mt-20">
+        <div
+          className="bg-white shadow-md border mx-auto rounded-md
+         w-fit z-50 flex flex-col justify-center max-w-[1300px] 2xl:max-w-screen-xl overflow-x-auto mb-4  mt-20"
+        >
           <div className="flex justify-between items-center">
             <div className="des">
               <h1
@@ -190,60 +193,55 @@ export const ImportProducts = ({ idCategorias }) => {
                             draggable: true,
                             progress: undefined,
                           });
-                         
                         } else {
-                                  const data = {
-                                    name: product.name,
-                                    priceCompra: values.priceCompra,
-                                    priceVenta: values.priceVenta,
-                                    stockMinimo: values.stockMinimo,
-                                    stockMaximo: values.stockMaximo,
-                                    unidad: values.unidad,
-                                    caducidad: fecha[1],
-                                    idInventory: id,
-                                  };
+                          const data = {
+                            name: product.name,
+                            priceCompra: values.priceCompra,
+                            priceVenta: values.priceVenta,
+                            stockMinimo: values.stockMinimo,
+                            stockMaximo: values.stockMaximo,
+                            unidad: values.unidad,
+                            caducidad: fecha[1],
+                            idInventory: id,
+                          };
 
-                                  setLoadSub(true);
-                                  (async () => {
-                                    await GetPdo();
-                                    let response = await UploadSubProducts(
-                                      id,
-                                      data
-                                    );
+                          setLoadSub(true);
+                          (async () => {
+                            await GetPdo();
+                            let response = await UploadSubProducts(id, data);
 
-                                    if (response.status === 200) {
-                                      toast.success(
-                                        "Producto agregado al inventario con exito",
-                                        {
-                                          position: "top-right",
-                                          autoClose: 3000,
-                                          hideProgressBar: false,
-                                          closeOnClick: true,
-                                          pauseOnHover: true,
-                                          draggable: true,
-                                          progress: undefined,
-                                        }
-                                      );
-
-                                      setLoadSub(false);
-                                    } else {
-                                      toast.error(
-                                        "Error al agregar el producto al inventario o el producto ya existe",
-                                        {
-                                          position: "top-right",
-                                          autoClose: 3000,
-                                          hideProgressBar: false,
-                                          closeOnClick: true,
-                                          pauseOnHover: true,
-                                          draggable: true,
-                                          progress: undefined,
-                                        }
-                                      );
-                                      setLoadSub(false);
-                                    }
-                                  })();
+                            if (response.status === 200) {
+                              toast.success(
+                                "Producto agregado al inventario con exito",
+                                {
+                                  position: "top-right",
+                                  autoClose: 3000,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
                                 }
-                            
+                              );
+
+                              setLoadSub(false);
+                            } else {
+                              toast.error(
+                                "Error al agregar el producto al inventario o el producto ya existe",
+                                {
+                                  position: "top-right",
+                                  autoClose: 3000,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                }
+                              );
+                              setLoadSub(false);
+                            }
+                          })();
+                        }
                       }
                     }}
                   >

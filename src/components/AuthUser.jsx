@@ -97,7 +97,7 @@ export const AuthUser = () => {
                 })}
                 onSubmit={async (values) => {
                   let response = await getPostLogin(values);
-                  console.log(response);
+
                   if (response.data.type === "user") {
                     let arrayLocalStorageModul = response.data.module;
 
@@ -119,7 +119,7 @@ export const AuthUser = () => {
                       localStorage.setItem("response_auth", getData.message);
                       localStorage.setItem("module", arrayModule);
                       localStorage.setItem("token_token1", getData.token1);
-
+                      localStorage.setItem("correo", values.email);
                       console.log(url.titulo);
                       localStorage.setItem("type", response.data.type);
                       if (response.data.type === "user") {

@@ -47,6 +47,7 @@ import { PedidosNotify } from "../components/NotificationsHeader/PedidosNotify";
 import { VentasNotify } from "../components/NotificationsHeader/VentasNotify";
 import { ConfigInventory } from "../container/ConfigInventory";
 import inventoryImg from "../assets/img/inventorys.jpg";
+import { TranslateProduct } from "../container/TranslateProduct";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -133,7 +134,12 @@ export const Router = () => {
                 </ProtectedRouter>
               }
             >
-              <Route path="inventory/:id" element={<ConfigInventory />} />
+              <Route path="inventory/:id/*" element={<ConfigInventory />}>
+                <Route
+                  path="TrasladarProduct/:id"
+                  element={<TranslateProduct />}
+                />
+              </Route>
               <Route
                 path=""
                 element={

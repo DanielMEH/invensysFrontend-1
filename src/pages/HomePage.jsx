@@ -68,7 +68,7 @@ export const HomePage = () => {
               <img
                 className="mt-10 w-full animate__animated animate__fadeIn"
                 type="imagen"
-                src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1679450558/kodiarLogo/Frame_1_4_nb71wp.png"
+                src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1682002355/stored/Frame_1_b7ymvc.png"
                 alt="stored"
               />
             </div>
@@ -104,7 +104,7 @@ export const HomePage = () => {
                 alt=""
                 className="absolute bottom-[-16.9rem] left-[-6rem] w-36"
               />
-              <Sled/>
+              <Sled />
             </div>
             <div className="circle1" data-aos="zoom-in-left"></div>
             <div className="circle2" data-aos="zoom-in-right"></div>
@@ -316,8 +316,8 @@ export const HomePage = () => {
             </div>
           </div>
         </div>
-        <SliderCount/>
-        
+        <SliderCount />
+
         <Footer />
       </div>
     </>
