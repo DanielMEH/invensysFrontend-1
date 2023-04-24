@@ -302,3 +302,38 @@ export const getSubProducts = async (id) =>
       authorization: accessToken,
     },
   });
+
+export const TodoFunctions = {
+  // ? Path: src\apis\ApiData.jsx Translate Products
+  translateProducts: async (data) =>
+    await axios.post(
+      `${urlServer}/translateProducts`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }
+    ),
+
+  // ? Path: src\apis\ApiData.jsx Get Translate Products
+  getTranslateProducts: async (id) =>
+    await axios.get(`${urlServer}/translateProducts/${id}`, {
+      headers: {
+        authorization: accessToken,
+      },
+    }),
+
+  // ? Path: src\apis\ApiData.jsx updateSubproduct with TranslateProduct
+
+  updateSubproduct: async (id, data) =>
+    await axios.put(
+      `${urlServer}/translateSubProducts/${id}`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }
+    ),
+};

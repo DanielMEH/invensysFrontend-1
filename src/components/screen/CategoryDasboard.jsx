@@ -8,7 +8,7 @@ import "../../assets/css/sorteable.css";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
 export const CategoryDasboard = () => {
-  console.log("moment", moment().format("MMMM Do YYYY, h:mm:ss a"));
+
   const [category, setCategory] = useState([]);
   const [products, setProducts] = useState([]);
   const [spiner, setSpiner] = useState(true);
@@ -178,7 +178,7 @@ export const CategoryDasboard = () => {
             <h2 className="text-2xl my-1">Informes generales</h2>
             <div className="cards_content flex gap-2 " id="lista">
               {spiner === true ? (
-                <h1>Holaaa</h1>
+              <></>
               ) : (
                 <>
                   {category.length > 0 ? (

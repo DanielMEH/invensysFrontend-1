@@ -87,9 +87,11 @@ export const ListInventory = () => {
                 <>
                   {CorreoRepetido.map((item) => (
                     <SwiperSlide>
-                      <Link to={`inventory/${item._id}`} className="truncate">
-                        {item.name_inventory}
-                      </Link>
+                      <div key={item._id}>
+                        <Link to={`inventory/${item._id}`} className="truncate">
+                          {item.name_inventory}
+                        </Link>
+                      </div>
                     </SwiperSlide>
                   ))}
                 </>
@@ -107,7 +109,7 @@ export const ListInventory = () => {
             </Swiper>
           ) : (
             <p className="mx-4 py-4">
-              No se encontraron inventarios, crea tu primer inventario
+              No se encontraron Bodegas, crea una nueva bodega
             </p>
           )}
         </>

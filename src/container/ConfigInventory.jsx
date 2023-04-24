@@ -7,9 +7,10 @@ import * as Yup from "yup";
 import { useInventario } from "../hooks/context/ContextInventario";
 import moment from "moment-with-locales-es6";
 import { CategoryInventory } from "./CategoryInventory";
-import { getSubProducts } from "../apis/ApiData";
+import { getSubProducts, TodoFunctions } from "../apis/ApiData";
 import { DataSubProducts } from "../components/DataSubProducts";
 import Swal from "sweetalert2";
+import { Button } from "antd";
 moment.locale("es");
 export const ConfigInventory = () => {
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,10 @@ export const ConfigInventory = () => {
   const [estado2, setEstado2] = useState(false);
   const [estadoSup, setEstadoSup] = useState(false);
   const [subProducts, setSubProducts] = useState([]);
+  const [subModal, setSubModal] = useState(false);
+  const [subModal2, setSubModal2] = useState(false);
+  const [loadTranslate, setLoadTranslate] = useState(false);
+  const [subProductsTranslate, setSubProductsTranslate] = useState([]);
   const { id } = useParams();
 
   const [inventoryData, setInventoryData] = useState([]);
@@ -26,7 +31,7 @@ export const ConfigInventory = () => {
     useInventario();
   const navigate = useNavigate();
   const inventarioSelect = inventario.find((item) => item._id === id);
-
+  const geType = localStorage.getItem("type");
   const validaDelete = () => {
     Swal.fire({
       title: "¿Estas seguro de eliminar este inventario?  ",
@@ -56,8 +61,11 @@ export const ConfigInventory = () => {
       setSubProducts(resposneSubProducs.data.response);
       setLoading(false);
       setEstadoSup(false);
+      const resProducTranslate = await TodoFunctions.getTranslateProducts(id);
+
+      setSubProductsTranslate(resProducTranslate.data.response);
+      setInventoryData(inventarioSelect);
     })();
-    setInventoryData(inventarioSelect);
   }, [id]);
 
   const DeleteInventory = async () => {
@@ -98,9 +106,211 @@ export const ConfigInventory = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleOptionTranslate = async (id, type) => {
+    setLoadTranslate(true);
+    (async () => {
+      const response = await TodoFunctions.updateSubproduct(id, type);
+      setLoadTranslate(false);
+      if (response.status === 200) {
+        // quitar el producto de la lista de subProductsTranslate por el id
+        const newSubProductsTranslate = subProductsTranslate.filter(
+          (item) => item._id !== id
+        );
+        setSubProductsTranslate(newSubProductsTranslate);
+        return toast.success("la ejecucion fue exitosa");
+      } else {
+        return toast.error("Error al eliminar");
+      }
+    })();
+  };
   return (
     <>
       <ToastContainer />
+      {/**
+       *
+       *
+       *
+       *
+       */}
+
+      <div className={subModal2 ? "block" : "hidden"}>
+        <div className="notifyTranslate absolute z-50  w-screen h-full bg-white/50 inset-0">
+          <div
+            className="content bg-white absolute inset-0 rounded border shadow-xl my-20
+         mx-auto w-fit h-fit "
+          >
+            <div className="flex justify-between">
+              <h1 className="text-xl m-2">Asignar Bodega</h1>
+              <div
+                className="icon cursor-pointer "
+                onClick={() => setSubModal2(!subModal2)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 256 256"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M202.83 197.17a4 4 0 0 1-5.66 5.66L128 133.66l-69.17 69.17a4 4 0 0 1-5.66-5.66L122.34 128L53.17 58.83a4 4 0 0 1 5.66-5.66L128 122.34l69.17-69.17a4 4 0 1 1 5.66 5.66L133.66 128Z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <p className="text-gray-500 mx-2">
+              puedes nuevas bodegas a tus usuarios para que puedan ver los datos
+            </p>
+            <div className="content">
+              {inventario.length > 0 ? (
+                <>
+                  {
+                    inventario.map((item) => (
+                      <div className="bg-white">
+                        <span>{item.responsable}</span>
+                    </div>
+                    ))
+                  }
+                
+                
+                </>
+              ) : (
+                  <h1 className="text-center text-xl">No Tienes usuarios aun
+                  </h1>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/**
+       *
+       *
+       *
+       *
+       */}
+      <div className={subModal ? "block" : "hidden"}>
+        <div className="notifyTranslate absolute z-50  w-screen h-full bg-white/50 inset-0">
+          <div
+            className="content bg-white absolute inset-0 rounded border shadow-xl my-20
+         mx-auto w-fit h-fit "
+          >
+            <div className="flex justify-between">
+              <h1 className="text-xl m-2">Productos pendiente</h1>
+              <div
+                className="icon cursor-pointer "
+                onClick={() => setSubModal(!subModal)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 256 256"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M202.83 197.17a4 4 0 0 1-5.66 5.66L128 133.66l-69.17 69.17a4 4 0 0 1-5.66-5.66L122.34 128L53.17 58.83a4 4 0 0 1 5.66-5.66L128 122.34l69.17-69.17a4 4 0 1 1 5.66 5.66L133.66 128Z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <p className="text-gray-500 mx-2">
+              Productos pendientes por importar
+            </p>
+            {subProductsTranslate.length > 0 ? (
+              <div className="h-[30rem] overflow-y-auto scroll-mx-2.5">
+                {subProductsTranslate.map((item, index) => (
+                  <div className="div shadow-md p-1 border rounded-md m-2">
+                    <div className="flex justify-between">
+                      <span>
+                        {" "}
+                        <span>
+                          {moment(item.createdAt).calendar({
+                            sameDay: "[Hoy][ las] h:mm:ss a",
+                            nextDay: "[Mañana] [ las] h:mm:ss a",
+                            nextWeek: "dddd",
+                            lastDay: "[Ayer]",
+                            lastWeek: "[El] dddd [pasado] [a las] h:mm:ss a",
+                            sameElse: "DD/MM/YYYY",
+                          })}
+                        </span>{" "}
+                      </span>
+                      <span className="ml-10">
+                        Origen: <span>{item.origen}</span>{" "}
+                      </span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span>Producto: {item.userCorreo} </span>
+                      <span className="flex">
+                        Unidades:{" "}
+                        <div className="text-green-500">{item.cantidad}</div>{" "}
+                      </span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span>Responsable: {item.responsable} </span>
+                      <span>
+                        Estado:{" "}
+                        <span className="text-red-500">{item.estado}</span>{" "}
+                      </span>
+                    </div>
+                    <div className="buttones flex justify-end gap-1">
+                      {loadTranslate ? (
+                        <>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="30"
+                            height="30"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              fill="#777777"
+                              d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"
+                            >
+                              <animateTransform
+                                attributeName="transform"
+                                dur="0.75s"
+                                repeatCount="indefinite"
+                                type="rotate"
+                                values="0 12 12;360 12 12"
+                              />
+                            </path>
+                          </svg>
+                        </>
+                      ) : (
+                        <button
+                          onClick={() =>
+                            handleOptionTranslate(item._id, "Aceptado")
+                          }
+                          className="text-green-500 border border-green-500 p-1 rounded-md
+                    
+                    hover:bg-green-500 hover:text-white duration-150
+                    "
+                        >
+                          Importar
+                        </button>
+                      )}
+                      <button
+                        onClick={() =>
+                          handleOptionTranslate(item._id, "Rechazado")
+                        }
+                        className="text-red-500 border border-red-500 p-1 rounded-md
+
+                    hover:bg-red-500 hover:text-white duration-150
+                    
+                    "
+                      >
+                        Rechazar
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <h1 className="m-3">No hay productos pendientes</h1>
+            )}
+          </div>
+        </div>
+      </div>
       <div className="bg-white  w-full px-3 py-1 border  rounded-sm">
         <div className="iconst_config flex items-center justify-between gap-4 max-7xl mx-auto">
           <div className="sec1 flex items-center gap-4">
@@ -361,25 +571,27 @@ export const ConfigInventory = () => {
                 </div>
               </span>
             </div>
-            <Link to={`/inventario/inventory/${id}`}>
+            <span
+              onClick={() => setSubModal(!subModal)}
+              className="cursor-pointer relative"
+            >
+              <span className="absolute color px-1  top-0 text-[10px] right-0 bg-red-500 rounded-full text-white">
+                {subProductsTranslate.length > 0
+                  ? subProductsTranslate.length
+                  : null}
+              </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                viewBox="0 0 14 14"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
               >
-                <g
-                  fill="none"
-                  stroke="#374151"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="m11 9l2-.5l.5 2" />
-                  <path d="M13 8.5A6.76 6.76 0 0 1 7 13h0a6 6 0 0 1-5.64-3.95M3 5l-2 .5l-.5-2" />
-                  <path d="M1 5.5C1.84 3.2 4.42 1 7 1h0a6 6 0 0 1 5.64 4" />
-                </g>
+                <path
+                  fill="#777777"
+                  d="M22 7v9c0 1.1-.9 2-2 2H6l-4 4V4c0-1.1.9-2 2-2h10.1c-.1.3-.1.7-.1 1c0 2.8 2.2 5 5 5c1.1 0 2.2-.4 3-1m-6-4c0 1.7 1.3 3 3 3s3-1.3 3-3s-1.3-3-3-3s-3 1.3-3 3Z"
+                />
               </svg>
-            </Link>
+            </span>
             <div className="div truncate flex">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -409,11 +621,21 @@ export const ConfigInventory = () => {
               </svg>
               <span className="mx-[2px] block"> · </span>
               <span className="truncate">
-                Responsable: {inventarioSelect.responsableInventory}
+                {inventarioSelect.responsableInventory}
               </span>
               <span className="mx-[2px] block"> · </span>{" "}
               <span className="truncate">{inventarioSelect.type}</span>
             </div>
+            <span className="truncate">
+              {geType === "superAdmin" ? (
+                <button
+                  className="bg-[#369fe6] mx-1 py-1 text-white px-2 rounded-md"
+                  onClick={() => setSubModal2(!subModal2)}
+                >
+                  Asignar Bodega
+                </button>
+              ) : null}
+            </span>
           </div>
           <div className="sec2">
             {loading ? (
@@ -477,7 +699,7 @@ export const ConfigInventory = () => {
         </div>
       ) : (
         <>
-        <Outlet />
+          <Outlet />
           {subProducts.length > 0 ? (
             <>
               <DataSubProducts dataInventorySubProducts={subProducts} id={id} />

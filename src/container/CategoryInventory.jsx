@@ -80,7 +80,8 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
                     attributeName="transform"
                     dur="0.75s"
                     repeatCount="indefinite"
-                    type="rotate"Flog
+                    type="rotate"
+                    Flog
                     values="0 12 12;360 12 12"
                   />
                 </path>

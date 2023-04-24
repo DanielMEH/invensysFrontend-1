@@ -42,15 +42,23 @@ export const AuthUser = () => {
 
     const response = await getPostLoginAuthGoogle(dataGoogle);
 
-    let getData = response.data;
-    localStorage.setItem("secure_token", getData.token);
-    localStorage.setItem("auth_cuenta", getData.auth);
-    localStorage.setItem("response_auth", getData.message);
-    localStorage.setItem("perfil_rol", getData.rol);
-    localStorage.setItem("type", getData.rol);
-    setSpiner(!spiner);
+    if (response.status === 200) {
+      let getData = response.data;
+      localStorage.setItem("secure_token", getData.token);
+      localStorage.setItem("auth_cuenta", getData.auth);
+      localStorage.setItem("response_auth", getData.message);
+      localStorage.setItem("perfil_rol", getData.rol);
+      localStorage.setItem("type", getData.rol);
+      setSpiner(!spiner);
 
-    window.location.href = "/perfil";
+      window.location.href = "/perfil";
+    } else {
+      toast.error("Hubo un error al crear el administrador", {
+        position: toast.POSITION.TOP_RIGHT,
+        theme: "dark",
+      });
+      setSpiner(true);
+    }
   };
   return (
     <>
@@ -97,6 +105,26 @@ export const AuthUser = () => {
                 })}
                 onSubmit={async (values) => {
                   let response = await getPostLogin(values);
+                  // console.log(response.response.status);
+                  // if (response.response.status === 401) {
+                  //   toast.error(
+                  //     "Este usuario no existe o la contraseña es incorrecta",
+                  //     {
+                  //       position: toast.POSITION.TOP_RIGHT,
+                  //       theme: "dark",
+                  //     }
+                  //   );
+                  //   setSpiner(true);
+                  // } else {
+                  //   toast.warning(
+                  //     "Hubo un error en el servidor Estamos trabajando para que puedas seguir trabajando en invensys",
+                  //     {
+                  //       position: toast.POSITION.TOP_RIGHT,
+                  //       theme: "dark",
+                  //     }
+                  //   );
+                  //   setSpiner(true);
+                  // }
 
                   if (response.data.type === "user") {
                     let arrayLocalStorageModul = response.data.module;
@@ -107,6 +135,7 @@ export const AuthUser = () => {
                         theme: "dark",
                         timeOut: 1000,
                       });
+
                       let arrayModule = "";
 
                       for (let i = 0; i < arrayLocalStorageModul.length; i++) {

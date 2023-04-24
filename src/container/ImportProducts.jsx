@@ -371,22 +371,7 @@ export const ImportProducts = ({ idCategorias }) => {
                             placeholder="Ej: 23"
                           />
                         </div>
-                        <div className="input flex flex-col my-1 w-36">
-                          <label
-                            htmlFor="
-                                Nombre del producto
-
-                                "
-                          >
-                            Iva
-                          </label>
-                          <Field
-                            name="iva"
-                            type="text"
-                            className="border rounded-md p-2 outline-none"
-                            placeholder="Ej: 23"
-                          />
-                        </div>
+                        
                         <div className="input flex flex-col my-1 w-20">
                           <label
                             htmlFor="
