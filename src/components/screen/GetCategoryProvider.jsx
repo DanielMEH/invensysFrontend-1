@@ -21,7 +21,6 @@ export const GetCategoryProvider = () => {
   }, [id]);
 
   const getProviderId = provider.filter((item) => item._id === id.id);
-  console.log("getProviderId", getProviderId);
   return (
     <>
       {spiner ? (

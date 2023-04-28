@@ -11,15 +11,22 @@ import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
 import { Link, Outlet } from "react-router-dom";
-
+import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
 moment.locale("es");
-export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
+export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
   // count categorias
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
+  const { getSubProductsContent, subProductsData } = useContextSubProducts();
+
+  useEffect(() => {
+    (async () => {
+      await getSubProductsContent(id);
+    })();
+  }, []);
+  console.log("dataInventorySubProducts", subProductsData);
 
   const [stateModel, StateModel] = useState(false);
-  const [ExcelModel, setExcelModel] = useState(false);
 
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -154,8 +161,6 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
     return money.format(total);
   };
 
-  console.log("tttttttt", totalSuma);
-
   const onChart2 = useCallback(() => {
     var params = {
       cellRange: {
@@ -187,7 +192,6 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
 
   return (
     <>
-     
       <div className="panel_opciones bg-white w-[100%] mx-auto mt-4 mb-4  rounded-md p-2">
         <div className="plus_panel flex justify-between items-center">
           <section className="flex ">
@@ -340,7 +344,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id }) => {
           ref={gridRef}
           localeText={AG_GRID_LOCALE_EN}
           columnDefs={columnDefs}
-          rowData={dataInventorySubProducts.map((item) => {
+          rowData={subProductsData.map((item) => {
             let ganancias = item.priceVenta - item.priceCompra;
             let total = item.priceVenta * item.unidad;
             const fechaActual = new Date();

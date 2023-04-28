@@ -3,6 +3,8 @@ import { MenuLateral } from "../components/MenuLateral";
 import { FormInventory } from "../container/FormInventory";
 import { ContextInventario } from "../hooks/context/ContextInventario";
 import { ListInventory } from "../container/ListInventory";
+import { ContextSubProducts } from "../hooks/context/ContextSubProducts";
+
 import { Outlet } from "react-router-dom";
 export const Inventory = () => {
   return (
@@ -23,13 +25,15 @@ export const Inventory = () => {
 
             <div className="container_cont lg:min-w-7xl">
               <ContextInventario>
-                <div className="flex gap- items-end">
-                  <FormInventory />
-                  <div className="w-[43%] mb-2  ml-1">
-                    <ListInventory />
+                <ContextSubProducts>
+                  <div className="flex gap- items-end">
+                    <FormInventory />
+                    <div className="w-[43%] mb-2  ml-1">
+                      <ListInventory />
+                    </div>
                   </div>
-                </div>
-                <Outlet />
+                  <Outlet />
+                </ContextSubProducts>
               </ContextInventario>
             </div>
           </div>

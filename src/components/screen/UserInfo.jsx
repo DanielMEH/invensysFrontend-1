@@ -12,7 +12,6 @@ export const UserInfo = () => {
 
   const [spiner, setSpiner] = useState(true);
   let id = useParams();
-  console.log(id);
   const getUserId = users.filter((item) => item.idAccount === id.id);
   useEffect(() => {
     (async () => {

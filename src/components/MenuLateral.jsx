@@ -43,11 +43,10 @@ export const MenuLateral = () => {
 
   useEffect(() => {
     (async () => {
-      console.log("hola");
+ 
       const data = await getNotification();
-      console.log(data);
+   
       setNotify(data.data.responseNotification);
-      console.log(data.data.responseNotification);
     })();
   }, []);
   if (type === "user") {

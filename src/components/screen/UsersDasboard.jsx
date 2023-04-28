@@ -9,7 +9,6 @@ import "../../assets/css/sorteable.css";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
 export const UsersDasboard = () => {
-  console.log("moment", moment().format("MMMM Do YYYY, h:mm:ss a"));
   const [category, setCategory] = useState([]);
   const [products, setProducts] = useState([]);
   const [spiner, setSpiner] = useState(true);

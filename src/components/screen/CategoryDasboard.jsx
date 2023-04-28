@@ -31,12 +31,7 @@ export const CategoryDasboard = () => {
   }, []);
 
   // suma de  los precios de compra
-  const sumPriceBuy = products.reduce((acc, item) => {
-    return acc + item.priceBuy;
-  }, 0);
-  const sumPrice = products.reduce((acc, item) => {
-    return acc + item.price;
-  }, 0);
+
 
   let idCategory;
   if (category.length > 0) {

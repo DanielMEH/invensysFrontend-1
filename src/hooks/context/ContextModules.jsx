@@ -20,7 +20,6 @@ export const ContextModules = ({ children }) => {
     setDataCategory(modules.data.dataCategory);
     setDataProductM(modules.data.dataProduct);
     setProvidersM(modules.data.dataProvider);
-    console.log(modules.data);
     return modules;
   };
 

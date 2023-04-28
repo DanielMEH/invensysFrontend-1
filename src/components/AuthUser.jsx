@@ -149,7 +149,6 @@ export const AuthUser = () => {
                       localStorage.setItem("module", arrayModule);
                       localStorage.setItem("token_token1", getData.token1);
                       localStorage.setItem("correo", values.email);
-                      console.log(url.titulo);
                       localStorage.setItem("type", response.data.type);
                       if (response.data.type === "user") {
                         window.location = `/${url.titulo}`;

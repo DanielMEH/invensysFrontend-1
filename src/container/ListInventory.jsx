@@ -26,7 +26,7 @@ export const ListInventory = () => {
       setLoading(true);
       await GetInventario();
       const response = await getUsersAdmin();
-      console.log(response.data.data);
+     
       setUser(response.data.data);
       setLoading(false);
     })();
@@ -34,12 +34,9 @@ export const ListInventory = () => {
 
   let getEmail = localStorage.getItem("correo");
   let getRol = localStorage.getItem("type");
-  console.log(getRol);
-  console.log(getEmail);
   const CorreoRepetido = inventario.filter((item) =>
     item.responsableInventory.includes(getEmail)
   );
-  console.log(CorreoRepetido);
 
   return (
     <div className="notf block rounded-md bg-white px-3">

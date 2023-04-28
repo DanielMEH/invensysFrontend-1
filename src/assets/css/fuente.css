@@ -547,3 +547,7 @@
 .scrollhelping::-webkit-scrollbar {
   width: 0.5rem;
 }
+
+.sss-scrool::-webkit-scrollbar {
+  width: 0.5rem;
+}

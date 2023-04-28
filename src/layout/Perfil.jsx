@@ -629,7 +629,14 @@ export const Perfil = () => {
                             </span>
                           </span>
                           <span className="text-lg  font-sans mx-0">
-                            Rol: <span>{item.rol ? item.rol : "..."}</span>
+                            Rol:{" "}
+                            <span>
+                              {item.rol
+                                ? item.rol === "superAdmin"
+                                  ? "Administrador"
+                                  : ""
+                                : "..."}
+                            </span>
                           </span>
                           <span className="text-lg  font-sans mx-0">
                             <span className="mr-1">Telefono: </span>

@@ -4,7 +4,6 @@ import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
 export const HomeDaboard = () => {
-  console.log("moment", moment().format("MMMM Do YYYY, h:mm:ss a"));
   const [category, setCategory] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -27,7 +26,6 @@ export const HomeDaboard = () => {
       y: parseInt(item.priceBuy),
     };
   });
-  console.log("pppppp", getproductFechaDescription);
   var options = {
     series: [
       {

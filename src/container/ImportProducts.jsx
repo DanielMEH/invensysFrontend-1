@@ -6,6 +6,8 @@ import moment from "moment-with-locales-es6";
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { getSubProducts } from "../apis/ApiData";
+import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
+
 const { RangePicker } = DatePicker;
 moment.locale("es");
 export const ImportProducts = ({ idCategorias }) => {
@@ -16,6 +18,8 @@ export const ImportProducts = ({ idCategorias }) => {
   const [acomular, setAcomular] = useState([]);
 
   const { id } = useParams();
+  const { getSubProductsContent, setSubProductsData, subProductsData } =
+    useContextSubProducts();
   useEffect(() => {
     setLoadIn(true);
     (async () => {
@@ -46,7 +50,14 @@ export const ImportProducts = ({ idCategorias }) => {
 
     setAcomular(data.data.response.name);
   };
-  console.log("array", acomular);
+
+  useEffect(() => {
+    (async () => {
+      const resf = await getSubProductsContent(id);
+
+      setLoadIn(false);
+    })();
+  }, []);
   return (
     <>
       <ToastContainer />
@@ -371,7 +382,7 @@ export const ImportProducts = ({ idCategorias }) => {
                             placeholder="Ej: 23"
                           />
                         </div>
-                        
+
                         <div className="input flex flex-col my-1 w-20">
                           <label
                             htmlFor="

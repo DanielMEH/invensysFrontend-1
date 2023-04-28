@@ -52,7 +52,7 @@ export const UploadcsvUsuario = async (formDataCsv, archivousuariocsv) =>
     }
   );
 
-export const getUsersAdmin = async (isAllowedToken) =>
+export const getUsersAdmin = async () =>
   await axios.get(`${urlServer}/getUsersData/${accessToken}`);
 export const getDataCountUsersAdmin = async (isAllowedToken) =>
   await axios.get(`${urlServer}/countUsers/${isAllowedToken}`);
@@ -329,6 +329,17 @@ export const TodoFunctions = {
   updateSubproduct: async (id, data) =>
     await axios.put(
       `${urlServer}/translateSubProducts/${id}`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }
+    ),
+
+  updateBodegaEmail: async (id, data) =>
+    await axios.put(
+      `${urlServer}/updateEmailBodega/${id}`,
       { data },
       {
         headers: {

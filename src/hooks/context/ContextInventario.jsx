@@ -14,8 +14,9 @@ export const ContextInventario = ({ children }) => {
   const [inventario, setInventario] = useState([]);
 
   const GetInventario = async () => {
-    const inventario = await getInventario();
-    setInventario(inventario.data.response);
+    const data = await getInventario();
+    setInventario(data.data.response);
+    return data;
   };
 
   const PostInventario = async (data) => {
