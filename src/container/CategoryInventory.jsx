@@ -89,9 +89,15 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
             </div>
           ) : (
             <>
-              <div className="flex flex-wrap mx-4">
+                <div className="flex flex-wrap mx-4"
+                
+                >
                 {arrayName.map((item) => (
-                  <div className="bg-blue-100 rounded-md flex items-center mx-1 px-2 py-1 ">
+                  <div className="bg-blue-100 rounded-md flex items-center mx-1 px-2 py-1 "
+                  
+                  
+                    key={item._id}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

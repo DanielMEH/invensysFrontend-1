@@ -43,9 +43,8 @@ export const MenuLateral = () => {
 
   useEffect(() => {
     (async () => {
- 
       const data = await getNotification();
-   
+
       setNotify(data.data.responseNotification);
     })();
   }, []);
@@ -69,7 +68,7 @@ export const MenuLateral = () => {
     const obj = modules;
     let toke = token ? token : null;
     usersData.tokeVerify = toke;
-    usersData.permisions = ["inventario"];
+    usersData.permisions = ["bodega"];
     usersData.permisions = usersP;
     Webk();
   }
@@ -78,13 +77,13 @@ export const MenuLateral = () => {
     let tokeVerify = token ? token : null;
     usersData.permisions = [
       "superAdmin",
-      "inventario",
+      "bodega",
       "categoria",
       "usuario",
       "notificacion",
       "producto",
       "proveedor",
-      "compras",
+      "pedidos",
       "inicio",
       "analityc",
       "perfil",
@@ -268,10 +267,10 @@ fixed top-0
                       </NavLink>
                     </li>
                   ) : null}
-                  {users.permisions.includes("inventario") ? (
+                  {users.permisions.includes("bodega") ? (
                     <li>
                       <NavLink
-                        to={"/inventario"}
+                        to={"/bodega"}
                         className={({ isActive }) =>
                           isActive
                             ? `
@@ -373,10 +372,10 @@ fixed top-0
                     </li>
                   ) : null}
 
-                  {users.permisions.includes("compras") ? (
+                  {users.permisions.includes("pedidos") ? (
                     <li>
                       <NavLink
-                        to={"/compras"}
+                        to={"/pedidos"}
                         className={({ isActive }) =>
                           isActive
                             ? `
@@ -392,9 +391,28 @@ fixed top-0
                       rounded `
                         }
                       >
-                        <img src={compras} alt="" width={20} />
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 48 48"
+                        >
+                          <g
+                            fill="none"
+                            stroke="
+#777777"
+                            stroke-linejoin="round"
+                            stroke-width="4"
+                          >
+                            <rect width="30" height="36" x="9" y="8" rx="2" />
+                            <path
+                              stroke-linecap="round"
+                              d="M18 4v6m12-6v6m-14 9h16m-16 8h12m-12 8h8"
+                            />
+                          </g>
+                        </svg>
                         <div className="NavLinks6 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
-                          Compras
+                          Pedidos
                         </div>
                       </NavLink>
                     </li>

@@ -8,23 +8,36 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
 import plus from "../assets/icons/plus.svg";
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
+import OpcionesCategory from "./OpcionesCategory";
+import { RegisterCategorys } from "./RegisterCategorys";
 import { checkboxSelection } from "./ChackSelection";
 import { headerCheckboxSelection } from "./ChackSelection";
 import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
-import { useContextProviders } from "../hooks/context/ContextProveedores";
-import OptionsProviders from "./OptionsProviders";
-import { CreateProveedor } from "./providers/CreateProveedor";
+import UploadExcel from "./UploadExcel";
+
+import { ContextCategory } from "../hooks/context/ContextCategory";
+
+import { useContextCategory } from "../hooks/context/ContextCategory";
+
 moment.locale("es");
 
-export const DatatableProviders = () => {
-  const { providersData, getProviders } = useContextProviders();
+export const Datatable = () => {
+  const { dataGategorias, getDataCategorias } = useContextCategory();
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    getProviders();
+    const initial = async () => {
+      await getDataCategorias();
+      setLoading(false);
+    };
+
+    initial();
   }, []);
 
-  const [active, setActive] = useState(false);
+  // count categorias
 
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
@@ -39,52 +52,43 @@ export const DatatableProviders = () => {
       rowDrag: true,
       checkboxSelection: checkboxSelection,
       headerCheckboxSelection: headerCheckboxSelection,
+
       filter: "agTextColumnFilter",
+      chartDataType: "correo",
     },
     {
       headerName: "Nombre",
-      field: "name",
-      chartDataType: "series",
+      field: "name_category",
+      chartDataType: "email",
       filter: "agTextColumnFilter",
+
+      cellEditorParams: (params) => {
+        return {};
+      },
     },
     {
-      headerName: "Dirección",
-      field: "address",
+      headerName: "Descripción",
+      field: "description",
       filter: "agTextColumnFilter",
-      chartDataType: "series",
+      chartDataType: "id",
     },
     {
-      headerName: "Compañia",
-      field: "company",
-      chartDataType: "series",
+      headerName: "Fecha",
+      field: "updatedAt",
+      chartDataType: "body",
       filter: "agTextColumnFilter",
-      sort: "desc",
-    },
-    {
-      headerName: "Correo",
-      field: "email",
-      chartDataType: "series",
-      filter: "agTextColumnFilter",
-      sort: "desc",
     },
 
     {
-      headerName: "Telefono",
-      field: "phone",
-      chartDataType: "category",
-      filter: "agTextColumnFilter",
-    },
-    {
-      headerName: "fecha",
-      field: "fecha",
-      chartDataType: "series",
-    },
-    {
       headerName: "Opciones",
       field: "Settings",
-      cellRenderer: OptionsProviders,
+      cellRenderer: OpcionesCategory,
     },
   ]);
+
+  const handleShowModel = () => {
+    StateModel(!stateModel);
+  };
 
   const onBtnExport = useCallback(() => {
     gridRef.current.api.exportDataAsCsv();
@@ -101,6 +105,50 @@ export const DatatableProviders = () => {
       setNormal(api);
     }, 2000);
   }, []);
+  const onChart1 = useCallback(() => {
+    var params = {
+      cellRange: {
+        rowStartIndex: 0,
+        rowEndIndex: 4,
+        columns: ["idAccount", "correo", "estado"],
+      },
+      chartType: "groupedColumn",
+      chartThemeName: "ag-vivid",
+      chartThemeOverrides: {
+        common: {
+          title: {
+            enabled: true,
+            text: "Estadisticas de los 5 primeros usuarios",
+          },
+        },
+      },
+    };
+    gridRef.current.api.createRangeChart(params);
+  }, []);
+
+  const onChart2 = useCallback(() => {
+    var params = {
+      cellRange: {
+        columns: ["id", "postId", "name"],
+      },
+      chartType: "groupedBar",
+      chartThemeName: "ag-pastel",
+      chartThemeOverrides: {
+        common: {
+          title: {
+            enabled: true,
+            text: "Todos los usuarios",
+          },
+          legend: {
+            enabled: false,
+          },
+        },
+      },
+      unlinkChart: true,
+    };
+    gridRef.current.api.createRangeChart(params);
+  }, []);
+
   const onFilterTextBoxChanged = useCallback(() => {
     gridRef.current.api.setQuickFilter(
       document.getElementById("filter-text-box").value
@@ -109,7 +157,10 @@ export const DatatableProviders = () => {
 
   return (
     <>
-      {active === true ? <CreateProveedor /> : null}
+      <UploadExcel estado={ExcelModel} />
+      <ContextCategory>
+        <RegisterCategorys estado={stateModel} />
+      </ContextCategory>
       <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
         <div className="plus_panel flex justify-between items-center">
           <section className="items-center flex">
@@ -123,13 +174,13 @@ export const DatatableProviders = () => {
                 >
                   <path
                     fill="#3498DB"
-                    d="M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.39 3.39 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.39 3.39 0 0 0 15 11a3.5 3.5 0 0 0 0-7Z"
+                    d="M10 3H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm10 10h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1zM17 3c-2.206 0-4 1.794-4 4s1.794 4 4 4s4-1.794 4-4s-1.794-4-4-4zM7 13c-2.206 0-4 1.794-4 4s1.794 4 4 4s4-1.794 4-4s-1.794-4-4-4z"
                   />
                 </svg>
               </span>
-              <span className="text-[#3498DB] mx-1">Pedidos</span>
+              <span className="text-[#3498DB] mx-1"> Categorias</span>
               <span className="text-[#3498DB] mx-1">
-                {providersData.length}
+                {dataGategorias.length}
               </span>
             </div>
           </section>
@@ -192,11 +243,11 @@ export const DatatableProviders = () => {
               <span>Imprimir</span>
             </button>
             <button
-              onClick={() => setActive(!active)}
+              onClick={handleShowModel}
               className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border"
             >
               <img src={plus} alt="" />
-              Crear proveedor
+              Crear Categoria
             </button>
           </section>
         </div>
@@ -206,48 +257,100 @@ export const DatatableProviders = () => {
       </div>
       <div className="buttons"></div>
       <div className="panel_second_h w-[100%] mx-auto flex justify-between items-center">
-        <div className="panel_analitic block  my-2">
+        <div className="panel_analitic flex">
+          <button
+            onClick={onChart1}
+            className="bg-white p-3 hover:shadow-xl my-2 rounded-lg mx-1"
+          >
+            <div className="flex">
+              <span className="mx-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="21"
+                  height="21"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill="#3498DB"
+                    fillRule="evenodd"
+                    d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"
+                  />
+                </svg>
+              </span>
+              <span>Estadisticas de los primeros 5 Categorias</span>
+            </div>
+          </button>
+          <button
+            onClick={onChart2}
+            className="bg-white p-3 hover:shadow-xl my-2 rounded-lg mx-1"
+          >
+            <div className="flex">
+              <span className="mx-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="21"
+                  height="21"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill="#3498DB"
+                    fillRule="evenodd"
+                    d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"
+                  />
+                </svg>
+              </span>
+              <span>Todos los Categorias</span>
+            </div>
+          </button>
           <div className="content flex ">
             <div className="inactive flex items-center ">
               <div className=" bg-white p-2 rounded-lg mx-1">
                 <span className="text-green-500 flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 48 48"
                   >
-                    <path
-                      fill="currentColor"
-                      d="m22.509 12.689l-6-3.55a.997.997 0 0 0-1.018.001l-6 3.55a.998.998 0 0 0-.491.86v6.9c0 .354.187.681.491.86l6 3.55a.989.989 0 0 0 1.018 0l6-3.55a.998.998 0 0 0 .491-.86v-6.9a1 1 0 0 0-.491-.861zM21 19.88l-5 2.958l-5-2.958v-5.76l5-2.958l5 2.958v5.76z"
-                    />
-                    <path
-                      fill="currentColor"
-                      d="M6 20.184V11.07l6.2-3.664l-1.017-1.722l-6.692 3.955A1 1 0 0 0 4 10.5v9.684A2.996 2.996 0 0 0 2 23c0 1.654 1.346 3 3 3s3-1.346 3-3a2.996 2.996 0 0 0-2-2.816zM5 24a1.001 1.001 0 0 1 0-2a1.001 1.001 0 0 1 0 2zm22-4c-1.654 0-3 1.346-3 3c0 .353.072.687.185 1.002L16 28.838l-6.404-3.784l-1.017 1.722l6.912 4.084a.997.997 0 0 0 1.018.001l8.96-5.295c.45.269.97.434 1.531.434c1.654 0 3-1.346 3-3s-1.346-3-3-3zm0 4a1.001 1.001 0 0 1 0-2a1.001 1.001 0 0 1 0 2zM16 7c.731 0 1.392-.273 1.913-.708L26 11.071V18h2v-7.5a1 1 0 0 0-.491-.861l-8.567-5.062C18.978 4.39 19 4.198 19 4c0-1.654-1.346-3-3-3s-3 1.346-3 3s1.346 3 3 3zm0-4a1.001 1.001 0 1 1-1 1c0-.552.449-1 1-1z"
-                    />
+                    <g
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linejoin="round"
+                      stroke-width="4"
+                    >
+                      <path d="M44 14L24 4L4 14v20l20 10l20-10V14Z" />
+                      <path
+                        stroke-linecap="round"
+                        d="m4 14l20 10m0 20V24m20-10L24 24M34 9L14 19"
+                      />
+                    </g>
                   </svg>
 
-                  <span>Activos </span>
+                  <span> Activos </span>
                 </span>
               </div>
               <div className="bg-white p-2 rounded-lg">
                 <span className="text-[red] flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 48 48"
                   >
-                    <path
-                      fill="currentColor"
-                      d="m22.509 12.689l-6-3.55a.997.997 0 0 0-1.018.001l-6 3.55a.998.998 0 0 0-.491.86v6.9c0 .354.187.681.491.86l6 3.55a.989.989 0 0 0 1.018 0l6-3.55a.998.998 0 0 0 .491-.86v-6.9a1 1 0 0 0-.491-.861zM21 19.88l-5 2.958l-5-2.958v-5.76l5-2.958l5 2.958v5.76z"
-                    />
-                    <path
-                      fill="currentColor"
-                      d="M6 20.184V11.07l6.2-3.664l-1.017-1.722l-6.692 3.955A1 1 0 0 0 4 10.5v9.684A2.996 2.996 0 0 0 2 23c0 1.654 1.346 3 3 3s3-1.346 3-3a2.996 2.996 0 0 0-2-2.816zM5 24a1.001 1.001 0 0 1 0-2a1.001 1.001 0 0 1 0 2zm22-4c-1.654 0-3 1.346-3 3c0 .353.072.687.185 1.002L16 28.838l-6.404-3.784l-1.017 1.722l6.912 4.084a.997.997 0 0 0 1.018.001l8.96-5.295c.45.269.97.434 1.531.434c1.654 0 3-1.346 3-3s-1.346-3-3-3zm0 4a1.001 1.001 0 0 1 0-2a1.001 1.001 0 0 1 0 2zM16 7c.731 0 1.392-.273 1.913-.708L26 11.071V18h2v-7.5a1 1 0 0 0-.491-.861l-8.567-5.062C18.978 4.39 19 4.198 19 4c0-1.654-1.346-3-3-3s-3 1.346-3 3s1.346 3 3 3zm0-4a1.001 1.001 0 1 1-1 1c0-.552.449-1 1-1z"
-                    />
+                    <g
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linejoin="round"
+                      stroke-width="4"
+                    >
+                      <path d="M44 14L24 4L4 14v20l20 10l20-10V14Z" />
+                      <path
+                        stroke-linecap="round"
+                        d="m4 14l20 10m0 20V24m20-10L24 24M34 9L14 19"
+                      />
+                    </g>
                   </svg>
-                  <div className="span mx-1">Inactivos</div>
+                  <div className="span mx-1">Inactivos </div>
                 </span>
               </div>
             </div>
@@ -290,17 +393,7 @@ export const DatatableProviders = () => {
           ref={gridRef}
           localeText={AG_GRID_LOCALE_EN}
           columnDefs={columnDefs}
-          rowData={providersData.map((item) => {
-            return {
-              _id: item._id,
-              name: item.name,
-              email: item.email,
-              phone: item.phone,
-              address: item.address,
-              company: item.company,
-              fecha: moment(item.fecha).format("Do MMMM YYYY"),
-            };
-          })}
+          rowData={dataGategorias}
           defaultColDef={defaultColDef}
           animateRows={true}
           rowGroupPanelShow="always"

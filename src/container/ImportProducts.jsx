@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { getSubProducts } from "../apis/ApiData";
 import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
+import * as Yup from "yup";
 
 const { RangePicker } = DatePicker;
 moment.locale("es");
@@ -174,6 +175,7 @@ export const ImportProducts = ({ idCategorias }) => {
                       unidad: "",
                     }}
                     // aceder a los valores del formulario
+
                     defaultValue={product.name}
                     onSubmit={async (values) => {
                       if (
@@ -215,15 +217,23 @@ export const ImportProducts = ({ idCategorias }) => {
                             caducidad: fecha[1],
                             idInventory: id,
                           };
-
-                          setLoadSub(true);
-                          (async () => {
-                            await GetPdo();
-                            let response = await UploadSubProducts(id, data);
-
-                            if (response.status === 200) {
-                              toast.success(
-                                "Producto agregado al inventario con exito",
+                          if (values.priceCompra > values.priceVenta) {
+                            return toast.warning(
+                              "El precio de compra no puede ser mayor al precio de venta",
+                              {
+                                position: "top-right",
+                                autoClose: 3000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                              }
+                            );
+                          } else {
+                            if (values.stockMinimo > values.stockMaximo) {
+                              return toast.warning(
+                                "El stock minimo no puede ser mayor al stock maximo",
                                 {
                                   position: "top-right",
                                   autoClose: 3000,
@@ -234,24 +244,63 @@ export const ImportProducts = ({ idCategorias }) => {
                                   progress: undefined,
                                 }
                               );
-
-                              setLoadSub(false);
                             } else {
-                              toast.error(
-                                "Error al agregar el producto al inventario o el producto ya existe",
-                                {
-                                  position: "top-right",
-                                  autoClose: 3000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              );
-                              setLoadSub(false);
+                              if (values.unidad > values.stockMaximo) {
+                                return toast.warning(
+                                  "La unidad no puede ser mayor al stock maximo",
+                                  {
+                                    position: "top-right",
+                                    autoClose: 3000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                  }
+                                );
+                              } else {
+                                setLoadSub(true);
+                                (async () => {
+                                  await GetPdo();
+                                  let response = await UploadSubProducts(
+                                    id,
+                                    data
+                                  );
+
+                                  if (response.status === 200) {
+                                    toast.success(
+                                      "Producto agregado al inventario con exito",
+                                      {
+                                        position: "top-right",
+                                        autoClose: 3000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                      }
+                                    );
+
+                                    setLoadSub(false);
+                                  } else {
+                                    toast.error(
+                                      "Error al agregar el producto al inventario o el producto ya existe",
+                                      {
+                                        position: "top-right",
+                                        autoClose: 3000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                      }
+                                    );
+                                    setLoadSub(false);
+                                  }
+                                })();
+                              }
                             }
-                          })();
+                          }
                         }
                       }
                     }}

@@ -85,13 +85,13 @@ export const Router = () => {
     let tokeVerify = token ? token : null;
     usersData.permisions = [
       "superAdmin",
-      "inventario",
+      "bodega",
       "categoria",
       "usuario",
       "notificacion",
       "producto",
       "proveedor",
-      "compras",
+      "pedidos",
       "analityc",
       "perfil",
       "dasboard",
@@ -124,11 +124,11 @@ export const Router = () => {
 
             <Route index element={<HomePage />} />
             <Route
-              path="/inventario/*"
+              path="/bodega/*"
               element={
                 <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("inventario")}
-                  redirectTo="/inventario"
+                  isAllowed={!!users && users.permisions.includes("bodega")}
+                  redirectTo="/bodega"
                 >
                   <Inventory />
                 </ProtectedRouter>
@@ -217,7 +217,7 @@ export const Router = () => {
               element={
                 <ProtectedRouter
                   isAllowed={!!users && users.permisions.includes("superAdmin")}
-                  redirectTo="/inventario"
+                  redirectTo="/bodega"
                 >
                   <ModalModule />
                 </ProtectedRouter>
@@ -263,7 +263,7 @@ export const Router = () => {
             <Route
               path="/admin/productos/editar/:id"
               element={
-                <ProtectedRouter isAllowed={!!users} redirectTo="/inventario">
+                <ProtectedRouter isAllowed={!!users} redirectTo="/bodega">
                   <EditarProduct />
                 </ProtectedRouter>
               }
@@ -323,11 +323,11 @@ export const Router = () => {
               }
             />
             <Route
-              path="/compras"
+              path="/pedidos"
               element={
                 <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("compras")}
-                  redirectTo="/compras"
+                  isAllowed={!!users && users.permisions.includes("pedidos")}
+                  redirectTo="/pedidos"
                 >
                   <Shope />
                 </ProtectedRouter>
