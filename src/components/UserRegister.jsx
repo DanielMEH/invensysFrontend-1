@@ -192,7 +192,7 @@ export const UserRegister = ({estado=false }) => {
                     className="w-4/5 mx-2  rounded cursor-pointer  py-2 outline-none border border-[#1876F2] "
                   >
                     <option value="usuario">usuario</option>
-                    <option value="inventario">inventario</option>
+                    <option value="bodega">Bodega</option>
                   </Field>
                 </section>
                 <section>

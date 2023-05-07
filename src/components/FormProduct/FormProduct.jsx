@@ -68,14 +68,11 @@ export const FormProduct = () => {
               initialValues={{
                 name: "",
                 description: "",
-              
               }}
               validationSchema={Yup.object({
                 name: Yup.string().required("Obligatorio"),
-               
-                description:
-                  Yup.string()
-                  .required("Obligatorio"),
+
+                description: Yup.string().required("Obligatorio"),
               })}
               onSubmit={async (values) => {
                 setLoading(false);
@@ -334,7 +331,7 @@ export const FormProduct = () => {
                         {dataGategorias.map((item) => (
                           <div
                             className="category flex border
-                                 border-gray-300 gap-4 rounded-md w-auto m-1 p-2 cursor-pointer "
+                                 border-gray-300 gap-4 rounded-md w-auto h-fit m-1 p-2 cursor-pointer "
                             key={item._id}
                             onClick={() =>
                               setCategoria([item._id, item.name_category])

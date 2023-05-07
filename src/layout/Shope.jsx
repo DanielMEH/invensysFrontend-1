@@ -5,6 +5,7 @@ import { ContextProduxt } from "../hooks/context/ContextProduxt";
 import { ContextCategory } from "../hooks/context/ContextCategory";
 import { DatatableProduct } from "../components/DatatableProduct";
 import { ContextProveedores } from "../hooks/context/ContextProveedores";
+import { FormPedido } from "../components/FormPedido";
 export const Shope = () => {
   return (
     <>
@@ -17,16 +18,12 @@ export const Shope = () => {
                 Pedidos
               </h2>
               <p className="text-xl text-gray-600 mx-0">
-                Haz pedidos a tus proveedores y lleva un control de tus pedidos
+                Haz pedidos a tus proveedores para abastecer tu negocio.
               </p>
             </div>
 
             <div className="container_cont">
-              <ContextProveedores>
-                <ContextCategory>
-                  <DatatableProviders />
-                </ContextCategory>
-              </ContextProveedores>
+              <FormPedido />
             </div>
           </div>
         </div>

@@ -36,7 +36,7 @@ export const ImportProducts = ({ idCategorias }) => {
 
   if (idCategorias.length > 0) {
   } else {
-    window.location.href = "/inventario";
+    window.location.href = "/bodega";
   }
   const disabledDate = (current) => {
     moment.locale("es");
@@ -96,8 +96,8 @@ export const ImportProducts = ({ idCategorias }) => {
               </p>
             </div>
             <div className="cancelar">
-              <Link
-                to={`/inventario`}
+              <button
+                onClick={() => window.location.reload()}
                 className="bg-gray-200 mx-2 flex p-3 rounded-md"
               >
                 <svg
@@ -112,7 +112,7 @@ export const ImportProducts = ({ idCategorias }) => {
                   />
                 </svg>
                 <span>Guardar</span>
-              </Link>
+              </button>
             </div>
           </div>
           {loadIn ? (
@@ -269,7 +269,7 @@ export const ImportProducts = ({ idCategorias }) => {
 
                                   if (response.status === 200) {
                                     toast.success(
-                                      "Producto agregado al inventario con exito",
+                                      "Producto agregado a la bodega con exito",
                                       {
                                         position: "top-right",
                                         autoClose: 3000,
@@ -284,7 +284,7 @@ export const ImportProducts = ({ idCategorias }) => {
                                     setLoadSub(false);
                                   } else {
                                     toast.error(
-                                      "Error al agregar el producto al inventario o el producto ya existe",
+                                      "Error al agregar el producto al bodega o el producto ya existe",
                                       {
                                         position: "top-right",
                                         autoClose: 3000,

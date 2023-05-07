@@ -117,14 +117,22 @@ export const DatatableProviders = () => {
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 48 48"
                 >
-                  <path
-                    fill="#3498DB"
-                    d="M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.39 3.39 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.39 3.39 0 0 0 15 11a3.5 3.5 0 0 0 0-7Z"
-                  />
+                  <g
+                    fill="none"
+                    stroke="#3498DB"
+                    stroke-linejoin="round"
+                    stroke-width="4"
+                  >
+                    <rect width="30" height="36" x="9" y="8" rx="2" />
+                    <path
+                      stroke-linecap="round"
+                      d="M18 4v6m12-6v6m-14 9h16m-16 8h12m-12 8h8"
+                    />
+                  </g>
                 </svg>
               </span>
               <span className="text-[#3498DB] mx-1">Pedidos</span>
@@ -227,7 +235,7 @@ export const DatatableProviders = () => {
                     />
                   </svg>
 
-                  <span>Activos </span>
+                  <span>Facturados </span>
                 </span>
               </div>
               <div className="bg-white p-2 rounded-lg">
@@ -247,7 +255,7 @@ export const DatatableProviders = () => {
                       d="M6 20.184V11.07l6.2-3.664l-1.017-1.722l-6.692 3.955A1 1 0 0 0 4 10.5v9.684A2.996 2.996 0 0 0 2 23c0 1.654 1.346 3 3 3s3-1.346 3-3a2.996 2.996 0 0 0-2-2.816zM5 24a1.001 1.001 0 0 1 0-2a1.001 1.001 0 0 1 0 2zm22-4c-1.654 0-3 1.346-3 3c0 .353.072.687.185 1.002L16 28.838l-6.404-3.784l-1.017 1.722l6.912 4.084a.997.997 0 0 0 1.018.001l8.96-5.295c.45.269.97.434 1.531.434c1.654 0 3-1.346 3-3s-1.346-3-3-3zm0 4a1.001 1.001 0 0 1 0-2a1.001 1.001 0 0 1 0 2zM16 7c.731 0 1.392-.273 1.913-.708L26 11.071V18h2v-7.5a1 1 0 0 0-.491-.861l-8.567-5.062C18.978 4.39 19 4.198 19 4c0-1.654-1.346-3-3-3s-3 1.346-3 3s1.346 3 3 3zm0-4a1.001 1.001 0 1 1-1 1c0-.552.449-1 1-1z"
                     />
                   </svg>
-                  <div className="span mx-1">Inactivos</div>
+                  <div className="span mx-1">Pendientes</div>
                 </span>
               </div>
             </div>

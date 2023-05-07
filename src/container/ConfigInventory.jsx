@@ -41,8 +41,8 @@ export const ConfigInventory = () => {
   const geType = localStorage.getItem("type");
   const validaDelete = () => {
     Swal.fire({
-      title: "¿Estas seguro de eliminar este inventario?  ",
-      text: "se eliminara todo lo relacionado a este inventario incluyendo subproductos. No podras revertir esta accion!",
+      title: "¿Estas seguro de eliminar esta bodega?  ",
+      text: "se eliminara todo lo relacionado a este bodega incluyendo subproductos. No podras revertir esta accion!",
       showClass: {
         popup: "animate__animated animate__bounceInDown",
       },
@@ -149,6 +149,7 @@ export const ConfigInventory = () => {
           (item) => item._id !== id
         );
         setSubProductsTranslate(newSubProductsTranslate);
+
         await toast.success("la ejecucion fue exitosa");
       } else {
         return toast.error("Error al eliminar");
@@ -244,7 +245,10 @@ export const ConfigInventory = () => {
                   <h1 className="text-xl m-2">Productos pendiente</h1>
                   <div
                     className="icon cursor-pointer "
-                    onClick={() => setSubModal(!subModal)}
+                    onClick={() => {
+                      setSubModal(!subModal);
+                      window.location.reload();
+                    }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -474,22 +478,19 @@ export const ConfigInventory = () => {
 
                                       setLoading(false);
                                       if (data.status === 200) {
-                                        toast.success(
-                                          "Inventario Actualizado",
-                                          {
-                                            position: "top-right",
-                                            autoClose: 2000,
-                                            hideProgressBar: false,
-                                            closeOnClick: true,
-                                            pauseOnHover: true,
-                                            draggable: true,
-                                            progress: undefined,
-                                          }
-                                        );
-                                        navigate(`/inventario/inventory/${id}`);
+                                        toast.success("Bodega Actualizado", {
+                                          position: "top-right",
+                                          autoClose: 2000,
+                                          hideProgressBar: false,
+                                          closeOnClick: true,
+                                          pauseOnHover: true,
+                                          draggable: true,
+                                          progress: undefined,
+                                        });
+                                        navigate(`/bodega/inventory/${id}`);
                                       } else {
                                         toast.error(
-                                          "Error al actualizar inventario ",
+                                          "Error al actualizar bodega ",
                                           {
                                             position: "top-right",
                                             autoClose: 2000,

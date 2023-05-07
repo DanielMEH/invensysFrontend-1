@@ -323,7 +323,7 @@ export const Router = () => {
               }
             />
             <Route
-              path="/pedidos"
+              path="/pedidos/*"
               element={
                 <ProtectedRouter
                   isAllowed={!!users && users.permisions.includes("pedidos")}
@@ -332,7 +332,9 @@ export const Router = () => {
                   <Shope />
                 </ProtectedRouter>
               }
-            />
+            >
+              <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
+            </Route>
 
             <Route
               path="/venta"
