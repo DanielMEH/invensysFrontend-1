@@ -134,15 +134,15 @@ export const FormPedido = () => {
 
   return (
     <>
-      <div className="container border bg-white p-2 mt-2 grid grid-cols-3">
-        <div className="form-content">
+      <div className="container border bg-white p-2 mt-2 flex ">
+        <div className="form-content   w-[70rem]">
           <div className="title">
             <h1 className="text-2xl font-bold text-gray-500">Crear pedido</h1>
           </div>
           <div className="content pedido">
             <div className="select-Proveedor relative">
               <button
-                className="flex items-center  bg-[#7bbce7] p-1 mt-2 rounded border"
+                className="flex items-center  bg-[#3498db] p-1 mt-2 rounded border"
                 onClick={() => {
                   setEstadoModel(!estadoModel);
                 }}
@@ -166,7 +166,7 @@ export const FormPedido = () => {
                     {proveedores.map((i) => {
                       return (
                         <li
-                          className="hover:bg-[#7bbce7] p-1 rounded cursor-pointer hover:text-white"
+                          className="hover:bg-gray-100 p-1 rounded cursor-pointer hover:text-black"
                           key={i._id}
                           onClick={() => {
                             setIdProvider(i._id);
@@ -180,22 +180,22 @@ export const FormPedido = () => {
                   </ul>
                 </div>
               </div>
-              <div className="listProviderItem w-fit my-4 shadow-md border rounded-md ">
+              <div className="listProviderItem w-fit my-4 shadow-md overflow-hidden border rounded-md ">
                 {dataArray.length > 0 ? (
                   <>
-                    <div className="m-2">
-                      <h1>Datos personales del proveedor</h1>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="bg-gray-100 rounded-md text-lg text-black  cursor-not-allowed border px-1 ">
+                    <div className="">
+                      <h1 className="bg-[#3498db] p-1 mb-1 text-white" >Datos personales del proveedor</h1>
+                      <div className="grid grid-cols-2 gap-2 p-1">
+                        <div className="  text-lg text-black  cursor-not-allowed border px-1 ">
                           {dataArray[0].name}
                         </div>
-                        <div className="bg-gray-100 rounded-md text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
                           {dataArray[0].company}
                         </div>
-                        <div className="bg-gray-100 rounded-md text-lg text-black cursor-not-allowed border  px-1">
+                        <div className=" text-lg text-black cursor-not-allowed border  px-1">
                           {dataArray[0].email}
                         </div>
-                        <div className="bg-gray-100 rounded-md text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
                           {dataArray[0].phone}
                         </div>
                       </div>
@@ -209,7 +209,7 @@ export const FormPedido = () => {
           {dataArray.length > 0 ? (
             <div className="select-Proveedor relative">
               <button
-                className="flex items-center  bg-[#7bbce7] p-1 mt-2 rounded border"
+                className="flex items-center  bg-[#3498db] p-1 mt-2 rounded border"
                 onClick={() => {
                   setEstadoModel1(!estadoModel1);
                 }}
@@ -233,7 +233,7 @@ export const FormPedido = () => {
                     {inventario.map((i) => {
                       return (
                         <li
-                          className="hover:bg-[#7bbce7] p-1 rounded cursor-pointer hover:text-white"
+                          className="hover:bg-gray-100 p-1 rounded cursor-pointer hover:text-black"
                           key={i._id}
                           onClick={() => {
                             setIdInventario(i._id);
@@ -248,22 +248,22 @@ export const FormPedido = () => {
                   </ul>
                 </div>
               </div>
-              <div className="listProviderItem w-fit my-4 shadow-md border rounded-md ">
+              <div className="listProviderItem w-fit overflow-hidden my-4 shadow-md border rounded-md ">
                 {inventoryArray.length > 0 ? (
                   <>
-                    <div className="m-2">
-                      <h1>Datos de la bodega </h1>
-                      <div className="grid grid-cols-1 gap-2">
-                        <div className="bg-white rounded-md text-lg text-black  cursor-not-allowed border px-1 ">
+                    <div className="">
+                      <h1 className="bg-[#3498db] p-1 text-white">Datos de la bodega </h1>
+                      <div className="grid grid-cols-1 gap-2 p-1">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
                           {inventoryArray[0].name_inventory}
                         </div>
-                        <div className="bg-white rounded-md text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
                           {inventoryArray[0].description}
                         </div>
-                        <div className="bg-white rounded-md text-lg text-black cursor-not-allowed border  px-1">
+                        <div className=" text-lg text-black cursor-not-allowed border  px-1">
                           {inventoryArray[0].estadoInventory}
                         </div>
-                        <div className="bg-white rounded-md text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
                           {inventoryArray[0].responsableInventory}
                         </div>
                       </div>
@@ -276,7 +276,7 @@ export const FormPedido = () => {
           {/* ?hellow */}
         </div>
         {idInventario !== "" ? (
-          <div className="serach_Content ">
+          <div className="serach_Content w-full  p-1">
             <div className="searc_buscador ">
               <div className="searc_buscador bg-white w-full items-center rounded-full flex border my-1">
                 <div className="icon ml-1">
@@ -320,7 +320,7 @@ export const FormPedido = () => {
                 </div>
               </div>
               <div
-                className="subProducts bg-white  border rounded-md"
+                className="subProducts bg-white max-h-[18rem] overflow-y-hidden  border rounded-md"
                 style={{
                   boxShadow:
                     "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
@@ -331,7 +331,7 @@ export const FormPedido = () => {
                     {products.map((i) => {
                       return (
                         <div
-                          className="flex justify-between items-center p-2 border-b cursor-pointer hover:bg-[#69bff80b] "
+                          className="flex justify-between items-center p-2  border-b cursor-pointer hover:bg-[#69bff80b] "
                           key={i._id}
                           onClick={() => habdleSave(i)}
                         >
@@ -385,6 +385,7 @@ export const FormPedido = () => {
                                 d="M20 5V2h-2v3h-3v2h3v3h2V7h3V5z"
                               />
                             </svg>
+                           
                           </div>
                         </div>
                       );
@@ -392,7 +393,7 @@ export const FormPedido = () => {
                   </>
                 ) : (
                   <div className="flex justify-start items-center ">
-                    <h1 className=" ">
+                    <h1 className=" flex p-2 ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -427,6 +428,7 @@ export const FormPedido = () => {
                           <use href="#openmojiEightOclock0" />
                         </g>
                       </svg>
+                      <h1>No hay productos para mostrar</h1>
                     </h1>
                   </div>
                 )}
@@ -435,10 +437,18 @@ export const FormPedido = () => {
           </div>
         ) : null}
         {idInventario !== "" ? (
-          <div className="listpedidos bg-white border m-2 rounded p-1">
+          <div className="listpedidos  w-full border m-2 rounded p-1">
             <h1>Lista de productos</h1>
 
-            <div className="listProviderItem w-full my-4 shadow-md border rounded-md ">
+            <div className="listProviderItem w-full my-4 
+            
+            
+            
+            
+            
+            
+            
+            p-1 shadow-md  rounded-md ">
               {data.length > 0 ? (
                 <>
                   <div className="m-2">
@@ -450,6 +460,7 @@ export const FormPedido = () => {
                               nombre: data[0].name,
                               unidades: "",
                               precio: "",
+                              precioVenta:""
                             }}
                             validationSchema={Yup.object({
                               unidades: Yup.number()
@@ -470,6 +481,7 @@ export const FormPedido = () => {
                                       parseInt(values.precio) *
                                       parseInt(values.unidades),
                                     PrecioCompra: values.precio,
+                                    precioVenta:values.precioVenta,
                                     caducidad: data[0].caducidad,
                                     unidades: parseInt(values.unidades),
                                   },
@@ -486,6 +498,7 @@ export const FormPedido = () => {
                                       parseInt(values.precio) *
                                       parseInt(values.unidades),
                                     PrecioCompra: values.precio,
+                                     precioVenta:values.precioVenta,
                                     caducidad: data[0].caducidad,
                                     unidades: parseInt(values.unidades),
                                   },
@@ -516,6 +529,12 @@ export const FormPedido = () => {
                                   placeholder="Ingrese el  precio  del producto"
                                   className="w-full outline-none  p-1 border rounded-md"
                                 />
+                                <Field
+                                  type="text"
+                                  name="precioVenta"
+                                  placeholder="Precio venta "
+                                  className="w-full outline-none  p-1 border rounded-md"
+                                />
                                 <button
                                   type="submit"
                                   className="mx-1 cursor-pointer close
@@ -534,7 +553,7 @@ export const FormPedido = () => {
                 </>
               ) : (
                 <div className="flex justify-start items-center ">
-                  <h1 className=" flex">
+                  <h1 className=" flex p-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -577,7 +596,7 @@ export const FormPedido = () => {
             <div className="f">Total de productos: {pedidosList.length}</div>
             <div className="">
               {pedidosList.length > 0 ? (
-                <div className="h-48  overflow-y-auto ">
+                <div className="h-[18rem]  overflow-y-auto ">
                   {pedidosList.map((i) => {
                     return (
                       <div className="container">
@@ -626,20 +645,48 @@ export const FormPedido = () => {
                 </div>
               ) : null}
             </div>
-            <div className="form m-2">
-              <div className="total">
-                Total: $
-                {pedidosList.length > 0
+            
+          </div>
+        ) : null}
+      </div>
+      <div className="bg-white p-1 ">
+        <h2>Resumen del Pedido</h2>
+
+        <div className="contentj ">
+        <div className="flex flex-col gap-1">
+        <div className="total border min-w-20 border-[#3498db]  inline-block ">
+                <span className="bg-[#3498db] p-1 text-white">Total: del pedido:  </span>
+                <span className="font-mono ">
+                  $
+
+                  
+                {pedidosList.length > 0 
                   ? pedidosList
-                      .map((i) => i.Total)
+                      .map((i) =>  i.Total)
                       .reduce((a, b) => a + b)
                       .toString()
                       .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
                   : 0}
+                </span>
+               
               </div>
-            </div>
-          </div>
-        ) : null}
+              <div className="total border border-[#3498db]  inline-block ">
+              <span className="bg-[#3498db] p-1 text-white">Total precio venta:  </span>
+                $
+                <span className="font-mono">
+                {pedidosList.length > 0 
+                  ? pedidosList
+                      .map((i) => i.precioVenta*i.unidades)
+                      .reduce((a, b) => a + b)
+                      .toString()
+                      .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+                  : 0}
+                </span>
+              </div>
+        </div>
+              <div className="f">Total de productos: {pedidosList.length}</div>
+        </div>
+
       </div>
     </>
   );
