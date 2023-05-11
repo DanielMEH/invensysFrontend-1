@@ -347,4 +347,11 @@ export const TodoFunctions = {
         },
       }
     ),
+
+    postPedidos: async (data)=> await axios.post(`${urlServer}/pedidos`,{data},{
+
+      headers: {
+        authorization: accessToken,
+      },
+    })
 };

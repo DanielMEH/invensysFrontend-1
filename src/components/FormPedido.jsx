@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { getProveedores, getInventario, getSubProducts } from "../apis/ApiData";
+import { getProveedores, getInventario, getSubProducts,TodoFunctions } from "../apis/ApiData";
 import * as Yup from "yup";
 import "animate.css";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import moment from 'moment-with-locales-es6';
+moment.locale("es");
 export const FormPedido = () => {
   const navigate = useNavigate();
   // ? providers
@@ -34,7 +36,7 @@ export const FormPedido = () => {
     setSpiner(true);
     (async () => {
       const subProducts = await getSubProducts(idInventario);
-      console.log(subProducts.data.response);
+     
       setSubProducts(subProducts.data.response);
       setSpiner(false);
     })();
@@ -54,6 +56,8 @@ export const FormPedido = () => {
     inventoryArray.push(data[0]);
   } else {
   }
+
+  
 
   // activar con ctrl + k
   window.addEventListener("keydown", function (event) {
@@ -76,7 +80,7 @@ export const FormPedido = () => {
   //   fecha,
   //   caducidad,
   const handleBuscador = (value) => {
-    console.log("........", subProducts);
+   
     const filteredData = subProducts.filter((item) => {
       return item.name.toLowerCase().includes(value.toLowerCase());
     });
@@ -90,7 +94,7 @@ export const FormPedido = () => {
       }
     }
 
-    console.log("filter", filteredData);
+   
   };
   const DataNew = async (value) => {
     if (value === "") {
@@ -101,6 +105,7 @@ export const FormPedido = () => {
   const habdleSave = (i) => {
     if (data.length > 0) {
       setData([
+        
         {
           idBodega: idInventario,
           idProvedor: idProvider,
@@ -128,13 +133,18 @@ export const FormPedido = () => {
         },
       ]);
     }
-
-    console.log("data", data);
   };
+  const handleClickFormPedido = (estado) => {
 
+    (async ()=>{
+    const  response = await TodoFunctions.postPedidos(pedidosList)
+    console.log(await response);
+    })()
+
+  }
   return (
     <>
-      <div className="container border bg-white p-2 mt-2 flex ">
+      <div className=" border bg-white p-2 mt-2 flex ">
         <div className="form-content   w-[70rem]">
           <div className="title">
             <h1 className="text-2xl font-bold text-gray-500">Crear pedido</h1>
@@ -160,13 +170,13 @@ export const FormPedido = () => {
                   />
                 </svg>
               </button>
-              <div className={estadoModel ? "block" : "hidden"}>
-                <div className="list_provider shadow-md absolute z-50  bg-white w-fit p-1 mt-1 border">
+              <div className={estadoModel ? "visible duration-100" : "invisible  scale-100 duration-100"}>
+                <div className="list_provider rounded absolute z-50 shadow-xl bg-white w-fit p-1 mt-1 border">
                   <ul>
                     {proveedores.map((i) => {
                       return (
                         <li
-                          className="hover:bg-gray-100 p-1 rounded cursor-pointer hover:text-black"
+                          className="hover:bg-gray-100 p-2  rounded cursor-pointer hover:text-black"
                           key={i._id}
                           onClick={() => {
                             setIdProvider(i._id);
@@ -335,6 +345,7 @@ export const FormPedido = () => {
                           key={i._id}
                           onClick={() => habdleSave(i)}
                         >
+                      
                           <div className="flex items-center">
                             <div className="icon mr-2">
                               <svg
@@ -443,11 +454,6 @@ export const FormPedido = () => {
             <div className="listProviderItem w-full my-4 
             
             
-            
-            
-            
-            
-            
             p-1 shadow-md  rounded-md ">
               {data.length > 0 ? (
                 <>
@@ -476,14 +482,17 @@ export const FormPedido = () => {
                                     idProvedor: data[0].idProvedor,
                                     idSubproducto: data[0].idSubproducto,
                                     company: data[0].company,
-                                    name: data[0].name,
-                                    Total:
+                                    unidades: parseInt(values.unidades),
+                                    Estado:"pendiente",
+                                    totalCompra:
                                       parseInt(values.precio) *
                                       parseInt(values.unidades),
-                                    PrecioCompra: values.precio,
-                                    precioVenta:values.precioVenta,
-                                    caducidad: data[0].caducidad,
-                                    unidades: parseInt(values.unidades),
+                                    name: data[0].name,
+                                    PrecioCompra: parseInt(values.precio),
+                                    precioVenta: parseInt(values.precioVenta),
+                                    estado:"entregado",
+                                    fecha:moment().format('l'),
+                                    
                                   },
                                 ]);
                               } else {
@@ -493,19 +502,22 @@ export const FormPedido = () => {
                                     idProvedor: data[0].idProvedor,
                                     idSubproducto: data[0].idSubproducto,
                                     company: data[0].company,
-                                    name: data[0].name,
-                                    Total:
+                                    unidades: parseInt(values.unidades),
+                                    estado:"aceptado",
+                                    totalCompra:
                                       parseInt(values.precio) *
                                       parseInt(values.unidades),
-                                    PrecioCompra: values.precio,
-                                     precioVenta:values.precioVenta,
-                                    caducidad: data[0].caducidad,
-                                    unidades: parseInt(values.unidades),
+                                    name: data[0].name,
+                                    PrecioCompra: parseInt(values.precio),
+                                    precioVenta: parseInt(values.precioVenta),
+                                    tipo:"entregado",
+                                    fecha:moment().format('l'),
+                                    
                                   },
                                 ]);
                               }
 
-                              console.log("data", pedidosList);
+                              
                             }}
                           >
                             <Form className="flex">
@@ -593,7 +605,7 @@ export const FormPedido = () => {
                 </div>
               )}
             </div>
-            <div className="f">Total de productos: {pedidosList.length}</div>
+            
             <div className="">
               {pedidosList.length > 0 ? (
                 <div className="h-[18rem]  overflow-y-auto ">
@@ -604,7 +616,7 @@ export const FormPedido = () => {
                           <div>{i.name}</div>
                           <div>{i.unidades}</div>
                           <div>
-                            {("$ " + i.Total).replace(
+                            {("$ " + i.totalCompra).replace(
                               /(\d)(?=(\d\d\d)+(?!\d))/g,
                               "$1,"
                             )}{" "}
@@ -649,20 +661,22 @@ export const FormPedido = () => {
           </div>
         ) : null}
       </div>
-      <div className="bg-white p-1 ">
-        <h2>Resumen del Pedido</h2>
+      {
+        pedidosList.length > 0 ? (
+      <div className="bg-white p-1 m-2 shadow-lg rounded-lg ">
+        <h2 className="p-2">Resumen del Pedido</h2>
 
-        <div className="contentj ">
-        <div className="flex flex-col gap-1">
-        <div className="total border min-w-20 border-[#3498db]  inline-block ">
-                <span className="bg-[#3498db] p-1 text-white">Total: del pedido:  </span>
-                <span className="font-mono ">
+        <div className="contentj flex ">
+        <div className="flex flex-rows gap-1 w-fit">
+        <div className="total  overflow-hidden  border rounded  inline-block ">
+                <span className="bg-gray-100 p-3 text-black">Total: del pedido:  </span>
+                <span className="font-mono  inline-block p-2 ">
                   $
 
                   
                 {pedidosList.length > 0 
                   ? pedidosList
-                      .map((i) =>  i.Total)
+                      .map((i) =>  i.totalCompra)
                       .reduce((a, b) => a + b)
                       .toString()
                       .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
@@ -670,10 +684,11 @@ export const FormPedido = () => {
                 </span>
                
               </div>
-              <div className="total border border-[#3498db]  inline-block ">
-              <span className="bg-[#3498db] p-1 text-white">Total precio venta:  </span>
+              <div className="total border rounded  overflow-hidden inline-block ">
+              <span className="bg-gray-100 p-3 text-black">Total precio venta:  </span>
+                <div className="inline-block">
+                <span className="font-mono p-2 inline-block">
                 $
-                <span className="font-mono">
                 {pedidosList.length > 0 
                   ? pedidosList
                       .map((i) => i.precioVenta*i.unidades)
@@ -682,12 +697,46 @@ export const FormPedido = () => {
                       .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
                   : 0}
                 </span>
+                </div>
               </div>
+              <div className="border rounded  overflow-hidden inline-block">
+                <span className="bg-gray-100 p-2 inline-block text-black">Total de productos:</span> 
+                <span className="p-2 inline-block">
+                {pedidosList.length}
+                </span>
+                </div>
         </div>
-              <div className="f">Total de productos: {pedidosList.length}</div>
         </div>
-
+<div className="flex my-1 gap-1">
+<div className="border rounded  overflow-hidden inline-block">
+                <span className="bg-gray-100 p-2 inline-block text-black">Bodega:</span> 
+                <span className="p-2 inline-block">
+                {idInventario.length > 0 ? inventoryArray[0].name_inventory:null}
+                </span>
+                </div>
+<div className="border rounded  overflow-hidden inline-block">
+                <span className="bg-gray-100 p-2 inline-block text-black">Proveedor:</span> 
+                <span className="p-2 inline-block">
+                {dataArray.length > 0 ? dataArray[0].name:null}
+                </span>
+                </div>
+</div>
+<div className="button flex justify-end gap-1">
+  <button name="Aceptar" className="bg-green-400 p-2 rounded text-white rounded-2"
+  onClick={()=>handleClickFormPedido("aceptado")}
+  >
+    Aceptado 
+  </button>
+  <button name="Pendiente " className="bg-blue-400 p-2 rounded text-white rounded-2"
+  onClick={()=>handleClickFormPedido("pendiente")}
+  >
+    Pendiente 
+  </button>
+</div>
       </div>
+
+        ):null
+      }
     </>
   );
 };
