@@ -10,7 +10,7 @@ export const Notification = () => {
         <MenuLateral />
         <div className="bg-[#eef9fd] w-full grid place-content-center h-screen  ">
           <div
-            className="bg-white  overflow-y-hidden  w-[50rem] h-[40rem] m-auto rounded-lg scrollhelping"
+            className="bg-white  overflow-y-hidden w-11/12  lg:w-[50rem] h-[40rem] m-auto rounded-lg scrollhelping"
             style={{
               boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
             }}

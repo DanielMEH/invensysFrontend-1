@@ -126,7 +126,7 @@ import { FormProduct } from "./FormProduct/FormProduct";
         active ? <FormProduct estado={stateModel} /> : null
        }
         <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
-          <div className="plus_panel flex justify-between items-center">
+          <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
           <section className="items-center flex">
             
               <div className="users flex items-center mx-2">
@@ -140,8 +140,8 @@ import { FormProduct } from "./FormProduct/FormProduct";
             </section>
           
   
-            <section className="flex ">
-            <button onClick={onBtnExport} className="flex items-center border mx-1 p-1 rounded-md">
+            <section className="flex overflow-x-auto">
+            <button onClick={onBtnExport} className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +157,7 @@ import { FormProduct } from "./FormProduct/FormProduct";
               </span>
               <span>Descargar archivo scv</span>
             </button>
-            <button onClick={onBtExportExel}  className="flex items-center border mx-1 p-1 rounded-md">
+            <button onClick={onBtExportExel}  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +174,7 @@ import { FormProduct } from "./FormProduct/FormProduct";
               <span>Exportar a excel</span>
             </button>
            
-            <button onClick={onBtPrint} className="flex items-center border mx-1 p-1 rounded-md">
+            <button onClick={onBtPrint} className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -189,7 +189,7 @@ import { FormProduct } from "./FormProduct/FormProduct";
               <span>Imprimir</span>
             </button>
             <button onClick={()=>setActive(!active)
-            } className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border">
+            } className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border whitespace-nowrap">
               <img src={plus} alt="" />
               Crear producto
             </button>
@@ -205,7 +205,7 @@ import { FormProduct } from "./FormProduct/FormProduct";
         <div className="buttons">
         
         </div>
-          <div className="panel_second_h w-[100%] mx-auto flex justify-between items-center">
+          <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
             
          <div className="panel_analitic block  my-2">
          
@@ -228,7 +228,7 @@ import { FormProduct } from "./FormProduct/FormProduct";
        </div>
          </div>
        
-         <div className="search bg-white flex items-center p-2 rounded-full">
+         <div className="search bg-white mb-3 flex items-center p-2 rounded-full">
           
           <div className="icon_search mx-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 16 16"><g transform="translate(16 0) scale(-1 1)">

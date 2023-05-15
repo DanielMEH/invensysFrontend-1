@@ -229,7 +229,7 @@ export const CategoryDasboard = () => {
               )}
             </div>
           </div>
-          <div className="gap-2 rounded-md flex max-w-7xl  mt-4">
+          <div className="gap-2 rounded-md flex   max-w-7xl   mt-4">
             <div className="bg-white">
               <Chart
                 options={options}

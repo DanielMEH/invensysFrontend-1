@@ -168,10 +168,10 @@ export const InicioChart = () => {
   return (
     <>
       <div className="cards mt-8 flex gap-2 justify-start flex-wrap 2xl:justify-center  mx-auto scroll-smooth">
-        <section className="relative">
+        <section className="relative w-full md:w-auto">
           <Link to={`users/${token}`} className="">
             <div
-              className="card-single bg-white rounded-md inline-block p-2
+              className="card-single bg-white rounded-md block md:inline-block p-2
         border-b-4 border-[#00a6ed] hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
             >
@@ -258,10 +258,10 @@ export const InicioChart = () => {
             </div>
           </Link>
         </section>
-        <section className="">
+        <section className="relative w-full md:w-auto">
           <Link to={`productos/${token}`} className="">
             <div
-              className="card-single bg-white rounded-md inline-block p-2
+              className="card-single bg-white rounded-md block md:inline-block p-2
         border-b-4 border-green-400 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
             >
@@ -345,10 +345,10 @@ export const InicioChart = () => {
             </div>
           </Link>
         </section>
-        <section className="">
+        <section className="relative w-full md:w-auto">
           <Link to={`categorias/${token}`} className="">
             <div
-              className="card-single bg-white rounded-md inline-block p-2
+              className="card-single bg-white rounded-md block md:inline-block p-2
         border-b-4 border-red-400 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
             >
@@ -437,10 +437,10 @@ export const InicioChart = () => {
             </div>
           </Link>
         </section>
-        <section className="">
+        <section className="relative w-full md:w-auto">
           <Link to={`proveedores/${token}`} className="">
             <div
-              className="card-single bg-white rounded-md inline-block p-2
+              className="card-single bg-white rounded-md block md:inline-block p-2
         border-b-4 border-purple-500 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
             >
@@ -529,10 +529,10 @@ export const InicioChart = () => {
             </div>
           </Link>
         </section>
-        <section className="">
+        <section className="relative w-full md:w-auto">
           <Link to="/inventario" className="">
             <div
-              className="card-single bg-white rounded-md inline-block p-2
+              className="card-single bg-white rounded-md block md:inline-block p-2
         border-b-4 border-pink-500 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
             >

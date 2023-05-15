@@ -185,7 +185,7 @@ import React, {
         <RegisterCategorys estado={stateModel} />
       </ContextCategory>
         <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
-          <div className="plus_panel flex justify-between items-center">
+          <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
           <section className="items-center flex">
             
               <div className="users flex items-center mx-2">
@@ -199,7 +199,7 @@ import React, {
             </section>
           
   
-            <section className="flex ">
+            <section className="flex overflow-x-auto ">
             <button onClick={onBtnExport} className="flex items-center border mx-1 p-1 rounded-md">
               <span>
                 <svg
@@ -214,9 +214,9 @@ import React, {
                   />
                 </svg>
               </span>
-              <span>Descargar archivo scv</span>
+              <span className="whitespace-nowrap">Descargar archivo scv</span>
             </button>
-            <button onClick={onBtExportExel}  className="flex items-center border mx-1 p-1 rounded-md">
+            <button onClick={onBtExportExel}  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -230,10 +230,10 @@ import React, {
                   />
                 </svg>
               </span>
-              <span>Exportar a excel</span>
+              <span className="whitespace-nowrap">Exportar a excel</span>
             </button>
           
-            <button onClick={onBtPrint} className="flex items-center border mx-1 p-1 rounded-md">
+            <button onClick={onBtPrint} className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -245,9 +245,9 @@ import React, {
                   d="M18 7H6V3h12v4Zm0 5.5q.425 0 .713-.288T19 11.5q0-.425-.288-.713T18 10.5q-.425 0-.713.288T17 11.5q0 .425.288.713T18 12.5ZM16 19v-4H8v4h8Zm2 2H6v-4H2v-6q0-1.275.875-2.138T5 8h14q1.275 0 2.138.863T22 11v6h-4v4Z"
                 />
               </svg>
-              <span>Imprimir</span>
+              <span className="whitespace-nowrap">Imprimir</span>
             </button>
-            <button onClick={handleShowModel} className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border">
+            <button onClick={handleShowModel} className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border whitespace-nowrap">
               <img src={plus} alt="" />
               Crear Categoria
             </button>
@@ -263,36 +263,10 @@ import React, {
         <div className="buttons">
         
         </div>
-          <div className="panel_second_h w-[100%] mx-auto flex justify-between items-center">
+          <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
             
-         <div className="panel_analitic flex">
-          
-         <button onClick={onChart1} className="bg-white p-3 hover:shadow-xl my-2 rounded-lg mx-1">
-            
-            <div className="flex">
-            <span className="mx-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 16 16">
-              <path fill="#3498DB" fillRule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/></svg>
-            </span>
-            <span>
-            Estadisticas de los primeros 5 Categorias
+         <div className="panel_analitic my-1 flex">
   
-            </span>
-            </div>
-            
-            </button>
-            <button onClick={onChart2} className="bg-white p-3 hover:shadow-xl my-2 rounded-lg mx-1">
-            <div className="flex">
-            <span className="mx-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 16 16">
-              <path fill="#3498DB" fillRule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/></svg>
-            </span>
-            <span>
-           Todos los Categorias
-  
-            </span>
-            </div>
-              </button>
               <div className="content flex ">
         <div className="inactive flex items-center ">
         <div className=" bg-white p-2 rounded-lg mx-1">
@@ -312,7 +286,7 @@ import React, {
        </div>
          </div>
        
-         <div className="search bg-white flex items-center p-2 rounded-full">
+         <div className="search bg-white mb-2 flex items-center p-2 rounded-full">
           
           <div className="icon_search mx-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 16 16"><g transform="translate(16 0) scale(-1 1)">
