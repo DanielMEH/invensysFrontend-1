@@ -111,7 +111,7 @@ export const DatatableProviders = () => {
     <>
       {active === true ? <CreateProveedor /> : null}
       <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
-        <div className="plus_panel flex justify-between items-center">
+        <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
           <section className="items-center flex">
             <div className="users flex items-center mx-2">
               <span>
@@ -142,7 +142,7 @@ export const DatatableProviders = () => {
             </div>
           </section>
 
-          <section className="flex ">
+          <section className="flex overflow-x-auto">
             <button
               onClick={onBtnExport}
               className="flex items-center border mx-1 p-1 rounded-md"
@@ -160,7 +160,7 @@ export const DatatableProviders = () => {
                   />
                 </svg>
               </span>
-              <span>Descargar archivo scv</span>
+              <span className="whitespace-nowrap">Descargar archivo scv</span>
             </button>
             <button
               onClick={onBtExportExel}
@@ -179,7 +179,7 @@ export const DatatableProviders = () => {
                   />
                 </svg>
               </span>
-              <span>Exportar a excel</span>
+              <span className="whitespace-nowrap">Exportar a excel</span>
             </button>
 
             <button
@@ -197,14 +197,18 @@ export const DatatableProviders = () => {
                   d="M18 7H6V3h12v4Zm0 5.5q.425 0 .713-.288T19 11.5q0-.425-.288-.713T18 10.5q-.425 0-.713.288T17 11.5q0 .425.288.713T18 12.5ZM16 19v-4H8v4h8Zm2 2H6v-4H2v-6q0-1.275.875-2.138T5 8h14q1.275 0 2.138.863T22 11v6h-4v4Z"
                 />
               </svg>
-              <span>Imprimir</span>
+              <span className="whitespace-nowrap">Imprimir</span>
             </button>
             <button
               onClick={() => setActive(!active)}
               className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border"
             >
               <img src={plus} alt="" />
+              <div className="whitespace-nowrap">
+
               Crear proveedor
+
+              </div>
             </button>
           </section>
         </div>
@@ -213,7 +217,7 @@ export const DatatableProviders = () => {
         </div>
       </div>
       <div className="buttons"></div>
-      <div className="panel_second_h w-[100%] mx-auto flex justify-between items-center">
+      <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
         <div className="panel_analitic block  my-2">
           <div className="content flex ">
             <div className="inactive flex items-center ">
@@ -262,7 +266,7 @@ export const DatatableProviders = () => {
           </div>
         </div>
 
-        <div className="search bg-white flex items-center p-2 rounded-full">
+        <div className="search bg-white mb-2 flex items-center p-2 rounded-full">
           <div className="icon_search mx-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"

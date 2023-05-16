@@ -111,7 +111,7 @@ export const HomeDaboard = () => {
 
   return (
     <>
-      <div className="gap-2 rounded-md flex max-w-7xl  mt-4">
+      <div className="gap-2 rounded-md grid grid-cols-2 md:flex flex-col lg:flex-row max-w-7xl  mx-auto  mt-4">
         <div className="bg-white">
           <Chart
             options={options}
@@ -125,7 +125,7 @@ export const HomeDaboard = () => {
             options={radar}
             series={radar.series}
             type="radar"
-            height={350}
+            height={  350}
           />
         </div>
       </div>

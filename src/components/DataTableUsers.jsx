@@ -185,7 +185,7 @@ export const DataTableUsers = () => {
     <UploadExcel estado={ExcelModel}/>
       <UserRegister estado={stateModel} />
       <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
-        <div className="plus_panel flex justify-between items-center">
+        <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center ">
         <section className="items-center flex">
           
             <div className="users flex items-center mx-2">
@@ -199,8 +199,8 @@ export const DataTableUsers = () => {
           </section>
         
 
-          <section className="flex ">
-          <button onClick={onBtnExport} className="flex items-center border mx-1 p-1 rounded-md">
+          <section className="flex overflow-x-auto  " >
+          <button onClick={onBtnExport} className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap ">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -216,7 +216,7 @@ export const DataTableUsers = () => {
             </span>
             <span>Descargar archivo scv</span>
           </button>
-          <button onClick={onBtExportExel}  className="flex items-center border mx-1 p-1 rounded-md">
+          <button onClick={onBtExportExel}  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap ">
             <span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -232,7 +232,7 @@ export const DataTableUsers = () => {
             </span>
             <span>Exportar a excel</span>
           </button>
-          <button className="flex items-center border mx-1 p-1 rounded-md"
+          <button className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap "
           onClick={handleModelExcel}>
             <span>
               <svg
@@ -249,7 +249,7 @@ export const DataTableUsers = () => {
             </span>
             <span>Importar archivo excel </span>
           </button>
-          <button onClick={onBtPrint} className="flex items-center border mx-1 p-1 rounded-md">
+          <button onClick={onBtPrint} className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -263,10 +263,12 @@ export const DataTableUsers = () => {
             </svg>
             <span>Imprimir</span>
           </button>
-          <button onClick={handleShowModel} className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border">
+          <button></button>
+          <button onClick={handleShowModel} className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border whitespace-nowrap">
             <img src={plus} alt="" />
             Crear usuario
           </button>
+          
           </section>
           
         </div>
@@ -279,36 +281,10 @@ export const DataTableUsers = () => {
       <div className="buttons">
       
       </div>
-        <div className="panel_second_h w-[100%] mx-auto flex justify-between items-center">
+        <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
           
-       <div className="panel_analitic flex">
-        
-       <button onClick={onChart1} className="bg-white p-3 hover:shadow-xl my-2 rounded-lg mx-1">
-          
-          <div className="flex">
-          <span className="mx-1">
-          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 16 16">
-            <path fill="#3498DB" fillRule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/></svg>
-          </span>
-          <span>
-          Estadisticas de los primeros 5 usuarios
-
-          </span>
-          </div>
-          
-          </button>
-          <button onClick={onChart2} className="bg-white p-3 hover:shadow-xl my-2 rounded-lg mx-1">
-          <div className="flex">
-          <span className="mx-1">
-          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 16 16">
-            <path fill="#3498DB" fillRule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/></svg>
-          </span>
-          <span>
-         Todos los usuarios
-
-          </span>
-          </div>
-            </button>
+       <div className="panel_analitic flex my-4">
+   
             <div className="content flex ">
       <div className="inactive flex items-center ">
       <div className=" bg-white p-2 rounded-lg mx-1">
@@ -329,7 +305,7 @@ export const DataTableUsers = () => {
      </div>
        </div>
      
-       <div className="search bg-white flex items-center p-2 rounded-full">
+       <div className="search bg-white flex mb-2 items-center p-2 rounded-full">
         
         <div className="icon_search mx-1">
         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 16 16"><g transform="translate(16 0) scale(-1 1)">

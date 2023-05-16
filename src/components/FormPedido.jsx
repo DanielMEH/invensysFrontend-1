@@ -141,8 +141,8 @@ export const FormPedido = () => {
   };
   return (
     <>
-      <div className=" border bg-white p-2 mt-2 flex xl:max-w-7xl ">
-        <div className="form-content   w-[70rem]">
+      <div className=" border bg-white p-2 mt-2 flex flex-col md:flex-row">
+        <div className="form-content   w-auto">
           <div className="title">
             <h1 className="text-2xl font-bold text-gray-500">Crear pedido</h1>
           </div>
@@ -201,16 +201,16 @@ export const FormPedido = () => {
                         Datos personales del proveedor
                       </h1>
                       <div className="grid grid-cols-2 gap-2 p-1">
-                        <div className="  text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className="  text-lg text-black  cursor-not-allowed border px-1  truncate">
                           {dataArray[0].name}
                         </div>
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1  truncate">
                           {dataArray[0].company}
                         </div>
-                        <div className=" text-lg text-black cursor-not-allowed border  px-1">
+                        <div className=" text-lg text-black cursor-not-allowed truncate  px-1">
                           {dataArray[0].email}
                         </div>
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1 truncate">
                           {dataArray[0].phone}
                         </div>
                       </div>
@@ -271,16 +271,16 @@ export const FormPedido = () => {
                         Datos de la bodega{" "}
                       </h1>
                       <div className="grid grid-cols-1 gap-2 p-1">
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1 truncate ">
                           {inventoryArray[0].name_inventory}
                         </div>
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1 truncate ">
                           {inventoryArray[0].description}
                         </div>
-                        <div className=" text-lg text-black cursor-not-allowed border  px-1">
+                        <div className=" text-lg text-black cursor-not-allowed border  px-1 truncate">
                           {inventoryArray[0].estadoInventory}
                         </div>
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                        <div className=" text-lg text-black  cursor-not-allowed border px-1 truncate ">
                           {inventoryArray[0].responsableInventory}
                         </div>
                       </div>
@@ -292,6 +292,7 @@ export const FormPedido = () => {
           ) : null}
           {/* ?hellow */}
         </div>
+        <div className="responseId flex flex-col w-full lg:flex-row ">
         {idInventario !== "" ? (
           <div className="serach_Content w-full  p-1">
             <div className="searc_buscador ">
@@ -662,17 +663,16 @@ export const FormPedido = () => {
             </div>
           </div>
         ) : null}
+        </div>
       </div>
       {pedidosList.length > 0 ? (
         <div className="bg-white p-1 m-2 shadow-lg rounded-lg xl:max-w-7xl ">
           <h2 className="p-2">Resumen del Pedido</h2>
 
-          <div className="contentj flex ">
-            <div className="flex flex-rows gap-1 w-fit">
-              <div className="total  overflow-hidden  border rounded  inline-block ">
-                <span className="bg-gray-100 p-3 text-black">
-                  Total: del pedido:{" "}
-                </span>
+        <div className="contentj flex ">
+        <div className="flex flex-rows gap-1 w-fit flex-col md:flex-row">
+        <div className="total  overflow-hidden flex-col  border rounded  inline-block ">
+                <span className="bg-gray-100  block sm:inline-block p-3 text-black">Total: del pedido:  </span>
                 <span className="font-mono  inline-block p-2 ">
                   $
                   {pedidosList.length > 0
@@ -695,7 +695,6 @@ export const FormPedido = () => {
                       ? pedidosList
                           .map((i) => i.precioVenta * i.unidades)
                           .reduce((a, b) => a + b)
-                          .toString()
                           .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
                       : 0}
                   </span>

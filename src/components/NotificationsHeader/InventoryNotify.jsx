@@ -93,7 +93,7 @@ export const InventoryNotify = () => {
               Notificaciones {filterModuls.length}
             </h3>
           </div>
-          <div className="grid grid-cols-2 mx-auto gap-4 p-4 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 p-4 ">
             {filterModuls.map((modules) => (
               <div
                 key={modules._id}

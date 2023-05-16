@@ -7,6 +7,7 @@ moment.locale("es");
 export const UsersNotification = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -16,8 +17,11 @@ export const UsersNotification = () => {
     })();
   }, []);
 
-  const filterModuls = products.filter((product) => product.type === "users");
+  const filterModuls = products.filter(
+    (product) => product.type === "users"
+  );
   const deleteproduc = async (id) => {
+    setLoading2(true);
     let response = await deleteNotification(id);
     if (response.status === 200) {
       toast.success("Notificación eliminada exisosamente", {
@@ -31,6 +35,7 @@ export const UsersNotification = () => {
       });
       const data = await getNotification();
       setProducts(data.data.responseNotification);
+      setLoading2(false);
     } else {
       toast.error("Error al eliminar la notificación", {
         position: "top-right",
@@ -88,7 +93,7 @@ export const UsersNotification = () => {
               Notificaciones {filterModuls.length}
             </h3>
           </div>
-          <div className="grid grid-cols-2 mx-auto gap-4 p-4 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 p-4 ">
             {filterModuls.map((modules) => (
               <div
                 key={modules._id}
@@ -104,6 +109,28 @@ export const UsersNotification = () => {
                     deleteproduc(modules._id);
                   }}
                 >
+                  { loading2 ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="#777777"
+                        d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z"
+                      >
+                        <animateTransform
+                          attributeName="transform"
+                          dur="0.75s"
+                          repeatCount="indefinite"
+                          type="rotate"
+                          values="0 12 12;360 12 12"
+                        />
+                      </path>
+                    </svg>
+                  ):(
+                  
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
@@ -115,6 +142,8 @@ export const UsersNotification = () => {
                       d="M16 18q-.425 0-.713-.288T15 17q0-.425.288-.713T16 16h2q.425 0 .713.288T19 17q0 .425-.288.713T18 18h-2Zm0-8q-.425 0-.713-.288T15 9q0-.425.288-.713T16 8h5q.425 0 .713.288T22 9q0 .425-.288.713T21 10h-5Zm0 4q-.425 0-.713-.288T15 13q0-.425.288-.713T16 12h4q.425 0 .713.288T21 13q0 .425-.288.713T20 14h-4ZM5 19q-.825 0-1.413-.588T3 17V8q-.425 0-.713-.288T2 7q0-.425.288-.713T3 6h3v-.5q0-.425.288-.713T7 4.5h2q.425 0 .713.288T10 5.5V6h3q.425 0 .713.288T14 7q0 .425-.288.713T13 8v9q0 .825-.588 1.413T11 19H5Z"
                     />
                   </svg>
+                  
+                  )}
                 </div>
                 <h2 className="font-bold mx-2  ">{modules.title}</h2>
                 <div>
