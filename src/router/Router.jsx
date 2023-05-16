@@ -337,7 +337,7 @@ export const Router = () => {
             </Route>
 
             <Route
-              path="/venta"
+              path="/venta/*"
               element={
                 <ProtectedRouter
                   isAllowed={!!users && users.permisions.includes("venta")}
@@ -346,7 +346,9 @@ export const Router = () => {
                   <Ventas />
                 </ProtectedRouter>
               }
-            />
+            >
+              <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
+            </Route>
             <Route path="/somos" element={<Somos />} />
             <Route path="/contactanos" element={<Contactanos />} />
           </Routes>

@@ -103,6 +103,11 @@ export const uploadImg = async (imgData) =>
       headers: {
         "token-x-id": accessToken,
         "Content-Type": "multipart/form-data",
+        // application/x-www-form-urlencoded
+
+        // "Content-Type": "application/x-www-form-urlencoded",
+
+
       },
     }
   );
@@ -353,5 +358,11 @@ export const TodoFunctions = {
       headers: {
         authorization: accessToken,
       },
-    })
+    }),
+    postCompras: async (data) => await axios.post(`${urlServer}/compras`, { data }, {
+      headers: {
+        authorization: accessToken,
+      },
+    }),
+
 };

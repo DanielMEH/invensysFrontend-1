@@ -12,7 +12,7 @@ import { Link, useNavigate, Outlet } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
-export const FormPedido = () => {
+export const FormSalida = () => {
   const navigate = useNavigate();
   // ? providers
   const [proveedores, setProveedores] = useState([]);
@@ -107,9 +107,8 @@ export const FormPedido = () => {
       setData([
         {
           idBodega: idInventario,
-          idProvedor: idProvider,
           idSubproducto: i._id,
-          company: dataArray[0].company,
+
           name: i.name,
           precioCompra: i.priceCompra,
           precioVenta: i.priceVenta,
@@ -121,9 +120,9 @@ export const FormPedido = () => {
       setData([
         {
           idBodega: idInventario,
-          idProvedor: idProvider,
+
           idSubproducto: i._id,
-          company: dataArray[0].company,
+          totalCompra: 0,
           name: i.name,
           precioCompra: i.priceCompra,
           precioVenta: i.priceVenta,
@@ -135,18 +134,19 @@ export const FormPedido = () => {
   };
   const handleClickFormPedido = (estado) => {
     (async () => {
-      const response = await TodoFunctions.postPedidos(pedidosList);
+      const response = await TodoFunctions.postCompras(pedidosList);
       console.log(await response);
     })();
   };
+ 
   return (
     <>
-      <div className=" border bg-white p-2 mt-2 flex xl:max-w-7xl ">
+      <div className=" border bg-white h-fit p-2 mt-2 flex xl:max-w-7xl ">
         <div className="form-content   w-[70rem]">
           <div className="title">
             <h1 className="text-2xl font-bold text-gray-500">Crear pedido</h1>
           </div>
-          <div className="conte pedido">
+          {/* <div className="conte pedido">
             <div className="select-Proveedor relative">
               <button
                 className="flex items-center  bg-[#3498db] p-1 mt-2 rounded border"
@@ -219,77 +219,77 @@ export const FormPedido = () => {
                 ) : null}
               </div>
             </div>
-          </div>
+          </div> */}
           {/* ?hellow */}
-          {dataArray.length > 0 ? (
-            <div className="select-Proveedor relative">
-              <button
-                className="flex items-center  bg-[#3498db] p-1 mt-2 rounded border"
-                onClick={() => {
-                  setEstadoModel1(!estadoModel1);
-                }}
+
+          <div className="select-Proveedor relative">
+            <button
+              className="flex items-center  bg-[#3498db] p-1 mt-2 rounded border"
+              onClick={() => {
+                setEstadoModel1(!estadoModel1);
+              }}
+            >
+              <span className="mr-2 text-white">Selecionar Bodega </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 32 32"
               >
-                <span className="mr-2 text-white">Selecionar Bodega </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 32 32"
-                >
-                  <path
-                    fill="white"
-                    d="M4.219 10.781L2.78 12.22l12.5 12.5l.719.687l.719-.687l12.5-12.5l-1.438-1.438L16 22.562z"
-                  />
-                </svg>
-              </button>
-              <div className={estadoModel1 ? "block" : "hidden"}>
-                <div className="list_provider shadow-md absolute z-40  bg-white w-fit p-1 mt-1 border">
-                  <ul>
-                    {inventario.map((i) => {
-                      return (
-                        <li
-                          className="hover:bg-gray-100 p-1 rounded cursor-pointer hover:text-black"
-                          key={i._id}
-                          onClick={() => {
-                            setIdInventario(i._id);
-                            setEstadoModel1(!estadoModel1);
-                            navigate(`bodega/${i._id}`);
-                          }}
-                        >
-                          {i.name_inventory}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-              <div className="listProviderItem w-fit overflow-hidden my-4 shadow-md border rounded-md ">
-                {inventoryArray.length > 0 ? (
-                  <>
-                    <div className="">
-                      <h1 className="bg-[#3498db] p-1 text-white">
-                        Datos de la bodega{" "}
-                      </h1>
-                      <div className="grid grid-cols-1 gap-2 p-1">
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
-                          {inventoryArray[0].name_inventory}
-                        </div>
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
-                          {inventoryArray[0].description}
-                        </div>
-                        <div className=" text-lg text-black cursor-not-allowed border  px-1">
-                          {inventoryArray[0].estadoInventory}
-                        </div>
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
-                          {inventoryArray[0].responsableInventory}
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : null}
+                <path
+                  fill="white"
+                  d="M4.219 10.781L2.78 12.22l12.5 12.5l.719.687l.719-.687l12.5-12.5l-1.438-1.438L16 22.562z"
+                />
+              </svg>
+            </button>
+            <div className={estadoModel1 ? "block" : "hidden"}>
+              <div className="list_provider shadow-md absolute z-40  bg-white w-fit p-1 mt-1 border">
+                <ul>
+                  {inventario.map((i) => {
+                    return (
+                      <li
+                        className="hover:bg-gray-100 p-1 rounded cursor-pointer hover:text-black"
+                        key={i._id}
+                        onClick={() => {
+                          setIdInventario(i._id);
+                          setEstadoModel1(!estadoModel1);
+                          navigate(`bodega/${i._id}`);
+                        }}
+                      >
+                        {i.name_inventory}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             </div>
-          ) : null}
+            <div className="listProviderItem w-fit overflow-hidden my-4 shadow-md border rounded-md ">
+              {inventoryArray.length > 0 ? (
+                <>
+                  <div className="">
+                    <h1 className="bg-[#3498db] p-1 text-white">
+                      Datos de la bodega{" "}
+                    </h1>
+                    <div className="grid grid-cols-1 gap-2 p-1">
+                      <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                        {inventoryArray[0].name_inventory}
+                      </div>
+                      <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                        {inventoryArray[0].description}
+                      </div>
+                      <div className=" text-lg text-black cursor-not-allowed border  px-1">
+                        {inventoryArray[0].estadoInventory}
+                      </div>
+                      <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                        {inventoryArray[0].responsableInventory}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : null}
+            </div>
+          </div>
+
           {/* ?hellow */}
         </div>
         {idInventario !== "" ? (
@@ -373,7 +373,7 @@ export const FormPedido = () => {
                           </div>
                           <div className="flex items-center">
                             <div className="precioCompra mr-2">
-                              {("$ " + i.priceCompra).replace(
+                              {("$ " + i.priceVenta).replace(
                                 /(\d)(?=(\d\d\d)+(?!\d))/g,
                                 "$1,"
                               )}{" "}
@@ -471,9 +471,9 @@ export const FormPedido = () => {
                           <Formik
                             initialValues={{
                               nombre: data[0].name,
-                              unidades: "",
-                              precio: "",
-                              precioVenta: "",
+                              unidades: 0,
+                              precioVenta: 0,
+                              totalCompra: 0,
                             }}
                             validationSchema={Yup.object({
                               unidades: Yup.number()
@@ -481,43 +481,32 @@ export const FormPedido = () => {
                                 .min(1, "Debe tener mas de 1 caracteres"),
                             })}
                             onSubmit={async (values) => {
+                            
                               if (pedidosList.length > 0) {
                                 setPedidosList([
                                   ...pedidosList,
                                   {
                                     idBodega: data[0].idBodega,
-                                    idProvedor: data[0].idProvedor,
                                     idSubproducto: data[0].idSubproducto,
-                                    company: data[0].company,
                                     unidades: parseInt(values.unidades),
-                                    Estado: "pendiente",
-                                    totalCompra:
-                                      parseInt(values.precio) *
-                                      parseInt(values.unidades),
                                     name: data[0].name,
-                                    PrecioCompra: parseInt(values.precio),
-                                    precioVenta: parseInt(values.precioVenta),
-                                    estado: "entregado",
-                                    fecha: moment().format("l"),
+                                    precioVenta: parseInt(data[0].precioVenta),
+                                    totalCompra:
+                                      parseInt(data[0].precioVenta) *
+                                      parseInt(values.unidades),
                                   },
                                 ]);
                               } else {
                                 setPedidosList([
                                   {
                                     idBodega: data[0].idBodega,
-                                    idProvedor: data[0].idProvedor,
                                     idSubproducto: data[0].idSubproducto,
-                                    company: data[0].company,
                                     unidades: parseInt(values.unidades),
-                                    estado: "aceptado",
-                                    totalCompra:
-                                      parseInt(values.precio) *
-                                      parseInt(values.unidades),
                                     name: data[0].name,
-                                    PrecioCompra: parseInt(values.precio),
-                                    precioVenta: parseInt(values.precioVenta),
-                                    tipo: "entregado",
-                                    fecha: moment().format("l"),
+                                    precioVenta: parseInt(data[0].precioVenta),
+                                    totalCompra:
+                                      parseInt(data[0].precioVenta) *
+                                      parseInt(values.unidades),
                                   },
                                 ]);
                               }
@@ -538,17 +527,13 @@ export const FormPedido = () => {
                                   placeholder="Ingresar unidades"
                                   className="w-full outline-none  p-1 border rounded-md"
                                 />
-                                <Field
-                                  type="text"
-                                  name="precio"
-                                  placeholder="Ingrese el  precio  del producto"
-                                  className="w-full outline-none  p-1 border rounded-md"
-                                />
+
                                 <Field
                                   type="text"
                                   name="precioVenta"
                                   placeholder="Precio venta "
                                   className="w-full outline-none  p-1 border rounded-md"
+                                  value={data[0].precioVenta}
                                 />
                                 <button
                                   type="submit"
@@ -671,7 +656,7 @@ export const FormPedido = () => {
             <div className="flex flex-rows gap-1 w-fit">
               <div className="total  overflow-hidden  border rounded  inline-block ">
                 <span className="bg-gray-100 p-3 text-black">
-                  Total: del pedido:{" "}
+                  Total de la compra:{" "}
                 </span>
                 <span className="font-mono  inline-block p-2 ">
                   $
@@ -684,23 +669,7 @@ export const FormPedido = () => {
                     : 0}
                 </span>
               </div>
-              <div className="total border rounded  overflow-hidden inline-block ">
-                <span className="bg-gray-100 p-3 text-black">
-                  Total precio venta:{" "}
-                </span>
-                <div className="inline-block">
-                  <span className="font-mono p-2 inline-block">
-                    $
-                    {pedidosList.length > 0
-                      ? pedidosList
-                          .map((i) => i.precioVenta * i.unidades)
-                          .reduce((a, b) => a + b)
-                          .toString()
-                          .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-                      : 0}
-                  </span>
-                </div>
-              </div>
+
               <div className="border rounded  overflow-hidden inline-block">
                 <span className="bg-gray-100 p-2 inline-block text-black">
                   Total de productos:
@@ -720,14 +689,6 @@ export const FormPedido = () => {
                   : null}
               </span>
             </div>
-            <div className="border rounded  overflow-hidden inline-block">
-              <span className="bg-gray-100 p-2 inline-block text-black">
-                Proveedor:
-              </span>
-              <span className="p-2 inline-block">
-                {dataArray.length > 0 ? dataArray[0].name : null}
-              </span>
-            </div>
           </div>
           <div className="button flex justify-end gap-1">
             <button
@@ -736,13 +697,6 @@ export const FormPedido = () => {
               onClick={() => handleClickFormPedido("aceptado")}
             >
               Aceptado
-            </button>
-            <button
-              name="Pendiente "
-              className="bg-blue-400 p-2 rounded text-white rounded-2"
-              onClick={() => handleClickFormPedido("pendiente")}
-            >
-              Pendiente
             </button>
           </div>
         </div>
