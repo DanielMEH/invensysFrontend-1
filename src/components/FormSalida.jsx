@@ -141,7 +141,7 @@ export const FormSalida = () => {
  
   return (
     <>
-      <div className=" border bg-white h-fit p-2 mt-2 flex xl:max-w-7xl ">
+      <div className=" border bg-white h-fit p-2 mt-2 flex  ">
         <div className="form-content   w-[70rem]">
           <div className="title">
             <h1 className="text-2xl font-bold text-gray-500">Crear pedido</h1>

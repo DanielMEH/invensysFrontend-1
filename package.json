@@ -2,7 +2,7 @@
   "name": "frontendstored",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http//inventory.localhost",
+
   "dependencies": {
     "@ag-grid-community/csv-export": "^29.1.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",

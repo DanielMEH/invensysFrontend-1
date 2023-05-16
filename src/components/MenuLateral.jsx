@@ -17,9 +17,21 @@ import harddrive from "../assets/icons/hard-drive.svg";
 import truck from "../assets/icons/truck.svg";
 import cloceSession from "../assets/icons/log-out.svg";
 import compras from "../assets/icons/shopping-cart.svg";
+import { useGetUsers } from "../hooks/context/GetUsersContext";
 import axios from "axios";
 import { getNotification } from "../apis/ApiData";
 export const MenuLateral = () => {
+  const { getAdminDataAll, adminGetData, updateDataAdmin } = useGetUsers();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const initial = async () => {
+      const initials = await getAdminDataAll();
+      setData(initials);
+      
+    };
+    initial();
+  }, []);
+  console.log(adminGetData);
   const hundleClick = () => {
     localStorage.removeItem("secure_token");
     localStorage.removeItem("perfil_rol");
@@ -53,7 +65,7 @@ export const MenuLateral = () => {
       useEffect(() => {
         async function getModulesUser() {
           const response = await axios.get(
-            `http://localhost:3002/getMod/${token1}`
+            `http://localhost:5454/getMod/${token1}`
           );
 
           const modules = response.data.data;
@@ -124,7 +136,11 @@ fixed top-0
           >
             <div className="section-1">
               <h2 className="text-center sticky hidden lg:block  top-0 bg-white z-20 block text-xl font-bold py-2 border-b text-neutral-800">
-                Identificate
+                
+                {
+                  adminGetData.length > 0 ? adminGetData[0].name !== null ? adminGetData[0].name :"Identificate":"Identicate"
+                }
+              
               </h2>
               <div className="contenedor_perfil_count flex">
                 <NavLink
@@ -132,9 +148,9 @@ fixed top-0
                   className="contenedor_perfil rounded my-1 border w-full mx-1 flex items-center relative p-1"
                 >
                   <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHM9q8xoTwiTtydq44Th2pdu-P27I3Xs3M26EdMFZY5jacGnNnQ_jQ0gqBsvlmDxpvkxA&usqp=CAU"
+                    src={adminGetData.length > 0 ? adminGetData[0].imgURL: ""}
                     alt="perfil"
-                    className="w-8"
+                    className="w-8 rounded-full"
                   />
                   <div className="administrador mx-1 hidden lg:block">
                     Administrador
@@ -144,33 +160,7 @@ fixed top-0
               </div>
               <div className="items_list_roles">
                 <ul className="p-0 m-0">
-                  {users.permisions.includes("inicio") ? (
-                    <li>
-                      <NavLink
-                        to={"/dasboard"}
-                        className={({ isActive }) =>
-                          isActive
-                            ? `
-                        flex 
-                        bg-gray-100
-                        items-center 
-                         mx-1 mt-3  p-2 font-medium text-black
-                         rounded `
-                            : `flex 
-                         hover:bg-gray-100
-                         items-center 
-                          mx-1 mt-3  p-2 font-medium text-black
-                          rounded `
-                        }
-                      >
-                        <img src={home} alt="" width={20} />
-                        <div className="NavLinks1 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
-                          Inicio
-                        </div>
-                      </NavLink>
-                    </li>
-                  ) : null}
-                  {users.permisions.includes("perfil") ? (
+                {users.permisions.includes("perfil") ? (
                     <li className="p-0 m-0">
                       <NavLink
                         to={"/perfil"}
@@ -196,6 +186,33 @@ fixed top-0
                       </NavLink>
                     </li>
                   ) : null}
+                  {users.permisions.includes("inicio") ? (
+                    <li>
+                      <NavLink
+                        to={"/dasboard"}
+                        className={({ isActive }) =>
+                          isActive
+                            ? `
+                        flex 
+                        bg-gray-100
+                        items-center 
+                         mx-1   p-2 font-medium text-black
+                         rounded `
+                            : `flex 
+                         hover:bg-gray-100
+                         items-center 
+                          mx-1   p-2 font-medium text-black
+                          rounded `
+                        }
+                      >
+                        <img src={home} alt="" width={20} />
+                        <div className="NavLinks1 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                          Inicio
+                        </div>
+                      </NavLink>
+                    </li>
+                  ) : null}
+                  
                   {users.permisions.includes("usuario") ? (
                     <li>
                       <NavLink

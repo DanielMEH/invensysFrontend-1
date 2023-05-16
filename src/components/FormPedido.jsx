@@ -37,6 +37,7 @@ export const FormPedido = () => {
       setProveedores(data.data);
     })();
   }, []);
+  console.log("listPedidos",pedidosList);
   useEffect(() => {
     setSpiner(true);
     (async () => {
@@ -666,7 +667,7 @@ export const FormPedido = () => {
         </div>
       </div>
       {pedidosList.length > 0 ? (
-        <div className="bg-white p-1 m-2 shadow-lg rounded-lg xl:max-w-7xl ">
+        <div className="bg-white p-1 m-2 shadow-lg rounded-lg  ">
           <h2 className="p-2">Resumen del Pedido</h2>
 
         <div className="contentj flex ">
@@ -684,22 +685,7 @@ export const FormPedido = () => {
                     : 0}
                 </span>
               </div>
-              <div className="total border rounded  overflow-hidden inline-block ">
-                <span className="bg-gray-100 p-3 text-black">
-                  Total precio venta:{" "}
-                </span>
-                <div className="inline-block">
-                  <span className="font-mono p-2 inline-block">
-                    $
-                    {pedidosList.length > 0
-                      ? pedidosList
-                          .map((i) => i.precioVenta * i.unidades)
-                          .reduce((a, b) => a + b)
-                          .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-                      : 0}
-                  </span>
-                </div>
-              </div>
+             
               <div className="border rounded  overflow-hidden inline-block">
                 <span className="bg-gray-100 p-2 inline-block text-black">
                   Total de productos:
