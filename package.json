@@ -2,7 +2,10 @@
   "name": "frontendstored",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
 
+=======
+>>>>>>> f6a5dfd1abced4911b84c25f248e5f3982d5a4a5
   "dependencies": {
     "@ag-grid-community/csv-export": "^29.1.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
