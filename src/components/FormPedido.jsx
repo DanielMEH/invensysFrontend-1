@@ -145,7 +145,7 @@ export const FormPedido = () => {
       <div className=" border bg-white p-2 mt-2 flex flex-col md:flex-row">
         <div className="form-content   w-auto">
           <div className="title">
-            <h1 className="text-2xl font-bold text-gray-500">Crear pedido</h1>
+            <h1 className="text-2xl font-bold whitespace-normal text-gray-500">Crear pedido</h1>
           </div>
           <div className="conte pedido">
             <div className="select-Proveedor relative">
@@ -155,7 +155,7 @@ export const FormPedido = () => {
                   setEstadoModel(!estadoModel);
                 }}
               >
-                <span className="mr-2 text-white">Selecionar proveedor </span>
+                <span className="mr-2 whitespace-nowrap text-white">Selecionar proveedor </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
