@@ -138,13 +138,18 @@ export const FormSalida = () => {
       console.log(await response);
     })();
   };
+
+  console.log(pedidosList);
  
   return (
     <>
       <div className=" border bg-white h-fit p-2 mt-2 flex  ">
         <div className="form-content   w-[70rem]">
           <div className="title">
-            <h1 className="text-2xl font-bold text-gray-500">Crear pedido</h1>
+            <h1 className="text-2xl font-bold text-gray-500">Compras</h1>
+            <p>
+              Gestión de compras
+            </p>
           </div>
           {/* <div className="conte pedido">
             <div className="select-Proveedor relative">

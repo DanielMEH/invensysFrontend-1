@@ -106,6 +106,8 @@ export const MenuLateral = () => {
       "report",
       "start",
       "venta",
+      "inventoryGeneral",
+      "trae"
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -125,7 +127,7 @@ export const MenuLateral = () => {
 selft_scroll
 fixed top-0
   bg-white mr-[10rem]
- w-14 lg:w-48   b  overflow-x-hidden  "
+ w-14 lg:w-52   b  overflow-x-hidden  "
           style={{
             boxShadow: " 12px 2px 29px -14px rgba(182,215,217,1)",
           }}
@@ -182,6 +184,32 @@ fixed top-0
                         <img src={user} alt="" width={20} />
                         <div className="NavLinks1 pt-[2px] ml-3 hidden lg:block">
                           Perfil
+                        </div>
+                      </NavLink>
+                    </li>
+                  ) : null}
+                {users.permisions.includes("trae") ? (
+                    <li className="p-0 m-0">
+                      <NavLink
+                        to={"/trae"}
+                        className={({ isActive }) =>
+                          isActive
+                            ? `
+                    flex 
+                    bg-gray-100
+                    items-center 
+                     mx-1 my-[2px]  p-2 font-medium text-black
+                     rounded `
+                            : `flex 
+                     hover:bg-gray-100
+                     items-center 
+                      mx-1  my-[2px] p-2 font-medium text-black
+                      rounded `
+                        }
+                      >
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#777777" d="M1.63.47a.393.393 0 0 0-.39.39v2.417c0 .212.177.39.39.39h20.74c.213 0 .39-.178.39-.39V.859a.393.393 0 0 0-.39-.39zm-.045 4.126a.41.41 0 0 0-.407.337l-1.17 6.314C0 11.274 0 11.3 0 11.327v2.117c0 .23.186.416.416.416h23.168c.23 0 .416-.186.416-.416v-2.126c0-.027 0-.053-.009-.08l-1.169-6.305a.41.41 0 0 0-.407-.337zM1.7 14.781a.457.457 0 0 0-.46.46v7.829c0 .257.203.46.46.46h14.108c.257 0 .46-.203.46-.46v-6.589c0-.257.204-.46.461-.46h4.02c.258 0 .461.203.461.46v6.589c0 .257.204.46.46.46h.62a.456.456 0 0 0 .461-.46v-7.829a.458.458 0 0 0-.46-.46zm1.842 1.55h7.847c.212 0 .39.177.39.39V21.6c0 .212-.178.39-.39.39H3.542a.393.393 0 0 1-.39-.39v-4.88c0-.221.178-.39.39-.39Z"/></svg>
+                        <div className="NavLinks1 pt-[2px] ml-3 hidden lg:block">
+                          Empresa
                         </div>
                       </NavLink>
                     </li>
@@ -306,6 +334,33 @@ fixed top-0
                         <img src={grid} alt="" width={20} />
                         <div className="NavLinks2 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
                           Bodegas
+                        </div>
+                      </NavLink>
+                    </li>
+                  ) : null}
+                  {users.permisions.includes("inventoryGeneral") ? (
+                    <li>
+                      <NavLink
+                        to={"/inventoryGeneral"}
+                        className={({ isActive }) =>
+                          isActive
+                            ? `
+                    flex 
+                    bg-gray-100
+                    items-center 
+                     mx-1  my-[2px] p-2 font-medium text-black
+                     rounded `
+                            : `flex 
+                     hover:bg-gray-100
+                     items-center 
+                      mx-1 my-[2px] p-2 font-medium text-black
+                      rounded `
+                        }
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                          <path fill="#777777" d="m15.5 19.925l-4.25-4.25l1.4-1.4l2.85 2.85l5.65-5.65l1.4 1.4l-7.05 7.05ZM21 10h-2V5h-2v3H7V5H5v14h6v2H5q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h4.175q.275-.875 1.075-1.438T12 1q1 0 1.788.563T14.85 3H19q.825 0 1.413.588T21 5v5Zm-9-5q.425 0 .713-.288T13 4q0-.425-.288-.713T12 3q-.425 0-.713.288T11 4q0 .425.288.713T12 5Z"/></svg>
+                        <div className="NavLinks2 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                          Inventario
                         </div>
                       </NavLink>
                     </li>
