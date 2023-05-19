@@ -29,6 +29,7 @@ export const FormPedido = () => {
   const [estadoModel, setEstadoModel] = useState(false);
   const [data, setData] = useState([]);
   const [pedidosList, setPedidosList] = useState([]);
+  const [loading,setLoading] = useState(false)
   useEffect(() => {
     (async () => {
       const data = await getProveedores();
@@ -135,13 +136,45 @@ export const FormPedido = () => {
     }
   };
   const handleClickFormPedido = (estado) => {
+    setLoading(false)
     (async () => {
-      const response = await TodoFunctions.postPedidos(pedidosList);
-      console.log(await response);
+      try {
+        const response = await TodoFunctions.postPedidos(pedidosList);
+      setLoading(true)
+      if(response.status === 200){
+        toast.success('Pedido realizado con exito', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+        toast.success()
+        setPedidosList([])
+        
+      }
+      } catch (error) {
+        setLoading(false)
+        toast.error('Error al realizar el pedido', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+      }
+
     })();
   };
   return (
     <>
+    <ToastContainer/>
       <div className=" border bg-white p-2 mt-2 flex flex-col md:flex-row">
         <div className="form-content   w-auto">
           <div className="title">
