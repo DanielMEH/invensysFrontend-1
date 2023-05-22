@@ -143,6 +143,7 @@ export const AuthUser = () => {
                       }
                       let getData = response.data;
                       let url = getData.module[0];
+                      console.log(arrayModule);
                       localStorage.setItem("secure_token", getData.token);
                       localStorage.setItem("auth_cuenta", getData.auth);
                       localStorage.setItem("response_auth", getData.message);
@@ -151,7 +152,7 @@ export const AuthUser = () => {
                       localStorage.setItem("correo", values.email);
                       localStorage.setItem("type", response.data.type);
                       if (response.data.type === "user") {
-                        window.location = `/${url.titulo}`;
+                        window.location = `/${arrayModule}`;
                       }
                     }
 

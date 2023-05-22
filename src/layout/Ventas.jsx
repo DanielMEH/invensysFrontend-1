@@ -11,7 +11,7 @@ export const Ventas = () => {
           <div className="content_users m-7">
             <div className="content_users_title">
               <h2 className="text-4xl my-2 block font-bold text-gray-700 font-sans mx-0">
-                Salida de productos
+                Compras
               </h2>
               <p className="text-xl text-gray-600 mx-0">
               </p>

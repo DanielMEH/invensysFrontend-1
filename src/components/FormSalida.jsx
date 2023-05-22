@@ -29,6 +29,7 @@ export const FormSalida = () => {
   const [estadoModel, setEstadoModel] = useState(false);
   const [data, setData] = useState([]);
   const [pedidosList, setPedidosList] = useState([]);
+  const [loading,setLoading] = useState(false)
   useEffect(() => {
     (async () => {
       const data = await getProveedores();
@@ -134,17 +135,53 @@ export const FormSalida = () => {
   };
   const handleClickFormPedido = (estado) => {
     (async () => {
-      const response = await TodoFunctions.postCompras(pedidosList);
-      console.log(await response);
+      try {
+        const response = await TodoFunctions.postCompras(pedidosList);
+
+      setLoading(true)
+      if(response.status === 200){
+        toast.success('Compra realizado con exito', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+        toast.success()
+        setPedidosList([])
+        
+      }
+      } catch (error) {
+        setLoading(false)
+        toast.error('Error al realizar la compra', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+      }
     })();
   };
+
+  console.log(pedidosList);
  
   return (
     <>
+    <ToastContainer/>
       <div className=" border bg-white h-fit p-2 mt-2 flex  ">
         <div className="form-content   w-[70rem]">
           <div className="title">
-            <h1 className="text-2xl font-bold text-gray-500">Crear pedido</h1>
+            <h1 className="text-2xl font-bold text-gray-500">Compras</h1>
+            <p>
+              Gestión de compras
+            </p>
           </div>
           {/* <div className="conte pedido">
             <div className="select-Proveedor relative">
