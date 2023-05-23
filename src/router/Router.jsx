@@ -51,6 +51,7 @@ import { TranslateProduct } from "../container/TranslateProduct";
 import { FormSalida } from "../components/FormSalida";
 import { DatatableVentas } from "../components/DatatableVentas";
 import { ComprasPDF } from "../pdf/ComprasPDF";
+import { Trae } from "../layout/Trae";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -103,6 +104,7 @@ export const Router = () => {
       "shope",
       "ayudaAdmin",
       "venta",
+      "trae"
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -324,6 +326,16 @@ export const Router = () => {
                   isAllowed={!!users && users.permisions.includes("superAdmin")}
                 >
                   <Perfil />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/trae"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("trae")}
+                >
+                  <Trae/>
                 </ProtectedRouter>
               }
             />

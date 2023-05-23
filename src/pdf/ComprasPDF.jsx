@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: 10,
     fontSize: 20,
-    width: 200,
+    width: 250,
     fontWeight: "bold",
-    textAlign: "center",
+    textAlign: "start",
   },
   sectionTitle: {
     marginBottom: 10,
@@ -24,19 +24,24 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 12,
+    textOverflow:"ellipsis",
+    overflow:"hidden",
+    whiteSpace:"nowrap",
   },
   table: {
     display: "table",
     width: "auto",
     marginVertical: 10,
+   
   },
   tableRow: {
     flexDirection: "row",
   },
   tableCell: {
     borderWidth: 1,
-    borderColor: "#000",
+    borderColor: "#ccc",
     padding: 5,
+   
   },
 });
 
@@ -59,6 +64,9 @@ export const ComprasPDF = ({ data }) => {
               <Text style={[styles.tableCell, styles.text]}>
                 Nombre del producto
               </Text>
+
+
+              
               <Text style={[styles.tableCell, styles.text]}>Cantidad</Text>
               <Text style={[styles.tableCell, styles.text]}>
                 Precio unitario
