@@ -17,6 +17,7 @@ import harddrive from "../assets/icons/hard-drive.svg";
 import truck from "../assets/icons/truck.svg";
 import cloceSession from "../assets/icons/log-out.svg";
 import compras from "../assets/icons/shopping-cart.svg";
+import { ToastContainer, toast } from "react-toastify";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import axios from "axios";
 import { getNotification } from "../apis/ApiData";
@@ -27,7 +28,6 @@ export const MenuLateral = () => {
     const initial = async () => {
       const initials = await getAdminDataAll();
       setData(initials);
-      
     };
     initial();
   }, []);
@@ -55,9 +55,33 @@ export const MenuLateral = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await getNotification();
+      try {
+        const data = await getNotification();
 
-      setNotify(data.data.responseNotification);
+        setNotify(data.data.responseNotification);
+      } catch (error) {
+        toast.error("La sesión ha expirado vuelva a iniciar sesión", {
+          position: "top-left",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 1,
+          theme: "colored",
+        });
+
+        setTimeout(() => {
+          localStorage.removeItem("secure_token");
+          localStorage.removeItem("perfil_rol");
+          localStorage.removeItem("auth_cuenta");
+          localStorage.removeItem("response_auth");
+          localStorage.removeItem("type");
+          localStorage.removeItem("module");
+          localStorage.removeItem("token_token1");
+          window.location.href = "/login";
+        }, 3000);
+      }
     })();
   }, []);
   if (type === "user") {
@@ -107,7 +131,7 @@ export const MenuLateral = () => {
       "start",
       "venta",
       "inventoryGeneral",
-      "trae"
+      "trae",
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -120,6 +144,9 @@ export const MenuLateral = () => {
   document.body.style.overflowX = "hidden";
   return (
     <>
+      <>
+        <ToastContainer />
+      </>
       <div className="mr-[4rem]  lg:mr-[13rem]">
         <div
           className="
@@ -138,11 +165,11 @@ fixed top-0
           >
             <div className="section-1">
               <h2 className="text-center sticky hidden lg:block  top-0 bg-white z-20 block text-xl font-bold py-2 border-b text-neutral-800">
-                
-                {
-                  adminGetData.length > 0 ? adminGetData[0].name !== null ? adminGetData[0].name :"Identificate":"Identicate"
-                }
-              
+                {adminGetData.length > 0
+                  ? adminGetData[0].name !== null
+                    ? adminGetData[0].name
+                    : "Identificate"
+                  : "Identicate"}
               </h2>
               <div className="contenedor_perfil_count flex">
                 <NavLink
@@ -150,7 +177,7 @@ fixed top-0
                   className="contenedor_perfil rounded my-1 border w-full mx-1 flex items-center relative p-1"
                 >
                   <img
-                    src={adminGetData.length > 0 ? adminGetData[0].imgURL: ""}
+                    src={adminGetData.length > 0 ? adminGetData[0].imgURL : ""}
                     alt="perfil"
                     className="w-8 rounded-full"
                   />
@@ -162,7 +189,7 @@ fixed top-0
               </div>
               <div className="items_list_roles">
                 <ul className="p-0 m-0">
-                {users.permisions.includes("perfil") ? (
+                  {users.permisions.includes("perfil") ? (
                     <li className="p-0 m-0">
                       <NavLink
                         to={"/perfil"}
@@ -188,7 +215,7 @@ fixed top-0
                       </NavLink>
                     </li>
                   ) : null}
-                {users.permisions.includes("trae") ? (
+                  {users.permisions.includes("trae") ? (
                     <li className="p-0 m-0">
                       <NavLink
                         to={"/trae"}
@@ -207,7 +234,17 @@ fixed top-0
                       rounded `
                         }
                       >
-                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="#777777" d="M1.63.47a.393.393 0 0 0-.39.39v2.417c0 .212.177.39.39.39h20.74c.213 0 .39-.178.39-.39V.859a.393.393 0 0 0-.39-.39zm-.045 4.126a.41.41 0 0 0-.407.337l-1.17 6.314C0 11.274 0 11.3 0 11.327v2.117c0 .23.186.416.416.416h23.168c.23 0 .416-.186.416-.416v-2.126c0-.027 0-.053-.009-.08l-1.169-6.305a.41.41 0 0 0-.407-.337zM1.7 14.781a.457.457 0 0 0-.46.46v7.829c0 .257.203.46.46.46h14.108c.257 0 .46-.203.46-.46v-6.589c0-.257.204-.46.461-.46h4.02c.258 0 .461.203.461.46v6.589c0 .257.204.46.46.46h.62a.456.456 0 0 0 .461-.46v-7.829a.458.458 0 0 0-.46-.46zm1.842 1.55h7.847c.212 0 .39.177.39.39V21.6c0 .212-.178.39-.39.39H3.542a.393.393 0 0 1-.39-.39v-4.88c0-.221.178-.39.39-.39Z"/></svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fill="#777777"
+                            d="M1.63.47a.393.393 0 0 0-.39.39v2.417c0 .212.177.39.39.39h20.74c.213 0 .39-.178.39-.39V.859a.393.393 0 0 0-.39-.39zm-.045 4.126a.41.41 0 0 0-.407.337l-1.17 6.314C0 11.274 0 11.3 0 11.327v2.117c0 .23.186.416.416.416h23.168c.23 0 .416-.186.416-.416v-2.126c0-.027 0-.053-.009-.08l-1.169-6.305a.41.41 0 0 0-.407-.337zM1.7 14.781a.457.457 0 0 0-.46.46v7.829c0 .257.203.46.46.46h14.108c.257 0 .46-.203.46-.46v-6.589c0-.257.204-.46.461-.46h4.02c.258 0 .461.203.461.46v6.589c0 .257.204.46.46.46h.62a.456.456 0 0 0 .461-.46v-7.829a.458.458 0 0 0-.46-.46zm1.842 1.55h7.847c.212 0 .39.177.39.39V21.6c0 .212-.178.39-.39.39H3.542a.393.393 0 0 1-.39-.39v-4.88c0-.221.178-.39.39-.39Z"
+                          />
+                        </svg>
                         <div className="NavLinks1 pt-[2px] ml-3 hidden lg:block">
                           Empresa
                         </div>
@@ -240,7 +277,7 @@ fixed top-0
                       </NavLink>
                     </li>
                   ) : null}
-                  
+
                   {users.permisions.includes("usuario") ? (
                     <li>
                       <NavLink
@@ -357,8 +394,17 @@ fixed top-0
                       rounded `
                         }
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                          <path fill="#777777" d="m15.5 19.925l-4.25-4.25l1.4-1.4l2.85 2.85l5.65-5.65l1.4 1.4l-7.05 7.05ZM21 10h-2V5h-2v3H7V5H5v14h6v2H5q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h4.175q.275-.875 1.075-1.438T12 1q1 0 1.788.563T14.85 3H19q.825 0 1.413.588T21 5v5Zm-9-5q.425 0 .713-.288T13 4q0-.425-.288-.713T12 3q-.425 0-.713.288T11 4q0 .425.288.713T12 5Z"/></svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fill="#777777"
+                            d="m15.5 19.925l-4.25-4.25l1.4-1.4l2.85 2.85l5.65-5.65l1.4 1.4l-7.05 7.05ZM21 10h-2V5h-2v3H7V5H5v14h6v2H5q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h4.175q.275-.875 1.075-1.438T12 1q1 0 1.788.563T14.85 3H19q.825 0 1.413.588T21 5v5Zm-9-5q.425 0 .713-.288T13 4q0-.425-.288-.713T12 3q-.425 0-.713.288T11 4q0 .425.288.713T12 5Z"
+                          />
+                        </svg>
                         <div className="NavLinks2 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
                           Inventario
                         </div>

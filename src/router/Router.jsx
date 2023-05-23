@@ -48,6 +48,9 @@ import { VentasNotify } from "../components/NotificationsHeader/VentasNotify";
 import { ConfigInventory } from "../container/ConfigInventory";
 import inventoryImg from "../assets/img/inventorys.jpg";
 import { TranslateProduct } from "../container/TranslateProduct";
+import { FormSalida } from "../components/FormSalida";
+import { DatatableVentas } from "../components/DatatableVentas";
+import { ComprasPDF } from "../pdf/ComprasPDF";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -349,7 +352,12 @@ export const Router = () => {
                 </ProtectedRouter>
               }
             >
-              <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
+              <Route path="" element={<FormSalida />}>
+                <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
+              </Route>
+              <Route path="AllVentas/*" element={<DatatableVentas />}>
+                <Route path="viewPdf" element={<ComprasPDF />} />
+              </Route>
             </Route>
             <Route path="/somos" element={<Somos />} />
             <Route path="/contactanos" element={<Contactanos />} />

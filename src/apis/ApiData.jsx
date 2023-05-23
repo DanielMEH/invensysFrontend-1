@@ -106,8 +106,6 @@ export const uploadImg = async (imgData) =>
         // application/x-www-form-urlencoded
 
         // "Content-Type": "application/x-www-form-urlencoded",
-
-
       },
     }
   );
@@ -353,16 +351,36 @@ export const TodoFunctions = {
       }
     ),
 
-    postPedidos: async (data)=> await axios.post(`${urlServer}/pedidos`,{data},{
-
+  postPedidos: async (data) =>
+    await axios.post(
+      `${urlServer}/pedidos`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }
+    ),
+  postCompras: async (data) =>
+    await axios.post(
+      `${urlServer}/compras`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }
+    ),
+  getCompras: async (id) =>
+    await axios.get(`${urlServer}/compras/${id}`, {
       headers: {
         authorization: accessToken,
       },
     }),
-    postCompras: async (data) => await axios.post(`${urlServer}/compras`, { data }, {
+  getComprasFv: async () =>
+    await axios.get(`${urlServer}/comprasfv`, {
       headers: {
         authorization: accessToken,
       },
     }),
-
 };
