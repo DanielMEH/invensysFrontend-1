@@ -23,6 +23,7 @@ import { Footer } from "../components/Footer";
 import { Link } from "react-router-dom";
 import SliderCount from "../components/SliderCount";
 import { Sled } from "../components/Sled";
+import { CardHomeFine } from "../plugin/CardHomeFine";
 
 export const HomePage = () => {
   AOS.init({
@@ -32,8 +33,10 @@ export const HomePage = () => {
   return (
     <>
       <div className="w-full overflow-x-hidden">
-        <Header />
-        <div className=" colorcamb ">
+        <div className="sticky top-0">
+          <Header />
+        </div>
+        <div className=" colorcamb  ">
           <div className="content-home">
             <div className=" w-full  text-xl md:w-4/5  md:pl-10">
               <h2 className="h5-mktg w-full text-5xl">
@@ -317,6 +320,9 @@ export const HomePage = () => {
           </div>
         </div>
         <SliderCount />
+        <div className="img">
+          <CardHomeFine />
+        </div>
 
         <Footer />
       </div>

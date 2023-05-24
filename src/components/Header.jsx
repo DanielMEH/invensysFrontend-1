@@ -291,7 +291,7 @@ export const Header = () => {
       </div>
       <header
         className=" hed_responsive border-b-2  border-gray-100
-        flex w-full justify-around items-center  "
+        flex w-full justify-around items-center   "
       >
         <div className=" flex  items-center">
           <div className="self_t lg:mr-4">
