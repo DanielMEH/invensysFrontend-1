@@ -383,4 +383,10 @@ export const TodoFunctions = {
         authorization: accessToken,
       },
     }),
+  postTrae: async (data) =>
+    await axios.post(`${urlServer}/company`,{data}, {
+      headers: {
+        authorization: accessToken,
+      },
+    }),
 };
