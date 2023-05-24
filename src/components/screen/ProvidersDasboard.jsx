@@ -181,7 +181,7 @@ export const ProvidersDasboard = () => {
                       {provider.map((item, index) => (
                         <div className="flex">
                           <div
-                            className=" inline-block rounded-md bg-white "
+                            className=" inline-block h-fit rounded-md bg-white "
                             key={index}
                           >
                             <Link to={`categoryProvider/${item._id}`}>

@@ -10,7 +10,9 @@ export const FormTrae = () => {
         const form = new FormData(e.currentTarget)
         const formData = Object.fromEntries(form.entries())
         console.log(formData)
-        
+
+        const response = await TodoFunctions.postTrae(data)
+
     }
 
     const HandleInput = (e) =>{
@@ -116,7 +118,8 @@ export const FormTrae = () => {
    
     <button type="submit" class="text-white bg-[#019afa] hover:bg-[#13a3fd] focus:outline-none focus:ring-blue-300
      font-medium rounded-lg text-sm block w-full  px-5 py-2.5 text-center
-      ">Submit</button>
+      ">Pedidos
+      </button>
 </form>
 
 </div>

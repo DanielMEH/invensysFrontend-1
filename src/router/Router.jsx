@@ -52,6 +52,8 @@ import { FormSalida } from "../components/FormSalida";
 import { DatatableVentas } from "../components/DatatableVentas";
 import { ComprasPDF } from "../pdf/ComprasPDF";
 import { Trae } from "../layout/Trae";
+import { FormPedido } from "../components/FormPedido";
+import { DataTablePedido } from "../components/DataTablePedido";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -350,7 +352,12 @@ export const Router = () => {
                 </ProtectedRouter>
               }
             >
+              <Route path="ListPedidos" element={<DataTablePedido/>}/>
+              <Route path="" element={<FormPedido/>}>
               <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
+
+              </Route>
+
             </Route>
 
             <Route
