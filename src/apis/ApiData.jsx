@@ -389,4 +389,15 @@ export const TodoFunctions = {
         authorization: accessToken,
       },
     }),
+  getTrae: async () =>
+    await axios.get(`${urlServer}/company`, {
+      headers: {
+        authorization: accessToken,
+      },
+    }),
+    getPedidos: async() => await axios.get(`${urlServer}/pedidos`,{
+      headers: {
+        authorization: accessToken,
+      },
+    })
 };

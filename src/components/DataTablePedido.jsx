@@ -19,19 +19,15 @@ import { Link, Outlet } from "react-router-dom";
 import OptionVentas from "./OptionVentas";
 moment.locale("es");
 
-export const DatatableVentas = () => {
+export const DataTablePedido = () => {
   const { getUsersAdmins, getCountData } = useGetUsers();
   const [loading, setLoading] = useState(true);
-
-  const [dataVentas, setDataVentas] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
     const initial = async () => {
-      await getUsersAdmins();
-      const response = await TodoFunctions.getComprasFv();
-      setDataVentas(response.data.responseFv);
-      console.log("nnnn", dataVentas, "ñññ", response.data.responseFv);
-      await getCountData();
+        const response = await TodoFunctions.getPedidos()
+        setData(response.data.pedidosproveedor);
       setLoading(false);
     };
 
@@ -60,13 +56,6 @@ export const DatatableVentas = () => {
       filter: "agTextColumnFilter",
       chartDataType: "series",
     },
-
-    {
-      headerName: "Cantidad de productos",
-      field: "cantidadProducts",
-      chartDataType: "category",
-      filter: "agTextColumnFilter",
-    },
     {
       headerName: "Mejores ventas",
       field: 'change',
@@ -90,6 +79,18 @@ export const DatatableVentas = () => {
           },
         },
       },
+    },
+    {
+      headerName: "Cantidad de productos",
+      field: "cantidadProducts",
+      chartDataType: "category",
+      filter: "agTextColumnFilter",
+    },
+    {
+      headerName: "Compañia",
+      field: "name",
+      chartDataType: "category",
+      filter: "agTextColumnFilter",
     },
     {
       headerName: "Total Precio",
@@ -138,14 +139,14 @@ export const DatatableVentas = () => {
   });
   return (
     <>
-      {dataVentas.length > 0 ? (
+      {data.length > 0 ? (
         <>
           <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
             <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
               <section className="items-center flex">
               <div>
                 <div className="">
-                 <Link to={"/venta"} className="flex items-center bg-gray-100 p-1">
+                 <Link to={"/pedidos"} className="flex items-center bg-gray-100 p-1">
                  <svg xmlns="http://www.w3.org/2000/svg"
                    width="24" height="24" viewBox="0 0 40 40"><path fill="currentColor" d="M24.96 32.601L12.371 19.997l.088-.088l12.507-12.52a.661.661 0 0 0-.01-.921a.645.645 0 0 0-.458-.182a.653.653 0 0 0-.465.186l-13.004 13.02a.63.63 0 0 0-.176.49a.656.656 0 0 0 .18.523l13.014 13.031c.244.23.659.233.921-.02a.658.658 0 0 0-.008-.915z"/></svg>
                   <span className="p-1">Volver</span>
@@ -169,9 +170,9 @@ export const DatatableVentas = () => {
                       />
                     </svg>
                   </span>
-                  <span className="text-[#3498DB] mx-1">Ventas</span>
+                  <span className="text-[#3498DB] mx-1">Pedidos</span>
                   <span className="text-[#3498DB] mx-1">
-                    {dataVentas.length}
+                    {data.length}
                   </span>
                 </div>
                 
@@ -265,7 +266,7 @@ export const DatatableVentas = () => {
                       <span>
                         Total:{" "}
                         {money.format(
-                          dataVentas.reduce((a, b) => a + b.total, 0)
+                          data.reduce((a, b) => a + b.totalComprap, 0)
                         )}{" "}
                       </span>
                     </span>
@@ -310,13 +311,14 @@ export const DatatableVentas = () => {
               ref={gridRef}
               localeText={AG_GRID_LOCALE_EN}
               columnDefs={columnDefs}
-              rowData={dataVentas.map((item, i) => {
+              rowData={data.map((item, i) => {
                 return {
                   _id: item._id,
-                  numFactura: `FV ${i + 1}`,
-                  change:[item.total],
-                  cantidadProducts: item.cantidadProducts,
-                  total: ("$ " + item.total).replace(
+                  numFactura: `NR ${i + 1}`,
+                  change:[item.totalComprap],
+                  name:item.name,
+                  cantidadProducts: item.cantidadProductos,
+                  total: ("$ " + item.totalComprap).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g,
                     "$1,"
                   ),
