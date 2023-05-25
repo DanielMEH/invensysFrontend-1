@@ -54,6 +54,7 @@ import { ComprasPDF } from "../pdf/ComprasPDF";
 import { Trae } from "../layout/Trae";
 import { FormPedido } from "../components/FormPedido";
 import { DataTablePedido } from "../components/DataTablePedido";
+<<<<<<< HEAD
 import { ChartHome } from "../Generator/ChartHome";
 import { ChartBodega } from "../Generator/ChartBodega";
 import { ChartInventario } from "../Generator/ChartInventario";
@@ -61,6 +62,9 @@ import { ChartPedidos } from "../Generator/ChartPedidos";
 import { ChartVentas } from "../Generator/ChartVentas";
 import { ChartUsuarios } from "../Generator/ChartUsuarios";
 import { ChartProductos } from "../Generator/ChartProductos";
+=======
+import { ConfigAdmin } from "../layout/ConfigAdmin";
+>>>>>>> 60cb0dd3ba3a5d72fa6f778f3829238fb5382eea
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -114,6 +118,7 @@ export const Router = () => {
       "ayudaAdmin",
       "venta",
       "trae",
+      "config"
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -407,6 +412,21 @@ export const Router = () => {
             </Route>
             <Route path="/somos" element={<Somos />} />
             <Route path="/contactanos" element={<Contactanos />} />
+
+            <Route
+              path="/settings"
+              element= {
+                <ProtectedRouter
+                isAllowed={!!users && users.permisions.includes("config")}
+                redirectTo="/config"
+                > 
+
+                <ConfigAdmin/>
+
+                </ProtectedRouter>
+              }
+            />
+
           </Routes>
         </GetUsersContext>
       </UserContextData>

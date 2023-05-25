@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { MenuLateral } from "../components/MenuLateral";
 import "../assets/css/styleSlider.css";
 import { CambioFotoPerfilAdmin } from "../components/CambioFotoPerfilAdmin";
+import { CambioContraseña } from "../components/CambioContraseña";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate, Link } from "react-router-dom";
+import { Fragment } from "react";
 
 export const Perfil = () => {
   const { getAdminDataAll, adminGetData, updateDataAdmin } = useGetUsers();
@@ -15,6 +17,8 @@ export const Perfil = () => {
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(true);
   const navigate = useNavigate();
+
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const initial = async () => {
@@ -922,7 +926,20 @@ export const Perfil = () => {
                   </div>
                 ))}
 
-                <div className="my-4"></div>
+                <div className="contain-contraseña w-full bg-white my-3 h-32 p-3 rounded">
+                  <h2 className="text-base mx-6  font-semibold">Cambiar mi contraseña</h2>
+                  <p className="text-sm mx-6">Aqui puedes cambiar la contraseña general de tu cuenta, asegurate de que sea segura</p>
+                  <Fragment>
+                    <div>
+                    <button className="text-white bg-[#5994f5] rounded-full relative
+                         hover:opacity-[0.85] transition font-medium text-sm rounded-lg px-5 py-2.5 mt-5 mx-5 text-center mr-5 
+                    " onClick={() => setShowModal(true)}>
+                    Cambiar contraseña
+                  </button>
+                    </div>
+                     <CambioContraseña isVisible={showModal} onClose={() => setShowModal(false)}/>
+                  </Fragment>
+                </div>
               </div>
             )}
           </div>
