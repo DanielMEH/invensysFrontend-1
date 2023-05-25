@@ -54,6 +54,13 @@ import { ComprasPDF } from "../pdf/ComprasPDF";
 import { Trae } from "../layout/Trae";
 import { FormPedido } from "../components/FormPedido";
 import { DataTablePedido } from "../components/DataTablePedido";
+import { ChartHome } from "../Generator/ChartHome";
+import { ChartBodega } from "../Generator/ChartBodega";
+import { ChartInventario } from "../Generator/ChartInventario";
+import { ChartPedidos } from "../Generator/ChartPedidos";
+import { ChartVentas } from "../Generator/ChartVentas";
+import { ChartUsuarios } from "../Generator/ChartUsuarios";
+import { ChartProductos } from "../Generator/ChartProductos";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -321,8 +328,28 @@ export const Router = () => {
                 </ProtectedRouter>
               }
             >
-              <Route path="" element={<h1>Holaaa</h1>} />
-            </Route>
+              <Route path="" element={<ChartHome/>} >
+
+              </Route>
+              <Route path="AnBodega/:id" element={<ChartBodega/>} >
+
+              </Route>
+              <Route path="AnInventario/:id" element={<ChartInventario/>}>
+
+              </Route>
+              <Route path="AnPedidos/:id" element={<ChartPedidos/>}>
+
+              </Route>
+              <Route path="AnVentas/:id" element={<ChartVentas/>}>
+
+              </Route>
+              <Route path="AnUsuarios/:id" element={<ChartUsuarios/>} >
+
+              </Route>
+              <Route path="AnProductos/:id" element={<ChartProductos/>}>
+                
+              </Route>
+            </Route> 
             <Route
               path="/perfil"
               element={
