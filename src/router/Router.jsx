@@ -52,6 +52,8 @@ import { FormSalida } from "../components/FormSalida";
 import { DatatableVentas } from "../components/DatatableVentas";
 import { ComprasPDF } from "../pdf/ComprasPDF";
 import { Trae } from "../layout/Trae";
+import { FormPedido } from "../components/FormPedido";
+import { DataTablePedido } from "../components/DataTablePedido";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -104,7 +106,7 @@ export const Router = () => {
       "shope",
       "ayudaAdmin",
       "venta",
-      "trae"
+      "trae",
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -309,7 +311,7 @@ export const Router = () => {
               }
             />
             <Route
-              path="/analityc"
+              path="/analityc/*"
               element={
                 <ProtectedRouter
                   isAllowed={!!users && users.permisions.includes("analityc")}
@@ -318,7 +320,9 @@ export const Router = () => {
                   <Analitycs />
                 </ProtectedRouter>
               }
-            />
+            >
+              <Route path="" element={<h1>Holaaa</h1>} />
+            </Route>
             <Route
               path="/perfil"
               element={
@@ -335,7 +339,7 @@ export const Router = () => {
                 <ProtectedRouter
                   isAllowed={!!users && users.permisions.includes("trae")}
                 >
-                  <Trae/>
+                  <Trae />
                 </ProtectedRouter>
               }
             />
@@ -350,7 +354,10 @@ export const Router = () => {
                 </ProtectedRouter>
               }
             >
-              <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
+              <Route path="ListPedidos" element={<DataTablePedido />} />
+              <Route path="" element={<FormPedido />}>
+                <Route path="bodega/:id" element={<h1>Hola mundo</h1>} />
+              </Route>
             </Route>
 
             <Route

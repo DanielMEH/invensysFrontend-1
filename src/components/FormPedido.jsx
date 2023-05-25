@@ -136,8 +136,8 @@ export const FormPedido = () => {
     }
   };
   const handleClickFormPedido = (estado) => {
-    setLoading(false)
     (async () => {
+      setLoading(false)
       try {
         const response = await TodoFunctions.postPedidos(pedidosList);
       setLoading(true)
