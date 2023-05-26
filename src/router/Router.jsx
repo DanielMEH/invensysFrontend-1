@@ -54,17 +54,14 @@ import { ComprasPDF } from "../pdf/ComprasPDF";
 import { Trae } from "../layout/Trae";
 import { FormPedido } from "../components/FormPedido";
 import { DataTablePedido } from "../components/DataTablePedido";
-<<<<<<< HEAD
-import { ChartHome } from "../Generator/ChartHome";
+import { ConfigAdmin } from "../layout/ConfigAdmin";
 import { ChartBodega } from "../Generator/ChartBodega";
+import { ChartHome } from "../Generator/ChartHome";
 import { ChartInventario } from "../Generator/ChartInventario";
 import { ChartPedidos } from "../Generator/ChartPedidos";
 import { ChartVentas } from "../Generator/ChartVentas";
 import { ChartUsuarios } from "../Generator/ChartUsuarios";
 import { ChartProductos } from "../Generator/ChartProductos";
-=======
-import { ConfigAdmin } from "../layout/ConfigAdmin";
->>>>>>> 60cb0dd3ba3a5d72fa6f778f3829238fb5382eea
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -118,7 +115,7 @@ export const Router = () => {
       "ayudaAdmin",
       "venta",
       "trae",
-      "config"
+      "config",
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -333,28 +330,20 @@ export const Router = () => {
                 </ProtectedRouter>
               }
             >
-              <Route path="" element={<ChartHome/>} >
-
-              </Route>
-              <Route path="AnBodega/:id" element={<ChartBodega/>} >
-
-              </Route>
-              <Route path="AnInventario/:id" element={<ChartInventario/>}>
-
-              </Route>
-              <Route path="AnPedidos/:id" element={<ChartPedidos/>}>
-
-              </Route>
-              <Route path="AnVentas/:id" element={<ChartVentas/>}>
-
-              </Route>
-              <Route path="AnUsuarios/:id" element={<ChartUsuarios/>} >
-
-              </Route>
-              <Route path="AnProductos/:id" element={<ChartProductos/>}>
-                
-              </Route>
-            </Route> 
+              <Route path="" element={<ChartHome />}></Route>
+              <Route path="AnBodega/:id" element={<ChartBodega />}></Route>
+              <Route
+                path="AnInventario/:id"
+                element={<ChartInventario />}
+              ></Route>
+              <Route path="AnPedidos/:id" element={<ChartPedidos />}></Route>
+              <Route path="AnVentas/:id" element={<ChartVentas />}></Route>
+              <Route path="AnUsuarios/:id" element={<ChartUsuarios />}></Route>
+              <Route
+                path="AnProductos/:id"
+                element={<ChartProductos />}
+              ></Route>
+            </Route>
             <Route
               path="/perfil"
               element={
@@ -415,18 +404,15 @@ export const Router = () => {
 
             <Route
               path="/settings"
-              element= {
+              element={
                 <ProtectedRouter
-                isAllowed={!!users && users.permisions.includes("config")}
-                redirectTo="/config"
-                > 
-
-                <ConfigAdmin/>
-
+                  isAllowed={!!users && users.permisions.includes("config")}
+                  redirectTo="/config"
+                >
+                  <ConfigAdmin />
                 </ProtectedRouter>
               }
             />
-
           </Routes>
         </GetUsersContext>
       </UserContextData>
