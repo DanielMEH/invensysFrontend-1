@@ -54,6 +54,7 @@ import { ComprasPDF } from "../pdf/ComprasPDF";
 import { Trae } from "../layout/Trae";
 import { FormPedido } from "../components/FormPedido";
 import { DataTablePedido } from "../components/DataTablePedido";
+import { ConfigAdmin } from "../layout/ConfigAdmin";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -107,6 +108,7 @@ export const Router = () => {
       "ayudaAdmin",
       "venta",
       "trae",
+      "config"
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -380,6 +382,21 @@ export const Router = () => {
             </Route>
             <Route path="/somos" element={<Somos />} />
             <Route path="/contactanos" element={<Contactanos />} />
+
+            <Route
+              path="/settings"
+              element= {
+                <ProtectedRouter
+                isAllowed={!!users && users.permisions.includes("config")}
+                redirectTo="/config"
+                > 
+
+                <ConfigAdmin/>
+
+                </ProtectedRouter>
+              }
+            />
+
           </Routes>
         </GetUsersContext>
       </UserContextData>
