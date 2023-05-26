@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
-
+import Skeleton from "react-loading-skeleton";
 import { getBusiness } from "../apis/ApiData";
 import Chart from "react-apexcharts";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
+
 export const ChartHomeC2 = () => {
   const [ventas, setVentas] = useState([]);
+  const [load,setLoad] = useState(false)
   let fecha = moment().format("l");
 
   useEffect(() => {
     (async () => {
+      setLoad(true)
       const bussiness = await getBusiness();
 
       
       setVentas(bussiness.data.dataPedidoProvedor);
+      setLoad(false)
     })();
   }, []);
 
@@ -23,7 +27,7 @@ export const ChartHomeC2 = () => {
   var options = {
     series: [
       {
-        name: "Inflation",
+        name: "Pedidos",
         data: responseData,
       },
     ],
@@ -106,9 +110,25 @@ export const ChartHomeC2 = () => {
 
   return (
     <>
-      <div className="div shadow-xl rounded-md border w-[40rem]  ">
-        <Chart options={options} series={options.series} height={350} />
-      </div>
+       <>
+    {
+      load ? (
+      <div className="skeletton flex gap-4 m-5">
+     <Skeleton
+                    height={250} width={370}
+                    className="rounded-full bg-red-600 flex overflow-hidden"
+                  />
+    
+     </div>
+
+      ):(
+
+        <div className="div shadow-xl rounded-md border w-[39rem] bg-white ">
+          <Chart options={options} series={options.series} height={350} />
+        </div> 
+      )
+    }
+    </>
     </>
   );
 };

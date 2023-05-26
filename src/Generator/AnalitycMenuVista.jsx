@@ -1,15 +1,53 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { Link, NavLink } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import { getBusiness } from "../apis/ApiData";
 import "./style.css"
 export const AnalitycMenuVista = () => {
 
     const [expand,setExpand] = useState(false)
-
-   
+    const [load,setLoad] = useState(false)
+    const [modules, setModules] = useState([]);
+    useEffect(() => {
+      (async () => {
+        setLoad(true)
+        const bussiness = await getBusiness();
+  console.log("ñññññññ",bussiness.data);
+        setModules([bussiness.data.dataCategory,
+          bussiness.data.dataCompany,
+          bussiness.data.dataCompras,
+          bussiness.data.dataIGeneral,
+          bussiness.data.dataInventary,
+          bussiness.data.dataNotify,
+          bussiness.data.dataPedidos,
+          bussiness.data.dataPedidoProvedor,
+          bussiness.data.dataProduct,
+          bussiness.data.dataProvider,
+          bussiness.data.dataSubProduct,
+        
+        ]);
+        setLoad(false)
+      })();
+    }, []);
+    console.log("kkkkk",modules);
  let token = localStorage.getItem("secure_token")
   return (
     <>
-      <div className={expand ? "items_Links bg-white p-4  scale-100  rounded-md w-[20rem] transition duration-700 ease-in-out ": "items_Links bg-white scale-105  rounded-md p-3  transition duration-700 ease-in-out "}>
+    {
+      load ? (
+     <div className="skeletton flex gap-4 m-5">
+     <Skeleton
+                    height={400} width={240}
+                    className="rounded-full bg-red-600 flex overflow-hidden"
+                  />
+    
+     </div>
+
+      ):(
+
+      <div className={expand ?
+         "items_Links bg-white p-4 sticky top-10  scale-100  rounded-md w-[20rem] transition duration-700 ease-in-out ":
+          "items_Links bg-white scale-105 sticky top-10  rounded-md p-3  transition duration-700 ease-in-out "}>
         <div className="relative " onClick={()=> setExpand(!expand)}>
             <div className=" absolute right-0 top-0 cursor-pointer  ">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#c1c4c8" d="M10 21v-2H6.41l4.5-4.5l-1.41-1.41l-4.5 4.5V14H3v7h7m4.5-10.09l4.5-4.5V10h2V3h-7v2h3.59l-4.5 4.5l1.41 1.41Z"/></svg>
@@ -21,8 +59,12 @@ export const AnalitycMenuVista = () => {
             alt=""
             width={40}
           />
-          <span className="mx-1 font-bold">Administrador</span>
+          <span className="mx-1  flex flex-col">
+            <span className="mx-1 font-bold flex flex-col">Administrador</span>
+            <span className="text-gray-400 mx-1">Modulos: {modules.length}</span>
+          </span>
         </div>
+          
         <ul className="flex flex-col gap-2">
           <li>
             <NavLink to={""} className={({isActive}) => isActive ? `flex items-center  bg-gradient-to-r from-cyan-500 to-blue-500
@@ -237,6 +279,10 @@ export const AnalitycMenuVista = () => {
           <li></li>
         </ul>
       </div>
+
+      )
+    }
+    
     </>
   );
 };

@@ -7,11 +7,11 @@ export const Analitycs = () => {
     <>
       <div className="flex">
         <MenuLateral />
-        <div className=" w-full h-screen block self_conte_fond ">
+        <div className=" w-full  block self_conte_fond ">
           <div className="content_users m-7">
             <div className="content_users_title">
               <h2 className="text-4xl mb-10 font-bold text-gray-700 font-sans mx-0">
-                Estadisticas y reportes
+                Estadisticas y Reportes
               </h2>
               <p className="text-xl text-gray-600 mx-0"></p>
             </div>
@@ -21,7 +21,7 @@ export const Analitycs = () => {
                 <Outlet />
               </div>
 
-              <div className="fin">
+              <div className="fin sticky top-0">
                 <AnalitycMenuVista />
               </div>
             </div>
