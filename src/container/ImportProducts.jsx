@@ -217,90 +217,49 @@ export const ImportProducts = ({ idCategorias }) => {
                             caducidad: fecha[1],
                             idInventory: id,
                           };
-                          if (values.priceCompra > values.priceVenta) {
-                            return toast.warning(
-                              "El precio de compra no puede ser mayor al precio de venta",
-                              {
-                                position: "top-right",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                              }
-                            );
-                          } else {
-                            if (values.stockMinimo > values.stockMaximo) {
-                              return toast.warning(
-                                "El stock minimo no puede ser mayor al stock maximo",
-                                {
-                                  position: "top-right",
-                                  autoClose: 3000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              );
-                            } else {
-                              if (values.unidad > values.stockMaximo) {
-                                return toast.warning(
-                                  "La unidad no puede ser mayor al stock maximo",
-                                  {
-                                    position: "top-right",
-                                    autoClose: 3000,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                  }
+                          
+                            
+                              setLoadSub(true);
+                              (async () => {
+                                await GetPdo();
+                                let response = await UploadSubProducts(
+                                  id,
+                                  data
                                 );
-                              } else {
-                                setLoadSub(true);
-                                (async () => {
-                                  await GetPdo();
-                                  let response = await UploadSubProducts(
-                                    id,
-                                    data
+
+                                if (response.status === 200) {
+                                  toast.success(
+                                    "Producto agregado a la bodega con exito",
+                                    {
+                                      position: "top-right",
+                                      autoClose: 3000,
+                                      hideProgressBar: false,
+                                      closeOnClick: true,
+                                      pauseOnHover: true,
+                                      draggable: true,
+                                      progress: undefined,
+                                    }
                                   );
 
-                                  if (response.status === 200) {
-                                    toast.success(
-                                      "Producto agregado a la bodega con exito",
-                                      {
-                                        position: "top-right",
-                                        autoClose: 3000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                      }
-                                    );
-
-                                    setLoadSub(false);
-                                  } else {
-                                    toast.error(
-                                      "Error al agregar el producto al bodega o el producto ya existe",
-                                      {
-                                        position: "top-right",
-                                        autoClose: 3000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        draggable: true,
-                                        progress: undefined,
-                                      }
-                                    );
-                                    setLoadSub(false);
-                                  }
-                                })();
-                              }
-                            }
-                          }
+                                  setLoadSub(false);
+                                } else {
+                                  toast.error(
+                                    "Error al agregar el producto al bodega o el producto ya existe",
+                                    {
+                                      position: "top-right",
+                                      autoClose: 3000,
+                                      hideProgressBar: false,
+                                      closeOnClick: true,
+                                      pauseOnHover: true,
+                                      draggable: true,
+                                      progress: undefined,
+                                    }
+                                  );
+                                  setLoadSub(false);
+                                }
+                              })();
+                            
+                          
                         }
                       }
                     }}

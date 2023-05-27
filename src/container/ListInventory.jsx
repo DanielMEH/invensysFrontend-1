@@ -26,7 +26,7 @@ export const ListInventory = () => {
       setLoading(true);
       await GetInventario();
       const response = await getUsersAdmin();
-     
+
       setUser(response.data.data);
       setLoading(false);
     })();
@@ -40,7 +40,7 @@ export const ListInventory = () => {
 
   return (
     <div className="notf block rounded-md bg-white px-3">
-      <h2 className="mx-2 font-bold">Lista de inventario</h2>
+      <h2 className="mx-2 font-bold">Lista de Bodega</h2>
 
       {loading ? (
         <div className="m-4">
