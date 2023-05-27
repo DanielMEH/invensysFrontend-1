@@ -86,7 +86,6 @@ function OpcionTabledCrud(e) {
     });
   };
   const editId = () => {
-    alert("hola");
     return (
       <>
         <div>Holaaa</div>
@@ -94,8 +93,6 @@ function OpcionTabledCrud(e) {
     );
   };
   const isAlowedId = () => {
-  
-
     navigate(`/permisions/${e.data.idAccount}`);
   };
   return (
