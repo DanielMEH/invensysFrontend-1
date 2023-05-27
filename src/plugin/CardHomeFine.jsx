@@ -6,7 +6,8 @@ export const CardHomeFine = () => {
       <div className="flex items-center justify-center flex-col bg-[#fff] min-h-screen">
         <div className="bg-[#40b5fe] p-10 rounded-xl">
           <div className="flex flex-col justify-center items-center text-center">
-            <div className="max-w-sm font-bold font-sans text-white">
+            <div className="max-w-sm font-bold font-sa
+            ns text-white">
               Tu éxito, nuestro compromiso.
             </div>
             <div className="font-light max-w-lg mt-5 text-sm text-white">
