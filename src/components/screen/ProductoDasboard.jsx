@@ -17,8 +17,9 @@ export const ProductoDasboard = () => {
         setUsers(res.data.data);
       });
       getBusiness().then((res) => {
+        console.log("eeeee", res);
         setCategory(res.data.dataCategory);
-        setProducts(res.data.dataProduct);
+        setProducts(res.data.dataSubProduct);
         setProvider(res.data.dataProvider);
         setSpiner(false);
       });
@@ -27,18 +28,16 @@ export const ProductoDasboard = () => {
 
   // suma de  los precios de compra
   const sumPriceBuy = products.reduce((acc, item) => {
-    return acc + item.priceBuy;
+    return acc + item.priceCompra;
   }, 0);
   const sumPrice = products.reduce((acc, item) => {
-    return acc + item.price;
-  }, 0)
+    return acc + item.priceVenta;
+  }, 0);
   let idCategory;
   if (category.length > 0) {
-    idCategory = products.filter(
-      (item) => item.category === category[0]._id
-    );
+    idCategory = products.filter((item) => item.category === category[0]._id);
   } else {
-     idCategory = 0;
+    idCategory = 0;
   }
   // mostrar productos por su diferente id de categoria
 
@@ -171,11 +170,16 @@ export const ProductoDasboard = () => {
       ) : (
         <div className="animate__animated animate__fadeIn">
           <div className="cards_p">
-            <h2 className="text-2xl my-1 text-start 2xl:text-center">Informes generales</h2>
+            <h2 className="text-2xl my-1 text-start 2xl:text-center">
+              Informes generales
+            </h2>
             {products.length > 0 ? (
-              <div className="cards_content flex justify-start flex-wrap 2xl:justify-center  gap-2" id="lista">
+              <div
+                className="cards_content flex justify-start flex-wrap 2xl:justify-center  gap-2"
+                id="lista"
+              >
                 <section className="bg-white rounded-md inline-block">
-                  <h3 className="m-1 text-gay-600">Total de productos</h3>
+                  <h3 className="m-1 text-gay-600">Total de subproductos</h3>
                   <div className="flex items-center justify-center">
                     <div className="coon">
                       <svg
@@ -213,15 +217,7 @@ export const ProductoDasboard = () => {
                     </div>
                   </div>
                 </section>
-                <section className="bg-white rounded-md inline-block">
-                  <h3 className="m-1 text-gay-600">Productos en categorias</h3>
-                  <div className="flex items-center justify-center">
-                    <div className="coon"></div>
-                    <div className="count text-2xl mx-2 font-bold text-gray-500">
-                      {idCategory.length > 0 ? idCategory.length :0}
-                    </div>
-                  </div>
-                </section>
+                
                 <section className="bg-white rounded-md inline-block">
                   <h3 className="m-1 text-gay-600">Ganancias</h3>
                   <div className="flex items-center justify-center">

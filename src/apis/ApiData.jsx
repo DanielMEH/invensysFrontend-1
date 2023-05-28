@@ -384,20 +384,32 @@ export const TodoFunctions = {
       },
     }),
   postTrae: async (data) =>
-    await axios.post(`${urlServer}/company`,{data}, {
-      headers: {
-        authorization: accessToken,
-      },
-    }),
+    await axios.post(
+      `${urlServer}/company`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }
+    ),
   getTrae: async () =>
     await axios.get(`${urlServer}/company`, {
       headers: {
         authorization: accessToken,
       },
     }),
-    getPedidos: async() => await axios.get(`${urlServer}/pedidos`,{
+  getPedidos: async () =>
+    await axios.get(`${urlServer}/pedidos`, {
       headers: {
         authorization: accessToken,
       },
-    })
+    }),
+
+  deleteEstadoNotificacion: async () =>
+    await axios.delete(`${urlServer}/notificationTodoEstado`, {
+      headers: {
+        authorization: accessToken,
+      },
+    }),
 };

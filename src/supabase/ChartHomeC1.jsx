@@ -6,16 +6,16 @@ import moment from "moment-with-locales-es6";
 moment.locale("es");
 export const ChartHomeC1 = () => {
   const [compras, setCompras] = useState([]);
-  const [load,setLoad] = useState(false)
+  const [load, setLoad] = useState(false);
   let fecha = moment().format("l");
 
   useEffect(() => {
     (async () => {
-      setLoad(true)
+      setLoad(true);
       const bussiness = await getBusiness();
 
       setCompras(bussiness.data.dataCompras);
-      setLoad(false)
+      setLoad(false);
     })();
   }, []);
 
@@ -34,7 +34,6 @@ export const ChartHomeC1 = () => {
     arrayFecha = ["No hay datos"];
   }
 
-  // fechas: moment(fecha.createdAt).format('l'),
   var options = {
     series: [
       {
@@ -57,16 +56,21 @@ export const ChartHomeC1 = () => {
     },
 
     title: {
-      text: "Reportes de compras",
+      text: "Reportes de ventas",
       align: "left",
     },
     subtitle: {
       text: "Todos tus movimientos",
       align: "left",
     },
-    labels: compras.map((date) => moment(date.createdAt).format("l")),
+    labels: compras.map((date) =>
+      moment(date.createdAt).subtract(10, "days").calendar()
+    ),
     datetimeFormatter: {
-      year: "yyyy",
+      // mes
+      // sin repetir fechas
+
+      day: "dd MMM",
     },
     yaxis: {
       opposite: true,
@@ -78,23 +82,19 @@ export const ChartHomeC1 = () => {
 
   return (
     <>
-    {
-      load ? (
-      <div className="skeletton flex gap-4 m-5">
-     <Skeleton
-                    height={250} width={370}
-                    className="rounded-full bg-red-600 flex overflow-hidden"
-                  />
-    
-     </div>
-
-      ):(
-
+      {load ? (
+        <div className="skeletton flex gap-4 m-5">
+          <Skeleton
+            height={250}
+            width={370}
+            className="rounded-full bg-red-600 flex overflow-hidden"
+          />
+        </div>
+      ) : (
         <div className="div shadow-xl rounded-md border w-[39rem] bg-white ">
           <Chart options={options} series={options.series} height={350} />
-        </div> 
-      )
-    }
+        </div>
+      )}
     </>
   );
 };

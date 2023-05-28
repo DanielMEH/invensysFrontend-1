@@ -114,9 +114,9 @@ export const MenuLateral = () => {
     usersData.permisions = [
       "superAdmin",
       "bodega",
-      "categoria",
+      "categorias",
       "usuario",
-      "notificacion",
+      "notificaciones",
       "producto",
       "proveedor",
       "pedidos",
@@ -140,7 +140,9 @@ export const MenuLateral = () => {
 
   const handleMouse = () => {};
   const handleMouseOut = (e) => {};
-
+  console.log(notify);
+  const notifyFilterEstado = notify.filter((item) => item.estado === 1);
+  console.log(notifyFilterEstado);
   document.body.style.overflowX = "hidden";
   return (
     <>
@@ -166,7 +168,9 @@ fixed top-0
             <div className="section-1">
               <h2 className="text-center sticky hidden lg:block  top-0 bg-white z-20 block text-xl font-bold py-2 border-b text-neutral-800">
                 {adminGetData.length > 0
-                  ? adminGetData[0].name !== null
+                  ? type === "user"
+                    ? "Usuario"
+                    : adminGetData[0].name !== null
                     ? adminGetData[0].name
                     : "Identificate"
                   : "Identicate"}
@@ -176,13 +180,31 @@ fixed top-0
                   to={"/perfil"}
                   className="contenedor_perfil rounded my-1 border w-full mx-1 flex items-center relative p-1"
                 >
-                  <img
-                    src={adminGetData.length > 0 ? adminGetData[0].imgURL : ""}
-                    alt="perfil"
-                    className="w-8 rounded-full"
-                  />
+                  {type === "user" ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="#c1c7ce"
+                        fill-rule="evenodd"
+                        d="M12 4a8 8 0 0 0-6.96 11.947A4.99 4.99 0 0 1 9 14h6a4.99 4.99 0 0 1 3.96 1.947A8 8 0 0 0 12 4Zm7.943 14.076A9.959 9.959 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12a9.958 9.958 0 0 0 2.057 6.076l-.005.018l.355.413A9.98 9.98 0 0 0 12 22a9.947 9.947 0 0 0 5.675-1.765a10.055 10.055 0 0 0 1.918-1.728l.355-.413l-.005-.018ZM12 6a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  ) : (
+                    <img
+                      src={
+                        adminGetData.length > 0 ? adminGetData[0].imgURL : ""
+                      }
+                      alt="perfil"
+                      className="w-8 rounded-full"
+                    />
+                  )}
                   <div className="administrador mx-1 hidden lg:block">
-                    Administrador
+                    {type === "user" ? "Usuario normal" : "Administrador"}
                   </div>
                   <div className="activ absolute w-2 h-2 bg-green-400 rounded-full  right-1 top-1 "></div>
                 </NavLink>
@@ -318,7 +340,7 @@ fixed top-0
                       </NavLink>
                     </li>
                   ) : null}
-                  {users.permisions.includes("notificacion") ? (
+                  {users.permisions.includes("notificaciones") ? (
                     <li>
                       <NavLink
                         to={"/notificaciones"}
@@ -340,9 +362,11 @@ fixed top-0
                         <img src={bell} alt="" width={20} />
                         <div className="NavLinks7 pt-[2px] ml-3 whitespace-nowrap hidden lg:block ">
                           Notificaciones{" "}
-                          {notify.length > 0 ? (
+                          {notifyFilterEstado.length > 0 ? (
                             <span className="bg-red-500 text-white rounded-full px-1 text-xs">
-                              {notify.length > 9 ? "9+" : notify.length}
+                              {notifyFilterEstado.length > 9
+                                ? "9+"
+                                : notifyFilterEstado.length}
                             </span>
                           ) : null}
                         </div>
@@ -437,7 +461,7 @@ fixed top-0
                       </NavLink>
                     </li>
                   ) : null}
-                  {users.permisions.includes("categoria") ? (
+                  {users.permisions.includes("categorias") ? (
                     <li>
                       <NavLink
                         to={"/categorias"}
@@ -626,7 +650,46 @@ fixed top-0
                       rounded `
                         }
                       >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><defs><linearGradient id="vscodeIconsFileTypeLicensebat0" x1="2.591" x2="29.409" y1="16" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffca3f"/><stop offset=".014" stop-color="#fec83e"/><stop offset=".238" stop-color="#ebaf35"/><stop offset=".471" stop-color="#de9d2e"/><stop offset=".717" stop-color="#d6922a"/><stop offset=".999" stop-color="#d38f29"/></linearGradient><linearGradient id="vscodeIconsFileTypeLicensebat1" x1="19.532" x2="11.214" y1="27.942" y2="16.674" href="#vscodeIconsFileTypeLicensebat0"/></defs><path fill="url(#vscodeIconsFileTypeLicensebat0)" d="m22.652 3.474l-3.994 4.348l-.055.055l-.6.656a7.2 7.2 0 1 1-4.006 0l-.6-.656l-.055-.055l-3.994-4.348a13.409 13.409 0 1 0 13.3 0Z"/><path fill="url(#vscodeIconsFileTypeLicensebat1)" d="M24.1 23.839a5.287 5.287 0 0 1-5-7.011a2.1 2.1 0 0 1-1.6.688a2.153 2.153 0 0 1-1.417-.507c-.026.023-.054-.065-.082-.044c-.028-.021-.056.067-.082.044a2.153 2.153 0 0 1-1.417.507a2.1 2.1 0 0 1-1.6-.688a5.287 5.287 0 0 1-7.595 6.329a13.334 13.334 0 0 0 10.664 5.315h.054a13.334 13.334 0 0 0 10.664-5.315a5.264 5.264 0 0 1-2.589.682Z"/></svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 32 32"
+                        >
+                          <defs>
+                            <linearGradient
+                              id="vscodeIconsFileTypeLicensebat0"
+                              x1="2.591"
+                              x2="29.409"
+                              y1="16"
+                              y2="16"
+                              gradientUnits="userSpaceOnUse"
+                            >
+                              <stop offset="0" stop-color="#ffca3f" />
+                              <stop offset=".014" stop-color="#fec83e" />
+                              <stop offset=".238" stop-color="#ebaf35" />
+                              <stop offset=".471" stop-color="#de9d2e" />
+                              <stop offset=".717" stop-color="#d6922a" />
+                              <stop offset=".999" stop-color="#d38f29" />
+                            </linearGradient>
+                            <linearGradient
+                              id="vscodeIconsFileTypeLicensebat1"
+                              x1="19.532"
+                              x2="11.214"
+                              y1="27.942"
+                              y2="16.674"
+                              href="#vscodeIconsFileTypeLicensebat0"
+                            />
+                          </defs>
+                          <path
+                            fill="url(#vscodeIconsFileTypeLicensebat0)"
+                            d="m22.652 3.474l-3.994 4.348l-.055.055l-.6.656a7.2 7.2 0 1 1-4.006 0l-.6-.656l-.055-.055l-3.994-4.348a13.409 13.409 0 1 0 13.3 0Z"
+                          />
+                          <path
+                            fill="url(#vscodeIconsFileTypeLicensebat1)"
+                            d="M24.1 23.839a5.287 5.287 0 0 1-5-7.011a2.1 2.1 0 0 1-1.6.688a2.153 2.153 0 0 1-1.417-.507c-.026.023-.054-.065-.082-.044c-.028-.021-.056.067-.082.044a2.153 2.153 0 0 1-1.417.507a2.1 2.1 0 0 1-1.6-.688a5.287 5.287 0 0 1-7.595 6.329a13.334 13.334 0 0 0 10.664 5.315h.054a13.334 13.334 0 0 0 10.664-5.315a5.264 5.264 0 0 1-2.589.682Z"
+                          />
+                        </svg>
                         <div className="NavLinks6 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
                           Licencia
                         </div>

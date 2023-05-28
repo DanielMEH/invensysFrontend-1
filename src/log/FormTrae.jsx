@@ -20,8 +20,6 @@ export const FormTrae = () => {
   };
 
   const HandleInput = (e) => {
-    console.log(e.target.name);
-
     setData({ ...data, [e.target.name]: e.target.value });
   };
   return (

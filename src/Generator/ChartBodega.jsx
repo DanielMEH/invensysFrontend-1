@@ -1,5 +1,6 @@
 import React from "react";
 import { ChartBodegaC1 } from "../supabase/ChartBodegaC1";
+import { ChartBodegaC2 } from "../supabase/ChartBodegaC2";
 
 export const ChartBodega = () => {
   return (
@@ -9,7 +10,10 @@ export const ChartBodega = () => {
           <div className="flex justify-start">
             <ChartBodegaC1 />
           </div>
-          <div className="flex justify-center gap-4">y</div>y
+          <div className="flex justify-start gap-4">
+          
+            <ChartBodegaC2 />
+          </div>
         </div>
       </>
     </>

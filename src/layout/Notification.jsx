@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MenuLateral } from "../components/MenuLateral";
 import { NotifyHeader } from "../components/NotificationsHeader/NotifyHeader";
 import { Outlet } from "react-router-dom";
-import "../assets/css/fuente.css"
+import { TodoFunctions } from "../apis/ApiData";
+import "../assets/css/fuente.css";
 export const Notification = () => {
+  const [todo, setTodo] = useState(1);
+
+  useEffect(() => {
+    (async () => {
+      const response = await TodoFunctions.deleteEstadoNotificacion();
+      console.log(response);
+    })();
+  }, [todo]);
+
   return (
     <>
       <div className="flex">

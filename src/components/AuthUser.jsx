@@ -126,6 +126,7 @@ export const AuthUser = () => {
                   //   setSpiner(true);
                   // }
 
+                  console.log(response.data.type);
                   if (response.data.type === "user") {
                     let arrayLocalStorageModul = response.data.module;
 
@@ -143,6 +144,7 @@ export const AuthUser = () => {
                       }
                       let getData = response.data;
                       let url = getData.module[0];
+                      console.log(url);
                       console.log(arrayModule);
                       localStorage.setItem("secure_token", getData.token);
                       localStorage.setItem("auth_cuenta", getData.auth);
@@ -152,7 +154,7 @@ export const AuthUser = () => {
                       localStorage.setItem("correo", values.email);
                       localStorage.setItem("type", response.data.type);
                       if (response.data.type === "user") {
-                        window.location = `/${arrayModule}`;
+                        window.location = `/${url.titulo}`;
                       }
                     }
 

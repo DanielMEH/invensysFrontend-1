@@ -81,7 +81,7 @@ export const ModalModule = ({ children }) => {
   };
   const handlenotify = async () => {
     try {
-      let modules = "notificacion";
+      let modules = "notificaciones";
       let data = {
         idAccount: id,
         module: modules,
@@ -211,7 +211,7 @@ export const ModalModule = ({ children }) => {
   };
   const handleCategory = async () => {
     try {
-      let modules = "categoria";
+      let modules = "categorias";
       let data = {
         idAccount: id,
         module: modules,
@@ -628,7 +628,7 @@ export const ModalModule = ({ children }) => {
                             className={
                               moduleUsers.filter(
                                 (moduleUser) =>
-                                  moduleUser.titulo === "notificacion"
+                                  moduleUser.titulo === "notificaciones"
                               ).length > 0
                                 ? "w-12 rounded-full  relative h-[1.48rem] bg-green-400"
                                 : "  w-12 rounded-full relative  h-[1.48rem] bg-gray-400"
@@ -638,7 +638,7 @@ export const ModalModule = ({ children }) => {
                               className={
                                 moduleUsers.filter(
                                   (moduleUser) =>
-                                    moduleUser.titulo === "notificacion"
+                                    moduleUser.titulo === "notificaciones"
                                 ).length > 0
                                   ? "w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]"
                                   : "w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]"
@@ -652,7 +652,7 @@ export const ModalModule = ({ children }) => {
                             className={
                               moduleUsers.filter(
                                 (moduleUser) =>
-                                  moduleUser.titulo === "notificacion"
+                                  moduleUser.titulo === "notificaciones"
                               ).length > 0
                                 ? "w-12 rounded-full  relative h-[1.48rem] bg-green-400"
                                 : "  w-12 rounded-full relative  h-[1.48rem] bg-gray-400"
@@ -662,7 +662,7 @@ export const ModalModule = ({ children }) => {
                               className={
                                 moduleUsers.filter(
                                   (moduleUser) =>
-                                    moduleUser.titulo === "notificacion"
+                                    moduleUser.titulo === "notificaciones"
                                 ).length > 0
                                   ? "w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]"
                                   : "w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]"
@@ -676,7 +676,7 @@ export const ModalModule = ({ children }) => {
                             className={
                               moduleUsers.filter(
                                 (moduleUser) =>
-                                  moduleUser.titulo === "notificacion"
+                                  moduleUser.titulo === "notificaciones"
                               ).length > 0
                                 ? "w-12 rounded-full  relative h-[1.48rem] bg-green-400"
                                 : "  w-12 rounded-full relative  h-[1.48rem] bg-gray-400"
@@ -686,7 +686,7 @@ export const ModalModule = ({ children }) => {
                               className={
                                 moduleUsers.filter(
                                   (moduleUser) =>
-                                    moduleUser.titulo === "notificacion"
+                                    moduleUser.titulo === "notificaciones"
                                 ).length > 0
                                   ? "w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]"
                                   : "w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]"
@@ -700,7 +700,7 @@ export const ModalModule = ({ children }) => {
                             className={
                               moduleUsers.filter(
                                 (moduleUser) =>
-                                  moduleUser.titulo === "notificacion"
+                                  moduleUser.titulo === "notificaciones"
                               ).length > 0
                                 ? "w-12 rounded-full  relative h-[1.48rem] bg-green-400"
                                 : "  w-12 rounded-full relative  h-[1.48rem] bg-gray-400"
@@ -710,7 +710,7 @@ export const ModalModule = ({ children }) => {
                               className={
                                 moduleUsers.filter(
                                   (moduleUser) =>
-                                    moduleUser.titulo === "notificacion"
+                                    moduleUser.titulo === "notificaciones"
                                 ).length > 0
                                   ? "w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]"
                                   : "w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]"
@@ -1144,7 +1144,7 @@ export const ModalModule = ({ children }) => {
                             className={
                               moduleUsers.filter(
                                 (moduleUser) =>
-                                  moduleUser.titulo === "categoria"
+                                  moduleUser.titulo === "categorias"
                               ).length > 0
                                 ? "w-12 rounded-full  relative h-[1.48rem] bg-green-400"
                                 : "  w-12 rounded-full relative  h-[1.48rem] bg-gray-400"
@@ -1154,7 +1154,7 @@ export const ModalModule = ({ children }) => {
                               className={
                                 moduleUsers.filter(
                                   (moduleUser) =>
-                                    moduleUser.titulo === "categoria"
+                                    moduleUser.titulo === "categorias"
                                 ).length > 0
                                   ? "w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]"
                                   : "w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]"
@@ -1168,7 +1168,7 @@ export const ModalModule = ({ children }) => {
                             className={
                               moduleUsers.filter(
                                 (moduleUser) =>
-                                  moduleUser.titulo === "categoria"
+                                  moduleUser.titulo === "categorias"
                               ).length > 0
                                 ? "w-12 rounded-full  relative h-[1.48rem] bg-green-400"
                                 : "  w-12 rounded-full relative  h-[1.48rem] bg-gray-400"
@@ -1178,7 +1178,7 @@ export const ModalModule = ({ children }) => {
                               className={
                                 moduleUsers.filter(
                                   (moduleUser) =>
-                                    moduleUser.titulo === "categoria"
+                                    moduleUser.titulo === "categorias"
                                 ).length > 0
                                   ? "w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]"
                                   : "w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]"
@@ -1192,7 +1192,7 @@ export const ModalModule = ({ children }) => {
                             className={
                               moduleUsers.filter(
                                 (moduleUser) =>
-                                  moduleUser.titulo === "categoria"
+                                  moduleUser.titulo === "categorias"
                               ).length > 0
                                 ? "w-12 rounded-full  relative h-[1.48rem] bg-green-400"
                                 : "  w-12 rounded-full relative  h-[1.48rem] bg-gray-400"
@@ -1202,7 +1202,7 @@ export const ModalModule = ({ children }) => {
                               className={
                                 moduleUsers.filter(
                                   (moduleUser) =>
-                                    moduleUser.titulo === "categoria"
+                                    moduleUser.titulo === "categorias"
                                 ).length > 0
                                   ? "w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]"
                                   : "w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]"
@@ -1216,7 +1216,7 @@ export const ModalModule = ({ children }) => {
                             className={
                               moduleUsers.filter(
                                 (moduleUser) =>
-                                  moduleUser.titulo === "categoria"
+                                  moduleUser.titulo === "categorias"
                               ).length > 0
                                 ? "w-12 rounded-full  relative h-[1.48rem] bg-green-400"
                                 : "  w-12 rounded-full relative  h-[1.48rem] bg-gray-400"
@@ -1226,7 +1226,7 @@ export const ModalModule = ({ children }) => {
                               className={
                                 moduleUsers.filter(
                                   (moduleUser) =>
-                                    moduleUser.titulo === "categoria"
+                                    moduleUser.titulo === "categorias"
                                 ).length > 0
                                   ? "w-[1.30rem] h-[1.40rem] rigth-[0.1em] rounded-full bg-white absolute top-[0.02em]"
                                   : "w-[1.30rem] h-[1.40rem] left-[0.1em] rounded-full bg-white absolute top-[0.02em]"

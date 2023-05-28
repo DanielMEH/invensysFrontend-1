@@ -5,23 +5,24 @@ import Chart from "react-apexcharts";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
 
-export const ChartHomeC2 = () => {
+export const ChartBodegaC2 = () => {
   const [ventas, setVentas] = useState([]);
-  const [load,setLoad] = useState(false)
+  const [load, setLoad] = useState(false);
   let fecha = moment().format("l");
 
   useEffect(() => {
     (async () => {
-      setLoad(true)
+      setLoad(true);
       const bussiness = await getBusiness();
 
-      
-      setVentas(bussiness.data.dataPedidoProvedor);
-      setLoad(false)
+      console.log(bussiness.data.dataInventary);
+      setVentas(bussiness.data.dataInventary);
+      setLoad(false);
     })();
   }, []);
 
-  const responseData = ventas.map((data) => data.totalComprap);
+  const responseData = ventas.map((data) => parseInt(data._id));
+  console.log(",,", responseData);
 
   // fechas: moment(fecha.createdAt).format('l'),
   var options = {
@@ -46,7 +47,7 @@ export const ChartHomeC2 = () => {
     dataLabels: {
       enabled: true,
       formatter: function (val) {
-        return val + " Total";
+        return val + ": P.B";
       },
       offsetY: -20,
       style: {
@@ -81,8 +82,8 @@ export const ChartHomeC2 = () => {
       tooltip: {
         enabled: true,
       },
-      },
-    
+    },
+
     yaxis: {
       axisBorder: {
         show: false,
@@ -93,7 +94,7 @@ export const ChartHomeC2 = () => {
       labels: {
         show: false,
         formatter: function (val) {
-          return val + " precio Total";
+          return val + "%";
         },
       },
     },
@@ -110,25 +111,21 @@ export const ChartHomeC2 = () => {
 
   return (
     <>
-       <>
-    {
-      load ? (
-      <div className="skeletton flex gap-4 m-5">
-     <Skeleton
-                    height={250} width={370}
-                    className="rounded-full bg-red-600 flex overflow-hidden"
-                  />
-    
-     </div>
-
-      ):(
-
-        <div className="div shadow-xl rounded-md border w-[39rem] bg-white ">
-          <Chart options={options} series={options.series} height={350} />
-        </div> 
-      )
-    }
-    </>
+      <>
+        {load ? (
+          <div className="skeletton flex gap-4 m-5">
+            <Skeleton
+              height={250}
+              width={370}
+              className="rounded-full bg-red-600 flex overflow-hidden"
+            />
+          </div>
+        ) : (
+          <div className="div shadow-xl rounded-md border w-[39rem] bg-white ">
+            <Chart options={options} series={options.series} height={350} />
+          </div>
+        )}
+      </>
     </>
   );
 };

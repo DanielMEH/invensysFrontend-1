@@ -9,15 +9,18 @@ export const HomeDaboard = () => {
 
   const [provider, setProvider] = useState([]);
   const [infoProducts, setInfoProducts] = useState([]);
+  const [bodegas, setBodegas] = useState([]);
   const [users, setUsers] = useState([]);
   useEffect(() => {
     getUsersAdmin().then((res) => {
       setUsers(res.data.data);
     });
     getBusiness().then((res) => {
+      console.log(res);
       setCategory(res.data.dataCategory);
       setProducts(res.data.dataProduct);
       setProvider(res.data.dataProvider);
+      setBodegas(res.data.dataInventary);
     });
   }, []);
   const getproductFechaDescription = products.map((item) => {
@@ -125,7 +128,7 @@ export const HomeDaboard = () => {
             options={radar}
             series={radar.series}
             type="radar"
-            height={  350}
+            height={350}
           />
         </div>
       </div>

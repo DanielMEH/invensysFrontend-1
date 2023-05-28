@@ -30,25 +30,39 @@ export const NotifyHeader = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <Link to="notification/users" className="truncate">Usuarios</Link>
+          <Link to="notification/users" className="truncate">
+            Usuarios
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="notification/product" className="truncate">Productos</Link>
+          <Link to="notification/product" className="truncate">
+            Productos
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="notification/inventario" className="truncate">Inventario</Link>
+          <Link to="notification/bodega" className="truncate">
+            Bodega
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="notification/category" className="truncate">Categorias</Link>
+          <Link to="notification/category" className="truncate">
+            Categorias
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="notification/provider" className="truncate">Proveedores</Link>
+          <Link to="notification/provider" className="truncate">
+            Proveedores
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="notification/ventas" className="truncate">Ventas</Link>
+          <Link to="notification/ventas" className="truncate">
+            Ventas
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <Link to="notification/pedidos" className="truncate">Pedidos</Link>
+          <Link to="notification/pedidos" className="truncate">
+            Pedidos
+          </Link>
         </SwiperSlide>
       </Swiper>
     </div>

@@ -102,9 +102,9 @@ export const Router = () => {
     usersData.permisions = [
       "superAdmin",
       "bodega",
-      "categoria",
+      "categorias",
       "usuario",
-      "notificacion",
+      "notificaciones",
       "producto",
       "proveedor",
       "pedidos",
@@ -187,7 +187,7 @@ export const Router = () => {
               path="/categorias"
               element={
                 <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("categoria")}
+                  isAllowed={!!users && users.permisions.includes("categorias")}
                   redirectTo="/categorias"
                 >
                   <Category />
@@ -246,7 +246,7 @@ export const Router = () => {
               element={
                 <ProtectedRouter
                   isAllowed={
-                    !!users && users.permisions.includes("notificacion")
+                    !!users && users.permisions.includes("notificaciones")
                   }
                   redirectTo="/notificaciones"
                 >
@@ -263,10 +263,7 @@ export const Router = () => {
                 path="notification/product"
                 element={<ProductNotification />}
               />
-              <Route
-                path="notification/inventario"
-                element={<InventoryNotify />}
-              />
+              <Route path="notification/bodega" element={<InventoryNotify />} />
               <Route
                 path="notification/category"
                 element={<CategoryNotify />}
@@ -298,11 +295,11 @@ export const Router = () => {
               }
             />
             <Route
-              path="/categoria"
+              path="/categorias"
               element={
                 <ProtectedRouter
                   isAllowed={!!users && users.permisions.includes("categorias")}
-                  redirectTo="/categoria"
+                  redirectTo="/categorias"
                 >
                   <Category />
                 </ProtectedRouter>
