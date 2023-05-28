@@ -129,11 +129,11 @@ export const TranslateProduct = () => {
               </div>
             </div>
             <h2>Selecione la bodega de destino</h2>
-            <div className="flex ">
+            <div className="flex  ">
               {inventario.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white flex p-1 m-1 rounded-full 
+                  className="bg-white flex p-1 h- m-1 rounded-full 
                 
                 focus:bg-blue-500 focus:text-white
                 "
@@ -169,7 +169,7 @@ export const TranslateProduct = () => {
             }}
           >
             {products.length > 0 ? (
-              <>
+              <div className="h-80 overflow-y-auto">
                 {products.map((item, index) => (
                   <>
                     <div>
@@ -234,7 +234,7 @@ export const TranslateProduct = () => {
                     </div>
                   </>
                 ))}
-              </>
+              </div>
             ) : (
               <h1>No se encontraron productos</h1>
             )}
