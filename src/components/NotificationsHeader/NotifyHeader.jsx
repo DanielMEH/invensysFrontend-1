@@ -30,6 +30,14 @@ export const NotifyHeader = () => {
         className="mySwiper"
       >
         <SwiperSlide>
+          <Link
+            to="notification/ProductVencer"
+            className="whitespace-nowrap truncate"
+          >
+            Productos pronto en vencer
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide>
           <Link to="notification/users" className="truncate">
             Usuarios
           </Link>

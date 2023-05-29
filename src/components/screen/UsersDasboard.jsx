@@ -3,7 +3,6 @@ import Chart from "react-apexcharts";
 import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
 import { ReactSortable, MultiDrag, Swap } from "react-sortablejs";
 import { Link, Outlet } from "react-router-dom";
-import vector from "../../assets/img/vector.svg";
 import "animate.css";
 import "../../assets/css/sorteable.css";
 import moment from "moment-with-locales-es6";
@@ -239,11 +238,7 @@ export const UsersDasboard = () => {
               )}
 
               <div className="div self-stretch flex justify-center  w-3/5">
-                {<Outlet /> ? (
-                  <Outlet />
-                ) : (
-                  <img src={vector} alt="" className="text-center w-[25rem]" />
-                )}
+                {<Outlet /> ? <Outlet /> : null}
               </div>
             </div>
           </div>

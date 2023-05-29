@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/css/fuente.css";
 import user from "../assets/icons/user-check.svg";
-import users from "../assets/icons/users.svg";
-import calendar from "../assets/icons/calendar.svg";
+
 import bell from "../assets/icons/bell.svg";
 import home from "../assets/icons/home.svg";
-import chart from "../assets/icons/bar-chart.svg";
+
 import comand from "../assets/icons/command.svg";
 import help from "../assets/icons/help-circle.svg";
 import send from "../assets/icons/send.svg";
@@ -16,17 +15,17 @@ import grid from "../assets/icons/grid.svg";
 import harddrive from "../assets/icons/hard-drive.svg";
 import truck from "../assets/icons/truck.svg";
 import cloceSession from "../assets/icons/log-out.svg";
-import compras from "../assets/icons/shopping-cart.svg";
 import { ToastContainer, toast } from "react-toastify";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import axios from "axios";
-import { getNotification } from "../apis/ApiData";
+import { getNotification, TodoFunctions } from "../apis/ApiData";
 export const MenuLateral = () => {
   const { getAdminDataAll, adminGetData, updateDataAdmin } = useGetUsers();
   const [data, setData] = useState([]);
   useEffect(() => {
     const initial = async () => {
       const initials = await getAdminDataAll();
+      await TodoFunctions.SearchDismiutionUnidadProduct();
       setData(initials);
     };
     initial();

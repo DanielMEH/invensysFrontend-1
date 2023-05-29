@@ -412,4 +412,10 @@ export const TodoFunctions = {
         authorization: accessToken,
       },
     }),
+  SearchDismiutionUnidadProduct: async () =>
+    await axios.get(`${urlServer}/disminucionUnidades`, {
+      headers: {
+        authorization: accessToken,
+      },
+    }),
 };

@@ -62,6 +62,7 @@ import { ChartPedidos } from "../Generator/ChartPedidos";
 import { ChartVentas } from "../Generator/ChartVentas";
 import { ChartUsuarios } from "../Generator/ChartUsuarios";
 import { ChartProductos } from "../Generator/ChartProductos";
+import { ProductAgotados } from "../components/NotificationsHeader/ProductAgotados";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -274,6 +275,10 @@ export const Router = () => {
               />
               <Route path="notification/pedidos" element={<PedidosNotify />} />
               <Route path="notification/ventas" element={<VentasNotify />} />
+              <Route
+                path="notification/ProductVencer"
+                element={<ProductAgotados />}
+              />
             </Route>
             <Route
               path="/admin/productos/editar/:id"

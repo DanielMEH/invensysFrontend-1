@@ -5,8 +5,8 @@ import Chart from "react-apexcharts";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
 
-export const ChartBodegaC2 = () => {
-  const [ventas, setVentas] = useState([]);
+export const ChartProductoC2 = () => {
+  const [products, setProducts] = useState([]);
   const [load, setLoad] = useState(false);
   let fecha = moment().format("l");
 
@@ -14,21 +14,23 @@ export const ChartBodegaC2 = () => {
     (async () => {
       setLoad(true);
       const bussiness = await getBusiness();
-
+      console.log("bussiness", bussiness.data.dataSubProduct);
       console.log(bussiness.data.dataInventary);
-      setVentas(bussiness.data.dataInventary);
+      setProducts(bussiness.data.dataSubProduct);
       setLoad(false);
     })();
   }, []);
 
-  const responseData = ventas.map((data) => parseInt(data._id));
+  const responseData = products.map((data) =>
+    parseInt(data.priceCompra * data.unidad)
+  );
   console.log(",,", responseData);
 
   // fechas: moment(fecha.createdAt).format('l'),
   var options = {
     series: [
       {
-        name: "Pedidos",
+        name: "Total",
         data: responseData,
       },
     ],
@@ -47,7 +49,7 @@ export const ChartBodegaC2 = () => {
     dataLabels: {
       enabled: true,
       formatter: function (val) {
-        return val + ": P.B";
+        return val + ": V.T";
       },
       offsetY: -20,
       style: {
@@ -57,7 +59,7 @@ export const ChartBodegaC2 = () => {
     },
 
     xaxis: {
-      categories: ventas.map((dateFecha) =>
+      categories: products.map((dateFecha) =>
         moment(dateFecha.createdAt).format("l")
       ),
       position: "top",
@@ -94,12 +96,12 @@ export const ChartBodegaC2 = () => {
       labels: {
         show: false,
         formatter: function (val) {
-          return val + "%";
+          return val + "V.T";
         },
       },
     },
     title: {
-      text: "Reportes de pedidos",
+      text: "Prouctos con mayor precio por unidad y con mayor crecimiento",
       floating: true,
       offsetY: 330,
       align: "center",
@@ -121,7 +123,7 @@ export const ChartBodegaC2 = () => {
             />
           </div>
         ) : (
-          <div className="div shadow-xl rounded-md border w-[50rem] bg-white ">
+          <div className="div shadow-xl rounded-md border w-[55rem] bg-white ">
             <Chart options={options} series={options.series} height={350} />
           </div>
         )}

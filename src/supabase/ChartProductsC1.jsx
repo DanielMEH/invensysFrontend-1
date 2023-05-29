@@ -5,7 +5,7 @@ import Chart from "react-apexcharts";
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";
 moment.locale("es");
-export const ChartBodegaC1 = () => {
+export const ChartProductC1 = () => {
   const [ventas, setVentas] = useState([]);
   const [compras, setCompras] = useState([]);
   const [users, setUsers] = useState([]);
@@ -39,10 +39,10 @@ export const ChartBodegaC1 = () => {
   let TotalVentas = ventas.reduce((acc, el) => acc + el.total, 0);
   let porcentage = Math.abs((TotalVentas * 100) / TotalVentas);
   let diferencia = TotalVentas - TotalCompras;
-
-  const activos = users.filter((item) => item.estado === "Activo");
-
-  const inactivos = users.filter((item) => item.estado === "Inactivo");
+  let ProductsUnidades = SubProducts.reduce((acc, el) => acc + el.unidad, 0);
+  console.log("ProductsUnidades", ProductsUnidades);
+  let ProductsWithUnidades = SubProducts.filter((el) => el.unidad <= 10);
+  console.log("wi");
   return (
     <>
       {load ? (
@@ -62,12 +62,19 @@ export const ChartBodegaC1 = () => {
             width={270}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
+          <Skeleton
+            height={140}
+            width={270}
+            className="rounded-full bg-red-600 flex overflow-hidden"
+          />
         </div>
       ) : (
         <div className=" flex gap-2 ">
-          <section className="bg-white shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
-              <div className="text font-bold mx-2 block">Total de bodegas</div>
+              <div className="text font-bold mx-2 block">
+                Total de Subproductos en bodegas
+              </div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,8 +90,17 @@ export const ChartBodegaC1 = () => {
               </div>
             </div>
             <div className="ventasNumm ">
-              <span className="text-xl font-bold p-2 block">
-                {bodega.length}
+              <span
+                className={
+                  ProductsUnidades.length < 20
+                    ? "text-xl font-bold p-2 text-red-500 block truncate "
+                    : " truncate text-green-500 text-xl font-bold p-2 block"
+                }
+              >
+                {ProductsUnidades.length}{" "}
+                <span>
+                  {ProductsUnidades} {ProductsUnidades < 20 ? "Bajo" : "Bueno"}{" "}
+                </span>
               </span>
             </div>
             <div className="static flex">
@@ -108,10 +124,10 @@ export const ChartBodegaC1 = () => {
               Productos en movimiento
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">
-                valor de todas las bodegas
+                SubTotal de precio
               </div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
                 <svg
@@ -155,9 +171,11 @@ export const ChartBodegaC1 = () => {
               <span className="mx-2">{bodega.length}</span>Productos ingresados
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
-              <div className="text font-bold mx-2 block">Subproductos</div>
+              <div className="text font-bold mx-2 block">
+                Productos agotados con menos de 10 unidades
+              </div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -191,8 +209,11 @@ export const ChartBodegaC1 = () => {
                     : " truncate text-green-500 text-xl font-bold p-2 block"
                 }
               >
-                {SubProducts.length}{" "}
-                <span> {SubProducts.length < 20 ? "Bajo" : "Bueno"} </span>
+                {ProductsWithUnidades.length}{" "}
+                <span>
+                  {" "}
+                  {ProductsWithUnidades.length < 20 ? "Bajo" : "Bueno"}{" "}
+                </span>
               </span>
             </div>
             <div className="static flex">
@@ -212,7 +233,73 @@ export const ChartBodegaC1 = () => {
               </span>
             </div>
             <div className="my-1">
-              <span className="mx-2">{ventas.length}</span>Productos vendidos
+              <span className="mx-2">{ProductsWithUnidades.length}</span>
+              Productos vendidos
+            </div>
+          </section>
+          <section className="bg-white shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
+            <div className="principal flex items-center justify-between">
+              <div className="text font-bold mx-2 block">
+                Productos en caducidad en 30 dias
+              </div>
+              <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="35"
+                  height="35"
+                  viewBox="0 0 48 48"
+                >
+                  <mask id="ipSDifferenceSet0">
+                    <path
+                      fill="#019afa"
+                      stroke="#fff"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="4"
+                      d="M6 40V19a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2ZM42 8v21a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V19a2 2 0 0 0-2-2H19a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h21a2 2 0 0 1 2 2Z"
+                    />
+                  </mask>
+                  <path
+                    fill="#019afa"
+                    d="M0 0h48v48H0z"
+                    mask="url(#ipSDifferenceSet0)"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div className="ventasNumm ">
+              <span
+                className={
+                  SubProducts.length < 20
+                    ? "text-xl font-bold p-2 text-red-500 block truncate "
+                    : " truncate text-green-500 text-xl font-bold p-2 block"
+                }
+              >
+                {ProductsWithUnidades.length}{" "}
+                <span>
+                  {" "}
+                  {ProductsWithUnidades.length < 20 ? "Bajo" : "Bueno"}{" "}
+                </span>
+              </span>
+            </div>
+            <div className="static flex">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#4ade80"
+                  d="m3.5 18.5l6-6l4 4L22 6.92L20.59 5.5l-7.09 8l-4-4L2 17l1.5 1.5Z"
+                />
+              </svg>
+              <span className="text-[#4ade80]">
+                {porcentage + "%"} Estable{" "}
+              </span>
+            </div>
+            <div className="my-1">
+              <span className="mx-2">{ProductsWithUnidades.length}</span>
             </div>
           </section>
         </div>

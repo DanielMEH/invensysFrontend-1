@@ -157,7 +157,7 @@ export const AnalitycMenuVista = () => {
                 <span className="mx-5 block">Bodegas</span>
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to={`AnInventario/${token}`}
                 className={({ isActive }) =>
@@ -186,7 +186,7 @@ export const AnalitycMenuVista = () => {
 
                 <span className="mx-5 block">Inventario</span>
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink
                 to={`AnProductos/${token}`}
@@ -217,7 +217,7 @@ export const AnalitycMenuVista = () => {
                 <span className="mx-5 block">Productos</span>
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to={`AnPedidos/${token}`}
                 className={({ isActive }) =>
@@ -296,8 +296,8 @@ export const AnalitycMenuVista = () => {
 
                 <span className="mx-5 block">Ventas</span>
               </NavLink>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <NavLink
                 to={`AnUsuarios/${token}`}
                 className={({ isActive }) =>
@@ -325,7 +325,7 @@ export const AnalitycMenuVista = () => {
                 </span>
                 <span className="mx-5 block">Usuarios</span>
               </NavLink>
-            </li>
+            </li> */}
           </ul>
           <ul>
             <span className="mt-5 block font-bold mb-4 text-xl">Opciones</span>
