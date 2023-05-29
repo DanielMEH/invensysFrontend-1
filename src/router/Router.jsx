@@ -62,6 +62,7 @@ import { ChartVentas } from "../Generator/ChartVentas";
 import { ChartUsuarios } from "../Generator/ChartUsuarios";
 import { ChartProductos } from "../Generator/ChartProductos";
 import { ProductAgotados } from "../components/NotificationsHeader/ProductAgotados";
+import { ComandsSistemA } from "../Generator/ComandsSistemA";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -340,6 +341,10 @@ export const Router = () => {
               <Route path="AnPedidos/:id" element={<ChartPedidos />}></Route>
               <Route path="AnVentas/:id" element={<ChartVentas />}></Route>
               <Route path="AnUsuarios/:id" element={<ChartUsuarios />}></Route>
+              <Route
+                path="TodoComands/:id"
+                element={<ComandsSistemA />}
+              ></Route>
               <Route
                 path="AnProductos/:id"
                 element={<ChartProductos />}

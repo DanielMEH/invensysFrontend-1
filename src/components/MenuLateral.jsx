@@ -5,7 +5,6 @@ import user from "../assets/icons/user-check.svg";
 
 import bell from "../assets/icons/bell.svg";
 import home from "../assets/icons/home.svg";
-
 import comand from "../assets/icons/command.svg";
 import help from "../assets/icons/help-circle.svg";
 import send from "../assets/icons/send.svg";
@@ -19,6 +18,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import axios from "axios";
 import { getNotification, TodoFunctions } from "../apis/ApiData";
+import { ComandoSystem } from "../cmd/ComandoSystem";
 export const MenuLateral = () => {
   const { getAdminDataAll, adminGetData} = useGetUsers();
   const [data, setData] = useState([]);
@@ -51,6 +51,8 @@ export const MenuLateral = () => {
     tokeVerify: "",
     permisions: [],
   };
+
+
 
   useEffect(() => {
     (async () => {
@@ -145,6 +147,7 @@ export const MenuLateral = () => {
   document.body.style.overflowX = "hidden";
   return (
     <>
+      <ComandoSystem />
       <>
         <ToastContainer />
       </>
