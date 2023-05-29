@@ -3,10 +3,7 @@ import React from "react";
 export const ChartComandsA = () => {
   return (
     <div>
-          <h2 className="text-2xl">Comandos y atajos del sistema</h2>
-          
-          // crear tabla de comandos y atajos del sistema
-      
+      <h2 className="text-2xl">Comandos y atajos del sistema</h2>
 
       <div className="table">
         <table className="table-auto">
@@ -67,16 +64,13 @@ export const ChartComandsA = () => {
             </tr>
             <tr className="bg-gray-100">
               <td className="border px-4 py-2">ctrl + e</td>
-              <td className="border px-4 py-2">Exportar archivos escel de las tablas</td>
+              <td className="border px-4 py-2">
+                Exportar archivos escel de las tablas
+              </td>
             </tr>
-            
-
-
           </tbody>
         </table>
-
       </div>
-
     </div>
   );
 };
