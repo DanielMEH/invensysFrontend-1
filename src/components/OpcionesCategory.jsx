@@ -1,12 +1,11 @@
 import React from "react";
-import eye from "../assets/icons/eye.svg";
+
 import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
 import { useContextCategory } from "../hooks/context/ContextCategory";
 
-import { useNavigate } from "react-router-dom";
 function OpcionesCategory(e) {
-  const { deleteCategorys, updateCategorys } = useContextCategory();
+  const { deleteCategorys} = useContextCategory();
   const deleteId = async () => {
   
     await Swal.fire({
@@ -121,12 +120,9 @@ function OpcionesCategory(e) {
     }).then((result) => {
      
       if (result.isConfirmed) {
-        let data = {
-          name_category: result.value.name_category,
-          description: result.value.description,
-        };
+       
       
-        let response = updateCategorys(e.data._id, data);
+       
        
       }
     });

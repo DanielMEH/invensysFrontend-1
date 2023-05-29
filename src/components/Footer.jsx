@@ -89,7 +89,7 @@ Obtenga actualizaciones de productos, novedades de la compañía y más.</p>
               </ul>
             </div>
             <div className="redes_Link flex">
-              <span><a href="">
+              <span><a href="/">
               <img width={"50px"} src="https://img.icons8.com/cute-clipart/64/null/instagram-new.png" alt="redes"/>
               </a></span>
               <span>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import {
   getProveedores,
   getInventario,
@@ -8,7 +8,7 @@ import {
 } from "../apis/ApiData";
 import * as Yup from "yup";
 import "animate.css";
-import { Link, useNavigate, Outlet } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
@@ -16,7 +16,7 @@ export const FormSalida = () => {
   const navigate = useNavigate();
   // ? providers
   const [proveedores, setProveedores] = useState([]);
-  const [idProvider, setIdProvider] = useState("");
+
   // ? inventory
   const [inventario, setInventario] = useState([]);
   const [estadoModel1, setEstadoModel1] = useState(false);
@@ -24,12 +24,12 @@ export const FormSalida = () => {
   const [subProducts, setSubProducts] = useState([]);
   const [products, setProducts] = React.useState([]);
   // ?? state
-  const [getProviderFilter, setGetProviderFilter] = useState([]);
-  const [spiner, setSpiner] = useState(false);
-  const [estadoModel, setEstadoModel] = useState(false);
+
+
+
   const [data, setData] = useState([]);
   const [pedidosList, setPedidosList] = useState([]);
-  const [loading,setLoading] = useState(false)
+ 
   useEffect(() => {
     (async () => {
       const data = await getProveedores();
@@ -39,23 +39,18 @@ export const FormSalida = () => {
     })();
   }, []);
   useEffect(() => {
-    setSpiner(true);
+  
     (async () => {
       const subProducts = await getSubProducts(idInventario);
 
       setSubProducts(subProducts.data.response);
-      setSpiner(false);
+      
     })();
   }, [idInventario]);
 
-  let dataArray = [];
+  
   let inventoryArray = [];
-  if (idProvider !== "") {
-    const data = proveedores.filter((e) => e._id === idProvider);
-
-    dataArray.push(data[0]);
-  } else {
-  }
+ 
 
   if (idInventario !== "") {
     const data = inventario.filter((e) => e._id === idInventario);
@@ -138,7 +133,7 @@ export const FormSalida = () => {
       try {
         const response = await TodoFunctions.postCompras(pedidosList);
 
-      setLoading(true)
+      
       if(response.status === 200){
         toast.success('Compra realizado con exito', {
           position: "top-right",
@@ -155,7 +150,7 @@ export const FormSalida = () => {
         
       }
       } catch (error) {
-        setLoading(false)
+       
         toast.error('Error al realizar la compra', {
           position: "top-right",
           autoClose: 5000,

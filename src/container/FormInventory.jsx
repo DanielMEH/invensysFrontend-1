@@ -1,36 +1,21 @@
 import React, { useState } from "react";
 import "../index.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faKey,
-  faCircleQuestion,
-  faEye,
-  faEyeSlash,
-  faAngleLeft,
-  faAngleRight,
-} from "@fortawesome/free-solid-svg-icons";
+
 import "../assets/css/fuente.css";
-import { GoogleLogin } from "@react-oauth/google";
-import jwt_decode from "jwt-decode";
+
 import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
-import { Link, useNavigate } from "react-router-dom";
-import { usePostAuth } from "../hooks/context/UserContextData";
+
 import "../assets/css/spiner.css";
-import { Navigate } from "react-router-dom";
-import { Header } from "../components/Header";
+
 import { useInventario } from "../hooks/context/ContextInventario";
 export const FormInventory = () => {
   const {
-    inventario,
-    setInventario,
-    GetInventario,
+    
     PostInventario,
-    DeleteInventario,
-    UpdateInventario,
+   
   } = useInventario();
 
   const [load, loading] = useState(false);

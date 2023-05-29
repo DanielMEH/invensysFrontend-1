@@ -8,8 +8,7 @@ export const HomeDaboard = () => {
   const [products, setProducts] = useState([]);
 
   const [provider, setProvider] = useState([]);
-  const [infoProducts, setInfoProducts] = useState([]);
-  const [bodegas, setBodegas] = useState([]);
+  
   const [users, setUsers] = useState([]);
   useEffect(() => {
     getUsersAdmin().then((res) => {
@@ -20,7 +19,7 @@ export const HomeDaboard = () => {
       setCategory(res.data.dataCategory);
       setProducts(res.data.dataProduct);
       setProvider(res.data.dataProvider);
-      setBodegas(res.data.dataInventary);
+      
     });
   }, []);
   const getproductFechaDescription = products.map((item) => {

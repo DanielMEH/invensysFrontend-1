@@ -1,7 +1,7 @@
 import React from "react";
 import { MenuLateral } from "../components/MenuLateral";
 
-import { FormSalida } from "../components/FormSalida";
+
 import { Link, Outlet } from "react-router-dom";
 export const Ventas = () => {
   return (

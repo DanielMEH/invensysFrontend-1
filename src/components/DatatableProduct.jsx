@@ -7,13 +7,11 @@ import React, {
   import moment from 'moment-with-locales-es6';
   import "ag-grid-community/styles/ag-grid.css";
   import "ag-grid-community/styles/ag-theme-alpine.css";
-  import Skeleton from 'react-loading-skeleton'
   import 'react-loading-skeleton/dist/skeleton.css'
   import { AgGridReact } from "ag-grid-react";
   import "ag-grid-enterprise";
   import plus from "../assets/icons/plus.svg";
   import { AG_GRID_LOCALE_EN } from "../locale/locale";
-  import OpcionTabledCrud from "./OpcionTabledCrud";
   import { checkboxSelection } from "./ChackSelection";
   import { headerCheckboxSelection } from "./ChackSelection";
   import { setPrinterFriendly} from "./ChackSelection";
@@ -35,14 +33,13 @@ import { FormProduct } from "./FormProduct/FormProduct";
     },[])
 
     const {getUsersAdmins,getCountData} = useGetUsers()
-      const [loading, setLoading] = useState(true)
+     
       const [active, setActive] = useState(false)
-      const [prices, setPrices] = useState(false)
     useEffect(() => {
       const initial = async () => {
        await  getUsersAdmins()
        await  getCountData()
-        setLoading(false)
+       
       }
   
       initial()

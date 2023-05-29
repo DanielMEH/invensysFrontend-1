@@ -8,7 +8,6 @@ moment.locale("es");
 export const ChartProductoC2 = () => {
   const [products, setProducts] = useState([]);
   const [load, setLoad] = useState(false);
-  let fecha = moment().format("l");
 
   useEffect(() => {
     (async () => {

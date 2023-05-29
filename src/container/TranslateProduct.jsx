@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { getSubProducts, TodoFunctions } from "../apis/ApiData";
+import { useParams } from "react-router-dom";
+import { getSubProducts } from "../apis/ApiData";
 import { useInventario } from "../hooks/context/ContextInventario";
 import { ToastContainer, toast } from "react-toastify";
 import "../assets/css/fuente.css";
@@ -8,17 +8,17 @@ import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
 export const TranslateProduct = () => {
   const [products, setProducts] = React.useState([]);
   const [idB, setIdB] = useState([]);
-  const { inventario, setInventario, GetInventario } = useInventario();
+  const { inventario} = useInventario();
   const { id } = useParams();
 
-  const { getSubProductsContent, updateSubProductsContent, subProductsData } =
+  const {  updateSubProductsContent, subProductsData } =
     useContextSubProducts();
   console.log(subProductsData);
   useEffect(() => {
     (async () => {
       const data = await getSubProducts(id);
       setProducts(data.data.response);
-      const res = await getSubProductsContent(id);
+      
     })();
   }, [id]);
   const HandleSearch = async (value) => {
@@ -98,7 +98,7 @@ export const TranslateProduct = () => {
 
   useEffect(() => {
     (async () => {
-      let g = await GetInventario();
+    
     })();
   }, []);
 

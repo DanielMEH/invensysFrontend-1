@@ -6,7 +6,7 @@ import {
   faBolt,
   faWandMagicSparkles,
 } from "@fortawesome/free-solid-svg-icons";
-import { Slide } from "../components/Slide";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "animate.css";

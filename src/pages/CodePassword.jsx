@@ -1,15 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { Link } from "react-router-dom";
 import { usePostAuth } from "../hooks/context/UserContextData";
-import * as Yup from "yup";
+
 import { faAngleLeft, faUser } from "@fortawesome/free-solid-svg-icons";
 import "../index.css";
 import { ToastContainer, toast } from "react-toastify";
-import { Navigate } from "react-router-dom";
 function CodePassword() {
    const { verifyCodeUser } = usePostAuth();
-   const [loading, setLoading] = useState(false);
 
   let getEmal = localStorage.getItem("email");
 

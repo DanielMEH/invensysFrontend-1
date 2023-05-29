@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { Outlet, Link, useParams, useNavigate } from "react-router-dom";
+import { Outlet,  useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import { useInventario } from "../hooks/context/ContextInventario";
 import moment from "moment-with-locales-es6";
 import { CategoryInventory } from "./CategoryInventory";
 import { getSubProducts, TodoFunctions, getUsersAdmin } from "../apis/ApiData";
-import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
 import Swal from "sweetalert2";
 import { DataSubProducts } from "../components/DataSubProducts";
 moment.locale("es");
@@ -96,7 +94,7 @@ export const ConfigInventory = () => {
     try {
       setLoading2(true);
       const response = await DeleteInventario(id);
-      console.log("---------------", await response.response);
+    
 
       if (response.status === 200) {
         await toast.success(" se elimino el inventario con exito ", {

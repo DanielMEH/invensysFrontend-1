@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getProducts, UploadSubProducts } from "../apis/ApiData";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form} from "formik";
 import { DatePicker } from "antd";
 import moment from "moment-with-locales-es6";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { getSubProducts } from "../apis/ApiData";
-import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
-import * as Yup from "yup";
+
+
 
 const { RangePicker } = DatePicker;
 moment.locale("es");
@@ -16,11 +16,10 @@ export const ImportProducts = ({ idCategorias }) => {
   const [fecha, setFecha] = useState([]);
   const [loadIn, setLoadIn] = useState(false);
   const [loadSub, setLoadSub] = useState(false);
-  const [acomular, setAcomular] = useState([]);
+
 
   const { id } = useParams();
-  const { getSubProductsContent, setSubProductsData, subProductsData } =
-    useContextSubProducts();
+ 
   useEffect(() => {
     setLoadIn(true);
     (async () => {
@@ -47,14 +46,14 @@ export const ImportProducts = ({ idCategorias }) => {
   };
 
   const GetPdo = async () => {
-    const data = await getSubProducts(id);
+   getSubProducts(id);
 
-    setAcomular(data.data.response.name);
   };
 
   useEffect(() => {
     (async () => {
-      const resf = await getSubProductsContent(id);
+      
+      
 
       setLoadIn(false);
     })();

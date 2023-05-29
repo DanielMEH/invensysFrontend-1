@@ -1,7 +1,7 @@
 import React from "react";
 import { MenuLateral } from "../components/MenuLateral";
 
-import { FormPedido } from "../components/FormPedido";
+
 import { Link,Outlet } from "react-router-dom";
 export const Shope = () => {
   return (

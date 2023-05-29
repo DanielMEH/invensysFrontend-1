@@ -1,11 +1,8 @@
 import React,{useEffect, useState} from 'react'
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { DatePicker } from 'antd';
 import { ToastContainer, toast } from "react-toastify";
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import moment from 'moment-with-locales-es6';
 import {getProductsId,getCategorias,updateProducto} from '../../apis/ApiData'
-const { RangePicker } = DatePicker;
 export const EditarProduct = () => {
 
     const navigate = useNavigate();
@@ -14,7 +11,6 @@ export const EditarProduct = () => {
     const [producto, setProducto] = useState([]);
     const [active, setActive] = useState(false);
 
-    const [fecha , setFecha] = useState([]);
     const [loading, setLoading] = useState(true);
     const [dataGategorias, setDataGategorias] = useState([])
     useEffect(() => {

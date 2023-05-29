@@ -1,5 +1,5 @@
 import React from "react";
-import eye from "../assets/icons/eye.svg";
+
 import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";

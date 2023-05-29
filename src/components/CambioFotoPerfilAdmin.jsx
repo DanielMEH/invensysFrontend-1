@@ -77,7 +77,7 @@ export const CambioFotoPerfilAdmin = () => {
             
             fileReader.addEventListener("load", e=>{
                 const fileUrl= e.target.result;
-                if(document.querySelector("#preview").innerHTML != ""){
+                if(document.querySelector("#preview").innerHTML !== ""){
                     document.querySelector("#preview").innerHTML = "";
                     let image = `
                 <div id="1" class="file-container">

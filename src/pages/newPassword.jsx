@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { usePostAuth } from "../hooks/context/UserContextData";
 import * as Yup from "yup";
 import { faAngleLeft, faUser, faKey } from "@fortawesome/free-solid-svg-icons";

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import { getBusiness, getUsersAdmin } from "../apis/ApiData";
-import Chart from "react-apexcharts";
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";
 moment.locale("es");
 export const ChartBodegaC1 = () => {
   const [ventas, setVentas] = useState([]);
   const [compras, setCompras] = useState([]);
-  const [users, setUsers] = useState([]);
   const [bodega, setBodega] = useState([]);
   const [SubProducts, setSubProducts] = useState([]);
   const [load, setLoad] = useState(false);
@@ -22,8 +20,8 @@ export const ChartBodegaC1 = () => {
       setCompras(bussiness.data.dataPedidos);
       setVentas(bussiness.data.dataCompras);
       console.log("bbb", bussiness.data);
-      const users = await getUsersAdmin();
-      setUsers(users.data.data);
+       await getUsersAdmin();
+     
 
       setLoad(false);
     })();
@@ -35,14 +33,10 @@ export const ChartBodegaC1 = () => {
     (acc, el) => acc + el.priceCompra * el.unidad,
     0
   );
-  let TotalCompras = compras.reduce((acc, el) => acc + el.totalCompra, 0);
+
   let TotalVentas = ventas.reduce((acc, el) => acc + el.total, 0);
   let porcentage = Math.abs((TotalVentas * 100) / TotalVentas);
-  let diferencia = TotalVentas - TotalCompras;
 
-  const activos = users.filter((item) => item.estado === "Activo");
-
-  const inactivos = users.filter((item) => item.estado === "Inactivo");
   return (
     <>
       {load ? (

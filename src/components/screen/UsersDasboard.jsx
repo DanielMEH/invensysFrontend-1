@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
-import { ReactSortable, MultiDrag, Swap } from "react-sortablejs";
+import { ReactSortable } from "react-sortablejs";
 import { Link, Outlet } from "react-router-dom";
 import "animate.css";
 import "../../assets/css/sorteable.css";
@@ -116,13 +116,6 @@ export const UsersDasboard = () => {
       categories: users.map((user) => user.fecha),
     },
   };
-  const money = new Intl.NumberFormat("en-CO", {
-    style: "currency",
-    currency: "COP",
-    minimumFractionDigits: 2,
-  });
-
-  const lista = document.getElementById("lista");
 
   return (
     <>

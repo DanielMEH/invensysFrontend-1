@@ -11,8 +11,6 @@ import * as Yup from "yup";
 
 export const CambioContraseña = ({ isVisible, onClose }) => {
 
-  const [currentPassword, setCurrentPassword] = useState(true);
-  const [newPassword, setNewPassword] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState(true);
 
 

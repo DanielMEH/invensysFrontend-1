@@ -1,5 +1,5 @@
 import React from "react";
-import { ChartBodegaC1 } from "../supabase/ChartBodegaC1";
+
 import { ChartProductoC2 } from "../supabase/ChartProductoC2";
 import { ChartProductC1 } from "../supabase/ChartProductsC1";
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -11,9 +11,6 @@ import "./self.css";
 import { Link } from "react-router-dom";
 export const NotifyHeader = () => {
   const [swiperRef, setSwiperRef] = useState(null);
-
-  let appendNumber = 4;
-  let prependNumber = 1;
 
   return (
     <div className="notf">

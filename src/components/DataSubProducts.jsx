@@ -10,7 +10,7 @@ import { AG_GRID_LOCALE_EN } from "../locale/locale";
 import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
 moment.locale("es");
 export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
@@ -26,7 +26,6 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
   }, []);
   console.log("dataInventorySubProducts", subProductsData);
 
-  const [stateModel, StateModel] = useState(false);
 
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -103,9 +102,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
     },
   ]);
 
-  const handleShowModel = () => {
-    StateModel(!stateModel);
-  };
+  
 
   const onBtnExport = useCallback(() => {
     gridRef.current.api.exportDataAsCsv();
@@ -122,26 +119,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
       setNormal(api);
     }, 2000);
   }, []);
-  const onChart1 = useCallback(() => {
-    var params = {
-      cellRange: {
-        rowStartIndex: 0,
-        rowEndIndex: 4,
-        columns: ["idAccount", "correo", "estado"],
-      },
-      chartType: "groupedColumn",
-      chartThemeName: "ag-vivid",
-      chartThemeOverrides: {
-        common: {
-          title: {
-            enabled: true,
-            text: "Estadisticas de los 5 primeros usuarios",
-          },
-        },
-      },
-    };
-    gridRef.current.api.createRangeChart(params);
-  }, []);
+  
 
   const totalSuma = dataInventorySubProducts.map(
     (item) => item.priceVenta * item.unidad
@@ -161,28 +139,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
     return money.format(total);
   };
 
-  const onChart2 = useCallback(() => {
-    var params = {
-      cellRange: {
-        columns: ["id", "postId", "name"],
-      },
-      chartType: "groupedBar",
-      chartThemeName: "ag-pastel",
-      chartThemeOverrides: {
-        common: {
-          title: {
-            enabled: true,
-            text: "Todos los usuarios",
-          },
-          legend: {
-            enabled: false,
-          },
-        },
-      },
-      unlinkChart: true,
-    };
-    gridRef.current.api.createRangeChart(params);
-  }, []);
+  
 
   const onFilterTextBoxChanged = useCallback(() => {
     gridRef.current.api.setQuickFilter(

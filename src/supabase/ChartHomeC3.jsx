@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import { getBusiness,getUsersAdmin} from "../apis/ApiData";
-import Chart from "react-apexcharts";
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";
 moment.locale("es");
@@ -9,10 +8,7 @@ export const ChartHomeC3 = () => {
   const [ventas, setVentas] = useState([]);
   const [compras, setCompras] = useState([]);
   const [users,setUsers] = useState([])
-  const [ventasF, setVentasF] = useState([]);
-  const [totalCompras, setTotalCompras] = useState([]);
   const [load,setLoad] = useState(false)
-  let fecha = moment().format("l");
 
   useEffect(() => {
     (async () => {

@@ -5,7 +5,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
-import plus from "../assets/icons/plus.svg";
+
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
 
 import { checkboxSelection } from "./ChackSelection";
@@ -13,22 +13,21 @@ import { headerCheckboxSelection } from "./ChackSelection";
 import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
-import { useGetUsers } from "../hooks/context/GetUsersContext";
+
 import { TodoFunctions } from "../apis/ApiData";
 import { Link, Outlet } from "react-router-dom";
 import OptionVentas from "./OptionVentas";
 moment.locale("es");
 
 export const DataTablePedido = () => {
-  const { getUsersAdmins, getCountData } = useGetUsers();
-  const [loading, setLoading] = useState(true);
+
   const [data, setData] = useState([])
 
   useEffect(() => {
     const initial = async () => {
         const response = await TodoFunctions.getPedidos()
         setData(response.data.pedidosproveedor);
-      setLoading(false);
+     
     };
 
     initial();
@@ -37,8 +36,7 @@ export const DataTablePedido = () => {
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
 
-  const [stateModel, StateModel] = useState(false);
-  const [ExcelModel, setExcelModel] = useState(false);
+
 
   const [columnDefs, setColumnDefs] = useState([
     {

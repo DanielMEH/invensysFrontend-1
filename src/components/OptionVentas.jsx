@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
-import eye from "../assets/icons/eye.svg";
-import Swal from "sweetalert2";
+import React, {  useState } from "react";
+
 import "../assets/css/styleSlider.css";
 import { TodoFunctions } from "../apis/ApiData";
-import { Link } from "react-router-dom";
+
 
 import {
-  Page,
-  Text,
-  View,
-  Document,
-  StyleSheet,
+  
   PDFDownloadLink,
-  BlobProvider,
+ 
 } from "@react-pdf/renderer";
 import { ComprasPDF } from "../pdf/ComprasPDF";
 

@@ -7,14 +7,14 @@ import x from "../assets/icons/x.svg"
 import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
-import { Link,useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../assets/css/styleSlider.css"
 import {useContextCategory} from "../hooks/context/ContextCategory"
 
 
 export const  RegisterCategorys = ({estado=false }) => {
   const {postDataCategorias} = useContextCategory()
-  const navigate = useNavigate(); 
+ 
  
   const [typeInput, setTypeInput] = useState(true);
   const [estados, setEstado] = useState(false);

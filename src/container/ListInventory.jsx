@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect,  useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -14,7 +14,7 @@ import { getUsersAdmin } from "../apis/ApiData";
 export const ListInventory = () => {
   const [swiperRef, setSwiperRef] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState([]);
+  
   const {
     inventario,
 
@@ -25,9 +25,8 @@ export const ListInventory = () => {
     (async () => {
       setLoading(true);
       await GetInventario();
-      const response = await getUsersAdmin();
+     await getUsersAdmin();
 
-      setUser(response.data.data);
       setLoading(false);
     })();
   }, []);

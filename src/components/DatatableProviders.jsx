@@ -2,7 +2,6 @@ import React, { useRef, useState, useCallback, useEffect } from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
@@ -29,8 +28,6 @@ export const DatatableProviders = () => {
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
 
-  const [stateModel, StateModel] = useState(false);
-  const [ExcelModel, setExcelModel] = useState(false);
 
   const [columnDefs, setColumnDefs] = useState([
     {

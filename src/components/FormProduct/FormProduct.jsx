@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { DatePicker } from "antd";
 import { ToastContainer, toast } from "react-toastify";
-
-import moment from "moment-with-locales-es6";
 import { useContextCategory } from "../../hooks/context/ContextCategory";
 import { useContextProduct } from "../../hooks/context/ContextProduxt";
-const { RangePicker } = DatePicker;
 export const FormProduct = () => {
   const { postProducts } = useContextProduct();
   const { dataGategorias, getDataCategorias } = useContextCategory();
@@ -19,7 +15,6 @@ export const FormProduct = () => {
   const [category, setCategoria] = useState([]);
   const [active, setActive] = useState(false);
   const [active2, setActive2] = useState(false);
-  const [fecha, setFecha] = useState([]);
   const [loading, setLoading] = useState(true);
   //   const disabledDate = (current) => {
   //     moment.locale('es');

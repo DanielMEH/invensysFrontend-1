@@ -7,7 +7,6 @@ import React, {
   import moment from 'moment-with-locales-es6';
   import "ag-grid-community/styles/ag-grid.css";
   import "ag-grid-community/styles/ag-theme-alpine.css";
-  import Skeleton from 'react-loading-skeleton'
   import 'react-loading-skeleton/dist/skeleton.css'
   import { AgGridReact } from "ag-grid-react";
   import "ag-grid-enterprise";
@@ -20,7 +19,6 @@ import React, {
   import { setPrinterFriendly} from "./ChackSelection";
   import {ChackSelection} from "./ChackSelection";
   import { setNormal} from "./ChackSelection";
-  import UploadExcel from "./UploadExcel";
   
   import { ContextCategory} from '../hooks/context/ContextCategory'
 
@@ -31,15 +29,12 @@ import React, {
   export const DatatableCategorys = () => {
     const {dataGategorias,
       getDataCategorias} = useContextCategory()
-    
-  
-      const [loading, setLoading] = useState(true)
   
     useEffect(() => {
       const initial = async () => {
        
        await  getDataCategorias();
-        setLoading(false)
+        
       }
   
       initial()
@@ -52,7 +47,7 @@ import React, {
     const gridRef = useRef();
   
     const [stateModel, StateModel] = useState(false);
-    const [ExcelModel, setExcelModel] = useState(false);
+ 
   
   
     const [columnDefs, setColumnDefs] = useState([
@@ -124,50 +119,8 @@ import React, {
         setNormal(api);
       }, 2000);
     }, []);
-    const onChart1 = useCallback(() => {
-      var params = {
-        cellRange: {
-          rowStartIndex: 0,
-          rowEndIndex: 4,
-          columns: ['idAccount', 'correo','estado',],
-        },
-        chartType: 'groupedColumn',
-        chartThemeName: 'ag-vivid',
-        chartThemeOverrides: {
-          common: {
-            title: {
-              enabled: true,
-              text: 'Estadisticas de los 5 primeros usuarios',
-            },
-          },
-        },
-      };
-      gridRef.current.api.createRangeChart(params);
-    }, []);
-  
-    const onChart2 = useCallback(() => {
-      var params = {
-        cellRange: {
-          columns: ['id', 'postId','name',],
-        },
-        chartType: 'groupedBar',
-        chartThemeName: 'ag-pastel',
-        chartThemeOverrides: {
-          common: {
-            title: {
-              enabled: true,
-              text: 'Todos los usuarios',
-            },
-            legend: {
-              enabled: false,
-            },
-          },
-        },
-        unlinkChart: true,
-      };
-      gridRef.current.api.createRangeChart(params);
-    }, []);
-  
+        
+   
     
     
   
@@ -180,7 +133,7 @@ import React, {
   
     return (
       <>
-      <UploadExcel estado={ExcelModel}/>
+     
       < ContextCategory>
         <RegisterCategorys estado={stateModel} />
       </ContextCategory>

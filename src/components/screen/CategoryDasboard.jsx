@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
-import { ReactSortable, MultiDrag, Swap } from "react-sortablejs";
-import sinDate from "../../assets/img/sinDate.jpg";
+import { ReactSortable } from "react-sortablejs";
+
 import "animate.css";
 import "../../assets/css/sorteable.css";
 import moment from "moment-with-locales-es6";
@@ -13,7 +13,6 @@ export const CategoryDasboard = () => {
   const [products, setProducts] = useState([]);
   const [spiner, setSpiner] = useState(true);
   const [provider, setProvider] = useState([]);
-  const [infoProducts, setInfoProducts] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -33,11 +32,15 @@ export const CategoryDasboard = () => {
   // suma de  los precios de compra
 
 
-  let idCategory;
+  let idCategory=[];
   if (category.length > 0) {
     idCategory = products.filter((item) => item.category === category[0]._id);
   } else {
-    idCategory = 0;
+    
+    idCategory = [];
+    
+
+    
   }
   // mostrar productos por su diferente id de categoria
 
@@ -130,13 +133,7 @@ export const CategoryDasboard = () => {
       categories: users.map((user) => user.fecha),
     },
   };
-  const money = new Intl.NumberFormat("en-CO", {
-    style: "currency",
-    currency: "COP",
-    minimumFractionDigits: 2,
-  });
 
-  const lista = document.getElementById("lista");
 
   return (
     <>

@@ -5,7 +5,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
-import plus from "../assets/icons/plus.svg";
+
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
 
 import { checkboxSelection } from "./ChackSelection";
@@ -40,9 +40,6 @@ export const DatatableVentas = () => {
 
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
-
-  const [stateModel, StateModel] = useState(false);
-  const [ExcelModel, setExcelModel] = useState(false);
 
   const [columnDefs, setColumnDefs] = useState([
     {

@@ -8,17 +8,16 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-enterprise";
-import plus from "../assets/icons/plus.svg";
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
 
 import { checkboxSelection } from "../components/ChackSelection";
 import { headerCheckboxSelection } from "../components/ChackSelection";
-import { setPrinterFriendly } from "../components/ChackSelection";
+
 import { ChackSelection } from "../components/ChackSelection";
-import { setNormal } from "../components/ChackSelection";
+
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { TodoFunctions } from "../apis/ApiData";
-import { Link, Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 
 
@@ -26,8 +25,7 @@ moment.locale("es");
 
 export const ChartHomeC4 = () => {
   const { getUsersAdmins, getCountData } = useGetUsers();
-  const [loading, setLoading] = useState(true);
-
+  
   const [dataVentas, setDataVentas] = useState([]);
 
   useEffect(() => {
@@ -35,38 +33,35 @@ export const ChartHomeC4 = () => {
       await getUsersAdmins();
       const response = await TodoFunctions.getComprasFv();
       setDataVentas(response.data.responseFv);
-      console.log("nnnn", dataVentas, "ñññ", response.data.responseFv);
+   
       await getCountData();
-      setLoading(false);
+     
     };
 
     initial();
   }, []);
 
       const [ventas, setVentas] = useState([]);
-    const [compras, setCompras] = useState([]);
-    const [users, setUsers] = useState([])
-    const [ventasF, setVentasF] = useState([]);
-    const [totalCompras, setTotalCompras] = useState([]);
-    let fecha = moment().format("l");
+    
+
+   
+
 
     useEffect(() => {
         (async () => {
             const bussiness = await getBusiness();
-            setCompras(bussiness.data.dataPedidos);
+            
             setVentas(bussiness.data.dataCompras);
-            const users = await getUsersAdmin();
-            setUsers(users.data.data)
+            await getUsersAdmin();
+      
 
-            console.log("sss", users);
+      
         })();
     }, []);
 
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
 
-  const [stateModel, StateModel] = useState(false);
-  const [ExcelModel, setExcelModel] = useState(false);
 
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -125,31 +120,13 @@ export const ChartHomeC4 = () => {
 
   ]);
 
-  const onBtnExport = useCallback(() => {
-    gridRef.current.api.exportDataAsCsv();
-  }, []);
 
-  const onBtExportExel = useCallback(() => {
-    gridRef.current.api.exportDataAsExcel();
-  }, []);
-  const onBtPrint = useCallback(() => {
-    const api = gridRef.current.api;
-    setPrinterFriendly(api);
-    setTimeout(function () {
-      window.print();
-      setNormal(api);
-    }, 2000);
-  }, []);
   const onFilterTextBoxChanged = useCallback(() => {
     gridRef.current.api.setQuickFilter(
       document.getElementById("filter-text-box").value
     );
   }, []);
-  const money = new Intl.NumberFormat("en-CO", {
-    style: "currency",
-    currency: "COP",
-    minimumFractionDigits: 2,
-  });
+
   return (
     <>
       {dataVentas.length > 0 ? (

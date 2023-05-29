@@ -11,7 +11,7 @@ import {
 import "../index.css";
 import { ToastContainer, toast } from "react-toastify";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import CodePassword from "./CodePassword";
+
 function RecoveryPass() {
   const { recoveryPasssword } = usePostAuth();
   const [loading, setLoading] = useState(false);

@@ -1,9 +1,8 @@
 import React from "react";
 import { MenuLateral } from "../components/MenuLateral";
 import { DatatableProviders } from "../components/DatatableProviders";
-import { ContextProduxt } from "../hooks/context/ContextProduxt";
+
 import { ContextCategory } from "../hooks/context/ContextCategory";
-import { DatatableProduct } from "../components/DatatableProduct";
 import { ContextProveedores } from "../hooks/context/ContextProveedores";
 export const Provider = () => {
   return (

@@ -2,7 +2,7 @@
 import React, { createContext, useState, useContext } from "react";
 import {
   PostDataUser, postRecoveryEmail, recoverycode, newPassword, PostDataAdmin,
-AuthGoogle,PostDataUserRegister,UploadcsvUsuario } from "../../apis/ApiData"
+AuthGoogle} from "../../apis/ApiData"
 export const contextUserAdmin = createContext()
 
 export const usePostAuth = () => {

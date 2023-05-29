@@ -1,6 +1,6 @@
 import { AG_GRID_LOCALE_EN } from "../locale/locale";
-import React, {
-    useMemo,useCallback, useRef} from 'react'
+import  {
+    useMemo} from 'react'
 import "../assets/css/styleSlider.css"
 export const ChackSelection = () => {
     

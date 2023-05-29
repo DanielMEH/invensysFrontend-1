@@ -20,7 +20,7 @@ import { useGetUsers } from "../hooks/context/GetUsersContext";
 import axios from "axios";
 import { getNotification, TodoFunctions } from "../apis/ApiData";
 export const MenuLateral = () => {
-  const { getAdminDataAll, adminGetData, updateDataAdmin } = useGetUsers();
+  const { getAdminDataAll, adminGetData} = useGetUsers();
   const [data, setData] = useState([]);
   useEffect(() => {
     const initial = async () => {
@@ -99,8 +99,8 @@ export const MenuLateral = () => {
         getModulesUser();
       }, []);
     };
-    const modules = localStorage.getItem("module");
-    const obj = modules;
+    
+    
     let toke = token ? token : null;
     usersData.tokeVerify = toke;
     usersData.permisions = ["bodega"];
@@ -138,7 +138,7 @@ export const MenuLateral = () => {
   const [users, setUsers] = useState(usersData);
 
   const handleMouse = () => {};
-  const handleMouseOut = (e) => {};
+
   console.log(notify);
   const notifyFilterEstado = notify.filter((item) => item.estado === 1);
   console.log(notifyFilterEstado);
@@ -165,7 +165,7 @@ fixed top-0
             onMouseMove={handleMouse}
           >
             <div className="section-1">
-              <h2 className="text-center sticky hidden lg:block  top-0 bg-white z-20 block text-xl font-bold py-2 border-b text-neutral-800">
+              <h2 className="text-center sticky  lg:block  top-0 bg-white z-20 block text-xl font-bold py-2 border-b text-neutral-800">
                 {adminGetData.length > 0
                   ? type === "user"
                     ? "Usuario"

@@ -8,7 +8,6 @@ export const ProductoDasboard = () => {
   const [products, setProducts] = useState([]);
   const [spiner, setSpiner] = useState(true);
   const [provider, setProvider] = useState([]);
-  const [infoProducts, setInfoProducts] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -33,11 +32,12 @@ export const ProductoDasboard = () => {
   const sumPrice = products.reduce((acc, item) => {
     return acc + item.priceVenta;
   }, 0);
-  let idCategory;
+
+  let idCategory = [];
   if (category.length > 0) {
     idCategory = products.filter((item) => item.category === category[0]._id);
   } else {
-    idCategory = 0;
+    idCategory = [];
   }
   // mostrar productos por su diferente id de categoria
 
@@ -136,7 +136,7 @@ export const ProductoDasboard = () => {
     minimumFractionDigits: 2,
   });
 
-  const lista = document.getElementById("lista");
+ 
 
   return (
     <>

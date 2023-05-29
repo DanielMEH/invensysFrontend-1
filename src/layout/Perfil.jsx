@@ -6,7 +6,7 @@ import { CambioContraseña } from "../components/CambioContraseña";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 
 export const Perfil = () => {
@@ -14,7 +14,7 @@ export const Perfil = () => {
   const [btnSpand, setbtnSpand] = useState(false);
   const [modelImg, setModelImg] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+
   const [load, setLoad] = useState(true);
   const navigate = useNavigate();
 
@@ -22,8 +22,8 @@ export const Perfil = () => {
 
   useEffect(() => {
     const initial = async () => {
-      const initials = await getAdminDataAll();
-      setData(initials);
+       await getAdminDataAll();
+    
       setLoading(false);
     };
     initial();
@@ -56,7 +56,7 @@ export const Perfil = () => {
       document: e.target.document.value,
       id: localStorage.getItem("id_admin"),
     };
-    const response = await updateDataAdmin(data);
+     await updateDataAdmin(data);
     setLoad(true);
 
     navigate("/perfil");

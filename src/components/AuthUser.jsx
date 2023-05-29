@@ -9,7 +9,7 @@ import {
   faEye,
   faEyeSlash,
   faAngleLeft,
-  faAngleRight,
+  
 } from "@fortawesome/free-solid-svg-icons";
 import "../assets/css/fuente.css";
 import { GoogleLogin } from "@react-oauth/google";
@@ -17,13 +17,13 @@ import jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import * as Yup from "yup";
 import "animate.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { usePostAuth } from "../hooks/context/UserContextData";
 import "../assets/css/spiner.css";
 import { Navigate } from "react-router-dom";
 import { Header } from "../components/Header";
 export const AuthUser = () => {
-  const navegate = useNavigate();
+ 
   const token = localStorage.getItem("secure_token");
   const [typeInput, setTypeInput] = useState(true);
   const [spiner, setSpiner] = useState(true);

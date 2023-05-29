@@ -19,7 +19,7 @@ import { Link,useNavigate} from "react-router-dom";
 
 export const Signup = () => {
   const [typeInput, setTypeInput] = useState(true);
-  const [spiner, setSpiner] = useState(true);
+ 
   const { getPostRegister } = usePostAuth();
 
 
@@ -68,7 +68,7 @@ export const Signup = () => {
                 <div className="p ml-1">
                   <GoogleLogin
                     onSuccess={(credentialResponse) => {
-                      let decode = jwt_decode(credentialResponse.credential);
+                       jwt_decode(credentialResponse.credential);
                     }}
                     onError={() => {}}
                     useOneTap

@@ -6,6 +6,7 @@ import { TodoFunctions } from "../apis/ApiData";
 import "../assets/css/fuente.css";
 export const Notification = () => {
   const [todo, setTodo] = useState(1);
+  setTodo(1)
 
   useEffect(() => {
     (async () => {

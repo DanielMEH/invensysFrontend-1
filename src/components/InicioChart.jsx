@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import { Link, Outlet, useNavigate, Navigate } from "react-router-dom";
+import { Link, Outlet, Navigate } from "react-router-dom";
 import { useContextModules } from "../hooks/context/ContextModules";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { getBusiness } from "../apis/ApiData";
@@ -8,7 +8,6 @@ export const InicioChart = () => {
   const { getUsersAdmins, getUsers } = useGetUsers();
   const { getModulesTodo, dataproductM, dataCategory, dataProviderM } =
     useContextModules();
-  const [state1, setState1] = useState(false);
   let countP = dataproductM.length;
   const [bodegas, setBodegas] = useState([]);
   useEffect(() => {
@@ -17,7 +16,7 @@ export const InicioChart = () => {
       setBodegas(res.data.dataInventary);
       await getModulesTodo();
       await getUsersAdmins();
-      setState1(true);
+   
     })();
   }, []);
 
@@ -131,7 +130,7 @@ export const InicioChart = () => {
       let counter = setInterval(function () {
         startValue += 1;
         valueDisplay.textContent = startValue;
-        if (startValue == endValue) {
+        if (startValue === endValue) {
           clearInterval(counter);
         }
       }, duration);
@@ -152,7 +151,7 @@ export const InicioChart = () => {
         valueDisplay.textContent = startValue
           .toString()
           .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        if (startValue == endValue) {
+        if (startValue === endValue) {
           clearInterval(counter);
         }
       }, duration);

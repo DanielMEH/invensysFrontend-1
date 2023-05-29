@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import {
   getProveedores,
   getInventario,
@@ -8,7 +8,7 @@ import {
 } from "../apis/ApiData";
 import * as Yup from "yup";
 import "animate.css";
-import { Link, useNavigate, Outlet } from "react-router-dom";
+import {  useNavigate} from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import moment from "moment-with-locales-es6";
 moment.locale("es");
@@ -24,13 +24,13 @@ export const FormPedido = () => {
   const [subProducts, setSubProducts] = useState([]);
   const [products, setProducts] = React.useState([]);
   // ?? state
-  const [getProviderFilter, setGetProviderFilter] = useState([]);
-  const [spiner, setSpiner] = useState(false);
+  
+
   const [estadoModel, setEstadoModel] = useState(false);
   const [data, setData] = useState([]);
   const [pedidosList, setPedidosList] = useState([]);
   const [loading,setLoading] = useState(false)
-  const [spinerFp, setSpinerFp ] = useState(false)
+
   useEffect(() => {
     (async () => {
       const data = await getProveedores();
@@ -41,12 +41,12 @@ export const FormPedido = () => {
   }, []);
   console.log("listPedidos",pedidosList);
   useEffect(() => {
-    setSpiner(true);
+ 
     (async () => {
       const subProducts = await getSubProducts(idInventario);
 
       setSubProducts(subProducts.data.response);
-      setSpiner(false);
+     
     })();
   }, [idInventario]);
 

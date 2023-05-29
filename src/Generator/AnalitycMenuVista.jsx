@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { getBusiness } from "../apis/ApiData";
 import "./style.css";

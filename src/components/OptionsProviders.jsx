@@ -1,12 +1,12 @@
 import React from "react";
-import eye from "../assets/icons/eye.svg";
+
 import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
-import { useContextCategory } from "../hooks/context/ContextCategory";
+
 import { useContextProviders } from "../hooks/context/ContextProveedores";
-import { useNavigate } from "react-router-dom";
+
 function OptionsProviders(e) {
-  const { deleteCategorys, updateCategorys } = useContextCategory();
+
   const { deleteProviders } = useContextProviders();
   const deleteId = async () => {
    
@@ -121,12 +121,7 @@ function OptionsProviders(e) {
     }).then((result) => {
       
       if (result.isConfirmed) {
-        let data = {
-          name_category: result.value.name_category,
-          description: result.value.description,
-        };
-      
-        let response = updateCategorys(e.data._id, data);
+
      
       }
     });
