@@ -63,6 +63,8 @@ import { ChartUsuarios } from "../Generator/ChartUsuarios";
 import { ChartProductos } from "../Generator/ChartProductos";
 import { ProductAgotados } from "../components/NotificationsHeader/ProductAgotados";
 import { ComandsSistemA } from "../Generator/ComandsSistemA";
+import { InventoryGeneral } from "../layout/InventoryGeneral";
+import { Licence } from "../security/Licence";
 export const Router = () => {
   const [usersP, setUsersP] = useState([]);
   const token = localStorage.getItem("secure_token");
@@ -117,6 +119,8 @@ export const Router = () => {
       "venta",
       "trae",
       "config",
+      "inventoryGeneral",
+      "licenceSoftware"
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -416,6 +420,28 @@ export const Router = () => {
                   redirectTo="/config"
                 >
                   <ConfigAdmin />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/inventoryGeneral"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("inventoryGeneral")}
+                  redirectTo="/inventoryGeneral"
+                >
+                  <InventoryGeneral/>
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/LicenceSoftware/state"
+              element={
+                <ProtectedRouter
+                  isAllowed={!!users && users.permisions.includes("licenceSoftware")}
+                  redirectTo="/LicenceSoftware/state"
+                >
+                  <Licence/>
                 </ProtectedRouter>
               }
             />

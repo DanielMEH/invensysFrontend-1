@@ -18,6 +18,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import axios from "axios";
 import { getNotification, TodoFunctions } from "../apis/ApiData";
+
 import { ComandoSystem } from "../cmd/ComandoSystem";
 export const MenuLateral = () => {
   const { getAdminDataAll, adminGetData} = useGetUsers();
@@ -88,6 +89,7 @@ export const MenuLateral = () => {
   if (type === "user") {
     const Webk = () => {
       useEffect(() => {
+       try {
         async function getModulesUser() {
           const response = await axios.get(
             `http://localhost:5454/getMod/${token1}`
@@ -99,6 +101,9 @@ export const MenuLateral = () => {
           });
         }
         getModulesUser();
+       } catch (error) {
+        alert("no tienes conexion")
+       }
       }, []);
     };
     
@@ -133,6 +138,7 @@ export const MenuLateral = () => {
       "venta",
       "inventoryGeneral",
       "trae",
+      "licenceSoftware"
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -145,6 +151,7 @@ export const MenuLateral = () => {
   const notifyFilterEstado = notify.filter((item) => item.estado === 1);
   console.log(notifyFilterEstado);
   document.body.style.overflowX = "hidden";
+
   return (
     <>
       <ComandoSystem />
@@ -633,10 +640,10 @@ fixed top-0
                       </NavLink>
                     </li>
                   ) : null}
-                  {users.permisions.includes("analityc") ? (
+                  {users.permisions.includes("licenceSoftware") ? (
                     <li>
                       <NavLink
-                        to={"/license"}
+                        to={"/LicenceSoftware/state"}
                         className={({ isActive }) =>
                           isActive
                             ? `
