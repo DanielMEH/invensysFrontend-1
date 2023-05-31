@@ -121,6 +121,12 @@ import React, {
         chartDataType: 'id'
       },
       {
+        headerName: "No.",
+        field: "no",
+        filter: "agTextColumnFilter",
+        chartDataType: 'id'
+      },
+      {
         headerName: "Precio venta",
         field: "priceVenta",
         chartDataType: 'body',
@@ -408,7 +414,7 @@ import React, {
                  columnDefs={columnDefs}
                  rowData={
      
-                   subViewProducts.map((item) => {
+                   subViewProducts.map((item,i) => {
                      let ganancias = item.priceVenta - item.priceCompra;
                      let total = item.priceVenta * item.unidad;
                      const fechaActual = new Date();
@@ -428,6 +434,7 @@ import React, {
      
                        _id:item._id,
                        name:item.name,
+                       no:("No. " + i+1),
                        change:[total],
                        priceCompra: ("$ " + item.priceCompra).replace(
                          /(\d)(?=(\d\d\d)+(?!\d))/g,
