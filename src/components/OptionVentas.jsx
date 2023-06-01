@@ -41,7 +41,7 @@ function OptionVentas(e) {
       </button>
       <button>
         <PDFDownloadLink
-          document={<ComprasPDF data={data} />}
+          document={<ComprasPDF  />}
           fileName="venta.pdf"
         >
           {({ blob, url, loading, error }) =>

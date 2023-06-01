@@ -334,10 +334,7 @@ import React, {
                    </svg>
                    <span className="whitespace-nowrap">Imprimir</span>
                  </button>
-                 <button onClick={handleShowModel} className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border whitespace-nowrap">
-                   <img src={plus} alt="" />
-                   Crear Categoria
-                 </button>
+                 
                  </section>
                  
                </div>

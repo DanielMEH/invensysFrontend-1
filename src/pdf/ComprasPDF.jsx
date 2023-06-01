@@ -1,5 +1,8 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import {TodoFunctions} from "../apis/ApiData"
+
+
 const styles = StyleSheet.create({
   page: {
     flexDirection: "row",
@@ -45,8 +48,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ComprasPDF = ({ data }) => {
-  console.log("rrrrrrrrr", data);
+export const ComprasPDF = () => {
+ 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
