@@ -30,7 +30,7 @@ export const DatatableVentas = () => {
       await getUsersAdmins();
       const response = await TodoFunctions.getComprasFv();
       setDataVentas(response.data.responseFv);
-      console.log("nnnn", dataVentas, "ñññ", response.data.responseFv);
+
       await getCountData();
       setLoading(false);
     };
@@ -66,15 +66,15 @@ export const DatatableVentas = () => {
     },
     {
       headerName: "Mejores ventas",
-      field: 'change',
-      cellRenderer: 'agSparklineCellRenderer',
+      field: "change",
+      cellRenderer: "agSparklineCellRenderer",
       cellRendererParams: {
         sparklineOptions: {
-          type: 'bar',
-          fill: '#019afa',
-          stroke: '#91cc75',
+          type: "bar",
+          fill: "#019afa",
+          stroke: "#91cc75",
           highlightStyle: {
-            fill: '#5994f5',
+            fill: "#5994f5",
           },
           valueAxisDomain: [0, 1],
           paddingOuter: 0,
@@ -140,13 +140,25 @@ export const DatatableVentas = () => {
           <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
             <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
               <section className="items-center flex">
-              <div>
-                <div className="">
-                 <Link to={"/venta"} className="flex items-center bg-gray-100 p-1">
-                 <svg xmlns="http://www.w3.org/2000/svg"
-                   width="24" height="24" viewBox="0 0 40 40"><path fill="currentColor" d="M24.96 32.601L12.371 19.997l.088-.088l12.507-12.52a.661.661 0 0 0-.01-.921a.645.645 0 0 0-.458-.182a.653.653 0 0 0-.465.186l-13.004 13.02a.63.63 0 0 0-.176.49a.656.656 0 0 0 .18.523l13.014 13.031c.244.23.659.233.921-.02a.658.658 0 0 0-.008-.915z"/></svg>
-                  <span className="p-1">Volver</span>
-                 </Link>
+                <div>
+                  <div className="">
+                    <Link
+                      to={"/venta"}
+                      className="flex items-center bg-gray-100 p-1"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 40 40"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M24.96 32.601L12.371 19.997l.088-.088l12.507-12.52a.661.661 0 0 0-.01-.921a.645.645 0 0 0-.458-.182a.653.653 0 0 0-.465.186l-13.004 13.02a.63.63 0 0 0-.176.49a.656.656 0 0 0 .18.523l13.014 13.031c.244.23.659.233.921-.02a.658.658 0 0 0-.008-.915z"
+                        />
+                      </svg>
+                      <span className="p-1">Volver</span>
+                    </Link>
                   </div>
                 </div>
                 <div className="users flex items-center mx-2">
@@ -171,7 +183,6 @@ export const DatatableVentas = () => {
                     {dataVentas.length}
                   </span>
                 </div>
-                
               </section>
 
               <section className="flex overflow-x-auto">
@@ -311,7 +322,7 @@ export const DatatableVentas = () => {
                 return {
                   _id: item._id,
                   numFactura: `FV ${i + 1}`,
-                  change:[item.total],
+                  change: [item.total],
                   cantidadProducts: item.cantidadProducts,
                   total: ("$ " + item.total).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g,
@@ -328,7 +339,6 @@ export const DatatableVentas = () => {
               pivotPanelShow="always"
               rowDragManaged={true}
               enableRangeSelection={true}
-              sideBar={true}
               icons={true}
               pagination={true}
               paginationPageSize={10}

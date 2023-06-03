@@ -98,6 +98,8 @@ export const ChartBodegaC2 = () => {
         },
       },
     },
+   
+
     title: {
       text: "Reportes de pedidos",
       floating: true,
@@ -107,6 +109,8 @@ export const ChartBodegaC2 = () => {
         color: "#444",
       },
     },
+   izontalAlign: "left",
+
   };
 
   return (

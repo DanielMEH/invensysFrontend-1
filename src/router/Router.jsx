@@ -120,7 +120,7 @@ export const Router = () => {
       "trae",
       "config",
       "inventoryGeneral",
-      "licenceSoftware"
+      "licenceSoftware",
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -427,10 +427,12 @@ export const Router = () => {
               path="/inventoryGeneral"
               element={
                 <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("inventoryGeneral")}
+                  isAllowed={
+                    !!users && users.permisions.includes("inventoryGeneral")
+                  }
                   redirectTo="/inventoryGeneral"
                 >
-                  <InventoryGeneral/>
+                  <InventoryGeneral />
                 </ProtectedRouter>
               }
             />
@@ -438,10 +440,12 @@ export const Router = () => {
               path="/LicenceSoftware/state"
               element={
                 <ProtectedRouter
-                  isAllowed={!!users && users.permisions.includes("licenceSoftware")}
+                  isAllowed={
+                    !!users && users.permisions.includes("licenceSoftware")
+                  }
                   redirectTo="/LicenceSoftware/state"
                 >
-                  <Licence/>
+                  <Licence />
                 </ProtectedRouter>
               }
             />
