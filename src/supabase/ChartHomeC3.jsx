@@ -35,7 +35,7 @@ export const ChartHomeC3 = () => {
     const inactivos = users.filter(item => item.estado === "Inactivo")
   return (
     <>
-      {load ? (
+      {load  ? (
         <div className="skeletton flex gap-4 m-5">
           <Skeleton
             height={140}
@@ -60,7 +60,7 @@ export const ChartHomeC3 = () => {
         </div>
       ) : (
         <div className=" flex gap-2 ">
-          <section className="bg-white shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white   shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Ventas</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
@@ -105,7 +105,7 @@ export const ChartHomeC3 = () => {
               <span className="mx-2">{ventas.length}</span>Productos vendidos
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Pedidos</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
@@ -150,7 +150,7 @@ export const ChartHomeC3 = () => {
               <span className="mx-2">{compras.length}</span>Productos vendidos
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Diferencia</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
@@ -210,7 +210,7 @@ export const ChartHomeC3 = () => {
               Productos en movimiento
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Usuarios</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">

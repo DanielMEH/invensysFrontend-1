@@ -21,7 +21,7 @@ import { getNotification, TodoFunctions } from "../apis/ApiData";
 
 import { ComandoSystem } from "../cmd/ComandoSystem";
 export const MenuLateral = () => {
-  const { getAdminDataAll, adminGetData} = useGetUsers();
+  const { getAdminDataAll, adminGetData } = useGetUsers();
   const [data, setData] = useState([]);
   useEffect(() => {
     const initial = async () => {
@@ -52,9 +52,7 @@ export const MenuLateral = () => {
     tokeVerify: "",
     permisions: [],
   };
-
-
-
+  const [expand, setExpand] = useState(false);
   useEffect(() => {
     (async () => {
       try {
@@ -89,25 +87,24 @@ export const MenuLateral = () => {
   if (type === "user") {
     const Webk = () => {
       useEffect(() => {
-       try {
-        async function getModulesUser() {
-          const response = await axios.get(
-            `http://localhost:5454/getMod/${token1}`
-          );
+        try {
+          async function getModulesUser() {
+            const response = await axios.get(
+              `http://localhost:5454/getMod/${token1}`
+            );
 
-          const modules = response.data.data;
-          modules.map((item) => {
-            return setUsersP([...usersP, usersP.push(item.titulo)]);
-          });
+            const modules = response.data.data;
+            modules.map((item) => {
+              return setUsersP([...usersP, usersP.push(item.titulo)]);
+            });
+          }
+          getModulesUser();
+        } catch (error) {
+          alert("no tienes conexion");
         }
-        getModulesUser();
-       } catch (error) {
-        alert("no tienes conexion")
-       }
       }, []);
     };
-    
-    
+
     let toke = token ? token : null;
     usersData.tokeVerify = toke;
     usersData.permisions = ["bodega"];
@@ -138,7 +135,7 @@ export const MenuLateral = () => {
       "venta",
       "inventoryGeneral",
       "trae",
-      "licenceSoftware"
+      "licenceSoftware",
     ];
     usersData.tokeVerify = tokeVerify;
   }
@@ -147,7 +144,6 @@ export const MenuLateral = () => {
 
   const handleMouse = () => {};
 
-  console.log(notify);
   const notifyFilterEstado = notify.filter((item) => item.estado === 1);
   console.log(notifyFilterEstado);
   document.body.style.overflowX = "hidden";
@@ -158,24 +154,41 @@ export const MenuLateral = () => {
       <>
         <ToastContainer />
       </>
-      <div className="mr-[4rem]  lg:mr-[13rem]">
+      <div
+        className={
+          expand
+            ? "mr-[3rem]  lg:mr-[20rem] effect "
+            : " effect mr-[3rem]  lg:mr-[13rem]"
+        }
+      >
         <div
-          className="
+          className={
+            expand
+              ? ` effect
 
 selft_scroll
 fixed top-0
-  bg-white mr-[10rem]
- w-14 lg:w-52   b  overflow-x-hidden  "
-          style={{
-            boxShadow: " 12px 2px 29px -14px rgba(182,215,217,1)",
-          }}
+  bg-white mr-[8rem] dark:bg-[#1e293b]
+ w-30 lg:w-52 z-50  b  overflow-x-hidden  `
+              : `
+
+selft_scroll
+fixed top-0
+  bg-white mr-[8rem] dark:bg-[#1e293b]
+ w-14 lg:w-52   b  overflow-x-hidden effect  `
+          }
+          
         >
           <div
-            className="   flex flex-col gap-1  justify-between"
+            className="  effect flex flex-col gap-1  justify-between"
             onMouseMove={handleMouse}
           >
-            <div className="section-1">
-              <h2 className="text-center sticky  lg:block  top-0 bg-white z-20 block text-xl font-bold py-2 border-b text-neutral-800">
+            <div className="section-1 effect">
+              <h2
+                className="text-center sticky hidden  effect  lg:block
+                top-0 bg-white dark:bg-[#1e293b] dark:text-white z-20 
+                 text-xl font-bold py-2 border-b text-neutral-800 dark:border-[#009afa]"
+              >
                 {adminGetData.length > 0
                   ? type === "user"
                     ? "Usuario"
@@ -184,10 +197,49 @@ fixed top-0
                     : "Identificate"
                   : "Identicate"}
               </h2>
+              <div
+                className="text-center sticky block  lg:hidden dark:bg-[#1e293b] dark:text-white  top-0 bg-white z-20 
+               text-xl font-bold py-2 border-b text-neutral-800"
+                onClick={() => setExpand(!expand)}
+              >
+                {expand ? (
+                  <div className=" flex justify-between mx-1 items-center ">
+                    <h1>Cerrar</h1>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="35"
+                      height="35"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                        d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"
+                      />
+                    </svg>
+                  </div>
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="35"
+                      height="35"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                        d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8Zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5Z"
+                      />
+                    </svg>
+                  </>
+                )}
+              </div>
               <div className="contenedor_perfil_count flex">
                 <NavLink
                   to={"/perfil"}
-                  className="contenedor_perfil rounded my-1 border w-full mx-1 flex items-center relative p-1"
+                  className="contenedor_perfil  rounded my-1
+                   border w-full mx-1 flex items-center relative p-1 border-[#009afa]"
                 >
                   {type === "user" ? (
                     <svg
@@ -212,7 +264,7 @@ fixed top-0
                       className="w-8 rounded-full"
                     />
                   )}
-                  <div className="administrador mx-1 hidden lg:block">
+                  <div className="administrador mx-1 hidden lg:block dark:text-white">
                     {type === "user" ? "Usuario normal" : "Administrador"}
                   </div>
                   <div className="activ absolute w-2 h-2 bg-green-400 rounded-full  right-1 top-1 "></div>
@@ -230,17 +282,23 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1 my-[2px]  p-2 font-medium text-black
-                     rounded `
+                     mx-1 my-[2px]  p-2 font-medium dark:text-white text-black dark:bg-gray-700 
+                     rounded dark:bg-gray-700`
                             : `flex 
-                     hover:bg-gray-100
+                     hover:bg-gray-100 dark:hover:bg-gray-700 
                      items-center 
-                      mx-1  my-[2px] p-2 font-medium text-black
+                      mx-1  my-[2px] p-2 font-medium dark:text-white text-black
                       rounded `
                         }
                       >
                         <img src={user} alt="" width={20} />
-                        <div className="NavLinks1 pt-[2px] ml-3 hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Perfil
                         </div>
                       </NavLink>
@@ -256,13 +314,13 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1 my-[2px]  p-2 font-medium text-black
-                     rounded `
+                     mx-1 my-[2px]  p-2 font-medium dark:text-white text-black
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1  my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1  my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:hover:bg-gray-700  `
                         }
                       >
                         <svg
@@ -276,7 +334,13 @@ fixed top-0
                             d="M1.63.47a.393.393 0 0 0-.39.39v2.417c0 .212.177.39.39.39h20.74c.213 0 .39-.178.39-.39V.859a.393.393 0 0 0-.39-.39zm-.045 4.126a.41.41 0 0 0-.407.337l-1.17 6.314C0 11.274 0 11.3 0 11.327v2.117c0 .23.186.416.416.416h23.168c.23 0 .416-.186.416-.416v-2.126c0-.027 0-.053-.009-.08l-1.169-6.305a.41.41 0 0 0-.407-.337zM1.7 14.781a.457.457 0 0 0-.46.46v7.829c0 .257.203.46.46.46h14.108c.257 0 .46-.203.46-.46v-6.589c0-.257.204-.46.461-.46h4.02c.258 0 .461.203.461.46v6.589c0 .257.204.46.46.46h.62a.456.456 0 0 0 .461-.46v-7.829a.458.458 0 0 0-.46-.46zm1.842 1.55h7.847c.212 0 .39.177.39.39V21.6c0 .212-.178.39-.39.39H3.542a.393.393 0 0 1-.39-.39v-4.88c0-.221.178-.39.39-.39Z"
                           />
                         </svg>
-                        <div className="NavLinks1 pt-[2px] ml-3 hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Empresa
                         </div>
                       </NavLink>
@@ -292,17 +356,23 @@ fixed top-0
                         flex 
                         bg-gray-100
                         items-center 
-                         mx-1   p-2 font-medium text-black
-                         rounded `
+                         mx-1   p-2 font-medium dark:text-white text-black
+                         rounded dark:bg-gray-700`
                             : `flex 
                          hover:bg-gray-100
                          items-center 
-                          mx-1   p-2 font-medium text-black
-                          rounded `
+                          mx-1   p-2 font-medium dark:text-white text-black
+                          rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={home} alt="" width={20} />
-                        <div className="NavLinks1 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Inicio
                         </div>
                       </NavLink>
@@ -319,13 +389,13 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1  my-[2px] p-2 font-medium dark:text-white text-black
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <svg
@@ -343,7 +413,13 @@ fixed top-0
                             d="M15 19.128a9.38 9.38 0 0 0 2.625.372a9.337 9.337 0 0 0 4.121-.952a4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0a3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0a2.625 2.625 0 0 1 5.25 0Z"
                           />
                         </svg>
-                        <div className="NavLinks7 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Usuarios
                         </div>
                       </NavLink>
@@ -359,17 +435,23 @@ fixed top-0
                      flex 
                      bg-gray-100
                      items-center 
-                      mx-1  my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1  my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:bg-gray-700`
                             : `flex 
                       hover:bg-gray-100
                       items-center 
-                       mx-1 my-[2px] p-2 font-medium text-black
-                       rounded `
+                       mx-1 my-[2px] p-2 font-medium dark:text-white text-black
+                       rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={bell} alt="" width={20} />
-                        <div className="NavLinks7 pt-[2px] ml-3 whitespace-nowrap hidden lg:block ">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Notificaciones{" "}
                           {notifyFilterEstado.length > 0 ? (
                             <span className="bg-red-500 text-white rounded-full px-1 text-xs">
@@ -392,17 +474,23 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1  my-[2px] p-2 font-medium dark:text-white text-black
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={grid} alt="" width={20} />
-                        <div className="NavLinks2 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Bodegas
                         </div>
                       </NavLink>
@@ -418,13 +506,13 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1  my-[2px] p-2 font-medium dark:text-white text-black
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <svg
@@ -438,7 +526,13 @@ fixed top-0
                             d="m15.5 19.925l-4.25-4.25l1.4-1.4l2.85 2.85l5.65-5.65l1.4 1.4l-7.05 7.05ZM21 10h-2V5h-2v3H7V5H5v14h6v2H5q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h4.175q.275-.875 1.075-1.438T12 1q1 0 1.788.563T14.85 3H19q.825 0 1.413.588T21 5v5Zm-9-5q.425 0 .713-.288T13 4q0-.425-.288-.713T12 3q-.425 0-.713.288T11 4q0 .425.288.713T12 5Z"
                           />
                         </svg>
-                        <div className="NavLinks2 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Inventario
                         </div>
                       </NavLink>
@@ -454,17 +548,23 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1  my-[2px] p-2 font-medium dark:text-white text-black
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={comand} alt="" width={20} />
-                        <div className="NavLinks3 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Productos
                         </div>
                       </NavLink>
@@ -480,17 +580,23 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1  my-[2px] p-2 font-medium dark:text-white text-black
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={harddrive} alt="" width={20} />
-                        <div className="NavLinks4 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Categorias
                         </div>
                       </NavLink>
@@ -506,17 +612,23 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1  my-[2px] p-2 font-medium dark:text-white text-black
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={truck} alt="" width={20} />
-                        <div className="NavLinks5 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Proveedores
                         </div>
                       </NavLink>
@@ -533,13 +645,13 @@ fixed top-0
                     flex 
                     
                     items-center 
-                     mx-1 bg-gray-100 my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1 bg-gray-100 my-[2px] p-2 font-medium dark:text-white text-black
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <svg
@@ -562,7 +674,13 @@ fixed top-0
                             />
                           </g>
                         </svg>
-                        <div className="NavLinks6 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Pedidos
                         </div>
                       </NavLink>
@@ -578,13 +696,13 @@ fixed top-0
                     flex 
                     
                     items-center 
-                     mx-1 bg-gray-100 my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1 bg-gray-100 my-[2px] p-2 font-medium dark:text-white text-black
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium dark:text-white text-black
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <svg
@@ -598,7 +716,13 @@ fixed top-0
                             d="M14.25 21.4q-.575.575-1.425.575T11.4 21.4l-8.8-8.8q-.275-.275-.438-.65T2 11.15V4q0-.825.588-1.413T4 2h7.15q.425 0 .8.163t.65.437l8.8 8.825q.575.575.575 1.413T21.4 14.25l-7.15 7.15ZM12.825 20l7.15-7.15L11.15 4H4v7.15L12.825 20ZM6.5 8q.625 0 1.063-.438T8 6.5q0-.625-.438-1.063T6.5 5q-.625 0-1.063.438T5 6.5q0 .625.438 1.063T6.5 8ZM4 4Z"
                           />
                         </svg>
-                        <div className="NavLinks6 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           P. venta
                         </div>
                       </NavLink>
@@ -614,13 +738,13 @@ fixed top-0
                     flex 
                     
                     items-center 
-                     mx-1 bg-gray-100 my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1 bg-gray-100 my-[2px] p-2 font-medium text-black dark:text-white
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium text-black  dark:text-white
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <svg
@@ -634,7 +758,13 @@ fixed top-0
                             d="m6 16.5l-3 2.94V11h3m5 3.66l-1.57-1.34L8 14.64V7h3m5 6l-3 3V3h3m2.81 9.81L17 11h5v5l-1.79-1.79L13 21.36l-3.47-3.02L5.75 22H3l6.47-6.34L13 18.64"
                           />
                         </svg>
-                        <div className="NavLinks6 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block dark:text-white`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block dark:text-white`
+                          }
+                        >
                           Estadisticas
                         </div>
                       </NavLink>
@@ -650,13 +780,13 @@ fixed top-0
                     flex 
                     
                     items-center 
-                     mx-1 bg-gray-100 my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1 bg-gray-100 my-[2px] p-2 font-medium text-black dark:text-white             
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium text-black dark:text-white
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <svg
@@ -699,7 +829,13 @@ fixed top-0
                             d="M24.1 23.839a5.287 5.287 0 0 1-5-7.011a2.1 2.1 0 0 1-1.6.688a2.153 2.153 0 0 1-1.417-.507c-.026.023-.054-.065-.082-.044c-.028-.021-.056.067-.082.044a2.153 2.153 0 0 1-1.417.507a2.1 2.1 0 0 1-1.6-.688a5.287 5.287 0 0 1-7.595 6.329a13.334 13.334 0 0 0 10.664 5.315h.054a13.334 13.334 0 0 0 10.664-5.315a5.264 5.264 0 0 1-2.589.682Z"
                           />
                         </svg>
-                        <div className="NavLinks6 pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Licencia
                         </div>
                       </NavLink>
@@ -714,13 +850,13 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1  my-[2px] p-2 font-medium text-black  dark:text-white 
+                     rounded dark:bg-gray-700`
                           : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium text-black d dark:text-white
+                      rounded dark:hover:bg-gray-700 `
                       }
                     >
                       <button
@@ -730,10 +866,16 @@ fixed top-0
                      items-center 
                      
                         font-medium text-black
-                      rounded "
+                      rounded dark:hover:bg-gray-700 "
                       >
                         <img src={cloceSession} alt="" width={20} />
-                        <div className="pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block dark:text-white`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block dark:text-white`
+                          }
+                        >
                           {" "}
                           Cerrar sesión
                         </div>
@@ -745,7 +887,13 @@ fixed top-0
             </div>
             {users.permisions.includes("config") ? (
               <div className="titkle">
-                <h2 className="ml-4 font-bold mt-12 mb-4 hidden lg:block  text-2xl whitespace-nowrap  ">
+                <h2
+                  className={
+                    expand
+                      ? `NavLinks1 pt-[2px] my-4 font-bold ml-3 block lg:block dark:text-white`
+                      : `NavLinks1 pt-[2px] my-4 font-bold ml-3 hidden lg:block dark:text-white`
+                  }
+                >
                   configuración
                 </h2>
                 <hr />
@@ -765,17 +913,23 @@ fixed top-0
                    flex 
                    bg-gray-100
                    items-center 
-                    mx-1  my-[2px] p-2 font-medium text-black
-                    rounded `
+                    mx-1  my-[2px] p-2 font-medium text-black dark:text-white
+                    rounded dark:bg-gray-700`
                             : `flex 
                     hover:bg-gray-100
                     items-center 
-                     mx-1 my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1 my-[2px] p-2 font-medium text-black dark:text-white
+                     rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={settings} alt="" width={20} />
-                        <div className="pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Configuración
                         </div>
                       </NavLink>
@@ -791,17 +945,23 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1  my-[2px] p-2 font-medium text-black dark:text-white
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium text-black dark:text-white
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={help} alt="" width={20} />
-                        <div className="pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Ayuda
                         </div>
                       </NavLink>
@@ -817,17 +977,23 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
-                     rounded `
+                     mx-1  my-[2px] p-2 font-medium text-black dark:text-white
+                     rounded dark:bg-gray-700`
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium text-black dark:text-white
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={send} alt="" width={20} />
-                        <div className="pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Enviar reporte
                         </div>
                       </NavLink>
@@ -843,24 +1009,36 @@ fixed top-0
                     flex 
                     bg-gray-100
                     items-center 
-                     mx-1  my-[2px] p-2 font-medium text-black
+                     mx-1  my-[2px] p-2 font-medium text-black dark:text-white dark:bg-gray-700
                      rounded `
                             : `flex 
                      hover:bg-gray-100
                      items-center 
-                      mx-1 my-[2px] p-2 font-medium text-black
-                      rounded `
+                      mx-1 my-[2px] p-2 font-medium text-black dark:text-white
+                      rounded dark:hover:bg-gray-700 `
                         }
                       >
                         <img src={start} alt="" width={20} />
-                        <div className="pt-[2px] ml-3 whitespace-nowrap hidden lg:block">
+                        <div
+                          className={
+                            expand
+                              ? `NavLinks1 pt-[2px] ml-3 block lg:block`
+                              : `NavLinks1 pt-[2px] ml-3 hidden lg:block`
+                          }
+                        >
                           Calificanos
                         </div>
                       </NavLink>
                     </li>
                   ) : null}
-                  <div className="mx-2 p-2 text-gray-400 text-sm ">
-                    &copy; {fecha} | stored
+                  <div
+                    className={
+                      expand
+                        ? `NavLinks1 text-gray-400 pt-[2px] ml-3 block lg:block`
+                        : `NavLinks1 text-gray-400 pt-[2px] ml-3 hidden lg:block`
+                    }
+                  >
+                    &copy; {fecha} | Invensys
                   </div>
                 </ul>
               </div>

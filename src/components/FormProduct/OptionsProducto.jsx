@@ -1,11 +1,16 @@
-import React from 'react'
 
+import React,{useState,useEffect} from "react";
 import Swal from 'sweetalert2'
 import "../../assets/css/styleSlider.css"
 import {useContextProduct} from '../../hooks/context/ContextProduxt'
 import { useNavigate} from 'react-router-dom'
 function OptionsProducto(e) {
-
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
     const Navigate = useNavigate()
     const {deleteProduct }= useContextProduct()
    
@@ -20,9 +25,9 @@ await Swal.fire({
   showClass: {
     popup: "animate__animated animate__bounceInDown",
   },
-  background: "white",
+  background: darkMode ? "#374151":"white",
 
-  color: "black",
+  color: darkMode ? "white" : "black",
   position: "top",
   border: "1px solid #5DADE2",
   backdrop: "8px",
@@ -31,9 +36,9 @@ await Swal.fire({
   confirmButtonColor: "#1daf53",
   focusCancel: false,
   focusConfirm: false,
-  cancelButtonColor: "#ccc",
-  confirmButtonText: "Continuar",
-  cancelButtonText: "Cancelar",
+  confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "eliminar!",
 }).then(async (result) => {
   if (result.isConfirmed) {
     let id = e.data._id;
@@ -49,11 +54,11 @@ await Swal.fire({
       },
       focusCancel: false,
       focusConfirm: false,
-      confirmButtonColor: "#1daf53",
+      confirmButtonColor: "#3085d6",
       confirmButtonText: "Aceptar",
-      color: "black",
+      color: darkMode ? "white" : "black",
       timer: 1000,
-      background: "white",
+      background: darkMode ? "#374151":"white",
     });
   } else if (result.isDismissed) {
     await Swal.fire({
@@ -65,11 +70,11 @@ await Swal.fire({
       },
       focusCancel: false,
       focusConfirm: false,
-      confirmButtonColor: "#1daf53",
+      confirmButtonColor: "#3085d6",
       cancelButtonColor: "#ccc",
       confirmButtonText: "Continuar",
-      color: "black",
-      background: "white",
+      color: darkMode ? "white" : "black",
+      background: darkMode ? "#374151":"white",
       timer: 2000,
     });
   }

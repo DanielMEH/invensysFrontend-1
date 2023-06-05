@@ -20,7 +20,7 @@ export const CreateProveedor = () => {
     <>
       <ToastContainer />
       <div className={active2 ? "hidden" : "block"}>
-        <div className="Formulario fixed bg-white rounded-lg inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
+        <div className="Formulario fixed bg-white rounded-lg dark:bg-[#374151] dark:text-white inset-0 drop-shadow-2xl w-6/12 m-auto  h-fit z-50">
           <div className="sec1 w-full p-2 flex justify-between">
             <div className="title">
               <span className="text-xl my-4 block">
@@ -117,7 +117,7 @@ export const CreateProveedor = () => {
               }}
             >
               <Form className="grid grid-cols-2 gap-3 mx-4">
-                <div className="name border border-gray-300 rounded-lg">
+                <div className="name border dark:border-[#019afa] border-gray-300 rounded-lg">
                   <label htmlFor="name " className="mx-2 text-sm">
                     Nombre
                   </label>
@@ -141,7 +141,7 @@ export const CreateProveedor = () => {
                       placeholder="Nombre del producto"
                       className="
                     w-full p-2 
-                     outline-none  "
+                     outline-none  dark:bg-[#374151] dark:text-white"
                     />
                     <ErrorMessage
                       component="p"
@@ -151,7 +151,7 @@ export const CreateProveedor = () => {
                     />
                   </div>
                 </div>
-                <div className="name border border-gray-300 rounded-lg">
+                <div className="name border dark:border-[#019afa] border-gray-300 rounded-lg">
                   <label htmlFor="descripción" className="mx-2 text-sm">
                     Compañia
                   </label>
@@ -175,7 +175,7 @@ export const CreateProveedor = () => {
                       placeholder="Descripción"
                       className="
                     w-full p-2 
-                     outline-none  "
+                     outline-none dark:bg-[#374151] dark:text-white "
                     />
                     <ErrorMessage
                       component="p"
@@ -186,7 +186,7 @@ export const CreateProveedor = () => {
                   </div>
                 </div>
 
-                <div className="name border border-gray-300 rounded-lg">
+                <div className="name border dark:border-[#019afa] border-gray-300 rounded-lg">
                   <label htmlFor="price" className="mx-2 text-sm">
                     Correo
                   </label>
@@ -210,7 +210,7 @@ export const CreateProveedor = () => {
                       placeholder="example@gmail.com"
                       className="
                     w-full p-2 
-                     outline-none  "
+                     outline-none  dark:bg-[#374151] dark:text-white"
                     />
                     <ErrorMessage
                       component="p"
@@ -220,7 +220,7 @@ export const CreateProveedor = () => {
                     />
                   </div>
                 </div>
-                <div className="name border border-gray-300 rounded-lg">
+                <div className="name border dark:border-[#019afa] border-gray-300 rounded-lg">
                   <label htmlFor="price" className="mx-2 text-sm">
                     Dirección
                   </label>
@@ -244,7 +244,7 @@ export const CreateProveedor = () => {
                       placeholder="M14 #23"
                       className="
                     w-full p-2 
-                     outline-none  "
+                     outline-none  dark:bg-[#374151] dark:text-white"
                     />
                     <ErrorMessage
                       component="p"
@@ -254,7 +254,7 @@ export const CreateProveedor = () => {
                     />
                   </div>
                 </div>
-                <div className="name border border-gray-300 rounded-lg">
+                <div className="name border dark:border-[#019afa] border-gray-300 rounded-lg">
                   <label htmlFor="name" className="mx-2 text-sm ">
                     Telefono
                   </label>
@@ -278,7 +278,7 @@ export const CreateProveedor = () => {
                       placeholder="+57"
                       className="
                     w-full p-2 
-                     outline-none  "
+                     outline-none  dark:bg-[#374151] dark:text-white"
                     />
                     <ErrorMessage
                       component="p"
@@ -291,7 +291,7 @@ export const CreateProveedor = () => {
 
                 <div>
                   <div
-                    className="name border border-gray-300 rounded-lg cursor-pointer"
+                    className="name border dark:border-[#019afa] border-gray-300 rounded-lg cursor-pointer"
                     onClick={() => setActive(!active)}
                   >
                     <label
@@ -385,12 +385,12 @@ export const CreateProveedor = () => {
                     >
                       <div
                         className="contenedor-category 
-                         h-auto overflow-y-scroll bg-white  bg-while shadow-2xl rounded-xl p-4 absolute grid grid-cols-3"
+                         h-auto overflow-y-scroll bg-white dark:bg-[#374151] dark:text-white bg-while shadow-2xl rounded-xl p-4 absolute grid grid-cols-3"
                       >
                         {dataGategorias.map((item) => (
                           <div
                             className="category flex border
-                                 border-gray-300 gap-4 rounded-md w-auto m-1 p-2 cursor-pointer "
+                                 border-gray-300 dark:border-[#019afa] gap-4 rounded-md w-auto m-1 p-2 cursor-pointer "
                             key={item._id}
                             onClick={() =>
                               setCategoria([item._id, item.name_category])
@@ -530,7 +530,7 @@ export const CreateProveedor = () => {
                             </div>
                             <div className="text">
                               <p
-                                className="truncate w-12"
+                                className="truncate w-12 dark:text-[#019afa]"
                                 title={item.name_category}
                               >
                                 {item.name_category}

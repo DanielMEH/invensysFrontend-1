@@ -11,16 +11,19 @@ function NewPassword() {
   const { newPasswordL } = usePostAuth();
   const [loading, setLoading] = useState(false);
   return (
-    <div className="bg-gray-100 h-screen relative">
+    <div className="bg-gray-100 min-h-screen
+
+    dark:bg-gradient-to-r from-[#163b59] from-10%
+     via-[#18324f] via-30% to-[#121b2e] to-90%  relative">
       <ToastContainer />
-      <div className="flex  bg-white w-full border-b justify-between items-center">
+      <div className="flex dark:bg-[#37415197] dark:text-white dark:border-none  bg-white w-full border-b justify-between items-center">
         <div className="flex items-center  ">
         <Link
               to={"/verifyc+code/identify"}
-              className="items-center flex bg-gray-200 m-1 rounded text-white py-2 px-3"
+              className="items-center flex dark:bg-[#37415197] dark:text-white bg-gray-200 m-1 rounded text-white py-2 px-3"
             >
-              <FontAwesomeIcon icon={faAngleLeft} className="text-2xl text-gray-700" />
-              <span className="pl-2 text-gray-700">Volver</span>
+              <FontAwesomeIcon icon={faAngleLeft} className="text-2xl dark:text-white text-gray-700" />
+              <span className="pl-2 text-gray-700 dark:text-white">Volver</span>
             </Link>
           <span className="text-2xl text-[#0099FF] mx-2 font-bold">Stored</span>
         </div>
@@ -40,11 +43,11 @@ function NewPassword() {
         </div>
       </div>
 
-      <div className="bg-white w-4/5 sm:w-[30rem] rounded mt-9 mx-auto p-1  my-3">
+      <div className="bg-white dark:bg-[#37415197] dark:text-white w-4/5 sm:w-[30rem] rounded  m-auto p-1  my-3">
         <div className="py-2 sm:text-xl font-semibold  px-3 border-b">
           Ingrese la nueva contraseña
         </div>
-        <div className="text-gray-600 my-3 mx-2">
+        <div className="text-gray-600 my-3 dark:text-white mx-2">
         Ya casi terminamos ingresa tu nueva contraseña para que puedas acceder a tu
           cuenta
 
@@ -92,7 +95,7 @@ function NewPassword() {
         >
           <Form>
             <div
-              className="Fiel-email bg-white flex items-center mx-2 my-1
+              className="Fiel-email bg-white dark:bg-transparent dark:border-[#019afa] flex items-center mx-2 my-1
                            border-solid border rounded transition-200
                              "
             >
@@ -104,7 +107,7 @@ function NewPassword() {
                   type="password"
                   name="password"
                   placeholder="Ingrese la nueva contraseña"
-                  className="w-full block
+                  className="w-full block dark:bg-transparent dark:text-white
                                          outline-none "
                 />
               </div>
@@ -118,7 +121,7 @@ function NewPassword() {
               />
             </div>
             <div
-              className="Fiel-email bg-white flex items-center mx-2 my-1
+              className="Fiel-email bg-white dark:bg-transparent dark:border-[#019afa] flex items-center mx-2 my-1
                            border-solid border rounded transition-200
                              "
             >
@@ -131,7 +134,7 @@ function NewPassword() {
                   name="password2"
                   placeholder="Confirmar contraseña"
                   className="w-full block
-                                         outline-none "
+                                         outline-none dark:bg-transparent dark:text-white "
                 />
               </div>
             </div>

@@ -1,27 +1,34 @@
 import React from "react";
 import { MenuLateral } from "../components/MenuLateral";
 
-
-import { Link,Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 export const Shope = () => {
   return (
     <>
       <div className="flex">
         <MenuLateral />
-        <div className=" w-full block self_conte_fond ">
+        <div
+          className=" w-full block bg-[#f4f8ffdd]
+        h-[100%] min-h-screen
+        dark:bg-gradient-to-r from-[#163b59] from-10%
+         via-[#18324f] via-30% to-[#121b2e] to-90%"
+        >
           <div className="content_users m-7">
             <div className="content_users_title">
-              <h2 className="text-4xl font-bold text-gray-700 font-sans mx-0">
+              <h2 className="text-4xl font-bold dark:text-white text-gray-700 font-sans mx-0">
                 Pedidos
               </h2>
-              
-              <p className="text-xl text-gray-600 mx-0">
+
+              <p className="text-xl dark:text-white text-gray-600 mx-0">
                 Haz pedidos a tus proveedores para abastecer tu negocio.
               </p>
               <div className="ctfg mt-4">
                 <Link
                   to="ListPedidos"
-                  className=" whitespace-nowrap  hover:bg-gray-200 p-1 hover:rounded-full hover:border-none flex items-center w-fit border-b-2 border-[#019afa]  "
+                  className=" whitespace-nowrap  dark:hover:bg-[#374151af] dark:text-white
+                   hover:bg-gray-200 p-1 hover:rounded-full 
+                   hover:border-none flex items-center w-fit
+                    border-b-2 border-[#019afa]  "
                 >
                   <span>Totas los pedidos</span>
                   <span>
@@ -44,7 +51,6 @@ export const Shope = () => {
             <div className="container_cont">
               {/* <FormPedido /> */}
               <Outlet />
-
             </div>
           </div>
         </div>

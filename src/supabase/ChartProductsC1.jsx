@@ -69,7 +69,7 @@ export const ChartProductC1 = () => {
         </div>
       ) : (
         <div className=" flex gap-2 ">
-          <section className="bg-white shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">
                 Total de Subproductos en bodegas
@@ -123,7 +123,7 @@ export const ChartProductC1 = () => {
               Productos en movimiento
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">
                 SubTotal de precio
@@ -170,7 +170,7 @@ export const ChartProductC1 = () => {
               <span className="mx-2">{bodega.length}</span>Productos ingresados
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">
                 Productos agotados con menos de 10 unidades
@@ -236,7 +236,7 @@ export const ChartProductC1 = () => {
               Productos vendidos
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">
                 Productos en caducidad en 30 dias

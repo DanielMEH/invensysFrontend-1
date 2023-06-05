@@ -31,7 +31,7 @@ export const Header = () => {
   return (
     <div className="heander_bg shadow-md bg-white">
       <div className="heand1">
-        <div className="menu_l flex bg-white items-center justify-between">
+        <div className="menu_l flex dark:bg-[#1e293b] bg-white items-center justify-between">
           <div className="title">
             <div className="d">
               <Link to={"/"}>
@@ -67,17 +67,17 @@ export const Header = () => {
           </div>
         </div>
       </div>
-      <div className={show === true ? "lateralbg" : ""}>
+      <div className={show === true ? "lateralbg bg-white dark:bg-[#1e293b] " : ""}>
         <div
           className={
-            show === true ? "menu_lateral activ_Lateral" : "menu_lateral "
+            show === true ? "menu_lateral activ_Lateral bg-white dark:bg-[#1e293b] " : " bg-white dark:bg-[#1e293b] menu_lateral "
           }
         >
-          <div className="sec1">
+          <div className="sec dark:bg-[#1e293b]">
             <div className="t">
               <div className="flex justify-between items-center">
                 <div className="tj">
-                  <h2 className="p-[13px]">Menu</h2>
+                  <h2 className="p-[13px] dark:text-white">Menu</h2>
                 </div>
                 <div
                   className="menu_bars"
@@ -116,7 +116,7 @@ export const Header = () => {
               <div className="list">
                 <ul>
                   <li>
-                    <Link to={"/"} className="clup  ">
+                    <Link to={"/"} className="clup hover:bg-[#efefef] hover:text-black dark:hover:bg-[#374151] dark:hover:text-white bg-white dark:bg-transparent dark:text-white text-black  ">
                       <span>
                         <FontAwesomeIcon
                           icon={faHome}
@@ -132,7 +132,7 @@ export const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={"/login"} className="clup  ">
+                    <Link to={"/login"} className="clup hover:bg-[#efefef] hover:text-black dark:hover:bg-[#374151] dark:hover:text-white dark:bg-transparent dark:text-white text-black  ">
                       <span>
                         {" "}
                         <FontAwesomeIcon
@@ -149,7 +149,7 @@ export const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={"/signup"} className="clup  ">
+                    <Link to={"/signup"} className="clup hover:bg-[#efefef] hover:text-black dark:hover:bg-[#374151] dark:hover:text-white  dark:bg-transparent dark:text-white text-black ">
                       <span>
                         <FontAwesomeIcon
                           icon={faCircleUser}
@@ -167,21 +167,21 @@ export const Header = () => {
               </div>
             </div>
           </div>
-          <div className="sec1">
-            <div className="t  ">
-              <h2 className="my-2 mx-2 block">Más</h2>
+          <div className="sec dark:bg-[#1e293b]">
+            <div className="  dark:bg-[#1e293b]">
+              <h2 className="my-3 mx-2 block dark:text-white text-xl">Más</h2>
               <hr className="border-[#1876F2]" />
               <div className="list">
                 <ul>
                   <li>
-                    <Link to={"/somos"} className="clup  ">
+                    <Link to={"/somos"} className="clup hover:bg-[#efefef] hover:text-black dark:hover:bg-[#374151] dark:hover:text-white ">
                       <span>
                         {" "}
                         <FontAwesomeIcon
                           icon={faLayerGroup}
                           className="text-gray-400 text-xl"
                         />{" "}
-                        <span className="ml-2 font-medium">Quienes somos</span>{" "}
+                        <span className="ml-2 font-medium dark:text-white">Quienes somos</span>{" "}
                       </span>
                       <FontAwesomeIcon
                         icon={faAngleRight}
@@ -190,14 +190,14 @@ export const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={"/servicios"} className="clup  ">
+                    <Link to={"/servicios"} className="clup  hover:bg-[#efefef] hover:text-black dark:hover:bg-[#374151] dark:hover:text-white ">
                       <span>
                         {" "}
                         <FontAwesomeIcon
                           icon={faCloud}
                           className="text-gray-400"
                         />{" "}
-                        <span className=" ml-2 font-medium">Servicios</span>
+                        <span className=" ml-2 font-medium dark:text-white">Servicios</span>
                       </span>
                       <FontAwesomeIcon
                         icon={faAngleRight}
@@ -206,14 +206,14 @@ export const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={"/"} className="clup  ">
+                    <Link to={"/"} className="clup   hover:bg-[#efefef] hover:text-black dark:hover:bg-[#374151] dark:hover:text-white">
                       <span>
                         {" "}
                         <FontAwesomeIcon
                           icon={faHeart}
                           className="text-gray-400 text-xl"
                         />
-                        <span className=" ml-2 font-medium"> Stored</span>{" "}
+                        <span className=" ml-2 font-medium dark:text-white"> Invensys</span>{" "}
                       </span>
                       <FontAwesomeIcon
                         icon={faAngleRight}
@@ -225,9 +225,9 @@ export const Header = () => {
               </div>
             </div>
           </div>
-          <div className="sec1">
+          <div className="sec">
             <div className="t">
-              <h2 className="my-2 mx-2 block">Ayuda</h2>
+              <h2 className="my-2 mx-2 block dark:text-white text-xl">Ayuda</h2>
               <hr className="border-[#1876F2]" />
               <div className="list">
                 <ul>
@@ -235,14 +235,14 @@ export const Header = () => {
                     className="
             "
                   >
-                    <Link to={"/contactanos"} className="clup ">
+                    <Link to={"/contactanos"} className="clup  hover:bg-[#efefef] hover:text-black dark:hover:bg-[#374151] dark:hover:text-white">
                       <span>
                         {" "}
                         <FontAwesomeIcon
                           icon={faAddressBook}
                           className="text-gray-400 text-xl "
                         />{" "}
-                        <span className=" ml-2 font-medium"> Contáctanos</span>
+                        <span className=" ml-2 font-medium dark:text-white"> Contáctanos</span>
                       </span>
                       <FontAwesomeIcon
                         icon={faAngleRight}
@@ -251,13 +251,13 @@ export const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={"/"} className="clup">
+                    <Link to={"/"} className="clup hover:bg-[#efefef] hover:text-black dark:hover:bg-[#374151] dark:hover:text-white">
                       <span>
                         <FontAwesomeIcon
                           icon={faHandshake}
                           className="text-gray-400 text-xl "
                         />{" "}
-                        <span className=" ml-2 font-medium">
+                        <span className=" ml-2 font-medium dark:text-white">
                           Servicio al cliente
                         </span>
                       </span>
@@ -268,14 +268,14 @@ export const Header = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={"/"} className="clup">
+                    <Link to={"/"} className="clup hover:bg-[#efefef] hover:text-black dark:hover:bg-[#374151] dark:hover:text-white">
                       <span>
                         {" "}
                         <FontAwesomeIcon
                           icon={faGear}
                           className="text-gray-400 text-xl "
                         />{" "}
-                        <span className=" ml-2 font-medium">Ajustes</span>
+                        <span className=" ml-2 font-medium dark:text-white">Ajustes</span>
                       </span>
                       <FontAwesomeIcon
                         icon={faAngleRight}
@@ -290,7 +290,10 @@ export const Header = () => {
         </div>
       </div>
       <header
-        className=" hed_responsive border-b-2  border-gray-100
+        className=" hed_responsive border-b-2 dark:border-b dark:border-[#777777] bg-[#f4f8ffdd]
+        
+        dark:bg-gradient-to-r from-[#163b59] from-10%
+         via-[#18324f] via-30% to-[#121b2e] to-90% dark:text-white   border-gray-100
         flex w-full justify-around items-center   "
       >
         <div className=" flex  items-center">
@@ -303,7 +306,7 @@ export const Header = () => {
           <div className="w-full">
             <nav className=" nav_header">
               <ul className=" m-0 sellf1 flex ">
-                <li className="relative lik p-1 mx-2 text-[1.1rem] text-cyan-900 todoFont">
+                <li className="relative lik p-1 mx-2 text-[1.1rem] dark:text-white text-cyan-900 todoFont">
                   <NavLink
                     to="/"
                     className="nav-item font-bold   inline-block relative "
@@ -311,7 +314,7 @@ export const Header = () => {
                     Inicio
                   </NavLink>
                 </li>
-                <li className="relative lik mx-2 p-1 text-[1.1rem] text-cyan-900 todoFont">
+                <li className="relative lik mx-2 p-1 text-[1.1rem] dark:text-white text-cyan-900 todoFont">
                   <NavLink
                     to="/services"
                     className="nav-item font-bold hidden lg:inline-block    relative "
@@ -319,7 +322,7 @@ export const Header = () => {
                     Servicios
                   </NavLink>
                 </li>
-                <li className="relative lik mx-2 p-1 text-[1.1rem] text-cyan-900 todoFont">
+                <li className="relative lik mx-2 p-1 text-[1.1rem] dark:text-white text-cyan-900 todoFont">
                   <NavLink
                     to="/somos"
                     className="nav-item font-bold  inline-block relative truncate "
@@ -327,7 +330,7 @@ export const Header = () => {
                     Quiénes somos
                   </NavLink>
                 </li>
-                <li className="relative lik mx-2 p-1 text-[1.1rem] font-bold  text-cyan-900 todoFont">
+                <li className="relative lik mx-2 p-1 text-[1.1rem] font-bold  dark:text-white text-cyan-900 todoFont">
                   <NavLink
                     to="/contactanos"
                     className="nav-item  inline-block relative  "
@@ -341,7 +344,7 @@ export const Header = () => {
         </div>
         <div className=" ">
           <form>
-            <div className="inpit w-full lg:w-80 rounded-lg shadow-md border border-gray-300 items-center  px-2  flex">
+            <div className="inpit w-full lg:w-80 rounded-lg shadow-md border dark:border-[#019afa] border-gray-300 items-center  px-2  flex">
               <div className="w-full">
                 <input
                   type="text"
@@ -368,8 +371,8 @@ export const Header = () => {
                 to="/login"
                 className={({ isActive }) =>
                   isActive
-                    ? " py-2 relative dad1 text-[1.1rem] active font-bold text-cyan-900 truncate "
-                    : " py-2 relative dad1 text-[1.1rem] lik font-bold text-cyan-900 truncate "
+                    ? " py-2 relative dad1 text-[1.1rem] active font-bold dark:text-white text-cyan-900 truncate "
+                    : " py-2 relative dad1 text-[1.1rem] lik font-bold dark:text-white text-cyan-900 truncate "
                 }
               >
                 Iniciar sesión
@@ -380,9 +383,9 @@ export const Header = () => {
                 to="/signup"
                 className={({ isActive }) =>
                   isActive
-                    ? `truncate mx-4 border p-1.5 font-bold  text-[1.1rem] bg-[#1876F2] todoFont px-4 text-white
+                    ? `truncate mx-4 border p-1.5 font-bold dark:text-white  text-[1.1rem] bg-[#1876F2] todoFont px-4 text-white
                      hover:bg-white dad1 duration-200 hover:text-[#1876F2] rounded-full border-[#1876F2]`
-                    : "truncate  text-cyan-900 mx-4 border dad1 font-bold  p-1.5 text-[1.1rem] todoFont px-4 hover:bg-[#1876F2] duration-200 hover:text-white rounded-full border-[#1876F2]"
+                    : "truncate  text-cyan-900 dark:text-white mx-4 border dad1 font-bold  p-1.5 text-[1.1rem] todoFont px-4 hover:bg-[#1876F2] duration-200 hover:text-white rounded-full border-[#1876F2]"
                 }
               >
                 Crear cuenta

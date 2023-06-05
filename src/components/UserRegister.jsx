@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./efectosCss.css";
 import {
   faEnvelope,
   faLock,
@@ -44,14 +45,14 @@ export const UserRegister = ({estado=false }) => {
       <ToastContainer />
 
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 relative ">
-        <div className="container-signup  border shadow-2xl pb-1 rounded-lg bg-white ">
+        <div className="container-signup dark:border-none  border shadow-2xl pb-1 rounded-lg  effect_blur1 ">
           <button
             className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
             onClick={handleShow}
           >
             <img src={x} alt="" />
           </button>
-          <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  ">
+          <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center dark:text-white  ">
             Crear cuenta usuario
           </h2>
 
@@ -101,7 +102,7 @@ export const UserRegister = ({estado=false }) => {
           >
             <Form>
               <div
-                className="Fiel-email bg-white  flex items-center mx-2 my-1
+                className="Fiel-email bg-white dark:bg-[#374151]   flex items-center mx-2 my-1
                            border-solid border-2 border-[#1876F2]  rounded
                              "
               >
@@ -113,7 +114,7 @@ export const UserRegister = ({estado=false }) => {
                     type="email"
                     name="email"
                     placeholder="Correo electronico"
-                    className="w-full block
+                    className="w-full block dark:bg-[#374151] dark:text-white
                                        outline-none "
                   />
                 </div>
@@ -128,7 +129,7 @@ export const UserRegister = ({estado=false }) => {
               </div>
 
               <div
-                className="Fiel-email bg-white flex items-center mx-2 mt-6
+                className="Fiel-email bg-white dark:bg-[#374151]   flex items-center mx-2 mt-6
                            border-solid border-2 border-[#1876F2] rounded"
               >
                 <div className="icons    py-2 px-2 text-gray-400">
@@ -141,7 +142,7 @@ export const UserRegister = ({estado=false }) => {
                     name="password"
                     placeholder="Contraseña"
                     className="w-full block
-                                    outline-none bg-white"
+                                    outline-none dark:text-white  dark:bg-[#374151]"
                     autoComplete="on"
                   />
                 </div>
@@ -182,7 +183,7 @@ export const UserRegister = ({estado=false }) => {
                 <section>
                   <label
                     htmlFor="modulo"
-                    className="block mb-2 text-sm font-medium text-gray-900 mx-2 py-1"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white mx-2 py-1"
                   >
                     Seleccionar modulo
                   </label>
@@ -191,14 +192,14 @@ export const UserRegister = ({estado=false }) => {
                     name="modulo"
                     className="w-4/5 mx-2  rounded cursor-pointer  py-2 outline-none border border-[#1876F2] "
                   >
-                    <option value="usuario">usuario</option>
+                    <option value="select">Selecionar</option>
                     <option value="bodega">Bodega</option>
                   </Field>
                 </section>
                 <section>
                   <label
                     htmlFor="estado"
-                    className="block mb-2 text-sm font-medium text-gray-900 mx-2 py-1 items-center
+                    className="block mb-2 text-sm font-medium dark:text-white text-gray-900 mx-2 py-1 items-center
                 "
                   >
                     Estado
@@ -215,11 +216,11 @@ export const UserRegister = ({estado=false }) => {
               </div>
               <div className="flex justify-between m-3">
                 <Link to="ayuda">
-                  <p>
+                  <p className="dark:text-white">
                     {" "}
                     <FontAwesomeIcon
                       icon={faCircleQuestion}
-                      className="text-[#074766] text-xl"
+                      className="text-[#074766] text-xl dark:text-white"
                     />{" "}
                     Ayuda
                   </p>

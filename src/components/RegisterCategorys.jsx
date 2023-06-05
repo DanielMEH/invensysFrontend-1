@@ -36,49 +36,51 @@ export const  RegisterCategorys = ({estado=false }) => {
 
   
   return (
-    <div className={
-      estados ? "  h-full absolute z-30 w-4/5" : "hidden" 
-    }>
+    <div className={estados ? "  h-full absolute z-30 w-4/5" : "hidden"}>
       <ToastContainer />
-      
+
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 fixed inset-0 my-auto ">
-        <div className="container-signup  border shadow-2xl pb-1 rounded-lg bg-white ">
-      <button className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
-      onClick={(handleShow)}><img src={x} alt="" /></button>
+        <div className="container-signup dark:bg-[#374151] dark:border-none dark:text-white  border shadow-2xl pb-1 rounded-lg bg-white ">
+          <button
+            className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
+            onClick={handleShow}
+          >
+            <img src={x} alt="" />
+          </button>
           <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  ">
             Crear categoria
           </h2>
-        
-          <Formik
 
-            initialValues={{name_category:"",description:""}}
+          <Formik
+            initialValues={{ name_category: "", description: "" }}
             validationSchema={Yup.object({
-              
-                name_category: Yup.string()
-                .required("El campo no puede estar vacio"),
+              name_category: Yup.string().required(
+                "El campo no puede estar vacio"
+              ),
               description: Yup.string()
                 .required("El campo no puede estar vacio")
                 .min(6, "Debe tener mas de 6 caracteres"),
             })}
             onSubmit={async (values) => {
-               
               let response = await postDataCategorias(values);
-             
-                if (response.status === 201) {
-                 await toast.success("Exito", {
-                    position: "top-right",
-                    autoClose: 1000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
-                 await setSpiner(false)
-                 setEstado(false)             
-                   window.location.reload()
-                }else{
-                 await toast.warning("!Ups! Hubo un error inesperado verifique que estes conectado a internet o que la categoria ya exista", {
+
+              if (response.status === 201) {
+                await toast.success("Exito", {
+                  position: "top-right",
+                  autoClose: 1000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                });
+                await setSpiner(false);
+                setEstado(false);
+                window.location.reload();
+              } else {
+                await toast.warning(
+                  "!Ups! Hubo un error inesperado verifique que estes conectado a internet o que la categoria ya exista",
+                  {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -86,17 +88,15 @@ export const  RegisterCategorys = ({estado=false }) => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                  });
-                 await setSpiner(false)
-                 
-                }
-
-            }
-        }
+                  }
+                );
+                await setSpiner(false);
+              }
+            }}
           >
             <Form>
               <div
-                className="Fiel-email bg-white  flex items-center mx-2 my-1
+                className="Fiel-email bg-white dark:bg-[#374151] dark:text-white  flex items-center mx-2 my-1
                            border-solid border-2 border-[#1876F2]  rounded
                          
                              "
@@ -110,7 +110,7 @@ export const  RegisterCategorys = ({estado=false }) => {
                     name="name_category"
                     placeholder="Nombre de la categoria"
                     className="w-full block
-                                       outline-none "
+                                       outline-none dark:bg-[#374151] dark:text-white "
                   />
                 </div>
               </div>
@@ -124,7 +124,7 @@ export const  RegisterCategorys = ({estado=false }) => {
               </div>
 
               <div
-                className="Fiel-email bg-white flex items-center mx-2 mt-6
+                className="Fiel-email bg-white dark:bg-[#374151] dark:text-white flex items-center mx-2 mt-6
                            border-solid border-2 border-[#1876F2] rounded"
               >
                 <div className="icons    py-2 px-2 text-gray-400">
@@ -137,7 +137,7 @@ export const  RegisterCategorys = ({estado=false }) => {
                     name="description"
                     placeholder="Descripción"
                     className="w-full block
-                                    outline-none bg-white"
+                                    outline-none bg-white dark:bg-[#374151] dark:text-white"
                   />
                 </div>
 
@@ -150,9 +150,7 @@ export const  RegisterCategorys = ({estado=false }) => {
                   onClick={() => {
                     setTypeInput(!typeInput);
                   }}
-                >
-                 
-                </div>
+                ></div>
               </div>
 
               <div className="error">
@@ -175,14 +173,20 @@ export const  RegisterCategorys = ({estado=false }) => {
                   </p>
                 </Link>
               </div>
-              
 
-              <div className="bg-[#009AFA]  overflow-hidden relative justify-center text-center mx-auto flex w-3/5 px-6 py-5 text-white  text-sm  rounded-full shadow-md hover:bg-[#009AFA] hover:shadow-lg focus:shadow-lg
-                        focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out  mb-3">
-             
-             <div className={spiner ?"lds-ring":"hidden"}><div></div><div></div><div></div><div></div></div>
-             
-                <button onClick={()=>setSpiner(true)}
+              <div
+                className="bg-[#009AFA]  overflow-hidden relative justify-center text-center mx-auto flex w-3/5 px-6 py-5 text-white  text-sm  rounded-full shadow-md hover:bg-[#009AFA] hover:shadow-lg focus:shadow-lg
+                        focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out  mb-3"
+              >
+                <div className={spiner ? "lds-ring" : "hidden"}>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+
+                <button
+                  onClick={() => setSpiner(true)}
                   type="submit"
                   className=" bg-[#009AFA] w-full z-10 absolute h-full top-0"
                 >

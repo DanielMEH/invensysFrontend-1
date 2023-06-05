@@ -59,7 +59,7 @@ export const ChartBodegaC1 = () => {
         </div>
       ) : (
         <div className=" flex gap-2 ">
-          <section className="bg-white shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Total de bodegas</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
@@ -102,7 +102,7 @@ export const ChartBodegaC1 = () => {
               Productos en movimiento
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">
                 valor de todas las bodegas
@@ -149,7 +149,7 @@ export const ChartBodegaC1 = () => {
               <span className="mx-2">{bodega.length}</span>Productos ingresados
             </div>
           </section>
-          <section className="bg-white shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Subproductos</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">

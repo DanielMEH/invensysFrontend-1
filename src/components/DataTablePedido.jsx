@@ -139,20 +139,41 @@ export const DataTablePedido = () => {
     currency: "COP",
     minimumFractionDigits: 2,
   });
+
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
+
+
   return (
     <>
       {data.length > 0 ? (
         <>
-          <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
+          <div className="panel_opciones dark:bg-[#37415197] dark:text-white dark:border-none bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
             <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
               <section className="items-center flex">
-              <div>
-                <div className="">
-                 <Link to={"/pedidos"} className="flex items-center bg-gray-100 p-1">
-                 <svg xmlns="http://www.w3.org/2000/svg"
-                   width="24" height="24" viewBox="0 0 40 40"><path fill="currentColor" d="M24.96 32.601L12.371 19.997l.088-.088l12.507-12.52a.661.661 0 0 0-.01-.921a.645.645 0 0 0-.458-.182a.653.653 0 0 0-.465.186l-13.004 13.02a.63.63 0 0 0-.176.49a.656.656 0 0 0 .18.523l13.014 13.031c.244.23.659.233.921-.02a.658.658 0 0 0-.008-.915z"/></svg>
-                  <span className="p-1">Volver</span>
-                 </Link>
+                <div>
+                  <div className="">
+                    <Link
+                      to={"/pedidos"}
+                      className="flex items-center dark:bg-[#37415197]  bg-gray-100 p-1"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 40 40"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M24.96 32.601L12.371 19.997l.088-.088l12.507-12.52a.661.661 0 0 0-.01-.921a.645.645 0 0 0-.458-.182a.653.653 0 0 0-.465.186l-13.004 13.02a.63.63 0 0 0-.176.49a.656.656 0 0 0 .18.523l13.014 13.031c.244.23.659.233.921-.02a.658.658 0 0 0-.008-.915z"
+                        />
+                      </svg>
+                      <span className="p-1">Volver</span>
+                    </Link>
                   </div>
                 </div>
                 <div className="users flex items-center mx-2">
@@ -173,17 +194,14 @@ export const DataTablePedido = () => {
                     </svg>
                   </span>
                   <span className="text-[#3498DB] mx-1">Pedidos</span>
-                  <span className="text-[#3498DB] mx-1">
-                    {data.length}
-                  </span>
+                  <span className="text-[#3498DB] mx-1">{data.length}</span>
                 </div>
-                
               </section>
 
-              <section className="flex overflow-x-auto">
+              <section className="flex overflow-x-auto flex-col gap-2 md:flex-row  ">
                 <button
                   onClick={onBtnExport}
-                  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap"
+                  className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
                 >
                   <span>
                     <svg
@@ -202,7 +220,7 @@ export const DataTablePedido = () => {
                 </button>
                 <button
                   onClick={onBtExportExel}
-                  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap"
+                  className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
                 >
                   <span>
                     <svg
@@ -222,7 +240,7 @@ export const DataTablePedido = () => {
 
                 <button
                   onClick={onBtPrint}
-                  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap"
+                  className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -248,7 +266,7 @@ export const DataTablePedido = () => {
             <div className="panel_analitic block  my-2">
               <div className="content flex ">
                 <div className="inactive flex items-center ">
-                  <div className=" bg-white p-2 rounded-lg mx-1">
+                  <div className=" bg-white dark:bg-[#37415197] p-2 rounded-lg mx-1">
                     <span className="text-green-500 flex items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -277,7 +295,7 @@ export const DataTablePedido = () => {
               </div>
             </div>
 
-            <div className="search bg-white mb-3 flex items-center p-2 rounded-full">
+            <div className="search dark:bg-[#37415197] dark:text-white bg-white mb-3 flex items-center p-2 rounded-full">
               <div className="icon_search mx-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -299,15 +317,18 @@ export const DataTablePedido = () => {
                   id="filter-text-box"
                   placeholder="Buscar..."
                   onInput={onFilterTextBoxChanged}
-                  className="outline-none"
+                  className="outline-none dark:text-white dark:bg-transparent"
                 />
               </div>
             </div>
           </div>
           <div
-            className="ag-theme-alpine shadow-2xl mx-auto "
+            className={
+              darkMode
+                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+            }
             id="myGrid"
-            style={{ height: 600, width: "100%" }}
           >
             <AgGridReact
               ref={gridRef}
@@ -317,8 +338,8 @@ export const DataTablePedido = () => {
                 return {
                   _id: item._id,
                   numFactura: `NR ${i + 1}`,
-                  change:[item.totalComprap],
-                  name:item.name,
+                  change: [item.totalComprap],
+                  name: item.name,
                   cantidadProducts: item.cantidadProductos,
                   total: ("$ " + item.totalComprap).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g,

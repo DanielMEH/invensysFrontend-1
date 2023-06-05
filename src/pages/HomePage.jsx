@@ -32,14 +32,16 @@ export const HomePage = () => {
   document.body.style = "overflow-x: hidden";
   return (
     <>
-      <div className="w-full overflow-x-hidden">
+      <div className="w-full overflow-x-hidden 
+        
+        ">
         <div className="sticky top-0">
           <Header />
         </div>
         <div className=" colorcamb  ">
           <div className="content-home">
             <div className=" w-full  text-xl md:w-4/5  md:pl-10">
-              <h2 className="h5-mktg w-full text-5xl">
+              <h2 className="h5-mktg w-full text-5xl z-50">
                 ¡Comienza a crear tu propio invetario para llevar un mejor
                 manejo de tu negocio...!
               </h2>
@@ -120,7 +122,7 @@ export const HomePage = () => {
             />
           </div>
           <div
-            className="w-[93%] mx:auto md:w-96 relative shadow-2xl bg-white rounded-md border p-10 "
+            className="w-[93%] mx:auto md:w-96 relative shadow-2xl dark:text-white dark:bg-[#37415197] bg-white rounded-md border p-10 "
             data-aos="fade-left"
           >
             <div className="cir1 h-4 m-1 w-4 absolute bg-red-500 top-0 left-0 rounded-full"></div>
@@ -130,7 +132,7 @@ export const HomePage = () => {
               icon={faStar}
               className="text-[#fde047] absolute top-0 right-0 m-1"
             />
-            <span className="text-md lg:text-xl   text-slate-700 fade-right">
+            <span className="text-md lg:text-xl dark:text-white  text-slate-700 fade-right">
               Invensys es una aplicación de administración para el inventario de
               los productos de tu negocio, en la cual podras llevar un control
               permanente de todos ellos, necesidades de abastecimiento, reporte
@@ -140,7 +142,7 @@ export const HomePage = () => {
           </div>
         </div>
         <div className="text-center fuente-t1  ">
-          <span className="text-2xl md:text-6xl h-36">
+          <span className="text-2xl md:text-6xl h-36 dark:text-white">
             Que esperas de nuestra plataforma?
           </span>
         </div>
@@ -151,7 +153,7 @@ export const HomePage = () => {
       md:grid-cols-3  gap-5"
           >
             <section
-              className="bg-white w-full  flex flex-col items-center  md:mx-0 rounded shadow-2xl cursor-pointer p-1 "
+              className="bg-white dark:text-white dark:bg-[#37415197] w-full  flex flex-col items-center  md:mx-0 rounded shadow-2xl cursor-pointer p-1 "
               data-aos="fade-right"
             >
               <div className="relative ">
@@ -160,14 +162,14 @@ export const HomePage = () => {
                 </div>
               </div>
               <div className="    ">
-                <p className="text-gray-800 rounde-sm  mx-3 text-center text-xl border-t border-t-slate-200">
+                <p className="text-gray-800 dark:text-white rounde-sm  mx-3 text-center text-xl border-t border-t-slate-200">
                   Llevaras un registro de tus productos de entrada y salidas,
                   mediante reportes que estaran pendiente de tu inventario.{" "}
                 </p>
               </div>
             </section>
             <section
-              className="bg-white w-full  flex flex-col items-center  md:mx-0  rounded shadow-2xl cursor-pointer p-1"
+              className="bg-white w-full dark:text-white dark:bg-[#37415197]  flex flex-col items-center  md:mx-0  rounded shadow-2xl cursor-pointer p-1"
               data-aos="fade-up"
             >
               <div className="relative ">
@@ -176,7 +178,7 @@ export const HomePage = () => {
                 </div>
               </div>
               <div className="container paragraph  ">
-                <p className="text-gray-800 rounde-sm  mx-3 text-center text-xl border-t border-t-slate-200">
+                <p className="text-gray-800 rounde-sm  dark:text-white mx-3 text-center text-xl border-t border-t-slate-200">
                   Tu información esta segura, nos importa de que tus datos no se
                   pierdan y no hallan fallos al momento de utilizar nuesto
                   servicio.
@@ -184,7 +186,7 @@ export const HomePage = () => {
               </div>
             </section>
             <section
-              className="bg-white w-full flex flex-col items-center  md:mx-0  rounded shadow-2xl cursor-pointer p-1 "
+              className="bg-white dark:text-white dark:bg-[#37415197] w-full flex flex-col items-center  md:mx-0  rounded shadow-2xl cursor-pointer p-1 "
               data-aos="fade-left"
             >
               <div className="relative ">
@@ -193,7 +195,7 @@ export const HomePage = () => {
                 </div>
               </div>
               <div className="container paragraph  ">
-                <p className="text-gray-800   mx-3 text-center text-xl border-t border-t-slate-200">
+                <p className="text-gray-800 dark:text-white   mx-3 text-center text-xl border-t border-t-slate-200">
                   Podras crear usuarios que ayude llevar un mejor control de tu
                   inventario, a travez de roles que faciliten el manejo de tu
                   negocio.{" "}
@@ -205,12 +207,19 @@ export const HomePage = () => {
         <div className="text-center fuente-t1 ">
           <span
             className="
-      text-2xl md:text-6xl h-36"
+      text-2xl md:text-6xl h-36 dark:text-white"
           >
             Impulsamos en la inovacion
           </span>
         </div>
-        <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-around bgr">
+        <div className="flex flex-col lg:flex-row  items-center justify-center lg:justify-around 
+        
+      bg-gradient-to-r from-[#fff] from-10%
+        via-[#fff] dark:via-30% to-[#a1c9ff] to-90%
+        
+        dark:bg-gradient-to-r dark:from-[#163b59] dark:from-10%
+        dark:via-[#18324f] via-30% dark:to-[#121b2e] dark:to-90%
+        ">
           <div className=" flex flex-col lg:flex-row justify-center relative  ">
             <div className="h-3/5 hidden lg:block relative w-1 lg:ml-16 lg:mt-4  colorbgline"></div>
             <img
@@ -227,12 +236,12 @@ export const HomePage = () => {
             />
             <article className="md:w-[30rem] lg:mt-20 " data-aos="flip-left">
               <p className="">
-                <span className="text-[#3376F9] font2 t ">
+                <span className="text-[#3376F9] dark:text-white font2 t ">
                   <div className="span">
                     Invensys un servicio de alta calidad.
                   </div>
                   <span className="font3s">
-                    <div className="text-md">
+                    <div className="text-md dark:text-white">
                       Nuestra plataforma impulsa la innovación con herramientas
                       que aumentan la seguridad de tu negocio
                     </div>
@@ -240,7 +249,7 @@ export const HomePage = () => {
                 </span>
               </p>
               <div className="scalewrap"></div>
-              <p className="text-center md:text-end max-w-sm lg:ml-8 text-xl text-gray-700 ">
+              <p className="text-center md:text-start dark:text-white max-w-sm lg:ml-8 text-xl text-gray-700 ">
                 {" "}
                 Aumento del 100% en la productividad de tu trabajo después de 1
                 año
@@ -253,7 +262,7 @@ export const HomePage = () => {
           </div>
         </div>
         <div className="text-center fuente-t1 ">
-          <span className="text-2xl md:text-6xl ">
+          <span className="text-2xl md:text-6xl dark:text-white">
             Comodo para que cualquier persona pueda utilizarlo sin dificultad
           </span>
         </div>
@@ -291,7 +300,7 @@ export const HomePage = () => {
                 to={"/login"}
                 className="
            md:px-4 py-4 flex items-center text-sm md:text-xl justify-between rounded-xl  text-white
-            bg-black duration-200 w-full  mb-2 md:mb-12  truncate
+            bg-black  dark:bg-[#019afa] duration-200 w-full  mb-2 md:mb-12  truncate
              transition  ease-in-out drop-shadow-md shadow-xl hover:shadow-gray-500/50"
               >
                 <span className="mt-1 ml-1">Crear una cuenta en stored</span>
@@ -306,8 +315,8 @@ export const HomePage = () => {
                 to={"/signup"}
                 className=" px-4 py-3.5 flex items-center rounded-xl
              w-full truncate text-sm md:text-xl justify-between
-            text-black hover:bg-transparent  border-2 shadow-lg hover:shadow-gray-500/50
-             border-black mb-1 md:mb-12
+            text-black  dark:bg-[#019afa] hover:bg-transparent  border-2 shadow-lg hover:shadow-gray-500/50
+             border-black dark:border-[#019afa] dark:text-white mb-1 md:mb-12
              transition duration-150 ease-in-out drop-shadow-md  "
               >
                 <span className="mt-1 font-bold">Iniciar sesión en stored</span>
@@ -321,7 +330,7 @@ export const HomePage = () => {
         </div>
         <SliderCount />
         <div className="img">
-          <CardHomeFine />
+          {/* <CardHomeFine /> */}
         </div>
 
         <Footer />

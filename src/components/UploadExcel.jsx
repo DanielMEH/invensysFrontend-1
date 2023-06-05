@@ -8,7 +8,7 @@ import "animate.css";
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/styleSlider.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
-
+import "./efectosCss.css";
 export const UploadExcel = ({ estado = false }) => {
   const { postUploadcsvUsuario } = useGetUsers();
   const [csv, setCsv] = useState([]);
@@ -57,31 +57,24 @@ export const UploadExcel = ({ estado = false }) => {
   });
 
   return (
-    <div
-      className={
-        estados
-          ? "  h-full absolute z-30 w-4/5"
-          : "hidden"
-      }
-    >
+    <div className={estados ? "  h-full absolute z-30 w-4/5" : "hidden"}>
       <ToastContainer />
 
       <div className="form-signup w-4/5 sm:w-96 mx-auto sm:mx-auto mt-5 relative ">
-        <div className="container-signup  border shadow-2xl pb-1 rounded-lg bg-white ">
+        <div className="container-signup dark:border-none border shadow-2xl pb-1 rounded-lg effect_blur1 ">
           <button
             className="bg-[#fe5f57] rounded-full absolute right-1 top-1"
             onClick={handleShow}
           >
             <img src={x} alt="" />
           </button>
-          <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  ">
+          <h2 className="text-xl font-semibold mt-2 mb-5 pt-5 text-center  dark:text-white ">
             Subir archivo csv
           </h2>
 
           <Formik
             initialValues={{ modulo: "", estado: "" }}
             onSubmit={async (values) => {
-        
               let archivousuariocsv = csv;
               let formDataCsv = {
                 modulo: values.modulo,
@@ -108,7 +101,6 @@ export const UploadExcel = ({ estado = false }) => {
                   window.location.reload();
                   navigate("/usuarios");
                 }, 2000);
-                
               } else {
                 await toast.error("Debes de elegir un archivo valido", {
                   position: "top-right",
@@ -144,7 +136,7 @@ export const UploadExcel = ({ estado = false }) => {
                       />
                     </svg>
                   </div>
-                  <div className="subir text-gray-800 mx-1">
+                  <div className="subir dark:text-white text-gray-800 mx-1">
                     Subir lista de usuarios
                   </div>
                 </div>
@@ -175,7 +167,7 @@ export const UploadExcel = ({ estado = false }) => {
                 <section>
                   <label
                     htmlFor="modulo"
-                    className="block mb-2 text-sm font-medium text-gray-900 mx-2 py-1"
+                    className="block mb-2 text-sm font-medium dark:text-white text-gray-900 mx-2 py-1"
                   >
                     Seleccionar modulo
                   </label>
@@ -184,14 +176,14 @@ export const UploadExcel = ({ estado = false }) => {
                     name="modulo"
                     className="w-4/5 mx-2  rounded cursor-pointer  py-2 outline-none border border-[#1876F2] "
                   >
-                    <option value="usuario">usuario</option>
+                    <option value="usuario">Selecionar</option>
                     <option value="inventario">inventario</option>
                   </Field>
                 </section>
                 <section>
                   <label
                     htmlFor="estado"
-                    className="block mb-2 text-sm font-medium text-gray-900 mx-2 py-1 items-center
+                    className="block mb-2 text-sm font-medium dark:text-white text-gray-900 mx-2 py-1 items-center
                 "
                   >
                     Estado

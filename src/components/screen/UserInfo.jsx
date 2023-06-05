@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getUsersAdmin, getServices } from "../../apis/ApiData";
 import sinDada from "../../assets/img/sinDada.jpg";
@@ -28,7 +28,10 @@ export const UserInfo = () => {
   return (
     <>
       {spiner ? (
-        <div className="container animate__animated animate__slideInRight rounded-md grid place-content-center border bg-white w-[40rem]">
+        <div
+          className="container animate__animated animate__slideInRight
+         rounded-md grid place-content-center border bg-white w-full lg:w-[40rem]"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="50"
@@ -52,12 +55,18 @@ export const UserInfo = () => {
           </svg>
         </div>
       ) : (
-        <div className="container rounded-md   w-[40rem] animate__animated animate__fadeIn">
+        <div
+          className="container rounded-md w-full flex  
+        flex-col  lg:w-[40rem] animate__animated animate__fadeIn"
+        >
           {getUserId.map((item) => {
             return (
-              <div key={item.idAccount} className="flex">
-                <div className="w-full  mx-auto">
-                  <div class="card border">
+              <div
+                key={item.idAccount}
+                className="flex  flex-col gap-1 w-[279px] md:w-full sm:flex-row"
+              >
+                <div className="w-full  ">
+                  <div class="card border dark:text-white dark:border-none dark:bg-[#37415197]">
                     <div class="head">
                       <div class="circle"></div>
                       <div class="img">
@@ -79,9 +88,9 @@ export const UserInfo = () => {
                       </div>
                     </div>
 
-                    <div class="description">
-                      <h3>{item.correo}</h3>
-                      <h4>Usuario</h4>
+                    <div class="description dark:text-white">
+                      <h3 className="dark:text-white">{item.correo}</h3>
+                      <h4 className="dark:text-white">Usuario</h4>
                       <p>
                         Fecha de creación: de la cuenta: {item.fecha} ·{" "}
                         {item.hora}
@@ -93,8 +102,8 @@ export const UserInfo = () => {
                     </div>
                   </div>
                 </div>
-                <div class="card2 w-full border">
-                  <div class="head">
+                <div class="card2 w-full border dark:text-white dark:border-none dark:bg-[#37415197]">
+                  <div class="head ">
                     <h1 className="m-2">
                       <span className="text-xl font-sans font-bold">
                         <span>Actividad de:</span>

@@ -19,7 +19,7 @@ const SliderCount = () => {
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
   return (
-    <div className="max-w-7xl m-auto">
+    <div className="max-w-7xl m-auto dark:text-white dark:bg-[#37415197] p-4">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

@@ -81,18 +81,21 @@ useEffect(() => {
 }, [])
   return (
     <div>
-      <div className="bg-gray-100 h-screen relative">
+      <div className="bg-gray-100 min-h-screen
+
+dark:bg-gradient-to-r from-[#163b59] from-10%
+ via-[#18324f] via-30% to-[#121b2e] to-90%   relative">
         <ToastContainer />
-        <div className="flex  bg-white w-full border-b justify-between items-center">
+        <div className="flex dark:bg-[#37415197] dark:text-white dark:border-none  bg-white w-full border-b justify-between items-center">
           <div className="flex items-center  ">
             <Link
               to={"/recovery+password/identify"}
-              className="items-center flex bg-gray-200 m-1 rounded text-white py-2 px-3"
+              className="items-center flex dark:text-white dark:bg-[#37415197] bg-gray-200 m-1 rounded text-white py-2 px-3"
             >
-              <FontAwesomeIcon icon={faAngleLeft} className="text-2xl text-gray-700" />
-              <span className="pl-2 text-gray-700">Volver</span>
+              <FontAwesomeIcon icon={faAngleLeft} className="text-2xl text-gray-700 dark:text-white" />
+              <span className="pl-2 text-gray-700 dark:text-white">Volver</span>
             </Link>
-            <span className="text-2xl text-[#0099FF] mx-2 font-bold">
+            <span className="text-2xl text-[#0099FF] mx-2 font-bold ">
               Stored
             </span>
           </div>
@@ -115,11 +118,11 @@ useEffect(() => {
           </div>
         </div>
 
-        <div className="bg-white w-full sm:w-[30rem] rounded mt-9 mx-auto p-1  my-3">
+        <div className="bg-white w-full dark:text-white dark:bg-[#37415197] sm:w-[30rem] rounded mt-9 mx-auto p-1  my-3">
           <div className="py-2 sm:text-xl font-semibold  px-3 border-b">
             Verificaión requerida
           </div>
-          <div className="text-gray-600 my-3 mx-2">
+          <div className="text-gray-600 my-3 mx-2 dark:text-white">
             Hemos enviado un código de verificación a{" "}
             <strong>{getEmal}, </strong>
             para continuar deberas completar este campo.
@@ -130,7 +133,7 @@ useEffect(() => {
                 type="text"
                 className="input_code
               border sm:p-3 m-1 rounded-md text-center focus:border-blue outline-none
-              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600  "
+              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600 dark:bg-[#374151]  dark:border-[#019afa]"
                 maxLength={"1"}
                 size="1"
                 name="code1"
@@ -139,7 +142,7 @@ useEffect(() => {
                 type="text"
                 className="input_code
               border sm:p-3 m-1 rounded-md text-center focus:border-blue outline-none
-              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600  "
+              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600  dark:bg-[#374151]  dark:border-[#019afa]"
                 maxLength={"1"}
                 size="1"
                 name="code2"
@@ -148,7 +151,7 @@ useEffect(() => {
                 type="text"
                 className="input_code
               border sm:p-3 m-1 rounded-md text-center focus:border-blue outline-none
-              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600  "
+              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600  dark:bg-[#374151]  dark:border-[#019afa]"
                 maxLength={"1"}
                 size="1"
                 name="code3"
@@ -157,7 +160,7 @@ useEffect(() => {
                 type="text"
                 className="input_code
               border sm:p-3 m-1 rounded-md text-center focus:border-blue outline-none
-              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600  "
+              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600 dark:bg-[#374151]  dark:border-[#019afa] "
                 maxLength={"1"}
                 size="1"
                 name="code4"
@@ -166,7 +169,7 @@ useEffect(() => {
                 type="text"
                 className="input_code
               border sm:p-3 m-1 rounded-md text-center focus:border-blue outline-none
-              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600  "
+              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600  dark:bg-[#374151]  dark:border-[#019afa]"
                 maxLength={"1"}
                 size="1"
                 name="code5"
@@ -175,7 +178,7 @@ useEffect(() => {
                 type="text"
                 className="input_code
               border sm:p-3 py-2 m-1 rounded-md text-center focus:border-blue outline-none
-              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600  "
+              focus:border-[#0099FF] focus:shadow  focus:shadow-cyan-600 dark:bg-[#374151]  dark:border-[#019afa] "
                 maxLength={"1"}
                 size="1"
                 name="code6"

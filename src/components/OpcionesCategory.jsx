@@ -1,10 +1,16 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 
 import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
 import { useContextCategory } from "../hooks/context/ContextCategory";
 
 function OpcionesCategory(e) {
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   const { deleteCategorys} = useContextCategory();
   const deleteId = async () => {
   
@@ -17,9 +23,9 @@ function OpcionesCategory(e) {
       showClass: {
         popup: "animate__animated animate__bounceInDown",
       },
-      background: "white",
+      background: darkMode ? "#374151":"white",
 
-      color: "black",
+      color: darkMode ? "white" : "black",
       position: "top",
       border: "1px solid #5DADE2",
       backdrop: "8px",
@@ -28,9 +34,9 @@ function OpcionesCategory(e) {
       confirmButtonColor: "#1daf53",
       focusCancel: false,
       focusConfirm: false,
-      cancelButtonColor: "#ccc",
-      confirmButtonText: "Continuar",
-      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "eliminar!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         let id = e.data._id;
@@ -46,11 +52,11 @@ function OpcionesCategory(e) {
           },
           focusCancel: false,
           focusConfirm: false,
-          confirmButtonColor: "#1daf53",
+          confirmButtonColor: "#3085d6",
           confirmButtonText: "Aceptar",
-          color: "black",
+          color: darkMode ? "white" : "black",
           timer: 1000,
-          background: "white",
+          background: darkMode ? "#374151":"white",
         });
       } else if (result.isDismissed) {
         await Swal.fire({
@@ -62,11 +68,11 @@ function OpcionesCategory(e) {
           },
           focusCancel: false,
           focusConfirm: false,
-          confirmButtonColor: "#1daf53",
+          confirmButtonColor: "#3085d6",
           cancelButtonColor: "#ccc",
           confirmButtonText: "Continuar",
-          color: "black",
-          background: "white",
+          color: darkMode ? "white" : "black",
+          background: darkMode ? "#374151":"white",
           timer: 2000,
         });
       }
@@ -77,8 +83,10 @@ function OpcionesCategory(e) {
     // crear un modal para editar la categoria
     Swal.fire({
       title: "Editar categoria",
+      color:darkMode ? "white" : "black",
+      background: darkMode ? "#374151":"white",
       html: `<input id="swal-input1"
-            style="margin-bottom: 10px; background-color: #FFF;
+            style="margin-bottom: 10px; background-color: #FFF; color:${darkMode? "black":"black"};
             display: block;
             width: 350px;
             height: 40px;
@@ -88,7 +96,7 @@ function OpcionesCategory(e) {
             
             placeholder="Nombre de la categoria" value="${e.data.name_category}">
             <input id="swal-input2"
-            style="margin-bottom: 10px; background-color: #FFF;
+            style="margin-bottom: 10px; background-color: #FFF;color:${darkMode? "black":"black"};
             display: block;
             width: 350px;
             height: 40px;
@@ -102,6 +110,9 @@ function OpcionesCategory(e) {
       showCancelButton: true,
       confirmButtonText: "Guardar",
       cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      
       showClass: {
         popup: "animate__animated animate__fadeIn",
       },

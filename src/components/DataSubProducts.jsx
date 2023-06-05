@@ -147,14 +147,20 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
     );
   }, []);
 
+   const [darkMode, setDarkMode] = useState(false);
+   useEffect(() => {
+     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+       setDarkMode(true);
+     }
+   }, []);
   return (
     <>
-      <div className="panel_opciones bg-white w-[100%] mx-auto mt-4 mb-4  rounded-md p-2">
-        <div className="plus_panel flex justify-between items-center">
-          <section className="flex ">
+      <div className="panel_opciones bg-white dark:text-white dark:bg-[#37415197] w-[90%] md:w-full md:mx-auto mt-4 mb-4  rounded-md p-2">
+        <div className="plus_panel flex flex-col gap-2 md:flex-row justify-between items-center">
+          <section className="flex overflow-x-auto flex-col gap-2 md:flex-row ">
             <button
               onClick={onBtnExport}
-              className="flex items-center border mx-1 p-1 rounded-md"
+              className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
             >
               <span>
                 <svg
@@ -174,7 +180,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
 
             <button
               onClick={onBtExportExel}
-              className="flex items-center border mx-1 p-1 rounded-md"
+              className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
             >
               <span>
                 <svg
@@ -194,7 +200,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
 
             <button
               onClick={onBtPrint}
-              className="flex items-center border mx-1 p-1 rounded-md"
+              className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -211,7 +217,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
             </button>
             <Link
               to={`TrasladarProduct/${id}`}
-              className="flex items-center border mx-1 p-1 rounded-md"
+              className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +236,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
               </svg>
               <span>Trasladar productos </span>
             </Link>
-            <div className="flex items-center border mx-1 p-1 rounded-md">
+            <div className="flex dark:border-[#019afa] items-center border mx-1 p-1 rounded-md">
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -258,7 +264,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
               <span>Total de bodega : {sumaTotal()} </span>
             </div>
           </section>
-          <div className="search bg-white border flex  items-center p-2 rounded-full">
+          <div className="search bg-white dark:bg-[#37415197] dark:border-none border flex  items-center p-2 rounded-full">
             <div className="icon_search mx-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -280,7 +286,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
                 id="filter-text-box"
                 placeholder="Buscar..."
                 onInput={onFilterTextBoxChanged}
-                className="outline-none"
+                className="outline-none  dark:text-white bg-transparent w-full"
               />
             </div>
           </div>
@@ -293,9 +299,12 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
       <div className="panel_second_h w-[100%] mx-auto flex justify-between items-center"></div>
 
       <div
-        className="ag-theme-alpine shadow-2xl mx-auto "
+        className={
+          darkMode
+            ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+            : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+        }
         id="myGrid"
-        style={{ height: 600, width: "100%" }}
       >
         <AgGridReact
           ref={gridRef}

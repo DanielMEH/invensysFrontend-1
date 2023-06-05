@@ -58,6 +58,7 @@ export const ChartHomeC1 = () => {
     title: {
       text: "Reportes de ventas",
       align: "left",
+      fill:"red"
     },
     subtitle: {
       text: "Todos tus movimientos",
@@ -78,6 +79,9 @@ export const ChartHomeC1 = () => {
     legend: {
       horizontalAlign: "left",
     },
+    fill: {
+      colors: ['#fff', '#fff', '#fff']
+    }
   };
 
   return (
@@ -91,8 +95,12 @@ export const ChartHomeC1 = () => {
           />
         </div>
       ) : (
-        <div className="div shadow-xl rounded-md border w-[39rem] bg-white ">
-          <Chart options={options} series={options.series} height={350} />
+        <div className="div shadow-xl rounded-md border w-[39rem] dark:bg-[#37415197] dark:text-white bg-white ">
+          <Chart options={options} series={options.series} height={350} 
+
+          className="text-red-500"
+          
+          />
         </div>
       )}
     </>

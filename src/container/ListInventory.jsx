@@ -38,8 +38,8 @@ export const ListInventory = () => {
   );
 
   return (
-    <div className="notf block rounded-md bg-white px-3">
-      <h2 className="mx-2 font-bold">Lista de Bodega</h2>
+    <div className="notf block rounded-md bg-white dark:bg-[#37415197] px-3">
+      <h2 className="mx-2 font-bold dark:text-white">Lista de Bodega</h2>
 
       {loading ? (
         <div className="m-4">
@@ -84,7 +84,7 @@ export const ListInventory = () => {
                   {CorreoRepetido.map((item) => (
                     <SwiperSlide>
                       <div key={item._id}>
-                        <Link to={`inventory/${item._id}`} className="truncate">
+                        <Link to={`inventory/${item._id}`} className="truncate dark:bg-[#314768] dark:text-[#019afa] p-3 rounded-lg bg-gray-100 ">
                           {item.name_inventory}
                         </Link>
                       </div>
@@ -95,7 +95,7 @@ export const ListInventory = () => {
                 <>
                   {inventario.map((item) => (
                     <SwiperSlide>
-                      <Link to={`inventory/${item._id}`} className="truncate">
+                      <Link to={`inventory/${item._id}`} className="truncate dark:bg-[#314768] dark:text-[#019afa] p-3 rounded-lg bg-gray-100 ">
                         {item.name_inventory}
                       </Link>
                     </SwiperSlide>

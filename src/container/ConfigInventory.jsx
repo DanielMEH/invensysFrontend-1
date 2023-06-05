@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 
-import { Outlet,  useParams, useNavigate } from "react-router-dom";
+import { Outlet, useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useInventario } from "../hooks/context/ContextInventario";
 import moment from "moment-with-locales-es6";
 import { CategoryInventory } from "./CategoryInventory";
+import "../components/efectosCss.css";
 import { getSubProducts, TodoFunctions, getUsersAdmin } from "../apis/ApiData";
 import Swal from "sweetalert2";
 import { DataSubProducts } from "../components/DataSubProducts";
 moment.locale("es");
 export const ConfigInventory = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [load, setLoad] = useState(false);
@@ -39,6 +46,8 @@ export const ConfigInventory = () => {
   const geType = localStorage.getItem("type");
   const validaDelete = () => {
     Swal.fire({
+      background: darkMode ? "#374151":"white",
+      color: darkMode ? "white" : "black",
       title: "¿Estas seguro de eliminar esta bodega?  ",
       text: "se eliminara todo lo relacionado a este bodega incluyendo subproductos. No podras revertir esta accion!",
       showClass: {
@@ -94,7 +103,6 @@ export const ConfigInventory = () => {
     try {
       setLoading2(true);
       const response = await DeleteInventario(id);
-    
 
       if (response.status === 200) {
         await toast.success(" se elimino el inventario con exito ", {
@@ -170,13 +178,15 @@ export const ConfigInventory = () => {
       ) : (
         <>
           <div className={subModal2 ? "block" : "hidden"}>
-            <div className="notifyTranslate absolute z-50  w-screen h-full bg-white/50 inset-0">
+            <div className="notifyTranslate absolute z-50  w-screen h-full  inset-0">
               <div
-                className="content bg-white absolute inset-0 rounded border shadow-xl my-20
+                className="content effect_blur absolute inset-0 rounded border shadow-xl my-20
          mx-auto w-fit h-fit "
               >
                 <div className="flex justify-between">
-                  <h1 className="text-xl m-2">Asignar Bodega</h1>
+                  <h1 className="text-xl m-2 dark:text-white">
+                    Asignar Bodega
+                  </h1>
                   <div
                     className="icon cursor-pointer "
                     onClick={() => setSubModal2(!subModal2)}
@@ -194,17 +204,17 @@ export const ConfigInventory = () => {
                     </svg>
                   </div>
                 </div>
-                <p className="text-gray-500 mx-2">
+                <p className="text-gray-500 mx-2 dark:text-white">
                   asigna bodegas tus usuarios facilitando la gestion de las
                   bodegas
                 </p>
-                <div className="content grid grid-cols-2">
+                <div className="content  grid grid-cols-2">
                   {usersAdmin.length > 0 ? (
                     <>
                       {usersAdmin.map((item) => (
-                        <div className="bg-white">
+                        <div className="">
                           <span
-                            className="flex border gap-1 bg-gray-100 m-2 p-1 rounded cursor-pointer hover:bg-[#7bbce7] hover:text-white"
+                            className="flex border gap-1 dark:bg-[#374151f2] dark:border-none  dark:text-white m-2 p-1 rounded cursor-pointer hover:bg-[#7bbce7] hover:text-white"
                             onClick={() => handleUpdateBodega(item.correo)}
                           >
                             <svg
@@ -234,13 +244,15 @@ export const ConfigInventory = () => {
           </div>
 
           <div className={subModal ? "block" : "hidden"}>
-            <div className="notifyTranslate absolute z-50  w-screen h-full bg-white/50 inset-0">
+            <div className="notifyTranslate absolute z-50  w-screen h-full  inset-0">
               <div
-                className="content bg-white absolute inset-0 rounded border shadow-xl my-20
+                className="content bg-white dark:bg-[#374151f2] absolute inset-0 rounded border shadow-xl my-20
          mx-auto w-fit h-fit "
               >
                 <div className="flex justify-between">
-                  <h1 className="text-xl m-2">Productos pendiente</h1>
+                  <h1 className="text-xl m-2 dark:text-white">
+                    Productos pendiente
+                  </h1>
                   <div
                     className="icon cursor-pointer "
                     onClick={() => {
@@ -261,13 +273,13 @@ export const ConfigInventory = () => {
                     </svg>
                   </div>
                 </div>
-                <p className="text-gray-500 mx-2">
+                <p className="text-gray-500 mx-2 dark:text-white">
                   Productos pendientes por importar
                 </p>
                 {subProductsTranslate.length > 0 ? (
                   <div className="h-[30rem] overflow-y-auto scroll-mx-2.5">
                     {subProductsTranslate.map((item, index) => (
-                      <div className="div shadow-md p-1 border rounded-md m-2">
+                      <div className="div shadow-md dark:text-white p-1 border rounded-md m-2">
                         <div className="flex justify-between">
                           <span>
                             {" "}
@@ -356,7 +368,9 @@ export const ConfigInventory = () => {
                     ))}
                   </div>
                 ) : (
-                  <h1 className="m-3">No hay productos pendientes</h1>
+                  <h1 className="m-3 dark:text-white">
+                    No hay productos pendientes
+                  </h1>
                 )}
               </div>
             </div>
@@ -385,9 +399,9 @@ export const ConfigInventory = () => {
             </div>
           ) : (
             <>
-              <div className="bg-white  w-full px-3 py-1 border  rounded-sm">
-                <div className="iconst_config flex items-center justify-between gap-4 max-7xl mx-auto">
-                  <div className="sec1 flex items-center gap-4">
+              <div className="bg-white dark:bg-[#37415197] dark:border-none dark:text-white w-[90%]  lg:w-full px-3 py-1 border overflow-x-auto  rounded-sm">
+                <div className="iconst_config lg:flex-row flex-col items-start flex lg:items-center justify-start lg:justify-between gap-4 max-7xl mx-auto">
+                  <div className="sec1 flex items-center gap-4 overflow-x-auto">
                     {loading2 ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -453,7 +467,7 @@ export const ConfigInventory = () => {
                     >
                       <span>
                         <div className="">
-                          <div className="login bg-white z-20 relative rounded-md w-full ">
+                          <div className="login bg-white dark:bg-[#374151] z-20 relative rounded-md w-full ">
                             <div className="">
                               <div className="">
                                 <Formik
@@ -506,7 +520,7 @@ export const ConfigInventory = () => {
                                   <Form className="flex items-center ">
                                     <div className="flex flex-col w-full ">
                                       <div
-                                        className="Fiel-email border bg-white flex items-center my-1
+                                        className="Fiel-email border bg-white  flex items-center my-1
                                  border-solid  border-1 border-slate-300 rounded transition-200
                                    "
                                       >
@@ -516,7 +530,7 @@ export const ConfigInventory = () => {
                                             name="name_inventory"
                                             placeholder="Nombre de la bodega"
                                             className="w-full block
-                                               outline-none p-2"
+                                               outline-none p-2 dark:bg-[#374151fd] "
                                             value={inventoryData.name_inventory}
                                             onChange={handleSubmit}
                                           />
@@ -543,7 +557,7 @@ export const ConfigInventory = () => {
                                             type="text"
                                             name="description"
                                             placeholder="Ubicación de la bodega"
-                                            className="w-full block
+                                            className="w-full block dark:bg-[#374151fd]
                                                outline-none p-2 "
                                             value={inventoryData.description}
                                             onChange={handleSubmit}
@@ -564,7 +578,7 @@ export const ConfigInventory = () => {
                                       {load === false ? (
                                         <button
                                           type="submit"
-                                          className="bg-[#5994f5] text-white rounded-full relative
+                                          className="bg-[#019afa] text-white rounded-full relative
                                        w-5/6 mx-auto  hover:opacity-[0.85] transition
            
                                       p-1 flex justify-center"
@@ -576,7 +590,7 @@ export const ConfigInventory = () => {
                                       ) : (
                                         <span
                                           type="button"
-                                          className="bg-[#5994f5] text-white rounded-full relative
+                                          className="bg-[#019afa] text-white rounded-full relative
                                       p-1  w-full items-center mx-auto my-2 hover:opacity-[0.85] transition
                                       h-9 flex justify-between truncate"
                                         >
@@ -800,10 +814,10 @@ export const ConfigInventory = () => {
                         <div
                           className={
                             estado2
-                              ? `subproducts w-fit h-fit  rounded-md mt-2
+                              ? `subproducts w-fit h-fit mb-20 lg:mb-1  rounded-md mt-2
               cursor-pointer bg-[#5994f5] inline-block text-start`
                               : `subproducts w-fit h-fit  text-center only:rounded-md mt-2
-              cursor-pointer bg-[#5994f5] inline-block`
+              cursor-pointer bg-[#5994f5] inline-block mb-20 lg:mb-1`
                           }
                           onClick={() => setEstado2(!estado2)}
                         >
@@ -819,7 +833,7 @@ export const ConfigInventory = () => {
                                 d="M3 3h4v7.5c0 1.93 1.57 3.5 3.5 3.5H13v-4l7 6l-7 6v-4h-2.5C6.36 18 3 14.64 3 10.5V3Z"
                               />
                             </svg>
-                            <span className="text-white">
+                            <span className="text-white  text-sm md:text-xl ">
                               Trasladar productos
                             </span>
                           </div>

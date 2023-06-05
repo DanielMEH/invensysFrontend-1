@@ -165,7 +165,7 @@
   width: 40%;
   left: -50%;
   height: 100%;
-  background: #fff;
+  
   z-index: 2000;
   transition: 0.5s;
   overflow-y: scroll;
@@ -230,7 +230,7 @@
 }
 
 .list ul li {
-  background: red;
+ 
   margin: 6px 0px;
   display: flex;
   justify-content: space-between;
@@ -240,17 +240,14 @@
 }
 .list ul li .clup {
   width: 100%;
-  background-color: rgb(255, 255, 255);
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: rgb(0, 0, 0);
+  
   padding: 10px 10px;
 }
-.list ul li .clup:hover {
-  background: #efefef;
-  color: #000;
-}
+
 .lateralbg {
   background: #0d0d0d93;
   width: 100%;
@@ -268,7 +265,7 @@
 .elementor-background-overlay {
   background-image: url(https://res.cloudinary.com/dkqp3wkbi/image/upload/v1679756405/stored/FONDOS-11_bej4wy.png);
 
-  z-index: -100;
+  z-index: -10;
   transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
   background-repeat: no-repeat;
   background-position: center center;
@@ -536,12 +533,11 @@
   font-size: 13px;
 }
 .self_conte_fond {
-  background: #f4f8ffdd;
+
   background-repeat: no-repeat;
   background-size: cover;
 }
-.scrollhelping{
-
+.scrollhelping {
   overflow-y: scroll;
 }
 .scrollhelping::-webkit-scrollbar {
@@ -550,4 +546,7 @@
 
 .sss-scrool::-webkit-scrollbar {
   width: 0.5rem;
+}
+.effect {
+  transition: all 500ms ease-in-out;
 }

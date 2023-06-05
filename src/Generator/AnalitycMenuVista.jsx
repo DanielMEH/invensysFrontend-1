@@ -47,8 +47,8 @@ export const AnalitycMenuVista = () => {
         <div
           className={
             expand
-              ? "items_Links bg-white p-4 sticky top-10  scale-100  rounded-md w-[20rem] transition duration-700 ease-in-out "
-              : "items_Links bg-white scale-105 sticky top-10  rounded-md p-3  transition duration-700 ease-in-out "
+              ? "items_Links bg-white dark:bg-[#37415197] dark:text-white p-4 sticky top-10  scale-100  rounded-md w-[20rem] transition duration-700 ease-in-out "
+              : "items_Links bg-white dark:bg-[#37415197] dark:text-white scale-105 sticky top-10  rounded-md p-3  transition duration-700 ease-in-out "
           }
         >
           <div className="relative " onClick={() => setExpand(!expand)}>
@@ -166,7 +166,7 @@ export const AnalitycMenuVista = () => {
                   </svg>
                 </span>
 
-                <span className="mx-5 block">Bodegas</span>
+                <span className="mx-5 block dark:text-white">Bodegas</span>
               </NavLink>
             </li>
             {/* <li>
@@ -226,7 +226,7 @@ export const AnalitycMenuVista = () => {
                   </svg>
                 </span>
 
-                <span className="mx-5 block">Productos</span>
+                <span className="mx-5 block dark:text-white">Productos</span>
               </NavLink>
             </li>
             {/* <li>
@@ -340,7 +340,7 @@ export const AnalitycMenuVista = () => {
             </li> */}
           </ul>
           <ul>
-            <span className="mt-5 block font-bold mb-4 text-xl">Opciones</span>
+            <span className="mt-5 block font-bold mb-4 text-xl dark:text-white ">Opciones</span>
             <li className="flex items-center">
               <NavLink
                 to={`TodoComands/${token}`}
@@ -367,7 +367,7 @@ export const AnalitycMenuVista = () => {
                     />
                   </svg>
                 </span>
-                <span className="mx-5 block">Configuraciónes</span>
+                <span className="mx-5 block dark:text-white">Configuraciónes</span>
               </NavLink>
             </li>
             <li></li>

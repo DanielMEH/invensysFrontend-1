@@ -418,14 +418,25 @@ export const TodoFunctions = {
         authorization: accessToken,
       },
     }),
-  licenceSoftwareCreate: async (data) =>
+  licenceSoftwareCreate: async (id, moneyPrice, data) =>
     await axios.post(
       `${urlServer}/createLicence/${accessToken}`,
-      { data },
+      {
+        id,
+        moneyPrice,
+        data,
+      },
       {
         headers: {
           authorization: accessToken,
         },
       }
     ),
+
+  getLicenceSoftware: async () =>
+    await axios.get(`${urlServer}/getLicence/${accessToken}`, {
+      headers: {
+        authorization: accessToken,
+      },
+    }),
 };

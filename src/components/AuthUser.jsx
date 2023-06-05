@@ -64,16 +64,17 @@ export const AuthUser = () => {
     <>
       <ToastContainer />
       <Header />
-      <div className="form_Login  mx-auto rounded-md border w-[94%]  sm:3/4 animate__animated animate__fadeIn bg-white form md:w-[50rem]   my-9 drop-shadow-2xl ">
-        <div className="login bg-white z-20 relative rounded-md ">
+      <div className="red-400">
+      <div className="form_Login  dark:border-none  mx-auto rounded-md border w-[94%] dark:text-white dark:bg-[#37415197] sm:3/4 animate__animated animate__fadeIn bg-white form md:w-[50rem]   my-9 drop-shadow-2xl ">
+        <div className="login bg-white dark:text-white dark:bg-[#37415197] z-20 relative rounded-md ">
           <div className="flex item-center justify-center flex-col">
-            <div className=" absolute p-2 left-0 text-3xl text-gray-600 ">
+            <div className=" absolute p-2 left-0 text-3xl dark:text-white text-gray-600 ">
               <Link to="/">
                 <FontAwesomeIcon icon={faAngleLeft} />
               </Link>
             </div>
             <div className="">
-              <h1 className=" text-gray-600  block p-2  text-2xl text-center font-sans font-medium">
+              <h1 className=" text-gray-600 dark:text-white  block p-2  text-2xl text-center font-sans font-medium">
                 Iniciar sesión
               </h1>
             </div>
@@ -81,7 +82,7 @@ export const AuthUser = () => {
 
           <div className="descripcion">
             <p
-              className="title text-gray-600 text-base font-sans
+              className="title text-gray-600 dark:text-white text-base font-sans
                         mt-6 mb-2
                         mx-3"
             >
@@ -216,7 +217,7 @@ export const AuthUser = () => {
               >
                 <Form>
                   <div
-                    className="Fiel-email border bg-white flex items-center mx-2 my-1
+                    className="Fiel-email border bg-white dark:bg-transparent dark:border-[#019afa] flex items-center mx-2 my-1
                            border-solid border-1 border-slate-300 rounded transition-200
                              "
                   >
@@ -232,7 +233,7 @@ export const AuthUser = () => {
                         name="email"
                         placeholder="Correo electronico"
                         className="w-full block
-                                         outline-none "
+                                         outline-none dark:bg-transparent dark:text-white "
                       />
                     </div>
                   </div>
@@ -247,7 +248,7 @@ export const AuthUser = () => {
                   </div>
 
                   <div
-                    className="Fiel-password border bg-white flex items-center mx-2 mt-6
+                    className="Fiel-password border dark:bg-transparent dark:border-[#019afa] bg-white flex items-center mx-2 mt-6
                            border-solid border-1 border-slate-300 rounded"
                   >
                     <div className="icons    py-2 px-2 text-gray-400">
@@ -259,7 +260,7 @@ export const AuthUser = () => {
                         type={typeInput === true ? "password" : "text"}
                         name="password"
                         placeholder="Contraseña"
-                        className="w-full block outline-none bg-white"
+                        className="w-full block outline-none dark:bg-transparent dark:text-white bg-white"
                         autoComplete="on"
                       />
                     </div>
@@ -302,7 +303,7 @@ export const AuthUser = () => {
                         {" "}
                         <FontAwesomeIcon
                           icon={faCircleQuestion}
-                          className="text-[#074766] text-xl"
+                          className="text-[#074766] dark:text-white text-xl"
                         />{" "}
                         Ayuda
                       </p>
@@ -343,7 +344,7 @@ export const AuthUser = () => {
                     <Field type="checkbox" name="toggle" className="text-xl" />
                     <Link
                       to="/privacy"
-                      className="mx-2  text-slate-900 hover:underline overflow-hidden
+                      className="mx-2 dark:text-[#0099FF]  text-slate-900 hover:underline overflow-hidden
                                 "
                     >
                       Acepto términos y condiciones
@@ -377,11 +378,11 @@ export const AuthUser = () => {
           <div className="op-goo flex flex-rows justify-center items-center ">
             <div className=" flex  justify-center items-center">
               <div
-                className="authGoogle bg-gray-200 relative
-                                p-1.5 m-2 flex items-center justify-center rounded-full"
+                className="authGoogle  bg-gray-200 relative
+                                p-1.5 m-2 flex items-center dark:bg-[#37415197] justify-center rounded-full"
               >
                 <span className="mx-1 hidden md:block">
-                  puedes usar stored con otra cuenta
+                  puedes usar invensys con otra cuenta
                 </span>
                 <span> </span>
               </div>
@@ -408,6 +409,7 @@ export const AuthUser = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

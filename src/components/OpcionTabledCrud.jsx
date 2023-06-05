@@ -1,10 +1,17 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 
 import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { useNavigate } from "react-router-dom";
 function OpcionTabledCrud(e) {
+
+const [darkMode, setDarkMode] = useState(false);
+useEffect(() => {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    setDarkMode(true);
+  }
+}, []);
   const navigate = useNavigate();
 
   const {
@@ -19,14 +26,17 @@ function OpcionTabledCrud(e) {
       text: `
   Al eliminar este usuario no podra acceder a la plataforma y sus datos se perderan \n 
  `,
-      footer: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#F4D03F" d="M11 15h2v2h-2v-2m0-8h2v6h-2V7m1-5C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8a8 8 0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8Z"/></svg>
+      footer: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path fill="#F4D03F" d="M11 15h2v2h-2v-2m0-8h2v6h-2V7m1-5C6.47 2 2 6.5 2 12a10 10 0
+       0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18a8 8 0 0 1-8-8a8 8
+        0 0 1 8-8a8 8 0 0 1 8 8a8 8 0 0 1-8 8Z"/></svg>
   <p href="" style="color:#5DADE2; margin:0px 5px"> ${e.data.correo} </p>`,
       showClass: {
         popup: "animate__animated animate__bounceInDown",
       },
-      background: "white",
+      background: darkMode ? "#374151":"white",
 
-      color: "black",
+      color: darkMode ? "white" : "black",
       position: "top",
       border: "1px solid #5DADE2",
       backdrop: "8px",
@@ -35,9 +45,10 @@ function OpcionTabledCrud(e) {
       confirmButtonColor: "#1daf53",
       focusCancel: false,
       focusConfirm: false,
-      cancelButtonColor: "#ccc",
-      confirmButtonText: "Continuar",
-      cancelButtonText: "Cancelar",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "eliminar!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         let id = e.data.idAccount;
@@ -59,11 +70,11 @@ function OpcionTabledCrud(e) {
           },
           focusCancel: false,
           focusConfirm: false,
-          confirmButtonColor: "#1daf53",
+          confirmButtonColor: "#3085d6",
           confirmButtonText: "Aceptar",
-          color: "black",
+          color: darkMode ? "white" : "black",
           timer: 1000,
-          background: "white",
+          background: darkMode ? "#374151":"white",
         });
       } else if (result.isDismissed) {
         await Swal.fire({
@@ -75,11 +86,11 @@ function OpcionTabledCrud(e) {
           },
           focusCancel: false,
           focusConfirm: false,
-          confirmButtonColor: "#1daf53",
+          confirmButtonColor: "#3085d6",
           cancelButtonColor: "#ccc",
           confirmButtonText: "Continuar",
-          color: "black",
-          background: "white",
+          color: darkMode ? "white" : "black",
+          background: darkMode ? "#374151":"white",
           timer: 2000,
         });
       }

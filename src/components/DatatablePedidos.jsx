@@ -161,7 +161,7 @@ export const Datatable = () => {
       <ContextCategory>
         <RegisterCategorys estado={stateModel} />
       </ContextCategory>
-      <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
+      <div className="panel_opciones dark:bg-[#37415197] dark:text-white bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
         <div className="plus_panel flex justify-between items-center">
           <section className="items-center flex">
             <div className="users flex items-center mx-2">

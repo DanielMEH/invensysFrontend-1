@@ -13,7 +13,7 @@ export const Footer = () => {
 
   return (
     <>
-      <footer className="fotter_bg  lg:mt-36 pt-10">
+      <footer className="fotter_ dark:text-white dark:bg-[#37415197]  lg:mt-36 pt-10">
         <h2 className="text-[#2e86c1] mx-6 block md:hidden text-2xl font-bold">Invensys</h2>
         <div className=" max-w-7xl mx-auto ">
         <div className="flex  justify-between">
@@ -30,26 +30,26 @@ export const Footer = () => {
           </div>
           <div className="serviceSection m-3">
             <ul>
-            <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Servicios  </Link></li>
+            <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Servicios  </Link></li>
 
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Servicios  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Documentación  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 "> Recursos para desarroladores  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Certificaciones  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Blogs  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Compañia  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Servicios  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Documentación  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white "> Recursos para desarroladores  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Certificaciones  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Blogs  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Compañia  </Link></li>
             </ul>
           </div>
           <div className="div md:hidden mx-4 h-[2px] bg-white w-full block rounded-full"></div>
           <div className="layautSection m-3">
             <ul>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Quienes somos  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Ayuda  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Como funciona stored  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Privacidad de datos  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Información legal  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Terminos Y condiciones  </Link></li>
-              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800"> Hola  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Quienes somos  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Ayuda  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Como funciona stored  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Privacidad de datos  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Información legal  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Terminos Y condiciones  </Link></li>
+              <li className="md:my-1"><span className="circle-f"></span><Link to={"/"} className="flex justify-between  items-center md:py-1 hover:underline text-gray-800 dark:text-white"> Hola  </Link></li>
             </ul>
 
           </div>
@@ -67,23 +67,23 @@ Obtenga actualizaciones de productos, novedades de la compañía y más.</p>
           </div>
         </div>
         </div>
-        <div className="datacopy  overflow-x-scroll ">
+        <div className="datacopy  overflow-x-auto ">
           <div className="allsection flex justify-between items-center max-w-7xl mx-auto">
             <div className="enalces_items">
               <ul className="flex gap-8 p-4">
-                <li className="relative  text-[1.1rem] text-cyan-900  whitespace-nowrap">
+                <li className="relative  text-[1.1rem] text-cyan-900 dark:text-white  whitespace-nowrap">
                   <span className="font-bold "> <FontAwesomeIcon icon={faGlobe}/> Español </span>
                 </li>
-                <li className="relative   text-[1.1rem] text-cyan-900">
+                <li className="relative   text-[1.1rem] text-cyan-900 dark:text-white">
                   <Link to={"/"} className="text-underline whitespace-nowrap">Política de privacidad </Link>
                 </li>
-                <li className="relative  text-[1.1rem] text-cyan-900">
+                <li className="relative  text-[1.1rem] text-cyan-900 dark:text-white">
                   <Link to={"/"} className="text-underline  whitespace-nowrap">Términos</Link>
                 </li>
-                <li className="relative  text-[1.1rem] text-cyan-900">
+                <li className="relative  text-[1.1rem] text-cyan-900 dark:text-white">
                   <Link to={"/"} className="text-underline  whitespace-nowrap">Trabaja con nosotros</Link>
                 </li>
-                <li className="relative  text-[1.1rem] text-cyan-900  whitespace-nowrap">
+                <li className="relative  text-[1.1rem] text-cyan-900 dark:text-white  whitespace-nowrap">
                   <Link to={"/"}>Copyright &copy; {fecha} | Stored</Link>
                 </li>
               </ul>

@@ -127,6 +127,12 @@ export const ChartHomeC4 = () => {
     );
   }, []);
 
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       {dataVentas.length > 0 ? (
@@ -134,10 +140,10 @@ export const ChartHomeC4 = () => {
 
           <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
           <div className="buttons">
-          <h1 className="font-bold text-xl">Ventas</h1>
+          <h1 className="font-bold text-xl dark:text-white">Ventas</h1>
           </div>
 
-            <div className="search bg-white mb-3 flex items-center p-2 rounded-full justify-end my-5">
+            <div className="search dark:bg-[#37415197] dark:text-white bg-white mb-3 flex items-center p-2 rounded-full justify-end my-5">
               <div className="icon_search mx-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -159,16 +165,16 @@ export const ChartHomeC4 = () => {
                   id="filter-text-box"
                   placeholder="Buscar..."
                   onInput={onFilterTextBoxChanged}
-                  className="outline-none"
+                  className="outline-none dark:bg-transparent dark:text-white"
                 />
               </div>
             </div>
           </div>
           <div
-            className="ag-theme-alpine shadow-2xl mx-auto "
-            id="myGrid"
-            style={{ height: 600, width: "100%" }}
-          >
+        className={darkMode ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden " : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"}
+       
+        id="myGrid"
+      >
             <AgGridReact
               ref={gridRef}
               localeText={AG_GRID_LOCALE_EN}

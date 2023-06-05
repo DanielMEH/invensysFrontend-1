@@ -29,15 +29,15 @@ export const Signup = () => {
       <ToastContainer />
       <Header />
 
-      <div className="form-signup w-[94%]  mx-auto rounded-md border animate__animated animate__fadeIn bg-white form md:w-[50rem]  sm:3/4 my-9 drop-shadow-2xl">
+      <div className="form-signup w-[94%]  dark:border-[#777777] mx-auto rounded-md dark:bg-[#37415197] border animate__animated animate__fadeIn bg-white form md:w-[50rem]  sm:3/4 my-9 drop-shadow-2xl">
         <div className="flex item-center justify-center">
-          <div className=" absolute p-2 left-0 text-3xl text-gray-600 ">
+          <div className=" absolute p-2 left-0 text-3xl dark:text-white text-gray-600 ">
             <Link to="/">
               <FontAwesomeIcon icon={faAngleLeft} />
             </Link>
           </div>
           <div className="">
-            <h1 className=" text-gray-600 mb-6 block p-2  text-2xl text-center font-sans font-medium ">
+            <h1 className=" text-gray-600 mb-6 block dark:text-white p-2  text-2xl text-center font-sans font-medium ">
               Crear Cuenta
             </h1>
           </div>
@@ -55,7 +55,7 @@ export const Signup = () => {
           </div>
           <div className="container-signup   pb-1 rounded-lg ">
             <div className="description">
-              <p className="block  mx-5">
+              <p className="block  mx-5 dark:text-white">
                 Crea una cuenta para mejorar la experiencia y calidad de tu
                 negocio{" "}
               </p>
@@ -82,7 +82,7 @@ export const Signup = () => {
               </div>
             </div>
             <div className="flex items-center mx-5 my-5 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5 sm:mx-5">
-              <p className="text-center mx-4 mb-0">O</p>
+              <p className="text-center mx-4 mb-0 dark:text-white">O</p>
             </div>
             <Formik
               initialValues={{ email: "", password: "" }}
@@ -134,11 +134,11 @@ export const Signup = () => {
             >
               <Form>
                 <div
-                  className="Fiel-email border bg-white  flex items-center mx-2 my-1
+                  className="Fiel-email border bg-white dark:border-[#019afa] dark:bg-transparent flex items-center mx-2 my-1
                            border-solid border-1 border-slate-300 rounded
                              "
                 >
-                  <div className=" icons py-2 px-2 text-gray-400">
+                  <div className=" icons py-2 px-2  text-gray-400">
                     <FontAwesomeIcon
                       icon={faEnvelope}
                       className="mx-1 text-xl"
@@ -150,7 +150,7 @@ export const Signup = () => {
                       name="email"
                       placeholder="Correo electronico"
                       className="w-full block
-                                       outline-none "
+                                       outline-none dark:bg-transparent dark:text-white "
                     />
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export const Signup = () => {
                   />
                 </div>
                 <div
-                  className="Fiel-email border bg-white flex items-center mx-2 mt-6
+                  className="Fiel-email border dark:border-[#019afa] dark:bg-transparent dark:text-white bg-white flex items-center mx-2 mt-6
                            border-solid border-1 border-slate-300 rounded"
                 >
                   <div className="icons    py-2 px-2 text-gray-400">
@@ -176,7 +176,7 @@ export const Signup = () => {
                       name="password"
                       placeholder="Contraseña"
                       className="w-full block
-                                    outline-none bg-white"
+                                    outline-none bg-white dark:bg-transparent dark:text-white"
                       autoComplete="on"
                     />
                   </div>
@@ -213,11 +213,11 @@ export const Signup = () => {
                 </div>
                 <div className="flex justify-between m-3">
                   <Link to="ayuda">
-                    <p>
+                    <p className="dark:text-white">
                       {" "}
                       <FontAwesomeIcon
                         icon={faCircleQuestion}
-                        className="text-[#074766] text-xl"
+                        className="text-[#074766] dark:text-white text-xl"
                       />{" "}
                       Ayuda
                     </p>
@@ -226,7 +226,7 @@ export const Signup = () => {
                 <div className="text-center mt-5">
                   <button
                     type="submit"
-                    className="bg-[#009AFA]  inline-block px-6 py-2.5 text-white  text-sm   shadow-md hover:bg-[#009AFA] hover:shadow-lg focus:shadow-lg
+                    className="bg-[#009AFA]  inline-block dark:text-white px-6 py-2.5 text-white  text-sm   shadow-md hover:bg-[#009AFA] hover:shadow-lg focus:shadow-lg
                         focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-4/5 rounded-full mb-3"
                   >
                     Crear cuenta
@@ -236,13 +236,13 @@ export const Signup = () => {
                   <Field type="checkbox" name="toggle" className="text-xl" />
                   <Link
                     to="/privacy"
-                    className="mx-2  text-slate-900 hover:underline overflow-hidden
+                    className="mx-2  text-slate-900 dark:text-white hover:underline overflow-hidden
                                 "
                   >
                     Acepto términos y condiciones
                   </Link>
                 </div>
-                <p className="text-sm font-semibold  ml-3 sm:ml-5  my-2">
+                <p className="text-sm font-semibold  dark:text-white ml-3 sm:ml-5  my-2">
                   ¿Ya tienes una cuenta?
                   <Link to="/login">
                     <span

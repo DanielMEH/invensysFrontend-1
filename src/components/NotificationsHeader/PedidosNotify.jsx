@@ -87,7 +87,7 @@ export const PedidosNotify = () => {
       ) : (
         <>
           <div className="div">
-            <h3 className="text-xl m-4 font-mediumbold text-gray-700">
+            <h3 className="text-xl m-4 font-mediumbold dark:text-white text-gray-700">
               Notificaciones {filterModuls.length}
             </h3>
           </div>
@@ -141,13 +141,13 @@ export const PedidosNotify = () => {
                     </svg>
                   )}
                 </div>
-                <h2 className="font-bold mx-2  ">{modules.title}</h2>
+                <h2 className="font-bold mx-2 dark:text-white  ">{modules.title}</h2>
                 <div>
-                  <p className="m-2 font-sans text-gray-500">
+                  <p className="m-2 font-sans dark:text-white text-gray-500">
                     {modules.description}
                   </p>
                   <div className="fecha">
-                    <p className="m-2 font-sans font-semibold text-[#1e95e5]">
+                    <p className="m-2 font-sans dark:text-white font-semibold text-[#1e95e5]">
                       {moment(modules.createdAt).format("LLLL")}
                     </p>
                   </div>

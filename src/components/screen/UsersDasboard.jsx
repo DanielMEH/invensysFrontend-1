@@ -121,7 +121,7 @@ export const UsersDasboard = () => {
     <>
       {spiner === true ? (
         <div className="relative">
-          <h1 className="w-4/5 mx-auto  my-10   flex justify-center flex-col items-center ">
+          <h1 className="w-4/5 mx-auto  my-10 dark:text-white   flex justify-center flex-col items-center ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="120"
@@ -147,9 +147,9 @@ export const UsersDasboard = () => {
           </h1>
         </div>
       ) : (
-        <div className="h-screen">
+        <div className="h-screen ">
           <div className="cards_p animate__animated  animate__fadeIn">
-            <h2 className="text-2xl my-1 flex items-center">
+            <h2 className="text-2xl my-1 flex items-center dark:text-[#019afa]">
               Usuarios ·{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -163,12 +163,17 @@ export const UsersDasboard = () => {
                 />
               </svg>{" "}
             </h2>
-            <div className="cards_content flex gap-2  " id="lista">
+            <div
+              className="cards_content   flex gap-2 flex-col xl:flex-row  overflow-x-auto"
+              id="lista"
+            >
               {spiner === true ? (
                 <></>
               ) : (
-                <div className="content-webkit">
-                  <h3 className="m-4 text-gray-500 ">Informacion general</h3>
+                <div className="content-webkit  dark:bg-[#37415197]  overflow-x-auto">
+                  <h3 className="m-4 text-gray-500 dark:text-[#019afa]  ">
+                    Informacion general
+                  </h3>
                   {users.length > 0 ? (
                     <ReactSortable
                       list={users}
@@ -181,24 +186,25 @@ export const UsersDasboard = () => {
                       swapClass="sortableSwap"
                       multiDrag={true}
                       style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(2, minmax(200px, 1fr))",
                         flexWrap: "wrap",
-                        gap: "10px",
+                        gap: "1px",
                         cursor: "move",
                         width: "100%",
+                        overflowX: "auto",
                       }}
+                      className=" grid border
+                       dark:border-none gird-cols-1 md:grid-cols-2 lg:grid-cols-3"
                     >
                       {users.map((item, index) => (
-                        <div className="flex web-b">
+                        <div className="flex flex-col web-b dark:bg-[#374151] ">
                           <div
-                            className=" inline-block rounded-md truncate bg-white "
+                            className=" inline-block rounded-md truncate  "
                             key={index}
                           >
                             <Link to={`usersInfo/${item.idAccount}`}>
-                              <div className="card_content   p-3">
+                              <div className="card_content px-1  py-2 sm:px-1">
                                 <div className="flex w-full truncate items-center justify-between">
-                                  <h2 className="card_title text-lg text-gray-600 ">
+                                  <h2 className="card_title text-lg text-gray-600 dark:text-white ">
                                     {item.correo}{" "}
                                     <span className="mx-1"> · </span>
                                   </h2>
@@ -230,27 +236,29 @@ export const UsersDasboard = () => {
                 </div>
               )}
 
-              <div className="div self-stretch flex justify-center  w-3/5">
+              <div className="div self-stretch flex justify-center  ">
                 {<Outlet /> ? <Outlet /> : null}
               </div>
             </div>
           </div>
-          <div className="gap-2 rounded-md flex max-w-7xl  mt-4">
-            <div className="bg-white">
-              <Chart
-                options={options}
-                series={options.series}
-                height={350}
-                width={800}
-              />
-            </div>
-            <div className="bg-white w-full">
-              <Chart
-                options={radar}
-                series={radar.series}
-                type="radar"
-                height={350}
-              />
+          <div className="hidden">
+            <div className="gap-2 hidden rounded-md lg:flex max-w-7xl  mt-4">
+              <div className="bg-white">
+                <Chart
+                  options={options}
+                  series={options.series}
+                  height={350}
+                  width={800}
+                />
+              </div>
+              <div className="bg-white w-full">
+                <Chart
+                  options={radar}
+                  series={radar.series}
+                  type="radar"
+                  height={350}
+                />
+              </div>
             </div>
           </div>
         </div>

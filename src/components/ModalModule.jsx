@@ -242,11 +242,14 @@ export const ModalModule = ({ children }) => {
         .map((getuse) => (
           <>
             <div
-              className="bg-white absolute w-full h-full top-0"
+              className="bg-white min-h-screen
+
+              dark:bg-gradient-to-r from-[#163b59] from-10%
+               via-[#18324f] via-30% to-[#121b2e] to-90%   absolute w-full h-full top-0"
               key={getuse.idAccount}
             >
               {loading === true ? (
-                <div className="contenedor p-3 border-b bg-white border rounded-lg shadow-xl max-w-6xl mx-auto mt-20">
+                <div className="contenedor p-3 border-b dark:bg-[#37415197] dark:text-white bg-white border rounded-lg shadow-xl max-w-6xl mx-auto mt-20">
                   <div className="container items-center flex justify-between">
                     <span className="w-36 ">
                       <Skeleton height={16} />
@@ -397,7 +400,7 @@ export const ModalModule = ({ children }) => {
                   </div>
                 </div>
               ) : (
-                <div className="contenedor p-3 border-b bg-white border rounded-lg shadow-xl max-w-6xl mx-auto mt-20 ">
+                <div className="contenedor dark:bg-[#37415197] dark:text-white dark:border-none p-3 border-b bg-white border rounded-lg shadow-xl max-w-6xl mx-auto mt-20 ">
                   <div className="head_p relative flex items-center justify-between">
                     <Link to="/usuarios" className="">
                       <svg
