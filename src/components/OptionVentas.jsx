@@ -1,7 +1,7 @@
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 
 import "../assets/css/styleSlider.css";
-import { TodoFunctions } from "../apis/ApiData";
+import { TodoFunctions,getBusiness } from "../apis/ApiData";
 
 
 import {
@@ -12,21 +12,34 @@ import {
 import { ComprasPDF } from "../pdf/ComprasPDF";
 
 function OptionVentas(e) {
+  const [dataPdfAdmin, setDataPdfAdmin]=  useState([])
   const [data, setData] = useState([]);
-
+  const [state,setState] = useState(false)
+  const obj = { keyA: 'a', keyB: 'b' }
   const setPostDataPdf = async () => {
-    console.log(e.data._id);
+   
     const response = await TodoFunctions.getCompras(e.data._id);
-    console.log(response.data.response);
     setData(response.data.response);
   };
 
+  
+  
+  const HandleComponent = async ()=>{
+    
+    setState(true)
+  
+        const res = await getBusiness()
+        setDataPdfAdmin(res.data.dataCompany);
+        setState(false)
+      
+   
+}
   const openPDF = (url) => {
     window.open(url, "_blank");
   };
   return (
     <div className="flex items-center">
-      <button className="icon-sm text-2xl">
+      <button className="icon-sm text-2xl" >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="35"
@@ -39,9 +52,9 @@ function OptionVentas(e) {
           />
         </svg>
       </button>
-      <button>
+      <button onClick={HandleComponent}>
         <PDFDownloadLink
-          document={<ComprasPDF  />}
+          document={<ComprasPDF dataTrae={dataPdfAdmin} />}
           fileName="venta.pdf"
         >
           {({ blob, url, loading, error }) =>

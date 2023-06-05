@@ -48,13 +48,21 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ComprasPDF = () => {
+export const ComprasPDF = ({dataTrae =null}) => {
+  console.log("fff--real", dataTrae);
+
+ 
+  
+
  
   return (
+    
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
-          <Text style={styles.header}>PARAISO MX RESTAURANTE BAR S.A.S.</Text>
+          <Text style={styles.header}>
+            gfgfg
+            </Text>
           <Text style={styles.sectionTitle}>Información del cliente:</Text>
           <Text style={styles.text}>Nombre: t</Text>
           <Text style={styles.text}>Dirección: t</Text>

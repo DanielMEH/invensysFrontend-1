@@ -59,7 +59,7 @@ const InforLicence = () =>{
    <div class="bg-gradient-to-b ">
     <div class="container m-auto px-6  md:px-12 lg:px-20">
     
-        <div class="mt-12 m-auto -space-y-4 items-center justify-center
+        <div class="mt-2 m-auto -space-y-4 items-center justify-center
          md:flex md:space-y-0 md:-space-x-4 xl:w-10/12">
             <div class="relative z-10 -mx-4 group md:w-6/12 md:mx-0 lg:w-5/12">
                 <div aria-hidden="true" class="absolute top-0 w-full
@@ -117,28 +117,22 @@ const InforLicence = () =>{
                 <div aria-hidden="true" class="absolute top-0 w-full h-full
                  rounded-2xl bg-white shadow-lg transition duration-500 "></div>
                 <div class="relative p-6 pt-16 md:p-8 md:pl-12 md:rounded-r-2xl lg:pl-20 lg:p-16">
-                    <ul role="list" class="space-y-4 py-6 text-gray-600">
+                    <ul role="list" class="space-y-4 py-4 text-gray-600">
                         <li class="space-x-2">
                             
                             <span>Solo pagas anual</span>
                         </li>
                         <li class="space-x-2">
+                        <img class="w-[20rem] lg:w-[24rem]"
+                         src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1685721587/7769792_3236196_oqbsj3.jpg" loading="lazy" alt="licence"/>
                             
                             <span>Aumentamos el rendimiento de tu tranajo.</span>
                         </li>
-                        <li class="space-x-2">
-                           
-                            <span>Todas las funcionalidades en un solo lugar</span>
-                        </li>
-                        <li class="space-x-2">
-                            
-                            <span>Compra ahora tu licencia</span>
-                        </li>
-                    </ul>
-                    <p class="text-gray-700">Alianzas</p>
-                    <div class="mt-6 flex justify-between gap-6">
                        
-                        <img class="w-20 lg:w-28" src="https://res.cloudinary.com/dkqp3wkbi/image/upload/v1679771442/logo_peque_v2vb8j.png" loading="lazy" alt="microsoft"/>
+                    </ul>
+                   
+                    <div class="mt-1 flex justify-between gap-6">
+                       
                     </div>
                 </div>
             </div>

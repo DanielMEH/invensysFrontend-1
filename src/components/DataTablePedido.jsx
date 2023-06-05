@@ -14,7 +14,7 @@ import { setPrinterFriendly } from "./ChackSelection";
 import { ChackSelection } from "./ChackSelection";
 import { setNormal } from "./ChackSelection";
 
-import { TodoFunctions } from "../apis/ApiData";
+import { TodoFunctions,getBusiness } from "../apis/ApiData";
 import { Link, Outlet } from "react-router-dom";
 import OptionVentas from "./OptionVentas";
 moment.locale("es");
@@ -22,17 +22,21 @@ moment.locale("es");
 export const DataTablePedido = () => {
 
   const [data, setData] = useState([])
+ 
 
   useEffect(() => {
     const initial = async () => {
         const response = await TodoFunctions.getPedidos()
+      
         setData(response.data.pedidosproveedor);
-     
-    };
-
-    initial();
-  }, []);
-
+    
+        
+      };
+      
+      initial();
+    }, []);
+   
+    
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
 
