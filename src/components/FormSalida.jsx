@@ -169,99 +169,26 @@ export const FormSalida = () => {
  
   return (
     <>
-    <ToastContainer/>
-      <div className=" border bg-white h-fit p-2 mt-2 flex  ">
-        <div className="form-content   w-[70rem]">
+      <ToastContainer />
+      <div className=" border bg-white dark:bg-[#37415197] dark:text-white dark:border-none lg:flex-row flex-col h-fit p-2 mt-2 flex  ">
+        <div className="form-content  md:w-[20rem] lg:w-[70rem] w-[16rem]">
           <div className="title">
-            <h1 className="text-2xl font-bold text-gray-500">Ventas</h1>
-            <p>
-              Comienza a realizar tus compras
-            </p>
+            <h1 className="text-2xl font-bold dark:text-white text-gray-500">
+              Ventas
+            </h1>
+            <p>Comienza a realizar tus compras</p>
           </div>
-          {/* <div className="conte pedido">
-            <div className="select-Proveedor relative">
-              <button
-                className="flex items-center  bg-[#3498db] p-1 mt-2 rounded border"
-                onClick={() => {
-                  setEstadoModel(!estadoModel);
-                }}
-              >
-                <span className="mr-2 text-white">Selecionar proveedor </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 32 32"
-                >
-                  <path
-                    fill="white"
-                    d="M4.219 10.781L2.78 12.22l12.5 12.5l.719.687l.719-.687l12.5-12.5l-1.438-1.438L16 22.562z"
-                  />
-                </svg>
-              </button>
-              <div
-                className={
-                  estadoModel
-                    ? "visible duration-100"
-                    : "invisible  scale-100 duration-100"
-                }
-              >
-                <div className="list_provider rounded absolute z-50 shadow-xl bg-white w-fit p-1 mt-1 border">
-                  <ul>
-                    {proveedores.map((i) => {
-                      return (
-                        <li
-                          className="hover:bg-gray-100 p-2  rounded cursor-pointer hover:text-black"
-                          key={i._id}
-                          onClick={() => {
-                            setIdProvider(i._id);
-                            setEstadoModel(!estadoModel);
-                          }}
-                        >
-                          {i.company}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
-              <div className="listProviderItem w-fit my-4 shadow-md overflow-hidden border rounded-md ">
-                {dataArray.length > 0 ? (
-                  <>
-                    <div className="">
-                      <h1 className="bg-[#3498db] p-1 mb-1 text-white">
-                        Datos personales del proveedor
-                      </h1>
-                      <div className="grid grid-cols-2 gap-2 p-1">
-                        <div className="  text-lg text-black  cursor-not-allowed border px-1 ">
-                          {dataArray[0].name}
-                        </div>
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
-                          {dataArray[0].company}
-                        </div>
-                        <div className=" text-lg text-black cursor-not-allowed border  px-1">
-                          {dataArray[0].email}
-                        </div>
-                        <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
-                          {dataArray[0].phone}
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : null}
-              </div>
-            </div>
-          </div> */}
-          {/* ?hellow */}
 
-          <div className="select-Proveedor relative">
+          <div className="select-Proveedor  relative">
             <button
-              className="flex items-center  bg-[#3498db] p-1 mt-2 rounded border"
+              className="flex items-center dark:border-none  bg-[#3498db] p-1 mt-2 rounded border"
               onClick={() => {
                 setEstadoModel1(!estadoModel1);
               }}
             >
-              <span className="mr-2 text-white">Selecionar Bodega </span>
+              <span className="mr-2 text-white  dark:text-white ">
+                Selecionar Bodega{" "}
+              </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -275,12 +202,12 @@ export const FormSalida = () => {
               </svg>
             </button>
             <div className={estadoModel1 ? "block" : "hidden"}>
-              <div className="list_provider shadow-md absolute z-40  bg-white w-fit p-1 mt-1 border">
+              <div className="list_provider shadow-md absolute z-40  dark:bg-[#37415197] dark:text-white dark:border-none bg-white w-fit p-1 mt-1 border">
                 <ul>
                   {inventario.map((i) => {
                     return (
                       <li
-                        className="hover:bg-gray-100 p-1 rounded cursor-pointer hover:text-black"
+                        className="hover:bg-gray-100 p-1 dark:bg-[#37415197] dark:text-white dark:border-none rounded cursor-pointer hover:text-black"
                         key={i._id}
                         onClick={() => {
                           setIdInventario(i._id);
@@ -295,7 +222,7 @@ export const FormSalida = () => {
                 </ul>
               </div>
             </div>
-            <div className="listProviderItem w-fit overflow-hidden my-4 shadow-md border rounded-md ">
+            <div className="listProviderItem w-fit dark:text-white dark:border-none overflow-hidden my-4 shadow-md border rounded-md ">
               {inventoryArray.length > 0 ? (
                 <>
                   <div className="">
@@ -303,16 +230,16 @@ export const FormSalida = () => {
                       Datos de la bodega{" "}
                     </h1>
                     <div className="grid grid-cols-1 gap-2 p-1">
-                      <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                      <div className=" text-lg text-black dark:text-white dark:border-none  cursor-not-allowed border px-1 ">
                         {inventoryArray[0].name_inventory}
                       </div>
-                      <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                      <div className=" text-lg text-black dark:text-white dark:border-none  cursor-not-allowed border px-1 ">
                         {inventoryArray[0].description}
                       </div>
-                      <div className=" text-lg text-black cursor-not-allowed border  px-1">
+                      <div className=" text-lg text-black dark:text-white dark:border-none cursor-not-allowed border  px-1">
                         {inventoryArray[0].estadoInventory}
                       </div>
-                      <div className=" text-lg text-black  cursor-not-allowed border px-1 ">
+                      <div className=" text-lg text-black dark:text-white dark:border-none  cursor-not-allowed border px-1 ">
                         {inventoryArray[0].responsableInventory}
                       </div>
                     </div>
@@ -327,7 +254,7 @@ export const FormSalida = () => {
         {idInventario !== "" ? (
           <div className="serach_Content w-full  p-1">
             <div className="searc_buscador ">
-              <div className="searc_buscador bg-white w-full items-center rounded-full flex border my-1">
+              <div className="searc_buscador  bg-white dark:border-none dark:bg-[#374151] w-full items-center rounded-full flex border my-1">
                 <div className="icon ml-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -349,7 +276,7 @@ export const FormSalida = () => {
                     <input
                       type="text"
                       placeholder="Buscar producto"
-                      className="w-full outline-none  p-2"
+                      className="w-full outline-none dark:bg-[#374151dc] dark:text-white  p-2"
                       onChange={(e) => handleBuscador(e.target.value)}
                     />
                     <button className="mx-1 cursor-pointer close" type="reset">
@@ -369,7 +296,7 @@ export const FormSalida = () => {
                 </div>
               </div>
               <div
-                className="subProducts bg-white max-h-[18rem] overflow-y-hidden  border rounded-md"
+                className="subProducts dark:bg-[#374151] dark:text-white bg-white max-h-[18rem] overflow-y-hidden  border rounded-md"
                 style={{
                   boxShadow:
                     "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
@@ -380,7 +307,7 @@ export const FormSalida = () => {
                     {products.map((i) => {
                       return (
                         <div
-                          className="flex justify-between items-center p-2  border-b cursor-pointer hover:bg-[#69bff80b] "
+                          className="flex justify-between dark:border-none items-center p-2  border-b cursor-pointer hover:bg-[#69bff80b] "
                           key={i._id}
                           onClick={() => habdleSave(i)}
                         >
@@ -485,7 +412,7 @@ export const FormSalida = () => {
           </div>
         ) : null}
         {idInventario !== "" ? (
-          <div className="listpedidos  w-full border m-2 rounded p-1">
+          <div className="listpedidos dark:border-[#cccccc75]  w-full border m-2 rounded p-1">
             <h1>Lista de productos</h1>
 
             <div
@@ -498,7 +425,7 @@ export const FormSalida = () => {
                 <>
                   <div className="m-2">
                     <div className="flex flex-col ">
-                      <div className="bg-white w-full flex justify-between items-center rounded-md text-lg text-black  px-1 ">
+                      <div className="bg-white dark:bg-[#374151] dark:text-white w-full flex justify-between items-center rounded-md text-lg text-black  px-1 ">
                         <div className="list flex">
                           <Formik
                             initialValues={{
@@ -513,7 +440,6 @@ export const FormSalida = () => {
                                 .min(1, "Debe tener mas de 1 caracteres"),
                             })}
                             onSubmit={async (values) => {
-                            
                               if (pedidosList.length > 0) {
                                 setPedidosList([
                                   ...pedidosList,
@@ -544,33 +470,33 @@ export const FormSalida = () => {
                               }
                             }}
                           >
-                            <Form className="flex">
+                            <Form className="flex mt-2">
                               <div className="grid grid-cols-2 gap-2">
                                 <Field
                                   type="text"
                                   name="nombre"
                                   placeholder="Nombre"
-                                  className="outline-none border rounded-md p-1"
+                                  className="outline-none border dark:border-[#019afa] rounded-md p-1 dark:bg-[#374151] dark:text-white"
                                   value={data[0].name}
                                 />
                                 <Field
                                   type="text"
                                   name="unidades"
                                   placeholder="Ingresar unidades"
-                                  className="w-full outline-none  p-1 border rounded-md"
+                                  className="w-full outline-none  p-1 border rounded-md dark:border-[#019afa]  dark:bg-[#374151] dark:text-white"
                                 />
 
                                 <Field
                                   type="text"
                                   name="precioVenta"
                                   placeholder="Precio venta "
-                                  className="w-full outline-none  p-1 border rounded-md"
+                                  className="w-full outline-none  p-1 border dark:border-[#019afa] rounded-md  dark:bg-[#374151] dark:text-white"
                                   value={data[0].precioVenta}
                                 />
                                 <button
                                   type="submit"
                                   className="mx-1 cursor-pointer close
-                                    bg-[#7bbce7] text-white rounded-md p-1
+                                    bg-[#019afa] text-white rounded-md p-1
                                   "
                                 >
                                   Agregar
@@ -632,7 +558,7 @@ export const FormSalida = () => {
                   {pedidosList.map((i) => {
                     return (
                       <div className="container">
-                        <div className="bg-gray-100 flex justify-between gap-1 mx-1 p-1 my-1 rounded ">
+                        <div className="bg-gray-10 dark:bg-[#374151] dark:text-white flex justify-between gap-1 mx-1 p-1 my-1 rounded ">
                           <div>{i.name}</div>
                           <div>Unid...: {i.unidades}</div>
                           <div>
@@ -681,13 +607,16 @@ export const FormSalida = () => {
         ) : null}
       </div>
       {pedidosList.length > 0 ? (
-        <div className="bg-white p-1 m-2 shadow-lg rounded-lg xl:max-w-7xl ">
+        <div
+          className="bg-white dark:bg-[#37415197] dark:text-white
+         p-1 m-2 shadow-lg rounded-lg xl:max-w-7xl "
+        >
           <h2 className="p-2">Resumen del Pedido</h2>
 
           <div className="contentj flex ">
             <div className="flex flex-rows gap-1 w-fit">
               <div className="total  overflow-hidden  border rounded  inline-block ">
-                <span className="bg-gray-100 p-3 text-black">
+                <span className="bg-gray-100 dark:bg-[#37415197] dark:text-white p-3 text-black">
                   Total de la compra:{" "}
                 </span>
                 <span className="font-mono  inline-block p-2 ">
@@ -703,7 +632,7 @@ export const FormSalida = () => {
               </div>
 
               <div className="border rounded  overflow-hidden inline-block">
-                <span className="bg-gray-100 p-2 inline-block text-black">
+                <span className="bg-gray-100 dark:text-white dark:bg-[#37415197] p-2 inline-block text-black">
                   Total de productos:
                 </span>
                 <span className="p-2 inline-block">{pedidosList.length}</span>
@@ -712,7 +641,7 @@ export const FormSalida = () => {
           </div>
           <div className="flex my-1 gap-1">
             <div className="border rounded  overflow-hidden inline-block">
-              <span className="bg-gray-100 p-2 inline-block text-black">
+              <span className="bg-gray-100 dark:text-white dark:bg-[#37415197] p-2 inline-block text-black">
                 Bodega:
               </span>
               <span className="p-2 inline-block">
@@ -725,7 +654,7 @@ export const FormSalida = () => {
           <div className="button flex justify-end gap-1">
             <button
               name="Aceptar"
-              className="bg-green-400 p-2 rounded text-white rounded-2"
+              className="bg-[#019afa] m-2 p-2 rounded text-white rounded-2"
               onClick={() => handleClickFormPedido("aceptado")}
             >
               Aceptado

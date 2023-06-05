@@ -174,7 +174,7 @@ export const InicioChart = () => {
   return (
     <>
       {state ? (
-        <div className="skeleton flex mt-10 justify-center gap-1">
+        <div className="skeleton flex flex-col flex-wrap lg:flex-row mt-10 justify-center gap-1">
           <Skeleton
             count={1}
             width={225}
@@ -212,7 +212,7 @@ export const InicioChart = () => {
             <section className="relative w-full md:w-auto">
               <Link to={`users/${token}`} className="">
                 <div
-                  className="card-single bg-white rounded-md block md:inline-block p-2
+                  className="card-single bg-white dark:bg-[#37415197] rounded-md block md:inline-block p-2
         border-b-4 border-[#00a6ed] hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
@@ -229,7 +229,7 @@ export const InicioChart = () => {
                       />
                     </svg>
                   </Link>
-                  <div className="spana text-gray-500 flex items-center">
+                  <div className="spana text-gray-500 dark:text-white flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="28"
@@ -270,7 +270,7 @@ export const InicioChart = () => {
                           />
                         </svg>
                       )}
-                      <span className="text-black text-xl font-bold mx-1">
+                      <span className="text-black dark:text-white text-xl font-bold mx-1">
                         <span>+</span>
                         {getUsers.length > 0 ? (
                           <span
@@ -302,7 +302,7 @@ export const InicioChart = () => {
             <section className="relative w-full md:w-auto">
               <Link to={`productos/${token}`} className="">
                 <div
-                  className="card-single bg-white rounded-md block md:inline-block p-2
+                  className="card-single bg-white dark:bg-[#37415197] rounded-md block md:inline-block p-2
         border-b-4 border-green-400 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
@@ -319,7 +319,7 @@ export const InicioChart = () => {
                       />
                     </svg>
                   </Link>
-                  <div className="spana text-gray-500 flex items-center">
+                  <div className="spana text-gray-500 dark:text-white flex items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="28"
@@ -360,7 +360,7 @@ export const InicioChart = () => {
                           />
                         </svg>
                       )}
-                      <span className="text-black text-xl font-bold mx-1">
+                      <span className="text-black dark:text-white text-xl font-bold mx-1">
                         <span>+</span>
                         {countP > 0 ? (
                           <span class="num" data-val={countP > 0 ? countP : 1}>
@@ -389,7 +389,7 @@ export const InicioChart = () => {
             <section className="relative w-full md:w-auto">
               <Link to={`categorias/${token}`} className="">
                 <div
-                  className="card-single bg-white rounded-md block md:inline-block p-2
+                  className="card-single bg-white dark:bg-[#37415197] rounded-md block md:inline-block p-2
         border-b-4 border-red-400 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
@@ -406,7 +406,7 @@ export const InicioChart = () => {
                       />
                     </svg>
                   </Link>
-                  <div className="spana text-gray-500 flex items-center ">
+                  <div className="spana text-gray-500 dark:text-white flex items-center ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -447,7 +447,7 @@ export const InicioChart = () => {
                           />
                         </svg>
                       )}
-                      <span className="text-black text-xl font-bold mx-1">
+                      <span className="text-black dark:text-white text-xl font-bold mx-1">
                         <span>+</span>
                         {dataCategory.length > 0 ? (
                           <span
@@ -481,7 +481,7 @@ export const InicioChart = () => {
             <section className="relative w-full md:w-auto">
               <Link to={`proveedores/${token}`} className="">
                 <div
-                  className="card-single bg-white rounded-md block md:inline-block p-2
+                  className="card-single bg-white dark:bg-[#37415197] rounded-md block md:inline-block p-2
         border-b-4 border-purple-500 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
@@ -498,7 +498,7 @@ export const InicioChart = () => {
                       />
                     </svg>
                   </Link>
-                  <div className="spana text-gray-500 flex items-center ">
+                  <div className="spana text-gray-500 dark:text-white flex items-center ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="28"
@@ -539,7 +539,7 @@ export const InicioChart = () => {
                           />
                         </svg>
                       )}
-                      <span className="text-black text-xl font-bold mx-1">
+                      <span className="text-black dark:text-white text-xl font-bold mx-1">
                         <span>+</span>
                         {dataProviderM.length > 0 ? (
                           <span
@@ -574,11 +574,11 @@ export const InicioChart = () => {
                 </div>
               </Link>
             </section>
-            <section className="relative w-full md:w-auto">
+            <section className="relative w-full md:w-auto ">
               <Link to={"/bodega"} className="">
                 <div
-                  className="card-single bg-white rounded-md block md:inline-block p-2
-        border-b-4 border-purple-500 hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
+                  className="card-single bg-white dark:bg-[#37415197] dar:text-white rounded-md block md:inline-block p-2
+        border-b-4 border-[#a21caf] hover:translate-y-[-3px] duration-200 hover:shadow-lg relative
         "
                 >
                   <Link to="/proveedor" className="absolute top-0  right-0">
@@ -589,12 +589,12 @@ export const InicioChart = () => {
                       viewBox="0 0 24 24"
                     >
                       <path
-                        fill="#a855f7"
+                        fill="#a21caf"
                         d="M17 13h-4v4h-2v-4H7v-2h4V7h2v4h4m-5-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"
                       />
                     </svg>
                   </Link>
-                  <div className="spana text-gray-500 flex items-center ">
+                  <div className="spana text-gray-500 dark:text-white flex items-center ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="28"
@@ -652,7 +652,7 @@ export const InicioChart = () => {
                           />
                         </svg>
                       )}
-                      <span className="text-black text-xl font-bold mx-1">
+                      <span className="text-black dark:text-white text-xl font-bold mx-1">
                         <span>+</span>
                         {bodegas.length > 0 ? (
                           <span

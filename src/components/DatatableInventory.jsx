@@ -218,7 +218,12 @@ export const DatatableInventory = () => {
   }, []);
 
   const totalUnidades = subViewProducts.reduce((a, b) => a + b.unidad, 0);
-
+ const [darkMode, setDarkMode] = useState(false);
+ useEffect(() => {
+   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+     setDarkMode(true);
+   }
+ }, []);
   return (
     <>
       {load ? (
@@ -252,7 +257,7 @@ export const DatatableInventory = () => {
           <ContextCategory>
             <RegisterCategorys estado={stateModel} />
           </ContextCategory>
-          <div className="panel_opciones  bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
+          <div className="panel_opciones  dark:bg-[#37415197] dark:text-white bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
             <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
               <section className="items-center flex">
                 <div className="users flex items-center mx-2">
@@ -278,10 +283,10 @@ export const DatatableInventory = () => {
                 </div>
               </section>
 
-              <section className="flex overflow-x-auto ">
+              <section className="flex overflow-x-auto flex-col gap-2 md:flex-row   ">
                 <button
                   onClick={onBtnExport}
-                  className="flex items-center border mx-1 p-1 rounded-md"
+                  className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
                 >
                   <span>
                     <svg
@@ -302,7 +307,7 @@ export const DatatableInventory = () => {
                 </button>
                 <button
                   onClick={onBtExportExel}
-                  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap"
+                  className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
                 >
                   <span>
                     <svg
@@ -322,7 +327,7 @@ export const DatatableInventory = () => {
 
                 <button
                   onClick={onBtPrint}
-                  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap"
+                  className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -346,7 +351,7 @@ export const DatatableInventory = () => {
           <div className="buttons"></div>
           <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
             <div className="panel_analitic my-1 flex">
-              <div className="flex items-center border mx-1 p-1 rounded-md">
+              <div className="flex items-center border dark:border-[#019afa] mx-1 p-1 rounded-md">
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -371,7 +376,7 @@ export const DatatableInventory = () => {
                     />
                   </svg>
                 </span>
-                <span>
+                <span className="dark:text-white">
                   Total de unidades :{" "}
                   {("+ " + totalUnidades).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g,
@@ -381,7 +386,7 @@ export const DatatableInventory = () => {
               </div>
             </div>
 
-            <div className="search bg-white mb-2 flex items-center p-2 rounded-full">
+            <div className="search bg-white dark:bg-[#37415197] mb-2 flex items-center p-2 rounded-full">
               <div className="icon_search mx-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -403,15 +408,18 @@ export const DatatableInventory = () => {
                   id="filter-text-box"
                   placeholder="Buscar..."
                   onInput={onFilterTextBoxChanged}
-                  className="outline-none"
+                  className="outline-none  dark:bg-transparent dark:text-white "
                 />
               </div>
             </div>
           </div>
           <div
-            className="ag-theme-alpine shadow-2xl mx-auto "
+            className={
+              darkMode
+                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+            }
             id="myGrid"
-            style={{ height: 650, width: "100%" }}
           >
             <AgGridReact
               ref={gridRef}

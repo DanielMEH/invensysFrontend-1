@@ -13,7 +13,7 @@ export const NotifyHeader = () => {
   const [swiperRef, setSwiperRef] = useState(null);
 
   return (
-    <div className="notf">
+    <div className="notf ">
       <Swiper
         onSwiper={setSwiperRef}
         slidesPerView={4}
@@ -29,7 +29,7 @@ export const NotifyHeader = () => {
         <SwiperSlide>
           <Link
             to="notification/ProductVencer"
-            className="whitespace-nowrap truncate"
+            className="whitespace-nowrap truncate dark:text-[#374151]"
           >
             Productos pronto en vencer
           </Link>

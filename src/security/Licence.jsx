@@ -167,7 +167,7 @@ const InforLicence = () => {
                 <div>
                   <div class="relative flex justify-around">
                     <div class="flex items-end">
-                      <span class="text-6xl text-gray-800 font-bold leading-0">
+                      <span class="text-4xl md:text-5xl lg:text-6xl text-gray-800 font-bold leading-0">
                         {money.format(moneyPrice)}
                       </span>
                       <div class="pb-2">
@@ -218,7 +218,7 @@ const InforLicence = () => {
               </div>
             </div>
 
-            <div class="relative group md:w-6/12 lg:w-7/12">
+            <div class=" hidden lg:block relative group md:w-6/12 lg:w-7/12">
               <div
                 aria-hidden="true"
                 class="absolute top-0 w-full h-full
@@ -274,7 +274,7 @@ export const Licence = () => {
   return (
     <div className="flex">
       <MenuLateral />
-      <div className=" w-full block self_conte_fond h-screen ">
+      <div className=" w-full block self_conte_fond lg:h-screen ">
         {load ? (
           <div className=" grid place-content-center h-full w-full">
             <svg

@@ -36,11 +36,11 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
         <div
           className={
             arrayId.includes(arrayId)
-              ? "categoria bg-blue-100 w-fit mx-auto animate__animated animate__fadeIn scroll-smooth  border rounded-md my-4"
-              : "categoria bg-white w-fit mx-auto animate__animated animate__fadeIn  scroll-smooth border rounded-md my-4"
+              ? "categoria bg-blue-100 w-[70%] md:w-[500px] mx-auto animate__animated animate__fadeIn scroll-smooth  border rounded-md my-4"
+              : "categoria bg-white w-[90%] md:w-[500px] h-[20rem] lg:h-fit overflow-y-auto lg:mx-auto animate__animated animate__fadeIn  scroll-smooth border rounded-md my-4"
           }
         >
-          <h2 className="font-bold m-4 text-xl">Categorias</h2>
+          <h2 className="font-bold  m-4 text-xl">Categorias</h2>
           {category.length > 0 ? (
             <p className="mx-4">
               Seleciona las categorias para la importacion de los productos
@@ -89,7 +89,7 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
             </div>
           ) : (
             <>
-                <div className="flex flex-wrap mx-4"
+                <div className="flex flex-wrap gap-1 mxmd:w-[500px]"
                 
                 >
                 {arrayName.map((item) => (

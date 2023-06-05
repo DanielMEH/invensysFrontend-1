@@ -136,13 +136,11 @@ export const ProductoDasboard = () => {
     minimumFractionDigits: 2,
   });
 
- 
-
   return (
     <>
       {spiner === true ? (
         <div className="relative">
-          <h1 className="w-4/5 mx-auto  my-10   flex justify-center flex-col items-center ">
+          <h1 className="w-4/5 mx-auto  dark:text-white my-10   flex justify-center flex-col items-center ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="120"
@@ -170,16 +168,19 @@ export const ProductoDasboard = () => {
       ) : (
         <div className="animate__animated animate__fadeIn">
           <div className="cards_p">
-            <h2 className="text-2xl my-1 text-start 2xl:text-center">
+            <h2 className="text-2xl my-1 dark:text-white text-start 2xl:text-center">
               Informes generales
             </h2>
             {products.length > 0 ? (
               <div
-                className="cards_content flex justify-start flex-wrap 2xl:justify-center  gap-2"
+                className="cards_con flex justify-start flex-wrap md:flex-nowrap
+                 2xl:justify-center  gap-2"
                 id="lista"
               >
-                <section className="bg-white rounded-md inline-block">
-                  <h3 className="m-1 text-gay-600">Total de subproductos</h3>
+                <section className="bg-white items-center dark:bg-[#37415197] dark:text-white rounded-md block md:inline-block w-full">
+                  <h3 className="m-1 text-gay-600 block text-center">
+                    Total de subproductos
+                  </h3>
                   <div className="flex items-center justify-center">
                     <div className="coon">
                       <svg
@@ -194,35 +195,41 @@ export const ProductoDasboard = () => {
                         />
                       </svg>
                     </div>
-                    <div className="count text-3xl mx-2 font-bold text-gray-500">
+                    <div className="count text-3xl mx-2 font-bold dark:text-white text-gray-500">
                       {products.length}
                     </div>
                   </div>
                 </section>
-                <section className="bg-white rounded-md inline-block">
-                  <h3 className="m-1 text-gay-600">Total de precio Compra</h3>
+                <section className="bg-white dark:bg-[#37415197] dark:text-white rounded-md block md:inline-block w-full">
+                  <h3 className="m-1 text-gay-600 block text-center">
+                    Total de precio Compra
+                  </h3>
                   <div className="flex items-center justify-center">
                     <div className="coon"></div>
-                    <div className="count text-2xl mx-2 font-bold text-gray-500">
+                    <div className="count text-2xl mx-2 font-bold dark:text-white text-gray-500">
                       {money.format(sumPriceBuy)}
                     </div>
                   </div>
                 </section>
-                <section className="bg-white rounded-md inline-block">
-                  <h3 className="m-1 text-gay-600">Total de precio venta</h3>
+                <section className="bg-white dark:bg-[#37415197] dark:text-white rounded-md block md:inline-block w-full">
+                  <h3 className="m-1 text-gay-600 block text-center">
+                    Total de precio venta
+                  </h3>
                   <div className="flex items-center justify-center">
                     <div className="coon"></div>
-                    <div className="count text-2xl mx-2 font-bold text-gray-500">
+                    <div className="count text-2xl mx-2 font-bold dark:text-white text-gray-500">
                       {money.format(sumPrice)}
                     </div>
                   </div>
                 </section>
-                
-                <section className="bg-white rounded-md inline-block">
-                  <h3 className="m-1 text-gay-600">Ganancias</h3>
+
+                <section className="bg-white dark:bg-[#37415197] dark:text-white rounded-md block md:inline-block w-full">
+                  <h3 className="m-1 text-gay-600 block text-center">
+                    Ganancias
+                  </h3>
                   <div className="flex items-center justify-center">
                     <div className="coon"></div>
-                    <div className="count text-2xl mx-2 font-bold text-gray-500">
+                    <div className="count text-2xl mx-2 font-bold dark:text-white text-gray-500">
                       {money.format(sumPriceBuy - sumPrice)}
                     </div>
                   </div>
@@ -234,22 +241,24 @@ export const ProductoDasboard = () => {
               </h1>
             )}
           </div>
-          <div className="gap-2 rounded-md flex max-w-7xl  mt-4">
-            <div className="bg-white">
-              <Chart
-                options={options}
-                series={options.series}
-                height={350}
-                width={800}
-              />
-            </div>
-            <div className="bg-white w-full">
-              <Chart
-                options={radar}
-                series={radar.series}
-                type="radar"
-                height={350}
-              />
+          <div className="hidden">
+            <div className="gap-2 rounded-md flex max-w-7xl  mt-4">
+              <div className="bg-white">
+                <Chart
+                  options={options}
+                  series={options.series}
+                  height={350}
+                  width={800}
+                />
+              </div>
+              <div className="bg-white w-full">
+                <Chart
+                  options={radar}
+                  series={radar.series}
+                  type="radar"
+                  height={350}
+                />
+              </div>
             </div>
           </div>
         </div>

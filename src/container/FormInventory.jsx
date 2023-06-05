@@ -24,11 +24,14 @@ export const FormInventory = () => {
     <>
       <ToastContainer />
       <div
-        className="form_Login   rounded-md border  flex   animate__animated animate__fadeIn bg-white 
+        className="form_Login  w-[90%]  rounded-md border 
+          dark:border-none flex   animate__animated animate__fadeIn 
         form md:w-full   mt-9 mb-2 drop-shadow-md "
       >
-        <div className="login bg-white z-20 relative rounded-md w-full ">
-          <h3 className="mx-4 text-xl text-gray-500 mt-1 ">Crear bodega</h3>
+        <div className="login bg-white ] z-20 dark:bg-[#37415197] relative rounded-md w-full ">
+          <h3 className="mx-4 text-xl text-gray-500 mt-1 dark:text-white ">
+            Crear bodega
+          </h3>
           <div className="">
             <div className="">
               <Formik
@@ -46,7 +49,6 @@ export const FormInventory = () => {
                     const data = await PostInventario(values);
                     loading(false);
                     if (data.status === 200) {
-                    
                       toast.success("Inventario creado", {
                         position: "top-right",
                         autoClose: 2000,
@@ -66,15 +68,14 @@ export const FormInventory = () => {
                         draggable: true,
                         progress: undefined,
                       });
-                      }
-                   
+                    }
                   })();
                 }}
               >
-                <Form className="flex p-2  ">
+                <Form className="flex p-2 flex-col md:flex-row w-full  ">
                   <div className="flex flex-col w-full ">
                     <div
-                      className="Fiel-email border bg-white flex items-center mx-2 my-1
+                      className="Fiel-email border bg-white dark:bg-[#374151] flex items-center mx-2 my-1
                            border-solid  border-1 border-slate-300 rounded transition-200
                              "
                     >
@@ -83,7 +84,7 @@ export const FormInventory = () => {
                           type="text"
                           name="name_inventory"
                           placeholder="Nombre del la bodega"
-                          className="w-full block
+                          className="w-full block dark:bg-[#374151] dark:text-white
                                          outline-none p-2"
                         />
                       </div>
@@ -110,7 +111,7 @@ export const FormInventory = () => {
                           name="description"
                           placeholder="Ubicación de la bodega"
                           className="w-full block
-                                         outline-none p-2 "
+                                         outline-none p-2 dark:bg-[#374151] dark:text-white "
                         />
                       </div>
                     </div>
@@ -128,7 +129,7 @@ export const FormInventory = () => {
                     {load === false ? (
                       <button
                         type="submit"
-                        className="bg-[#5994f5] text-white rounded-full relative
+                        className="bg-[#019afa] text-white rounded-full relative
                                 p-1  w-5/6 mx-auto my-2 hover:opacity-[0.85] transition
                                 h-9 flex justify-center"
                       >
@@ -139,7 +140,7 @@ export const FormInventory = () => {
                     ) : (
                       <span
                         type="button"
-                        className="bg-[#5994f5] text-white rounded-full relative
+                        className="bg-[#019afa] text-white rounded-full relative
                                 p-1  w-full items-center mx-auto my-2 hover:opacity-[0.85] transition
                                 h-9 flex justify-between truncate"
                       >

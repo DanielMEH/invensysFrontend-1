@@ -104,10 +104,17 @@ export const DatatableProviders = () => {
     );
   }, []);
 
+   const [darkMode, setDarkMode] = useState(false);
+   useEffect(() => {
+     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+       setDarkMode(true);
+     }
+   }, []);
+
   return (
     <>
       {active === true ? <CreateProveedor /> : null}
-      <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
+      <div className="panel_opciones bg-white dark:bg-[#37415197] dark:text-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
         <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
           <section className="items-center flex">
             <div className="users flex items-center mx-2">
@@ -139,10 +146,10 @@ export const DatatableProviders = () => {
             </div>
           </section>
 
-          <section className="flex overflow-x-auto">
+          <section className="flex overflow-x-auto flex-col gap-2 md:flex-row  ">
             <button
               onClick={onBtnExport}
-              className="flex items-center border mx-1 p-1 rounded-md"
+              className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
             >
               <span>
                 <svg
@@ -161,7 +168,7 @@ export const DatatableProviders = () => {
             </button>
             <button
               onClick={onBtExportExel}
-              className="flex items-center border mx-1 p-1 rounded-md"
+              className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
             >
               <span>
                 <svg
@@ -181,7 +188,7 @@ export const DatatableProviders = () => {
 
             <button
               onClick={onBtPrint}
-              className="flex items-center border mx-1 p-1 rounded-md"
+              className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -198,14 +205,10 @@ export const DatatableProviders = () => {
             </button>
             <button
               onClick={() => setActive(!active)}
-              className=" bg-[#1daf53] text-white flex items-center p-1 rounded-md border"
+              className=" bg-[#019afa] dark:border-[#019afa] text-white flex items-center p-1 rounded-md border"
             >
               <img src={plus} alt="" />
-              <div className="whitespace-nowrap">
-
-              Crear proveedor
-
-              </div>
+              <div className="whitespace-nowrap">Crear proveedor</div>
             </button>
           </section>
         </div>
@@ -218,7 +221,7 @@ export const DatatableProviders = () => {
         <div className="panel_analitic block  my-2">
           <div className="content flex ">
             <div className="inactive flex items-center ">
-              <div className=" bg-white p-2 rounded-lg mx-1">
+              <div className=" bg-white dark:bg-[#37415197] p-2 rounded-lg mx-1">
                 <span className="text-green-500 flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -239,7 +242,7 @@ export const DatatableProviders = () => {
                   <span>Facturados </span>
                 </span>
               </div>
-              <div className="bg-white p-2 rounded-lg">
+              <div className="bg-white dark:bg-[#37415197] p-2 rounded-lg">
                 <span className="text-[red] flex items-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -263,7 +266,7 @@ export const DatatableProviders = () => {
           </div>
         </div>
 
-        <div className="search bg-white mb-2 flex items-center p-2 rounded-full">
+        <div className="search bg-white dark:bg-[#37415197] mb-2 flex items-center p-2 rounded-full">
           <div className="icon_search mx-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -285,15 +288,18 @@ export const DatatableProviders = () => {
               id="filter-text-box"
               placeholder="Buscar..."
               onInput={onFilterTextBoxChanged}
-              className="outline-none"
+              className="outline-none dark:bg-transparent dark:text-white"
             />
           </div>
         </div>
       </div>
       <div
-        className="ag-theme-alpine shadow-2xl mx-auto "
+        className={
+          darkMode
+            ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+            : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+        }
         id="myGrid"
-        style={{ height: 600, width: "100%" }}
       >
         <AgGridReact
           ref={gridRef}

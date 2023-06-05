@@ -77,16 +77,12 @@ export const Licenciaok = () => {
         </div>
       ) : (
         <div class="font-sans bg-grey-lighter flex flex-col min-h-screen w-full">
-         
           <div class="flex-grow container mx-auto sm:px-4 pt-6 pb-8">
             <div class="bg-white border-t border-b sm:border-l sm:border-r sm:rounded shadow mb-6">
               <div class="border-b px-6">
                 <div class="flex justify-between -mb-px items-center py-2">
-                  <div class="lg:hidden text-blue-dark py-4 text-lg">
-                    Price Charts
-                  </div>
-                  <div class="hidden lg:flex">
-                    <span className="mx-2 font-bold">
+                  <div class=" w-[100px] sm:w-[200px] lg:w-full flex overflow-x-auto lg:flex">
+                    <span className="mx-2 truncate font-bold">
                       {" "}
                       {dataAll.length > 0 ? dataAll[0].name : null}
                     </span>{" "}
@@ -98,7 +94,7 @@ export const Licenciaok = () => {
                       {" "}
                       {dataAll.length > 0 ? dataAll[0].rol : null}{" "}
                     </span>
-                    <span className="mx-2 font-bold">
+                    <span className="mx-2 font-bold truncate">
                       {dataAll.length > 0 ? dataAll[0].pais : null} -{" "}
                       {dataAll.length > 0 ? dataAll[0].ciudad : null}{" "}
                     </span>
@@ -106,14 +102,14 @@ export const Licenciaok = () => {
                       className={
                         dataAll.length > 0
                           ? dataAll[0].estado === "activo"
-                            ? "text-green-400 mx-2 "
-                            : "red mx-2"
+                            ? "text-green-400 mx-2 truncate "
+                            : "red mx-2 truncate"
                           : null
                       }
                     >
                       {dataAll.length > 0 ? dataAll[0].estado : null}{" "}
                     </span>
-                    <span className="mx-1 font-bold">
+                    <span className="mx-1 font-bold truncate">
                       Licencia <span> Activa </span>
                     </span>
                   </div>
@@ -127,11 +123,11 @@ export const Licenciaok = () => {
                 </div>
               </div>
 
-              <div class="hidden lg:flex">
-                <div class="w-1/3 text-center py-8">
+              <div class="flex flex-col xl:flex-row ">
+                <div class="w-full border-b xl:border-none lg:w-full  xl:w-1/3 text-center py-8">
                   <div class="border-r">
                     <div class="text-grey-darker mb-2">
-                      <span class="text-5xl">
+                      <span class="text-4xl lg:text-5xl ">
                         {dataLicence.length > 0
                           ? money.format(dataLicence[0].pago)
                           : 0}
@@ -142,13 +138,13 @@ export const Licenciaok = () => {
                     </div>
                   </div>
                 </div>
-                <div class="w-1/3 text-center py-8">
+                <div class="w-full  lg:w-full  xl:w-1/3 text-center py-8">
                   <div class="border-r">
                     <div class="text-grey-darker mb-2">
                       <span class="text-3xl align-top">
                         <span class="text-green align-top"></span>
                       </span>
-                      <span class="text-5xl">
+                      <span class="text-4xl lg:text-5xl">
                         {dataLicence.length > 0
                           ? money.format(1250000 - dataLicence[0].pago)
                           : 0}
@@ -159,13 +155,13 @@ export const Licenciaok = () => {
                     </div>
                   </div>
                 </div>
-                <div class="w-1/3 text-center py-8">
+                <div class="w-full  lg:w-full  xl:w-1/3 text-center py-8">
                   <div>
                     <div class="text-grey-darker mb-2">
                       <span class="text-3xl align-top">
                         <span class="text-green align-top"></span>
                       </span>
-                      <span class="text-5xl">
+                      <span class="text-4xl lg:text-5xl border-b xl:border-none">
                         {dataLicence.length > 0 ? money.format(1250000) : 0}
                       </span>
                     </div>
@@ -177,15 +173,21 @@ export const Licenciaok = () => {
               </div>
             </div>
             <div class="flex flex-wrap -mx-4">
-              <div class="w-full mb-6 lg:mb-0 lg:w-1/2 px-4 flex flex-col">
+              <div class="w-[320px] md:w-full mb-6 lg:mb-0 lg:w-1/2 px-4 flex flex-col">
                 <div class="flex-grow flex flex-col bg-white border-t border-b sm:rounded sm:border shadow overflow-hidden">
                   <div class="border-b">
-                    <div class="flex justify-between px-6 -mb-px items-center">
+                    <div
+                      class="flex lg:justify-between flex-col md:flex-row px-6 -mb-px
+                     md:items-center"
+                    >
                       <h3 class="text-blue-dark py-4 font-normal text-lg">
                         Preferencias de pago
                       </h3>
-                      <div class="flex">
-                        <span class="appearance-none py-4 text-blue-dark border-b border-blue-dark mr-3">
+                      <div class="flex ">
+                        <span
+                          class="appearance-none flex
+                         py-4 border-b  mr-3"
+                        >
                           {dataLicence.length > 0
                             ? dataLicence[0].name_Card
                             : 0}
@@ -213,9 +215,9 @@ export const Licenciaok = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="flex-grow flex px-6 py-6 text-grey-darker items-center border-b -mx-4">
-                    <div class="w-2/5 xl:w-1/4 px-4 flex items-center">
-                      <div class="rounded-full bg-orange inline-flex mr-3">
+                  <div class="flex-grow flex-col flex md:flex-row px-6 py-6 text-grey-darker items-center border-b -mx-4">
+                    <div class="w-2/5 xl:w-1/4 px-4 flex flex-col items-center">
+                      <div class="rounded-full bg-orange  inline-flex mr-3">
                         <svg
                           class="fill-current text-white h-8 w-8 block"
                           xmlns="http://www.w3.org/2000/svg"
@@ -228,12 +230,12 @@ export const Licenciaok = () => {
                       </div>
                       <span class="text-lg">Estado</span>
                     </div>
-                    <div class="hidden md:flex lg:hidden xl:flex w-1/4 px-4 items-center">
+                    <div class=" md:flex lg:hidden xl:flex w-1/4 px-4 items-center">
                       <div class="bg-orange h-2 rounded-full flex-grow mr-2"></div>
                       {dataLicence.length > 0 ? dataLicence[0].estado : 0}
                     </div>
                   </div>
-                  <div class="flex-grow flex px-6 py-6 text-grey-darker items-center border-b -mx-4">
+                  <div class="flex-grow flex-col md:flex-row flex px-6 py-6 text-grey-darker items-center border-b -mx-4">
                     <div class="w-2/5 xl:w-1/4 px-4 flex items-center">
                       <div class="rounded-full bg-grey inline-flex mr-3">
                         <svg

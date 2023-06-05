@@ -133,18 +133,24 @@ export const DatatableVentas = () => {
     currency: "COP",
     minimumFractionDigits: 2,
   });
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       {dataVentas.length > 0 ? (
         <>
-          <div className="panel_opciones bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
+          <div className="panel_opciones dark:bg-[#37415197] dark:text-white bg-white w-[100%] mx-auto mt-10 mb-1  rounded-md p-4">
             <div className="plus_panel flex lg:flex-row flex-col lg:justify-between lg:items-center">
               <section className="items-center flex">
                 <div>
                   <div className="">
                     <Link
                       to={"/venta"}
-                      className="flex items-center bg-gray-100 p-1"
+                      className="flex items-center bg-gray-100 p-1 dark:bg-[#37415197] dark:text-white"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -185,10 +191,10 @@ export const DatatableVentas = () => {
                 </div>
               </section>
 
-              <section className="flex overflow-x-auto">
+              <section className="flex overflow-x-auto flex-col gap-2 md:flex-row  ">
                 <button
                   onClick={onBtnExport}
-                  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap"
+                  className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
                 >
                   <span>
                     <svg
@@ -207,7 +213,7 @@ export const DatatableVentas = () => {
                 </button>
                 <button
                   onClick={onBtExportExel}
-                  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap"
+                  className="flex items-center dark:border-[#019afa] border mx-1 p-1 rounded-md whitespace-nowrap"
                 >
                   <span>
                     <svg
@@ -227,7 +233,7 @@ export const DatatableVentas = () => {
 
                 <button
                   onClick={onBtPrint}
-                  className="flex items-center border mx-1 p-1 rounded-md whitespace-nowrap"
+                  className="flex items-center border mx-1 p-1 rounded-md dark:border-[#019afa] whitespace-nowrap"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -253,7 +259,7 @@ export const DatatableVentas = () => {
             <div className="panel_analitic block  my-2">
               <div className="content flex ">
                 <div className="inactive flex items-center ">
-                  <div className=" bg-white p-2 rounded-lg mx-1">
+                  <div className=" bg-white p-2 rounded-lg mx-1 dark:bg-[#37415197] ">
                     <span className="text-green-500 flex items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -282,7 +288,7 @@ export const DatatableVentas = () => {
               </div>
             </div>
 
-            <div className="search bg-white mb-3 flex items-center p-2 rounded-full">
+            <div className="search bg-white mb-3 flex items-center p-2 rounded-full dark:bg-[#37415197] dark:text-white">
               <div className="icon_search mx-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -304,15 +310,18 @@ export const DatatableVentas = () => {
                   id="filter-text-box"
                   placeholder="Buscar..."
                   onInput={onFilterTextBoxChanged}
-                  className="outline-none"
+                  className="outline-none dark:bg-transparent dark:text-white"
                 />
               </div>
             </div>
           </div>
           <div
-            className="ag-theme-alpine shadow-2xl mx-auto "
+            className={
+              darkMode
+                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+            }
             id="myGrid"
-            style={{ height: 600, width: "100%" }}
           >
             <AgGridReact
               ref={gridRef}

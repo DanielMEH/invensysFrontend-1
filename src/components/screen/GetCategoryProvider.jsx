@@ -24,7 +24,10 @@ export const GetCategoryProvider = () => {
   return (
     <>
       {spiner ? (
-        <div className="container animate__animated animate__slideInRight rounded-md grid place-content-center border bg-white w-[40rem]">
+        <div
+          className="container animate__animated animate__slideInRight 
+        rounded-md grid place-content-center border bg-white w-[40rem]"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="50"
@@ -48,11 +51,11 @@ export const GetCategoryProvider = () => {
           </svg>
         </div>
       ) : (
-        <div className="container rounded-md border bg-white w-[40rem] animate__animated animate__fadeIn">
+        <div className="container rounded-md border dark:bg-[#37415197] dark:text-white bg-white lg:w-[38rem] w-[20rem] animate__animated animate__fadeIn">
           {getProviderId.map((item) => {
             return (
               <div key={item._id}>
-                <div className="icon flex justify-between items-center my-3 mx-2">
+                <div className="icon flex justify-between  items-center my-3 mx-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
@@ -115,7 +118,7 @@ export const GetCategoryProvider = () => {
                       return (
                         <p
                           key={itemCategory._id}
-                          className="m-2 bg-gray-100 p-1 rounded-sm inline-block"
+                          className="m-2 bg-gray-100 dark:text-black p-1 rounded-sm inline-block"
                         >
                           {itemCategory.name_category}
                         </p>

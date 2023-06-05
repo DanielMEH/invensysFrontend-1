@@ -28,8 +28,6 @@ export const ProvidersDasboard = () => {
     })();
   }, []);
 
-
-
   const getproductFechaDescription = products.map((item) => {
     return {
       x: moment(item.fechaFin).format("YYYY-MM-DD"),
@@ -119,14 +117,12 @@ export const ProvidersDasboard = () => {
       categories: users.map((user) => user.fecha),
     },
   };
- 
-
 
   return (
     <>
       {spiner === true ? (
         <div className="relative">
-          <h1 className="w-4/5 mx-auto  my-10   flex justify-center flex-col items-center ">
+          <h1 className="w-4/5 mx-auto dark:text-white my-10   flex justify-center flex-col items-center ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="120"
@@ -154,8 +150,13 @@ export const ProvidersDasboard = () => {
       ) : (
         <div className="h-screen">
           <div className="cards_p animate__animated  animate__fadeIn">
-            <h2 className="text-2xl my-1">Categorias recientes</h2>
-            <div className="cards_content flex gap-2 " id="lista">
+            <h2 className="text-2xl my-1 dark:text-white">
+              Categorias recientes
+            </h2>
+            <div
+              className="cards_content flex gap-2 lg:flex-row flex-col "
+              id="lista"
+            >
               {spiner === true ? (
                 <></>
               ) : (
@@ -173,15 +174,16 @@ export const ProvidersDasboard = () => {
                       multiDrag={true}
                       style={{
                         display: "flex",
-                        flexWrap: "wrap",
+
                         gap: "10px",
                         cursor: "move",
                       }}
+                      className="flex flex-wrap overflow-x-auto "
                     >
                       {provider.map((item, index) => (
-                        <div className="flex">
+                        <div className="flex ">
                           <div
-                            className=" inline-block h-fit rounded-md bg-white "
+                            className=" inline-block h-fit rounded-md dark:bg-[#37415197] dark:text-[#019afa] bg-white "
                             key={index}
                           >
                             <Link to={`categoryProvider/${item._id}`}>
@@ -216,22 +218,24 @@ export const ProvidersDasboard = () => {
               <Outlet />
             </div>
           </div>
-          <div className="gap-2 rounded-md flex max-w-7xl  mt-4">
-            <div className="bg-white">
-              <Chart
-                options={options}
-                series={options.series}
-                height={350}
-                width={800}
-              />
-            </div>
-            <div className="bg-white w-full">
-              <Chart
-                options={radar}
-                series={radar.series}
-                type="radar"
-                height={350}
-              />
+          <div className="hidden">
+            <div className="gap-2 rounded-md flex max-w-7xl  mt-4">
+              <div className="bg-white">
+                <Chart
+                  options={options}
+                  series={options.series}
+                  height={350}
+                  width={800}
+                />
+              </div>
+              <div className="bg-white w-full">
+                <Chart
+                  options={radar}
+                  series={radar.series}
+                  type="radar"
+                  height={350}
+                />
+              </div>
             </div>
           </div>
         </div>

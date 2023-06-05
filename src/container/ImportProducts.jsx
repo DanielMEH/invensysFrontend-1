@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getProducts, UploadSubProducts } from "../apis/ApiData";
-import { Formik, Field, Form} from "formik";
+import { Formik, Field, Form } from "formik";
 import { DatePicker } from "antd";
 import moment from "moment-with-locales-es6";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { getSubProducts } from "../apis/ApiData";
-
-
 
 const { RangePicker } = DatePicker;
 moment.locale("es");
@@ -17,9 +15,8 @@ export const ImportProducts = ({ idCategorias }) => {
   const [loadIn, setLoadIn] = useState(false);
   const [loadSub, setLoadSub] = useState(false);
 
-
   const { id } = useParams();
- 
+
   useEffect(() => {
     setLoadIn(true);
     (async () => {
@@ -46,15 +43,11 @@ export const ImportProducts = ({ idCategorias }) => {
   };
 
   const GetPdo = async () => {
-   getSubProducts(id);
-
+    getSubProducts(id);
   };
 
   useEffect(() => {
     (async () => {
-      
-      
-
       setLoadIn(false);
     })();
   }, []);
@@ -63,10 +56,11 @@ export const ImportProducts = ({ idCategorias }) => {
       <ToastContainer />
       {productsFilter.length > 0 ? (
         <div
-          className="bg-white shadow-md border mx-auto rounded-md
-         w-fit z-50 flex flex-col justify-center max-w-[1300px] 2xl:max-w-screen-xl overflow-x-auto mb-4  mt-20"
+          className="bg-white shadow-md border lg:mx-auto rounded-md w-[90%]
+         lg:w-fit z-50 flex flex-col justify-center max-w-[1300px]
+          2xl:max-w-screen-xl overflow-x-auto mb-4  mt-4  lg:mt-20"
         >
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between flex-col lg:flex-row items-center">
             <div className="des">
               <h1
                 className="
@@ -216,56 +210,50 @@ export const ImportProducts = ({ idCategorias }) => {
                             caducidad: fecha[1],
                             idInventory: id,
                           };
-                          
-                            
-                              setLoadSub(true);
-                              (async () => {
-                                await GetPdo();
-                                let response = await UploadSubProducts(
-                                  id,
-                                  data
-                                );
 
-                                if (response.status === 200) {
-                                  toast.success(
-                                    "Producto agregado a la bodega con exito",
-                                    {
-                                      position: "top-right",
-                                      autoClose: 3000,
-                                      hideProgressBar: false,
-                                      closeOnClick: true,
-                                      pauseOnHover: true,
-                                      draggable: true,
-                                      progress: undefined,
-                                    }
-                                  );
+                          setLoadSub(true);
+                          (async () => {
+                            await GetPdo();
+                            let response = await UploadSubProducts(id, data);
 
-                                  setLoadSub(false);
-                                } else {
-                                  toast.error(
-                                    "Error al agregar el producto al bodega o el producto ya existe",
-                                    {
-                                      position: "top-right",
-                                      autoClose: 3000,
-                                      hideProgressBar: false,
-                                      closeOnClick: true,
-                                      pauseOnHover: true,
-                                      draggable: true,
-                                      progress: undefined,
-                                    }
-                                  );
-                                  setLoadSub(false);
+                            if (response.status === 200) {
+                              toast.success(
+                                "Producto agregado a la bodega con exito",
+                                {
+                                  position: "top-right",
+                                  autoClose: 3000,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
                                 }
-                              })();
-                            
-                          
+                              );
+
+                              setLoadSub(false);
+                            } else {
+                              toast.error(
+                                "Error al agregar el producto al bodega o el producto ya existe",
+                                {
+                                  position: "top-right",
+                                  autoClose: 3000,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                }
+                              );
+                              setLoadSub(false);
+                            }
+                          })();
                         }
                       }
                     }}
                   >
-                    <Form className="px-4 flex just gap-1">
-                      <div className="content-fit flex gap-2">
-                        <div className="input flex flex-col w-36">
+                    <Form className="px-4 flex  just gap-1">
+                      <div className="content-fit md:flex-row flex flex-col gap-2">
+                        <div className="input flex flex-col w-full  lg:w-36">
                           <label
                             htmlFor="
                                 Nombre del producto
@@ -282,7 +270,7 @@ export const ImportProducts = ({ idCategorias }) => {
                             defaultValue={product.name}
                           />
                         </div>
-                        <div className="input flex flex-col my-1  w-36">
+                        <div className="input flex flex-col my-1   w-full  lg:w-36">
                           <label
                             htmlFor="
                                 Nombre del producto
@@ -298,7 +286,7 @@ export const ImportProducts = ({ idCategorias }) => {
                             placeholder="Ej: 1.000"
                           />
                         </div>
-                        <div className="input flex flex-col my-1 w-36">
+                        <div className="input flex flex-col my-1  w-full  lg:w-36">
                           <label
                             htmlFor="
                                 Nombre del producto
@@ -314,7 +302,7 @@ export const ImportProducts = ({ idCategorias }) => {
                             placeholder="Ej: 2.000"
                           />
                         </div>
-                        <div className="input flex flex-col my-1 w-fit">
+                        <div className="input flex flex-col my-1  w-full  lg:w-36">
                           <label
                             htmlFor="
                                 Nombre del producto
@@ -331,7 +319,7 @@ export const ImportProducts = ({ idCategorias }) => {
                           />
                         </div>
 
-                        <div className="input flex flex-col my-1 w-36">
+                        <div className="input flex flex-col my-1  w-full  lg:w-36">
                           <label
                             htmlFor="
                                 Nombre del producto
@@ -357,7 +345,7 @@ export const ImportProducts = ({ idCategorias }) => {
                             </div>
                           </div>
                         </div>
-                        <div className="input flex flex-col my-1 w-36">
+                        <div className="input flex flex-col my-1  w-full  lg:w-36">
                           <label
                             htmlFor="
                                 Nombre del producto
@@ -373,7 +361,7 @@ export const ImportProducts = ({ idCategorias }) => {
                             placeholder="Ej: 23"
                           />
                         </div>
-                        <div className="input flex flex-col my-1 w-36">
+                        <div className="input flex flex-col my-1  w-full  lg:w-36">
                           <label
                             htmlFor="
                                 Nombre del producto
@@ -390,7 +378,7 @@ export const ImportProducts = ({ idCategorias }) => {
                           />
                         </div>
 
-                        <div className="input flex flex-col my-1 w-20">
+                        <div className="input flex flex-col my-1  w-full  lg:w-36">
                           <label
                             htmlFor="
                                 Nombre del producto

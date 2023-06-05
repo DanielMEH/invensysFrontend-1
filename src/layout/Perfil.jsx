@@ -8,6 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useNavigate } from "react-router-dom";
 import { Fragment } from "react";
+import "../components/efectosCss.css";
 
 export const Perfil = () => {
   const { getAdminDataAll, adminGetData, updateDataAdmin } = useGetUsers();
@@ -22,8 +23,8 @@ export const Perfil = () => {
 
   useEffect(() => {
     const initial = async () => {
-       await getAdminDataAll();
-    
+      await getAdminDataAll();
+
       setLoading(false);
     };
     initial();
@@ -56,7 +57,7 @@ export const Perfil = () => {
       document: e.target.document.value,
       id: localStorage.getItem("id_admin"),
     };
-     await updateDataAdmin(data);
+    await updateDataAdmin(data);
     setLoad(true);
 
     navigate("/perfil");
@@ -72,7 +73,17 @@ export const Perfil = () => {
         <div className=" ">
           <MenuLateral />
         </div>
-        <div className="bg-[#eef9fd]  w-full block ">
+        <div
+          className="bg-[#eef9fd]  w-full block  h-screen
+
+        
+
+        dark:bg-gradient-to-r from-[#163b59] from-10%
+         via-[#18324f] via-30% to-[#121b2e] to-90%
+        
+        
+        "
+        >
           <div
             className="container_perfil    mx-1 max-w-7xl
            md:mx-auto relative flex flex-col md:flex-row"
@@ -82,15 +93,15 @@ export const Perfil = () => {
               <div
                 className={
                   btnSpand
-                    ? `
+                    ? ` effect_blur
     panel_Editar_P rounded-lg h-[36rem] absolute shadow-xl right-[33rem] shadow-gray-400
     bg-white w-[22rem] z-20 top-6 overflow-hidden block duration-300 ease-out opacity-100
     `
                     : `panel_Editar_P rounded-lg h-[36rem] absolute shadow-xl right-[33rem] shadow-gray-400
-    bg-white w-[22rem] z-20 top-6 overflow-hidden hidden opacity-0`
+    bg-white w-[22rem] z-20 top-6 overflow-hidden hidden opacity-0 effect_blur`
                 }
               >
-                <div className="editar bg-green-100 p-4 flex flex-col">
+                <div className="editar dark:bg-[#374151] dark:text-white  p-4 flex flex-col">
                   <div className="xc flex justify-between relative">
                     <span>Editar Perfil</span>
 
@@ -114,23 +125,28 @@ export const Perfil = () => {
                       </svg>
                     </span>
                   </div>
-                  <span>Manten tus datos actualizados</span>
+                  <span className="dark:text-white">
+                    Manten tus datos actualizados
+                  </span>
                 </div>
                 <div className="inputsDatos">
                   {adminGetData.map((item) => (
                     <form
-                      className="flex flex-col"
+                      className="flex flex-col dark:text-white dark:bg-[#374151] "
                       onSubmit={handleData}
                       key={item.idUsers}
                     >
-                      <h2 className="text-gray-600 text-xl my-2 text-center font-sans font-medium">
+                      <h2
+                        className="text-gray-600
+                       dark:text-white text-xl my-2 text-center font-sans font-medium"
+                      >
                         Datos personales
                       </h2>
                       <div className="input flex flex-col mx-2 my-1">
                         <label htmlFor="nombre" className="py-1">
                           Nombre:
                         </label>
-                        <div className="inpusts flex border">
+                        <div className="inpusts flex border ">
                           <div className="input1 flex items-center">
                             <div className="icon w-10 mx-1">
                               <svg
@@ -168,7 +184,7 @@ export const Perfil = () => {
                                 name="name"
                                 id="apellido"
                                 defaultValue={item.name}
-                                className=" py-1 rounded-sm focus:border-1 outline-none
+                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
             w-[150%]
              "
                               />
@@ -201,7 +217,7 @@ export const Perfil = () => {
                                 name="empresa"
                                 id="apellido"
                                 defaultValue={item.nombreTienda}
-                                className=" py-1 rounded-sm focus:border-1 outline-none
+                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
                                 
             w-[150%]
              "
@@ -241,7 +257,7 @@ export const Perfil = () => {
                                 name="document"
                                 defaultValue={item.document}
                                 id="apellido"
-                                className=" py-1 rounded-sm focus:border-1 outline-none
+                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
             w-[150%]
              "
                               />
@@ -274,7 +290,7 @@ export const Perfil = () => {
                                 name="telefono"
                                 id="apellido"
                                 defaultValue={item.telefono}
-                                className=" py-1 rounded-sm focus:border-1 outline-none
+                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
             w-[150%]
              "
                               />
@@ -292,7 +308,7 @@ export const Perfil = () => {
                           cursor-not-allowed
                           bg-gray100/30 top-0"
                           ></div>
-                          <div className="input1 flex items-center">
+                          <div className="input1 flex items-center dark:bg-[#272a3d">
                             <div className="icon w-10 mx-1">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -312,7 +328,7 @@ export const Perfil = () => {
                                 name="email"
                                 id="apellido"
                                 value={item.correo}
-                                className=" py-1 rounded-sm focus:border-1 outline-none
+                                className=" py-1 rounded-sm focus:border-1 outline-none bg-transparent
             w-[150%]
              "
                               />
@@ -324,8 +340,8 @@ export const Perfil = () => {
                         {load === false ? (
                           <button
                             type="button"
-                            className="bg-green-400 text-white w-full rounded-sm mt-3 
-              duration-300 hover:bg-green-500 hover:shadow-lg justify-center p-2
+                            className="bg-[#019afa] text-white w-full rounded-sm mt-3 
+              duration-300 hover:bg-[#019afa] hover:shadow-lg justify-center p-2
                           disabled flex items-center"
                           >
                             <svg
@@ -387,8 +403,8 @@ export const Perfil = () => {
                           </button>
                         ) : (
                           <button
-                            className="bg-green-400 text-white block w-full rounded-sm mt-3 p-2
-              duration-300 hover:bg-green-500 hover:shadow-lg "
+                            className="bg-[#019afa] text-white block w-full rounded-sm mt-3 p-2
+              duration-300 hover:bg-[#019afa] hover:shadow-lg "
                           >
                             <div className="span">Actualizar Datos</div>
                           </button>
@@ -400,7 +416,7 @@ export const Perfil = () => {
               </div>
             </div>
             {loading === true ? (
-              <div className="c_perfil  bg-white w-96 rounded-lg relative  mr-5  mt-6 overflow-hidden">
+              <div className="c_perfil  bg-white dark:bg-[#374151] w-96 rounded-lg relative  mr-5  mt-6 overflow-hidden">
                 <div
                   style={{
                     display: "block",
@@ -408,6 +424,7 @@ export const Perfil = () => {
                     width: "100%",
                     height: "8rem",
                   }}
+                  
                 >
                   <Skeleton height={"100%"} width={"100%"} />
                 </div>
@@ -460,7 +477,7 @@ export const Perfil = () => {
                 </div>
               </div>
             ) : (
-              <div className="c_perfil  bg-white w-[76%] sm:w-[90%] md:w-96 rounded-lg relative ml-2   mt-6 ">
+              <div className="c_perfil  bg-white dark:bg-[#37415197] w-[84%] sm:w-[90%] md:w-96 rounded-lg relative ml-2   mt-6 ">
                 <div className="edidarPerfilAdmin absolute z-40 w-full">
                   <button
                     onClick={handleBtnSpand}
@@ -537,10 +554,10 @@ export const Perfil = () => {
                 </div>
                 {adminGetData.map((item) => (
                   <div className="content_contenido_p" key={item.idUsers}>
-                    <div className="bg-white mx-2">
+                    <div className="bg-white dark:bg-[#37415197] dark:text-white mx-2">
                       <ul className="list-none_k">
                         <li className="flex  flex-col py-2 px-4 ">
-                          <h2 className="mt-16 lg:mt-14 text-xl  pb-3 lg:text-2xl font-sans mx-0 font-bold text-gray-700">
+                          <h2 className="mt-16 lg:mt-14 text-xl dark:text-white pb-3 lg:text-2xl font-sans mx-0 font-bold text-gray-700">
                             Datos personales
                           </h2>
                           <hr className="mb-4" />
@@ -665,7 +682,7 @@ export const Perfil = () => {
                     </span>
                   </a>
                 </span>
-                <div className="bg-white p-3 hover:shadow lg:block hidden">
+                {/* <div className="bg-white p-3 hover:shadow lg:block hidden">
                   <div className="flex items-center space-x-3  font-semibold text-gray-900 text-xl leading-8">
                     <span className="text-green-500">
                       <svg
@@ -727,7 +744,7 @@ export const Perfil = () => {
                       </a>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             )}
             {loading === true ? (
@@ -795,10 +812,10 @@ export const Perfil = () => {
                 </div>
               </div>
             ) : (
-              <div className="w-[76%] mx-2 md:w-9/12 mt-6 lg:mx-2 lg:h-64">
+              <div className="w-[84%]  mx-2 md:w-9/12 mt-6 lg:mx-2 lg:h-64">
                 {adminGetData.map((items) => (
                   <div
-                    className="bg-white p-3 shadow-sm rounded-sm"
+                    className="bg-white dark:bg-[#37415197] dark:text-white p-3 shadow-sm rounded-sm"
                     key={items.idUsers}
                   >
                     <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
@@ -818,19 +835,19 @@ export const Perfil = () => {
                           />
                         </svg>
                       </span>
-                      <span className="tracking-wide">
+                      <span className="tracking-wide dark:text-white">
                         Información adicional
                       </span>
                     </div>
-                    <div className="text-gray-700">
+                    <div className="text-gray-700 dark:text-white">
                       <div className="grid md:grid-cols-2 text-sm">
-                        <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="grid grid-cols-2 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold">Nombre</div>
                           <div className="px-4 py-2">
                             {items.name ? items.name : "..."}
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="grid grid-cols-2 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold">
                             Cuenta con:{" "}
                           </div>
@@ -864,19 +881,19 @@ export const Perfil = () => {
                             )}
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="grid grid-cols-2 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold">CC</div>
                           <div className="px-4 py-2">
                             {items.document ? items.document : "..."}
                           </div>
                         </div>
-                        <div className="grid grid-cols-1  lg:grid-cols-2">
+                        <div className="grid grid-cols-2  lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold">Pais:</div>
                           <div className="px-4 py-2">
                             {items.pais ? items.pais : "..."}
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="grid grid-cols-2 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold">
                             Nombre Tienda
                           </div>
@@ -884,7 +901,7 @@ export const Perfil = () => {
                             {items.nombreTienda ? items.nombreTienda : "..."}
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="grid grid-cols-2 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold">
                             Ubicacion Tienda
                           </div>
@@ -892,7 +909,7 @@ export const Perfil = () => {
                             {items.ciudad ? items.ciudad : "..."}
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="grid grid-cols-2 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold">
                             Ciudad:{" "}
                           </div>
@@ -905,7 +922,7 @@ export const Perfil = () => {
                             </span>
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="grid grid-cols-2 lg:grid-cols-2">
                           <div className="px-4 py-2 font-semibold flex">
                             Creación
                           </div>
@@ -926,18 +943,29 @@ export const Perfil = () => {
                   </div>
                 ))}
 
-                <div className="contain-contraseña w-full bg-white my-3 h-32 p-3 rounded">
-                  <h2 className="text-base mx-6  font-semibold">Cambiar mi contraseña</h2>
-                  <p className="text-sm mx-6">Aqui puedes cambiar la contraseña general de tu cuenta, asegurate de que sea segura</p>
+                <div className="contain-contraseña w-full dark:text-white dark:bg-[#37415197] bg-white my-3 h-32 p-3 rounded">
+                  <h2 className="text-base mx-6  font-semibold">
+                    Cambiar mi contraseña
+                  </h2>
+                  <p className="text-sm mx-6">
+                    Aqui puedes cambiar la contraseña general de tu cuenta,
+                    asegurate de que sea segura
+                  </p>
                   <Fragment>
                     <div>
-                    <button className="text-white bg-[#5994f5] rounded-full relative
+                      <button
+                        className="text-white bg-[#5994f5] rounded-full relative
                          hover:opacity-[0.85] transition font-medium text-sm rounded-lg px-5 py-2.5 mt-5 mx-5 text-center mr-5 
-                    " onClick={() => setShowModal(true)}>
-                    Cambiar contraseña
-                  </button>
+                    "
+                        onClick={() => setShowModal(true)}
+                      >
+                        Cambiar contraseña
+                      </button>
                     </div>
-                     <CambioContraseña isVisible={showModal} onClose={() => setShowModal(false)}/>
+                    <CambioContraseña
+                      isVisible={showModal}
+                      onClose={() => setShowModal(false)}
+                    />
                   </Fragment>
                 </div>
               </div>

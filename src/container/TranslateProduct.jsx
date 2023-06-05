@@ -4,6 +4,7 @@ import { getSubProducts } from "../apis/ApiData";
 import { useInventario } from "../hooks/context/ContextInventario";
 import { ToastContainer, toast } from "react-toastify";
 import "../assets/css/fuente.css";
+import "../components/efectosCss.css";
 import { useContextSubProducts } from "../hooks/context/ContextSubProducts";
 export const TranslateProduct = () => {
   const [products, setProducts] = React.useState([]);
@@ -110,10 +111,12 @@ export const TranslateProduct = () => {
     <>
       <ToastContainer />
       <div className="rounded border  w-fit p-1  mt-4 max-w-5xl  h-full z-50 mx-auto">
-        <div className="container absolute inset-0 my-auto h-fit shadow-2xl bg-white z-50  mx-auto w-fit border rounded-md p-">
-          <div className="d bg-gray-100 border mb-1 p-1 ">
+        <div className="container absolute inset-0 my-auto h-fit shadow-2xl effect_blur2 z-50  mx-auto w-fit border rounded-md p-">
+          <div className="d effect_blur2 border mb-1 p-1 ">
             <div className="flex justify-between">
-              <h2 className="m-1 text-2xl font-bold">Trasladar Productos</h2>
+              <h2 className="m-1 text-2xl font-bold dark:text-white">
+                Trasladar Productos
+              </h2>
               <div className="span cursor-pointer " onClick={handleVolver}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -128,14 +131,14 @@ export const TranslateProduct = () => {
                 </svg>
               </div>
             </div>
-            <h2>Selecione la bodega de destino</h2>
+            <h2 className="dark:text-white">Selecione la bodega de destino</h2>
             <div className="flex  ">
               {inventario.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white flex p-1 h- m-1 rounded-full 
+                  className="bg-white dark:bg-transparent border dark:border-[#019afa] flex p-1 h- m-1 rounded-full 
                 
-                focus:bg-blue-500 focus:text-white
+                focus:bg-blue-500 focus:text-white dark:text-white
                 "
                   onClick={() => setIdB(item._id)}
                 >
@@ -155,7 +158,7 @@ export const TranslateProduct = () => {
             <input
               type="Buscar"
               placeholder="Buscar producto"
-              className="w-full h-10 border border-gray-300 rounded-md p-2 outline-none"
+              className="w-full h-10 border border-gray-300 dark:bg-[#37415197] rounded-md p-2 outline-none"
               onChange={(e) => HandleSearch(e.target.value)}
             />
           </div>
@@ -182,18 +185,18 @@ export const TranslateProduct = () => {
                                 className="flex items-center"
                               >
                                 <div className="flex flex-col items-center">
-                                  <span className="text-sm text-gray-500">
+                                  <span className="text-sm text-gray-500 dark:text-white">
                                     Nombre
                                   </span>
-                                  <span className="text-sm truncate w-14 text-gray-500">
+                                  <span className="text-sm truncate w-14 dark:text-white text-gray-500">
                                     {item.name}
                                   </span>
                                 </div>
                                 <div className="flex flex-col ml-4">
-                                  <span className="text-sm text-gray-500">
+                                  <span className="text-sm text-gray-500 dark:text-white">
                                     Cantidad
                                   </span>
-                                  <span className="text-sm text-gray-500">
+                                  <span className="text-sm text-gray-500 dark:text-white">
                                     {item.unidad}
                                   </span>
                                 </div>
@@ -216,14 +219,14 @@ export const TranslateProduct = () => {
                                   />
                                   <input
                                     type="text"
-                                    className="w-20 h-10  text-center  rounded-md outline-none"
+                                    className="w-20 h-10  text-center dark:bg-transparent dark:text-white rounded-md outline-none"
                                     placeholder="0"
                                     name="cantidad"
                                   />
 
                                   <div className="buttom"></div>
                                 </div>
-                                <button className="bg-[#5ab4ef] text-white rounded-md p-2 ml-2">
+                                <button className="bg-[#019afa] text-white rounded-md p-2 ml-2">
                                   Agregar
                                 </button>
                               </form>

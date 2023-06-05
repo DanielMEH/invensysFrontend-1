@@ -1,0 +1,27 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-n1: #374151;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-n1: #ffffff66;
+  }
+}
+
+.effect_blur {
+  background: var(--background-n1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px 0 rgba(87, 179, 245, 0.5);
+}
+.effect_blur1 {
+  background: var(--background-n1);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px 0 rgba(87, 179, 245, 0.5);
+}
+.effect_blur2 {
+  background: var(--background-n1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px 0 rgba(87, 179, 245, 0.5);
+}

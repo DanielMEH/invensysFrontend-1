@@ -8,7 +8,7 @@ export const HomeDaboard = () => {
   const [products, setProducts] = useState([]);
 
   const [provider, setProvider] = useState([]);
-  
+
   const [users, setUsers] = useState([]);
   useEffect(() => {
     getUsersAdmin().then((res) => {
@@ -19,7 +19,6 @@ export const HomeDaboard = () => {
       setCategory(res.data.dataCategory);
       setProducts(res.data.dataProduct);
       setProvider(res.data.dataProvider);
-      
     });
   }, []);
   const getproductFechaDescription = products.map((item) => {
@@ -113,22 +112,24 @@ export const HomeDaboard = () => {
 
   return (
     <>
-      <div className="gap-2 rounded-md grid grid-cols-2 md:flex flex-col lg:flex-row max-w-7xl  mx-auto  mt-4">
-        <div className="bg-white">
-          <Chart
-            options={options}
-            series={options.series}
-            height={350}
-            width={800}
-          />
-        </div>
-        <div className="bg-white w-full">
-          <Chart
-            options={radar}
-            series={radar.series}
-            type="radar"
-            height={350}
-          />
+      <div className="hidden">
+        <div className=" hidden lg:block gap-2 rounded-md sm:grid grid-cols-2 md:flex flex-col lg:flex-row max-w-7xl  mx-auto  mt-4">
+          <div className="bg-white">
+            <Chart
+              options={options}
+              series={options.series}
+              height={350}
+              width={800}
+            />
+          </div>
+          <div className="bg-white w-full">
+            <Chart
+              options={radar}
+              series={radar.series}
+              type="radar"
+              height={350}
+            />
+          </div>
         </div>
       </div>
     </>

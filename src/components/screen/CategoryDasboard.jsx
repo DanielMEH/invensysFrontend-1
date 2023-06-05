@@ -139,7 +139,7 @@ export const CategoryDasboard = () => {
     <>
       {spiner === true ? (
         <div className="relative">
-          <h1 className="w-4/5 mx-auto  my-10   flex justify-center flex-col items-center ">
+          <h1 className="w-4/5 mx-auto dark:text-white  my-10   flex justify-center flex-col items-center ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="120"
@@ -167,10 +167,12 @@ export const CategoryDasboard = () => {
       ) : (
         <>
           <div className="cards_p animate__animated animate__fadeIn">
-            <h2 className="text-2xl my-1">Informes generales</h2>
-            <div className="cards_content flex gap-2 " id="lista">
+            <h2 className="text-2xl my-1 dark:text-white">
+              Informes generales
+            </h2>
+            <div className="cards_content flex gap-2  " id="lista">
               {spiner === true ? (
-              <></>
+                <></>
               ) : (
                 <>
                   {category.length > 0 ? (
@@ -194,7 +196,8 @@ export const CategoryDasboard = () => {
                       {category.map((item, index) => (
                         <div className="flex">
                           <div
-                            className=" inline-block rounded-md bg-white "
+                            className=" block md:inline-block w-full rounded-md bg-white dark:bg-[#37415197]
+                             dark:text-[#019afa]"
                             key={index}
                           >
                             <div className="card_content   p-3">
@@ -219,29 +222,30 @@ export const CategoryDasboard = () => {
                       <h1 className="text-2xl mt-10 text-slate-700  w-full">
                         No tienes categorias registradas
                       </h1>
-                     
                     </div>
                   )}
                 </>
               )}
             </div>
           </div>
-          <div className="gap-2 rounded-md flex   max-w-7xl   mt-4">
-            <div className="bg-white">
-              <Chart
-                options={options}
-                series={options.series}
-                height={350}
-                width={800}
-              />
-            </div>
-            <div className="bg-white w-full">
-              <Chart
-                options={radar}
-                series={radar.series}
-                type="radar"
-                height={350}
-              />
+          <div className="hidden">
+            <div className="gap-2 rounded-md flex   max-w-7xl   mt-4">
+              <div className="bg-white">
+                <Chart
+                  options={options}
+                  series={options.series}
+                  height={350}
+                  width={800}
+                />
+              </div>
+              <div className="bg-white w-full">
+                <Chart
+                  options={radar}
+                  series={radar.series}
+                  type="radar"
+                  height={350}
+                />
+              </div>
             </div>
           </div>
         </>

@@ -536,12 +536,11 @@
   font-size: 13px;
 }
 .self_conte_fond {
-  background: #f4f8ffdd;
+
   background-repeat: no-repeat;
   background-size: cover;
 }
-.scrollhelping{
-
+.scrollhelping {
   overflow-y: scroll;
 }
 .scrollhelping::-webkit-scrollbar {
@@ -550,4 +549,7 @@
 
 .sss-scrool::-webkit-scrollbar {
   width: 0.5rem;
+}
+.effect {
+  transition: all 500ms ease-in-out;
 }
