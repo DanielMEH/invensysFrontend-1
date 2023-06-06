@@ -15,7 +15,6 @@ export const HomeDaboard = () => {
       setUsers(res.data.data);
     });
     getBusiness().then((res) => {
-      console.log(res);
       setCategory(res.data.dataCategory);
       setProducts(res.data.dataProduct);
       setProvider(res.data.dataProvider);

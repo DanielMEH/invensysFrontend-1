@@ -30,7 +30,6 @@ const FormLicence = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
-    console.log(paymentMethod);
 
     if (!error) {
       try {

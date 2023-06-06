@@ -14,7 +14,7 @@ export const TranslateProduct = () => {
 
   const {  updateSubProductsContent, subProductsData } =
     useContextSubProducts();
-  console.log(subProductsData);
+
   useEffect(() => {
     (async () => {
       const data = await getSubProducts(id);

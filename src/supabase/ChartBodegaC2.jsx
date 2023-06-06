@@ -15,14 +15,12 @@ export const ChartBodegaC2 = () => {
       setLoad(true);
       const bussiness = await getBusiness();
 
-      console.log(bussiness.data.dataInventary);
       setVentas(bussiness.data.dataInventary);
       setLoad(false);
     })();
   }, []);
 
   const responseData = ventas.map((data) => parseInt(data._id));
-  console.log(",,", responseData);
 
   // fechas: moment(fecha.createdAt).format('l'),
   var options = {

@@ -16,7 +16,6 @@ export const ProductoDasboard = () => {
         setUsers(res.data.data);
       });
       getBusiness().then((res) => {
-        console.log("eeeee", res);
         setCategory(res.data.dataCategory);
         setProducts(res.data.dataSubProduct);
         setProvider(res.data.dataProvider);

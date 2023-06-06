@@ -39,7 +39,6 @@ export const FormPedido = () => {
       setProveedores(data.data);
     })();
   }, []);
-  console.log("listPedidos",pedidosList);
   useEffect(() => {
  
     (async () => {

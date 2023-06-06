@@ -52,30 +52,52 @@ useEffect(() => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         let id = e.data.idAccount;
-        await usersDeleteData(id);
+      const response =   await usersDeleteData(id);
+      console.log(response);
 
         if (e.data.estado === "Activo") {
           setGetActivosUsers(getActivosUsers - 1);
         } else {
           setGetInactivosUsers(getInactivosUsers - 1);
         }
+        if(response.response.status === 400){
+          await Swal.fire({
+            className: "swal-wide",
+  
+            text: "Hubo un error al eliminar el usuario, asegurate de que el usuario tenga asignado un modulo por lo menos.",
+            showClass: {
+              popup: "animate__animated animate__fadeIn",
+            },
+            focusCancel: false,
+            focusConfirm: false,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#ccc",
+            confirmButtonText: "Continuar",
+            color: darkMode ? "white" : "black",
+            background: darkMode ? "#374151":"white",
+            timer: 6000,
+          });
 
-        Swal.fire({
-          icon: "success",
-          title: `Exito`,
-          text: "el usuario se elimino correctamente",
-          customClass: "swal-wide",
-          showClass: {
-            popup: "animate__animated animate__fadeIn",
-          },
-          focusCancel: false,
-          focusConfirm: false,
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "Aceptar",
-          color: darkMode ? "white" : "black",
-          timer: 1000,
-          background: darkMode ? "#374151":"white",
-        });
+        }else{
+
+          Swal.fire({
+            icon: "success",
+            title: `Exito`,
+            text: "el usuario se elimino correctamente",
+            customClass: "swal-wide",
+            showClass: {
+              popup: "animate__animated animate__fadeIn",
+            },
+            focusCancel: false,
+            focusConfirm: false,
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+            color: darkMode ? "white" : "black",
+            timer: 1000,
+            background: darkMode ? "#374151":"white",
+          });
+        }
+
       } else if (result.isDismissed) {
         await Swal.fire({
           className: "swal-wide",
@@ -97,15 +119,113 @@ useEffect(() => {
     });
   };
   const editId = () => {
-    return (
-      <>
-        <div>Holaaa</div>
-      </>
-    );
+    Swal.fire({
+      title: "Actualizar correo",
+      color:darkMode ? "white" : "black",
+      background: darkMode ? "#374151":"white",
+      html: `<input id="swal-input1"
+            style="margin-bottom: 10px; background-color: #FFF; color:${darkMode? "black":"black"};
+            display: block;
+            width: 350px;
+            height: 40px;
+            focus: none;
+            "
+            class="swal2-input"
+            
+            placeholder="Correo" value="${e.data.correo}">
+
+            `,
+
+      focusConfirm: false,
+      focusCancel: false,
+      showCancelButton: true,
+      confirmButtonText: "Guardar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      showClass: {
+        popup: "animate__animated animate__fadeIn",
+      },
+      showLoaderOnConfirm: true,
+      preConfirm: () => {
+        const correo = Swal.getPopup().querySelector("#swal-input1").value;
+       
+        if (!correo) {
+          Swal.showValidationMessage(`El email es requerido`);
+        }
+        return { correo};
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+
+     
+      }
+    });
   };
   const isAlowedId = () => {
     navigate(`/permisions/${e.data.idAccount}`);
   };
+
+  const editPassword = () => {
+    Swal.fire({
+      title: "Editar contraseña",
+      color:darkMode ? "white" : "black",
+      background: darkMode ? "#374151":"white",
+      html: `<input id="swal-input1"
+            style="margin-bottom: 10px; background-color: #FFF; color:${darkMode? "black":"black"};
+            display: block;
+            width: 350px;
+            height: 40px;
+            focus: none;
+            "
+            class="swal2-input"
+            
+            placeholder="Ingrese la contraseña actual" value="">
+
+            <input id="swal-input2"
+            style="margin-bottom: 10px; background-color: #FFF; color:${darkMode? "black":"black"};
+            display: block;
+            width: 350px;
+            height: 40px;
+            focus: none;
+            "
+            class="swal2-input"
+            
+            placeholder="Ingrese la nueva contraseña" value="">
+            `,
+
+      focusConfirm: false,
+      focusCancel: false,
+      showCancelButton: true,
+      confirmButtonText: "Guardar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      showClass: {
+        popup: "animate__animated animate__fadeIn",
+      },
+      showLoaderOnConfirm: true,
+      preConfirm: () => {
+        const password = Swal.getPopup().querySelector("#swal-input1").value;
+        const newPassword = Swal.getPopup().querySelector("#swal-input2").value;
+       
+        if (!password || !newPassword) {
+          Swal.showValidationMessage(`Los campos son requeridos`);
+        }
+        return { password, newPassword};
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+
+     
+      }
+    });
+  }
+
   return (
     <div>
       <button onClick={isAlowedId}>
@@ -116,7 +236,7 @@ useEffect(() => {
           viewBox="0 0 256 256"
         >
           <path
-            fill="#A1A1A1"
+            fill="#ffc664"
             d="M160 16a80.1 80.1 0 0 0-76.1 104.8l-57.6 57.5A8.1 8.1 0 0 0 24 184v40a8 8 0 0 0 8 8h40a8 8 0 0 0 8-8v-16h16a8 8 0 0 0 8-8v-16h16a8.1 8.1 0 0 0 5.7-2.3l9.5-9.6A80 80 0 1 0 160 16Zm20 76a16 16 0 1 1 16-16a16 16 0 0 1-16 16Z"
           />
         </svg>
@@ -135,17 +255,13 @@ useEffect(() => {
         </svg>
       </button>
       <button onClick={editId}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="29"
-          height="29"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="#28D87D"
-            d="m19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Z"
-          />
-        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#28D87D" d="M13 19c0-3.31 2.69-6 6-6c1.1 0 2.12.3 3 .81V6a2 2 0 0 0-2-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h9.09c-.05-.33-.09-.66-.09-1M4 8V6l8 5l8-5v2l-8 5l-8-5m14 8v2h4v2h-4v2l-3-3l3-3Z"/></svg>
+     
+      </button>
+
+      <button onClick={editPassword}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#019afa" d="M20.8 17v-1.5c0-1.4-1.4-2.5-2.8-2.5s-2.8 1.1-2.8 2.5V17c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3m-1.3 0h-3v-1.5c0-.8.7-1.3 1.5-1.3s1.5.5 1.5 1.3V17M15 12c-.9.7-1.5 1.6-1.7 2.7c-.4.2-.8.3-1.3.3c-1.7 0-3-1.3-3-3s1.3-3 3-3s3 1.3 3 3m-3 7.5c-5 0-9.3-3.1-11-7.5c1.7-4.4 6-7.5 11-7.5s9.3 3.1 11 7.5c-.2.5-.5 1-.7 1.5C21.5 12 19.8 11 18 11c-.4 0-.7.1-1.1.1C16.5 8.8 14.5 7 12 7c-2.8 0-5 2.2-5 5s2.2 5 5 5h.3c-.2.4-.3.8-.3 1.2v1.3Z"/></svg>
+     
       </button>
     </div>
   );

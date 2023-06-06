@@ -106,7 +106,6 @@ export const AuthUser = () => {
                 })}
                 onSubmit={async (values) => {
                   let response = await getPostLogin(values);
-                  // console.log(response.response.status);
                   // if (response.response.status === 401) {
                   //   toast.error(
                   //     "Este usuario no existe o la contraseña es incorrecta",
@@ -127,7 +126,7 @@ export const AuthUser = () => {
                   //   setSpiner(true);
                   // }
 
-                  console.log(response.data.type);
+              
                   if (response.data.type === "user") {
                     let arrayLocalStorageModul = response.data.module;
 
@@ -145,8 +144,6 @@ export const AuthUser = () => {
                       }
                       let getData = response.data;
                       let url = getData.module[0];
-                      console.log(url);
-                      console.log(arrayModule);
                       localStorage.setItem("secure_token", getData.token);
                       localStorage.setItem("auth_cuenta", getData.auth);
                       localStorage.setItem("response_auth", getData.message);

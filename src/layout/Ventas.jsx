@@ -23,7 +23,7 @@ export const Ventas = () => {
                   to="AllVentas"
                   className=" whitespace-nowrap dark:text-white dark:hover:bg-[#374151af]  hover:bg-gray-200 p-1 hover:rounded-full hover:border-none flex items-center w-fit border-b-2 border-[#019afa]  "
                 >
-                  <span>Totas las ventas</span>
+                  <span>Todas las ventas</span>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

@@ -61,9 +61,9 @@ export const ComprasPDF = ({ ventas, totalesProducts }) => {
   const [productos, setProductos] = useState([]);
   const [cliente, setCliente] = useState([]);
   if (ventas.length === 0) return null;
-  console.log(ventas[0].nombre);
+  
   if (totalesProducts.length === 0) return null;
-  console.log("hhhhhhhhhhhhhhhhhhh", totalesProducts);
+  
   const total = totalesProducts.reduce((a, b) => a + b.total, 0);
 
   return (

@@ -30,7 +30,7 @@ export const Shope = () => {
                    hover:border-none flex items-center w-fit
                     border-b-2 border-[#019afa]  "
                 >
-                  <span>Totas los pedidos</span>
+                  <span>Todos los pedidos</span>
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

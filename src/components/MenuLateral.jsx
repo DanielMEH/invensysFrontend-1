@@ -31,7 +31,7 @@ export const MenuLateral = () => {
     };
     initial();
   }, []);
-  console.log(adminGetData);
+
   const hundleClick = () => {
     localStorage.removeItem("secure_token");
     localStorage.removeItem("perfil_rol");
@@ -145,7 +145,6 @@ export const MenuLateral = () => {
   const handleMouse = () => {};
 
   const notifyFilterEstado = notify.filter((item) => item.estado === 1);
-  console.log(notifyFilterEstado);
   document.body.style.overflowX = "hidden";
 
   return (

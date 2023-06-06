@@ -84,7 +84,7 @@ export const ListInventory = () => {
                   {CorreoRepetido.map((item) => (
                     <SwiperSlide>
                       <div key={item._id}>
-                        <Link to={`inventory/${item._id}`} className="truncate dark:bg-[#314768] dark:text-[#019afa] p-3 rounded-lg bg-gray-100 ">
+                        <Link to={`inventory/${item._id}`} className="truncate dark:bg-[#314768] dark:text-white p-3 rounded-lg bg-gray-100 ">
                           {item.name_inventory}
                         </Link>
                       </div>
@@ -95,7 +95,7 @@ export const ListInventory = () => {
                 <>
                   {inventario.map((item) => (
                     <SwiperSlide>
-                      <Link to={`inventory/${item._id}`} className="truncate dark:bg-[#314768] dark:text-[#019afa] p-3 rounded-lg bg-gray-100 ">
+                      <Link to={`inventory/${item._id}`} className="truncate dark:bg-[#314768] dark:text-white p-3 rounded-lg bg-gray-100 ">
                         {item.name_inventory}
                       </Link>
                     </SwiperSlide>
