@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { useNavigate } from "react-router-dom";
+import { TodoFunctions } from "../apis/ApiData";
 function OpcionTabledCrud(e) {
 
 const [darkMode, setDarkMode] = useState(false);
@@ -53,7 +54,6 @@ useEffect(() => {
       if (result.isConfirmed) {
         let id = e.data.idAccount;
       const response =   await usersDeleteData(id);
-      console.log(response);
 
         if (e.data.estado === "Activo") {
           setGetActivosUsers(getActivosUsers - 1);
@@ -119,6 +119,7 @@ useEffect(() => {
     });
   };
   const editId = () => {
+    console.log(e.data);
     Swal.fire({
       title: "Actualizar correo",
       color:darkMode ? "white" : "black",
@@ -160,6 +161,12 @@ useEffect(() => {
       
       if (result.isConfirmed) {
 
+        let data = {
+          email: result.value.correo,
+        }
+
+      TodoFunctions.putEmailUser(e.data.idAccount,data)
+       window.location.reload()
      
       }
     });
@@ -220,7 +227,16 @@ useEffect(() => {
     }).then((result) => {
       
       if (result.isConfirmed) {
+        let data = {
+          password: result.value.password,
+          newPassword: result.value.newPassword
 
+        }
+
+       const res=  TodoFunctions.putPassUser(e.data.idAccount,data)
+        // window.location.reload()
+
+        console.log(res,"{{{{{{}}}}}}");
      
       }
     });

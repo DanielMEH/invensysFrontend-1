@@ -439,4 +439,49 @@ export const TodoFunctions = {
         authorization: accessToken,
       },
     }),
+
+    putProviders: async (id, data) => 
+     
+    await axios.put(
+      `${urlServer}/providers/${id}`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }),
+
+      putEmailUser: async (id, data) =>
+        await axios.put(
+          `${urlServer}/updateEmailUser/${id}`,
+          { data },
+          {
+            headers: {
+              authorization: accessToken,
+            },
+          }
+        ),
+      putPassUser: async (id, data) =>
+        await axios.put(
+          `${urlServer}/updatePassUser/${id}`,
+          { data },
+          {
+            headers: {
+              authorization: accessToken,
+            },
+          }
+        ),
+
+        putAdminPass: async () => 
+        await axios.put (
+          `${urlServer}/updateAdminPass`,
+          {
+            headers: {
+              authorization: accessToken,
+            },
+          }
+        ),
+        
+  
+      
 };

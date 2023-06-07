@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
+import { TodoFunctions } from "../apis/ApiData"; 
 
 import { useContextProviders } from "../hooks/context/ContextProveedores";
 
@@ -161,8 +162,17 @@ function OptionsProviders(e) {
     }).then((result) => {
       
       if (result.isConfirmed) {
+        let data ={
+          name:result.value.name,
+          address:result.value.address,
+          company:result.value.company,
+          email:result.value.email,
+          phone:result.value.phone,
+          _id:e.data._id
+        }
 
-     
+          TodoFunctions.putProviders(e.data._id,data)
+        window.location.reload()
       }
     });
   };
