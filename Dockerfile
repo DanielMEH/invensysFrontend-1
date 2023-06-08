@@ -1,16 +1,15 @@
-# Etapa 1: Compilar la aplicación React
-FROM node:16-alpine as build
+FROM node:18.16-alpine3.16
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
-
 COPY . .
+
+RUN npm install
 
 EXPOSE 3000
 
-RUN npm run build
+CMD [ "npm", "start" ]
 
 
