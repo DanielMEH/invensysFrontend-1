@@ -21,7 +21,6 @@ export const  CategoriaUpdate = ({estado=false, data }) => {
   const [spiner, setSpiner] = useState(false);
   const handleShow = () => {
     setEstado(false) 
-    console.log(estado);
   }
   
  useEffect(() => {

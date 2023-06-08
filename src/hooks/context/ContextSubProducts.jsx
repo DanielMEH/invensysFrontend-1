@@ -16,9 +16,8 @@ export const ContextSubProducts = ({ children }) => {
   };
 
   const updateSubProductsContent = async (id, data) => {
-    console.log(id);
     const response = await TodoFunctions.translateProducts(data);
-    console.log("oi988p", response.data.responseClass);
+    
 
     setSubProductsData(
       subProductsData.map((item) =>

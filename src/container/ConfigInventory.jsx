@@ -97,7 +97,6 @@ export const ConfigInventory = () => {
   } else {
     inventarioSelect = [];
   }
-  console.log("inventarioData", inventoryData);
 
   const DeleteInventory = async () => {
     try {

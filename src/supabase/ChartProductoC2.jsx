@@ -13,8 +13,6 @@ export const ChartProductoC2 = () => {
     (async () => {
       setLoad(true);
       const bussiness = await getBusiness();
-      console.log("bussiness", bussiness.data.dataSubProduct);
-      console.log(bussiness.data.dataInventary);
       setProducts(bussiness.data.dataSubProduct);
       setLoad(false);
     })();
@@ -23,7 +21,6 @@ export const ChartProductoC2 = () => {
   const responseData = products.map((data) =>
     parseInt(data.priceCompra * data.unidad)
   );
-  console.log(",,", responseData);
 
   // fechas: moment(fecha.createdAt).format('l'),
   var options = {

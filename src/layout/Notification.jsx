@@ -11,7 +11,7 @@ export const Notification = () => {
   useEffect(() => {
     (async () => {
       const response = await TodoFunctions.deleteEstadoNotificacion();
-      console.log(response);
+      
     })();
   }, [todo]);
 

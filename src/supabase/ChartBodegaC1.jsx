@@ -19,7 +19,6 @@ export const ChartBodegaC1 = () => {
       setSubProducts(bussiness.data.dataSubProduct);
       setCompras(bussiness.data.dataPedidos);
       setVentas(bussiness.data.dataCompras);
-      console.log("bbb", bussiness.data);
        await getUsersAdmin();
      
 

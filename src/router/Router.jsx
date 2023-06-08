@@ -78,15 +78,12 @@ export const Router = () => {
   if (type === "user") {
     const Webk = () => {
       useEffect(() => {
-        console.log(token1);
         async function getModulesUser() {
           const response = await axios.get(
-            `http://localhost:5454/getMod/${token1}`
+            `http://54.88.253.203:4000/getMod/${token1}`
           );
-          console.log(response);
 
           const modules = response.data.data;
-          console.log(modules);
           modules.map((item) => {
             return setUsersP([...usersP, usersP.push(item.titulo)]);
           });

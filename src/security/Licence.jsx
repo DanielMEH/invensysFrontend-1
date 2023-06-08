@@ -30,7 +30,6 @@ const FormLicence = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
-    console.log(paymentMethod);
 
     if (!error) {
       try {
@@ -339,7 +338,7 @@ export const Licence = () => {
                 Licencia
               </h2>
               <p className="text-xl dark:text-white text-gray-600 mt-4 mx-0">
-                Preferincia de pago
+                Preferencia de pago
               </p>
             </div>
 

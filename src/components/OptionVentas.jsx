@@ -23,7 +23,6 @@ function OptionVentas(e) {
       const bursines = await getBusiness();
       const res = await TodoFunctions.getCompras(e.data._id);
       setData(res.data.response);
-      console.log("nn", bursines);
       setBusiness(bursines.data.dataCompany);
     })();
   }, [1, 2]);

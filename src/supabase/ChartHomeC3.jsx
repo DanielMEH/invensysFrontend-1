@@ -31,7 +31,6 @@ export const ChartHomeC3 = () => {
     let diferencia = TotalVentas - TotalCompras;
 
     const activos = users.filter(item => item.estado === "Activo")
-    console.log(activos);
     const inactivos = users.filter(item => item.estado === "Inactivo")
   return (
     <>

@@ -31,7 +31,7 @@ export const MenuLateral = () => {
     };
     initial();
   }, []);
-  console.log(adminGetData);
+
   const hundleClick = () => {
     localStorage.removeItem("secure_token");
     localStorage.removeItem("perfil_rol");
@@ -90,7 +90,7 @@ export const MenuLateral = () => {
         try {
           async function getModulesUser() {
             const response = await axios.get(
-              `http://localhost:5454/getMod/${token1}`
+              `http://54.88.253.203:4000/getMod/${token1}`
             );
 
             const modules = response.data.data;
@@ -145,7 +145,6 @@ export const MenuLateral = () => {
   const handleMouse = () => {};
 
   const notifyFilterEstado = notify.filter((item) => item.estado === 1);
-  console.log(notifyFilterEstado);
   document.body.style.overflowX = "hidden";
 
   return (

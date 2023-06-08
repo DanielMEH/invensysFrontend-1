@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import Swal from "sweetalert2";
 import "../assets/css/styleSlider.css";
+import { TodoFunctions } from "../apis/ApiData"; 
 
 import { useContextProviders } from "../hooks/context/ContextProveedores";
 
@@ -79,10 +80,11 @@ function OptionsProviders(e) {
     });
   };
   const EditId = () => {
+
     // navigate(`/update/category/${e.data._id}`)
     // crear un modal para editar la categoria
     Swal.fire({
-      title: "Editar categoria",
+      title: "Editar proveedor",
       color:darkMode ? "white" : "black",
       background: darkMode ? "#374151":"white",
       html: `<input id="swal-input1"
@@ -94,7 +96,7 @@ function OptionsProviders(e) {
             "
             class="swal2-input"
             
-            placeholder="Nombre de la categoria" value="${e.data.name_category}">
+            placeholder="Nombre del proveedor" value="${e.data.name}">
             <input id="swal-input2"
             style="margin-bottom: 10px; background-color: #FFF; color:${darkMode? "black":"black"};
             display: block;
@@ -102,7 +104,35 @@ function OptionsProviders(e) {
             height: 40px;
             focus: none;
             "
-            class="swal2-input" placeholder="Descripcion de la categoria" value="${e.data.description}">
+            class="swal2-input" placeholder="Dirección" value="${e.data.address}">
+
+            <input id="swal-input3"
+            style="margin-bottom: 10px; background-color: #FFF; color:${darkMode? "black":"black"};
+            display: block;
+            width: 350px;
+            height: 40px;
+            focus: none;
+            "
+            class="swal2-input" placeholder="Compañia" value="${e.data.company}">
+
+            <input id="swal-input4"
+            style="margin-bottom: 10px; background-color: #FFF; color:${darkMode? "black":"black"};
+            display: block;
+            width: 350px;
+            height: 40px;
+            focus: none;
+            "
+            class="swal2-input" placeholder="Email" value="${e.data.email}">
+
+            <input id="swal-input5"
+            style="margin-bottom: 10px; background-color: #FFF; color:${darkMode? "black":"black"};
+            display: block;
+            width: 350px;
+            height: 40px;
+            focus: none;
+            "
+            class="swal2-input" placeholder="Telefono" value="${e.data.phone}">
+
             `,
 
       focusConfirm: false,
@@ -117,21 +147,32 @@ function OptionsProviders(e) {
       },
       showLoaderOnConfirm: true,
       preConfirm: () => {
-        const name_category =
-          Swal.getPopup().querySelector("#swal-input1").value;
-        const description = Swal.getPopup().querySelector("#swal-input2").value;
+        const name = Swal.getPopup().querySelector("#swal-input1").value;
+        const address= Swal.getPopup().querySelector("#swal-input2").value;
+        const company=Swal.getPopup().querySelector("#swal-input3").value;
+        const email= Swal.getPopup().querySelector("#swal-input4").value;
+        const phone=Swal.getPopup().querySelector("#swal-input5").value;
        
-        if (!name_category || !description) {
-          Swal.showValidationMessage(`El nombre de la categoria es requerido`);
+        if (!name || !address || !company || !email || !phone) {
+          Swal.showValidationMessage(`Los campos del proveedor son requeridos`);
         }
-        return { name_category, description };
+        return { name, address, company, email, phone };
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
       
       if (result.isConfirmed) {
+        let data ={
+          name:result.value.name,
+          address:result.value.address,
+          company:result.value.company,
+          email:result.value.email,
+          phone:result.value.phone,
+          _id:e.data._id
+        }
 
-     
+          TodoFunctions.putProviders(e.data._id,data)
+        window.location.reload()
       }
     });
   };

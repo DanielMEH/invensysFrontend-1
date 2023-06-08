@@ -1,5 +1,5 @@
 import axios from "axios";
-let urlServer = "http://localhost:5454";
+let urlServer = "http://54.88.253.203:4000";
 let accessToken = localStorage.getItem("secure_token");
 let accesToken1 = localStorage.getItem("token_token1");
 let type = localStorage.getItem("type");
@@ -435,6 +435,45 @@ export const TodoFunctions = {
 
   getLicenceSoftware: async () =>
     await axios.get(`${urlServer}/getLicence/${accessToken}`, {
+      headers: {
+        authorization: accessToken,
+      },
+    }),
+
+  putProviders: async (id, data) =>
+    await axios.put(
+      `${urlServer}/providers/${id}`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }
+    ),
+
+  putEmailUser: async (id, data) =>
+    await axios.put(
+      `${urlServer}/updateEmailUser/${id}`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }
+    ),
+  putPassUser: async (id, data) =>
+    await axios.put(
+      `${urlServer}/updatePassUser/${id}`,
+      { data },
+      {
+        headers: {
+          authorization: accessToken,
+        },
+      }
+    ),
+
+  putAdminPass: async () =>
+    await axios.put(`${urlServer}/updateAdminPass`, {
       headers: {
         authorization: accessToken,
       },

@@ -11,7 +11,7 @@ function OpcionesCategory(e) {
       setDarkMode(true);
     }
   }, []);
-  const { deleteCategorys} = useContextCategory();
+  const { deleteCategorys,updateCategorys} = useContextCategory();
   const deleteId = async () => {
   
     await Swal.fire({
@@ -131,7 +131,12 @@ function OpcionesCategory(e) {
     }).then((result) => {
      
       if (result.isConfirmed) {
-       
+        let data ={
+          name_category:result.value.name_category,
+          description:result.value.description
+      }
+      updateCategorys(e.data._id,data)
+      
       
        
        

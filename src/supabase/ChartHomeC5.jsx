@@ -65,7 +65,6 @@ export const ChartHomeC5 = () => {
 
         })();
     }, []);
-    console.log("compras", compras);
 
   const defaultColDef = ChackSelection();
   const gridRef = useRef();

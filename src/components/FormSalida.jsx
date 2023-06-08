@@ -165,7 +165,7 @@ export const FormSalida = () => {
     })();
   };
 
-  console.log(pedidosList);
+
  
   return (
     <>

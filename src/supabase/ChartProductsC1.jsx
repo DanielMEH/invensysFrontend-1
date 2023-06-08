@@ -20,7 +20,6 @@ export const ChartProductC1 = () => {
       setSubProducts(bussiness.data.dataSubProduct);
       setCompras(bussiness.data.dataPedidos);
       setVentas(bussiness.data.dataCompras);
-      console.log("bbb", bussiness.data);
       await getUsersAdmin();
       
 
@@ -39,9 +38,7 @@ export const ChartProductC1 = () => {
   let porcentage = Math.abs((TotalVentas * 100) / TotalVentas);
  
   let ProductsUnidades = SubProducts.reduce((acc, el) => acc + el.unidad, 0);
-  console.log("ProductsUnidades", ProductsUnidades);
   let ProductsWithUnidades = SubProducts.filter((el) => el.unidad <= 10);
-  console.log("wi");
   return (
     <>
       {load ? (

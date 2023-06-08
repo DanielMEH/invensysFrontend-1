@@ -24,7 +24,7 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
       await getSubProductsContent(id);
     })();
   }, []);
-  console.log("dataInventorySubProducts", subProductsData);
+
 
 
   const [columnDefs, setColumnDefs] = useState([
