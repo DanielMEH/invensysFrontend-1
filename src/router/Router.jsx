@@ -80,7 +80,7 @@ export const Router = () => {
       useEffect(() => {
         async function getModulesUser() {
           const response = await axios.get(
-            `http://localhost:5454/getMod/${token1}`
+            `http://54.88.253.203:4000/getMod/${token1}`
           );
 
           const modules = response.data.data;
