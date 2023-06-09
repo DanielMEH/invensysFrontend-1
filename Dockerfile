@@ -1,21 +1,15 @@
-# Etapa 1: Compilar la aplicación React
-FROM node:14-alpine as build
+FROM node:18.16-alpine3.16
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
-
 COPY . .
 
-RUN npm run build
+RUN npm install
 
-# Etapa 2: Configurar el servidor NGINX
-FROM nginx:1.21-alpine
+EXPOSE 3000
 
-COPY --from=build /app/build /usr/share/nginx/html
+CMD [ "npm", "start" ]
 
-EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
