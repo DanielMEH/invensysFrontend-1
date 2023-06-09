@@ -472,9 +472,9 @@ export const TodoFunctions = {
           }
         ),
 
-        putAdminPass: async () => 
+        putAdminPass: async (data) => 
         await axios.put (
-          `${urlServer}/updateAdminPass`,
+          `${urlServer}/updateAdminPass`,{data},
           {
             headers: {
               authorization: accessToken,
