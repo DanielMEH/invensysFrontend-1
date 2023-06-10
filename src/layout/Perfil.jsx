@@ -943,7 +943,7 @@ export const Perfil = () => {
                   </div>
                 ))}
 
-                <div className="contain-contraseña w-full dark:text-white dark:bg-[#37415197] bg-white my-3 h-32 p-3 rounded">
+                <div className="contain-contraseña w-full dark:text-white dark:bg-[#37415197] bg-white my-3  p-3 rounded">
                   <h2 className="text-base mx-6  font-semibold">
                     Cambiar mi contraseña
                   </h2>
