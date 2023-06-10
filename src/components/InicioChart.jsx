@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Chart from "react-apexcharts";
 import Skeleton from "react-loading-skeleton";
 
@@ -8,21 +8,30 @@ import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { getBusiness } from "../apis/ApiData";
 
 export const InicioChart = () => {
-  
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   const { getUsersAdmins, getUsers } = useGetUsers();
   const { getModulesTodo, dataproductM, dataCategory, dataProviderM } =
     useContextModules();
   let countP = dataproductM.length;
   const [bodegas, setBodegas] = useState([]);
   const [state, setstate] = useState(false);
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
-      setstate(true);
-      const res = await getBusiness();
-      setBodegas(res.data.dataInventary);
-      await getModulesTodo();
-      await getUsersAdmins();
-      setstate(false);
+      try {
+        setstate(true);
+        const res = await getBusiness();
+        setBodegas(res.data.dataInventary);
+        await getModulesTodo();
+        await getUsersAdmins();
+        setstate(false);
+      } catch (error) {
+        setstate(false);
+      }
     })();
   }, []);
 
@@ -173,6 +182,7 @@ export const InicioChart = () => {
   if (!token) {
     return <Navigate to="/login" />;
   }
+
   return (
     <>
       {state ? (
@@ -181,29 +191,43 @@ export const InicioChart = () => {
             count={1}
             width={225}
             height={120}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 overflow-hidden"
           />
           <Skeleton
             count={1}
             width={225}
             height={120}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
+            backgroundColor="#122640"
+            foregroundColor="#ecebeb"
+            // darkmode
+
             className="rounded-full bg-red-600 overflow-hidden"
           />
           <Skeleton
             count={1}
             width={225}
             height={120}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 overflow-hidden"
           />
           <Skeleton
             count={1}
             width={225}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             height={120}
             className="rounded-full bg-red-600 overflow-hidden"
           />
           <Skeleton
             count={1}
             width={225}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             height={120}
             className="rounded-full bg-red-600 overflow-hidden"
           />

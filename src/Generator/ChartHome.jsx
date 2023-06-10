@@ -13,12 +13,12 @@ export const ChartHome = () => {
           <ChartHomeC3 />
         </div>
 
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-4 flex-col md:flex-row">
           <ChartHomeC1 />
           <ChartHomeC2 />
         </div>
         <ChartHomeC4 />
-        <ChartHomeC5 />
+        {/* <ChartHomeC5 /> */}
       </div>
     </>
   );

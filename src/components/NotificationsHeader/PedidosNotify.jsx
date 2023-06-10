@@ -3,6 +3,7 @@ import { deleteNotification, getNotification } from "../../apis/ApiData";
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";
 import { ToastContainer, toast } from "react-toastify";
+import { useMemo } from "react";
 moment.locale("es");
 export const PedidosNotify = () => {
   const [pedido, setPedido] = useState([]);
@@ -17,7 +18,11 @@ export const PedidosNotify = () => {
     })();
   }, []);
 
-  const filterModuls = pedido.filter((product) => product.type === "pedido");
+  
+    const filterModuls = useMemo(
+      () => pedido.filter((product) => product.type === "pedido"),
+      [pedido]
+    );
   const deleteproduc = async (id) => {
     setLoading2(true);
     let response = await deleteNotification(id);
@@ -46,6 +51,12 @@ export const PedidosNotify = () => {
       });
     }
   };
+  const [darkMode, setDarkMode] = useState(false);
+  useMemo(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       <ToastContainer />
@@ -54,6 +65,8 @@ export const PedidosNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}
@@ -62,6 +75,8 @@ export const PedidosNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}
@@ -70,6 +85,8 @@ export const PedidosNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}
@@ -78,6 +95,8 @@ export const PedidosNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}

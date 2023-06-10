@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Chart from "react-apexcharts";
 import { getBusiness, getUsersAdmin } from "../../apis/ApiData";
 import { ReactSortable } from "react-sortablejs";
@@ -6,9 +6,9 @@ import { ReactSortable } from "react-sortablejs";
 import "animate.css";
 import "../../assets/css/sorteable.css";
 import moment from "moment-with-locales-es6";
+import { useMemo } from "react";
 moment.locale("es");
 export const CategoryDasboard = () => {
-
   const [category, setCategory] = useState([]);
   const [products, setProducts] = useState([]);
   const [spiner, setSpiner] = useState(true);
@@ -31,25 +31,26 @@ export const CategoryDasboard = () => {
 
   // suma de  los precios de compra
 
-
-  let idCategory=[];
-  if (category.length > 0) {
-    idCategory = products.filter((item) => item.category === category[0]._id);
-  } else {
-    
-    idCategory = [];
-    
-
-    
-  }
+  useCallback(() => {
+    let idCategory = [];
+    if (category.length > 0) {
+      idCategory = products.filter((item) => item.category === category[0]._id);
+    } else {
+      idCategory = [];
+    }
+  }, [category, products]);
   // mostrar productos por su diferente id de categoria
 
-  const getproductFechaDescription = products.map((item) => {
-    return {
-      x: moment(item.fechaFin).format("YYYY-MM-DD"),
-      y: parseInt(item.priceBuy),
-    };
-  });
+  const getproductFechaDescription = useMemo(
+    () =>
+      products.map((item) => {
+        return {
+          x: moment(item.fechaFin).format("YYYY-MM-DD"),
+          y: parseInt(item.priceBuy),
+        };
+      }),
+    [products]
+  );
 
   var options = {
     series: [
@@ -133,7 +134,6 @@ export const CategoryDasboard = () => {
       categories: users.map((user) => user.fecha),
     },
   };
-
 
   return (
     <>

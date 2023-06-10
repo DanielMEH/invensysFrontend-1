@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { deleteNotification, getNotification } from "../../apis/ApiData";
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";
@@ -17,7 +17,7 @@ export const VentasNotify = () => {
     })();
   }, []);
 
-  const filterModuls = ventas.filter((product) => product.type === "venta");
+  const filterModuls = useMemo( ()=> ventas.filter((product) => product.type === "venta"),[ventas]);
   const deleteproduc = async (id) => {
     setLoading2(true);
     let response = await deleteNotification(id);
@@ -46,6 +46,12 @@ export const VentasNotify = () => {
       });
     }
   };
+  const [darkMode, setDarkMode] = useState(false);
+  useMemo(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       <ToastContainer />
@@ -54,6 +60,8 @@ export const VentasNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}
@@ -62,6 +70,8 @@ export const VentasNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}
@@ -70,6 +80,8 @@ export const VentasNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}
@@ -78,6 +90,8 @@ export const VentasNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}

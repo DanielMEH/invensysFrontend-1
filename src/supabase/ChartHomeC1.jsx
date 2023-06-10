@@ -7,7 +7,6 @@ moment.locale("es");
 export const ChartHomeC1 = () => {
   const [compras, setCompras] = useState([]);
   const [load, setLoad] = useState(false);
-  
 
   useEffect(() => {
     (async () => {
@@ -49,7 +48,12 @@ export const ChartHomeC1 = () => {
       },
     },
     dataLabels: {
-      enabled: false,
+      style: {
+        colors: ["red", "red", "red"],
+      },
+    },
+    markers: {
+      colors: ["red", "red", "red"],
     },
     stroke: {
       curve: "straight",
@@ -58,7 +62,9 @@ export const ChartHomeC1 = () => {
     title: {
       text: "Reportes de ventas",
       align: "left",
-      fill:"red"
+      fill: {
+        colors: ["#fff", "#fff", "#fff"],
+      },
     },
     subtitle: {
       text: "Todos tus movimientos",
@@ -67,6 +73,11 @@ export const ChartHomeC1 = () => {
     labels: compras.map((date) =>
       moment(date.createdAt).subtract(10, "days").calendar()
     ),
+    colors: ["#F44336", "#E91E63", "#9C27B0"],
+    fill: {
+      colors: ["red", "red", "red"],
+    },
+
     datetimeFormatter: {
       // mes
       // sin repetir fechas
@@ -79,27 +90,34 @@ export const ChartHomeC1 = () => {
     legend: {
       horizontalAlign: "left",
     },
-    fill: {
-      colors: ['#fff', '#fff', '#fff']
-    }
   };
-
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       {load ? (
-        <div className="skeletton flex gap-4 m-5">
+        <div className="skeletton flex w-[280px] gap-4 m-1 md:m-5">
           <Skeleton
             height={250}
-            width={370}
+            width={280}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
         </div>
       ) : (
-        <div className="div shadow-xl rounded-md border w-[39rem] dark:bg-[#37415197] dark:text-white bg-white ">
-          <Chart options={options} series={options.series} height={350} 
-
-          className="text-red-500"
-          
+          <div className="div shadow-xl rounded-md border w-[290px] md:w-[39rem]
+          dark:text-white bg-white ">
+          <Chart
+            options={options}
+            series={options.series}
+            height={350}
+            className="text-black"
+            colors={["blue"]}
           />
         </div>
       )}

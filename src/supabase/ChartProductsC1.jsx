@@ -21,7 +21,6 @@ export const ChartProductC1 = () => {
       setCompras(bussiness.data.dataPedidos);
       setVentas(bussiness.data.dataCompras);
       await getUsersAdmin();
-      
 
       setLoad(false);
     })();
@@ -36,9 +35,15 @@ export const ChartProductC1 = () => {
 
   let TotalVentas = ventas.reduce((acc, el) => acc + el.total, 0);
   let porcentage = Math.abs((TotalVentas * 100) / TotalVentas);
- 
+
   let ProductsUnidades = SubProducts.reduce((acc, el) => acc + el.unidad, 0);
   let ProductsWithUnidades = SubProducts.filter((el) => el.unidad <= 10);
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       {load ? (
@@ -46,21 +51,29 @@ export const ChartProductC1 = () => {
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect,  useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -14,7 +14,7 @@ import { getUsersAdmin } from "../apis/ApiData";
 export const ListInventory = () => {
   const [swiperRef, setSwiperRef] = useState(null);
   const [loading, setLoading] = useState(false);
-  
+
   const {
     inventario,
 
@@ -25,7 +25,7 @@ export const ListInventory = () => {
     (async () => {
       setLoading(true);
       await GetInventario();
-     await getUsersAdmin();
+      await getUsersAdmin();
 
       setLoading(false);
     })();
@@ -33,8 +33,10 @@ export const ListInventory = () => {
 
   let getEmail = localStorage.getItem("correo");
   let getRol = localStorage.getItem("type");
-  const CorreoRepetido = inventario.filter((item) =>
-    item.responsableInventory.includes(getEmail)
+  const CorreoRepetido = useMemo(
+    () =>
+      inventario.filter((item) => item.responsableInventory.includes(getEmail)),
+    [inventario, getEmail]
   );
 
   return (
@@ -84,7 +86,10 @@ export const ListInventory = () => {
                   {CorreoRepetido.map((item) => (
                     <SwiperSlide>
                       <div key={item._id}>
-                        <Link to={`inventory/${item._id}`} className="truncate dark:bg-[#314768] dark:text-white p-3 rounded-lg bg-gray-100 ">
+                        <Link
+                          to={`inventory/${item._id}`}
+                          className="truncate dark:bg-[#314768] dark:text-white p-3 rounded-lg bg-gray-100 "
+                        >
                           {item.name_inventory}
                         </Link>
                       </div>
@@ -95,7 +100,10 @@ export const ListInventory = () => {
                 <>
                   {inventario.map((item) => (
                     <SwiperSlide>
-                      <Link to={`inventory/${item._id}`} className="truncate dark:bg-[#314768] dark:text-white p-3 rounded-lg bg-gray-100 ">
+                      <Link
+                        to={`inventory/${item._id}`}
+                        className="truncate dark:bg-[#314768] dark:text-white p-3 rounded-lg bg-gray-100 "
+                      >
                         {item.name_inventory}
                       </Link>
                     </SwiperSlide>
@@ -104,7 +112,7 @@ export const ListInventory = () => {
               )}
             </Swiper>
           ) : (
-            <p className="mx-4 py-4">
+            <p className="mx-4 py-4 dark:text-white">
               No se encontraron Bodegas, crea una nueva bodega
             </p>
           )}

@@ -106,6 +106,12 @@ export const ChartProductoC2 = () => {
       },
     },
   };
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
 
   return (
     <>
@@ -114,6 +120,8 @@ export const ChartProductoC2 = () => {
           <div className="skeletton flex gap-4 m-5">
             <Skeleton
               height={250}
+              baseColor={darkMode ? "#374151" : ""}
+              highlightColor={darkMode ? "#293a4f" : ""}
               width={370}
               className="rounded-full bg-red-600 flex overflow-hidden"
             />

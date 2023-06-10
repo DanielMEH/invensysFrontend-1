@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 import moment from "moment-with-locales-es6";
@@ -11,7 +11,7 @@ export const ChartBodegaC1 = () => {
   const [SubProducts, setSubProducts] = useState([]);
   const [load, setLoad] = useState(false);
 
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
       setLoad(true);
       const bussiness = await getBusiness();
@@ -19,8 +19,7 @@ export const ChartBodegaC1 = () => {
       setSubProducts(bussiness.data.dataSubProduct);
       setCompras(bussiness.data.dataPedidos);
       setVentas(bussiness.data.dataCompras);
-       await getUsersAdmin();
-     
+      await getUsersAdmin();
 
       setLoad(false);
     })();
@@ -33,9 +32,17 @@ export const ChartBodegaC1 = () => {
     0
   );
 
-  let TotalVentas = ventas.reduce((acc, el) => acc + el.total, 0);
+  let TotalVentas = useMemo(
+    () => ventas.reduce((acc, el) => acc + el.total, 0),
+    [ventas]
+  );
   let porcentage = Math.abs((TotalVentas * 100) / TotalVentas);
-
+  const [darkMode, setDarkMode] = useState(false);
+  useMemo(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       {load ? (
@@ -43,16 +50,22 @@ export const ChartBodegaC1 = () => {
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
         </div>

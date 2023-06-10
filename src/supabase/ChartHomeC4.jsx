@@ -40,22 +40,12 @@ export const ChartHomeC4 = () => {
 
     initial();
   }, []);
-
-      const [ventas, setVentas] = useState([]);
-    
-
-   
-
-
+    const [ventas, setVentas] = useState([]);
     useEffect(() => {
         (async () => {
-            const bussiness = await getBusiness();
-            
+            const bussiness = await getBusiness();          
             setVentas(bussiness.data.dataCompras);
-            await getUsersAdmin();
-      
-
-      
+            await getUsersAdmin();   
         })();
     }, []);
 

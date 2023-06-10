@@ -9,7 +9,9 @@ export const Ventas = () => {
       <div className="flex">
         <MenuLateral />
         <div
-          className=" w-full block h-[100%] min-h-screen
+          className=" w-full block  h-[100%] min-h-screen
+        bg-[#f4f8ffdd]
+        
         dark:bg-gradient-to-r from-[#163b59] from-10%
          via-[#18324f] via-30% to-[#121b2e] to-90% "
         >

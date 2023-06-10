@@ -7,16 +7,15 @@ moment.locale("es");
 
 export const ChartHomeC2 = () => {
   const [ventas, setVentas] = useState([]);
-  const [load,setLoad] = useState(false)
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     (async () => {
-      setLoad(true)
+      setLoad(true);
       const bussiness = await getBusiness();
 
-      
       setVentas(bussiness.data.dataPedidoProvedor);
-      setLoad(false)
+      setLoad(false);
     })();
   }, []);
 
@@ -80,8 +79,8 @@ export const ChartHomeC2 = () => {
       tooltip: {
         enabled: true,
       },
-      },
-    
+    },
+
     yaxis: {
       axisBorder: {
         show: false,
@@ -106,28 +105,31 @@ export const ChartHomeC2 = () => {
       },
     },
   };
-
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
-       <>
-    {
-      load ? (
-      <div className="skeletton flex gap-4 m-5">
-     <Skeleton
-                    height={250} width={370}
-                    className="rounded-full bg-red-600 flex overflow-hidden"
-                  />
-    
-     </div>
-
-      ):(
-
-        <div className="div shadow-xl rounded-md border w-[39rem] bg-white ">
-          <Chart options={options} series={options.series} height={350} />
-        </div> 
-      )
-    }
-    </>
+      <>
+        {load ? (
+          <div className="skeletton flex gap-4 m-5">
+            <Skeleton
+              height={250}
+              width={370}
+              baseColor={darkMode ? "#374151" : ""}
+              highlightColor={darkMode ? "#293a4f" : ""}
+              className="rounded-full bg-red-600 flex overflow-hidden"
+            />
+          </div>
+        ) : (
+          <div className="div shadow-xl rounded-md border  w-[290px] md:w-[39rem] bg-white ">
+            <Chart options={options} series={options.series} height={350} />
+          </div>
+        )}
+      </>
     </>
   );
 };

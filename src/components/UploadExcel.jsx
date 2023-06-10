@@ -19,7 +19,6 @@ export const UploadExcel = ({ estado = false }) => {
 
   const handleShow = () => {
     setEstado(false);
-  
   };
 
   useEffect(() => {
@@ -98,8 +97,8 @@ export const UploadExcel = ({ estado = false }) => {
                 await setSpiner(false);
                 setEstado(false);
                 setTimeout(() => {
-                  window.location.reload();
-                  navigate("/usuarios");
+                  // window.location.reload();
+                  // navigate("/usuarios");
                 }, 2000);
               } else {
                 await toast.error("Debes de elegir un archivo valido", {
@@ -112,7 +111,7 @@ export const UploadExcel = ({ estado = false }) => {
                   progress: undefined,
                 });
                 await setSpiner(false);
-                window.location.reload();
+                //
               }
             }}
           >

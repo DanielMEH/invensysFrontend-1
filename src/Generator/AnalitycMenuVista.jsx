@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { getBusiness, getDataAll } from "../apis/ApiData";
@@ -8,11 +8,11 @@ export const AnalitycMenuVista = () => {
   const [load, setLoad] = useState(false);
   const [modules, setModules] = useState([]);
   const [admin, setAdmin] = useState([]);
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
       const data = await getDataAll();
       setAdmin(data.data.data);
-    
+
       setLoad(true);
       const bussiness = await getBusiness();
       setModules([
@@ -33,6 +33,12 @@ export const AnalitycMenuVista = () => {
   }, []);
 
   let token = localStorage.getItem("secure_token");
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       {load ? (
@@ -40,6 +46,8 @@ export const AnalitycMenuVista = () => {
           <Skeleton
             height={400}
             width={240}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
         </div>
@@ -47,8 +55,8 @@ export const AnalitycMenuVista = () => {
         <div
           className={
             expand
-              ? "items_Links bg-white dark:bg-[#37415197] dark:text-white p-4 sticky top-10  scale-100  rounded-md w-[20rem] transition duration-700 ease-in-out "
-              : "items_Links bg-white dark:bg-[#37415197] dark:text-white scale-105 sticky top-10  rounded-md p-3  transition duration-700 ease-in-out "
+              ? "items_Links bg-white dark:bg-[#374151] dark:text-white p-4 sticky top-10  scale-100  rounded-md w-[280px] md:w-[20rem] transition duration-700 ease-in-out "
+              : "items_Links bg-white dark:bg-[#374151] dark:text-white scale-105 sticky top-10  rounded-md p-3 w-[280px] md:w-[14rem]  transition duration-700 ease-in-out "
           }
         >
           <div className="relative " onClick={() => setExpand(!expand)}>
@@ -340,7 +348,9 @@ export const AnalitycMenuVista = () => {
             </li> */}
           </ul>
           <ul>
-            <span className="mt-5 block font-bold mb-4 text-xl dark:text-white ">Opciones</span>
+            <span className="mt-5 block font-bold mb-4 text-xl dark:text-white ">
+              Opciones
+            </span>
             <li className="flex items-center">
               <NavLink
                 to={`TodoComands/${token}`}
@@ -367,7 +377,9 @@ export const AnalitycMenuVista = () => {
                     />
                   </svg>
                 </span>
-                <span className="mx-5 block dark:text-white">Configuraciónes</span>
+                <span className="mx-5 block dark:text-white">
+                  Configuraciónes
+                </span>
               </NavLink>
             </li>
             <li></li>

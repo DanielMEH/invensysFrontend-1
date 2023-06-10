@@ -9,7 +9,6 @@ export const ChartBodegaC2 = () => {
   const [ventas, setVentas] = useState([]);
   const [load, setLoad] = useState(false);
 
-
   useEffect(() => {
     (async () => {
       setLoad(true);
@@ -18,6 +17,12 @@ export const ChartBodegaC2 = () => {
       setVentas(bussiness.data.dataInventary);
       setLoad(false);
     })();
+  }, []);
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
   }, []);
 
   const responseData = ventas.map((data) => parseInt(data._id));
@@ -96,7 +101,6 @@ export const ChartBodegaC2 = () => {
         },
       },
     },
-   
 
     title: {
       text: "Reportes de pedidos",
@@ -107,8 +111,7 @@ export const ChartBodegaC2 = () => {
         color: "#444",
       },
     },
-   izontalAlign: "left",
-
+    izontalAlign: "left",
   };
 
   return (
@@ -119,6 +122,8 @@ export const ChartBodegaC2 = () => {
             <Skeleton
               height={250}
               width={370}
+              baseColor={darkMode ? "#374151" : ""}
+              highlightColor={darkMode ? "#293a4f" : ""}
               className="rounded-full bg-red-600 flex overflow-hidden"
             />
           </div>

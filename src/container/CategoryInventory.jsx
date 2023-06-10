@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getCategorias } from "../apis/ApiData";
 import { ImportProducts } from "./ImportProducts";
 import "animate.css";
@@ -18,7 +18,7 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
     })();
   }, []);
 
-  const handleCategory = (id, nameCategory) => {
+  const handleCategory = useCallback(()=> (id, nameCategory) => {
     if (arrayId.includes(id) && arrayName.includes(nameCategory)) {
       const newArray = arrayId.filter((item) => item !== id);
       const newArrayName = arrayName.filter((item) => item !== nameCategory);
@@ -28,7 +28,7 @@ export const CategoryInventory = ({ element, id, estadoModel }) => {
       setArrayName([...arrayName, nameCategory]);
       setArrayId([...arrayId, id]);
     }
-  };
+  },[arrayId,arrayName]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { deleteNotification, getNotification } from "../../apis/ApiData";
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";
@@ -17,8 +17,9 @@ export const CategoryNotify = () => {
     })();
   }, []);
 
-  const filterModuls = products.filter(
-    (product) => product.type === "category"
+  const filterModuls = useMemo(
+    () => products.filter((product) => product.type === "category"),
+    [products]
   );
   const deleteproduc = async (id) => {
     setLoading2(true);
@@ -48,6 +49,12 @@ export const CategoryNotify = () => {
       });
     }
   };
+  const [darkMode, setDarkMode] = useState(false);
+  useMemo(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       <ToastContainer />
@@ -56,6 +63,8 @@ export const CategoryNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}
@@ -64,6 +73,8 @@ export const CategoryNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}
@@ -72,6 +83,8 @@ export const CategoryNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}
@@ -80,6 +93,8 @@ export const CategoryNotify = () => {
           <Skeleton
             count={1}
             height={100}
+              baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             style={{ margin: "0 auto", width: "100%" }}
             className="mx-auto"
             duration={2}

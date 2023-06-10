@@ -1,65 +1,86 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
-import { getBusiness,getUsersAdmin} from "../apis/ApiData";
+import { getBusiness, getUsersAdmin } from "../apis/ApiData";
 import moment from "moment-with-locales-es6";
 import Skeleton from "react-loading-skeleton";
 moment.locale("es");
 export const ChartHomeC3 = () => {
   const [ventas, setVentas] = useState([]);
   const [compras, setCompras] = useState([]);
-  const [users,setUsers] = useState([])
-  const [load,setLoad] = useState(false)
+  const [users, setUsers] = useState([]);
+  const [load, setLoad] = useState(false);
 
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
-      setLoad(true)
+      setLoad(true);
       const bussiness = await getBusiness();
       setCompras(bussiness.data.dataPedidos);
       setVentas(bussiness.data.dataCompras);
       const users = await getUsersAdmin();
-      setUsers(users.data.data)
+      setUsers(users.data.data);
 
-      setLoad(false)
+      setLoad(false);
     })();
   }, []);
 
   // fechas: moment(fecha.createdAt).format('l'),
 
-  let TotalCompras = compras.reduce((acc, el) => acc + el.totalCompra, 0);
-  let TotalVentas = ventas.reduce((acc, el) => acc + el.total, 0);
-    let porcentage = Math.abs((TotalVentas * 100) / TotalVentas);
-    let diferencia = TotalVentas - TotalCompras;
+  let TotalCompras = useMemo(
+    () => compras.reduce((acc, el) => acc + el.totalCompra, 0),
+    [compras]
+  );
+  let TotalVentas = useMemo(
+    () => ventas.reduce((acc, el) => acc + el.total, 0),
+    [ventas]
+  );
+  let porcentage = Math.abs((TotalVentas * 100) / TotalVentas);
+  let diferencia = TotalVentas - TotalCompras;
 
-    const activos = users.filter(item => item.estado === "Activo")
-    const inactivos = users.filter(item => item.estado === "Inactivo")
+  const activos = users.filter((item) => item.estado === "Activo");
+  const inactivos = users.filter((item) => item.estado === "Inactivo");
+  const [darkMode, setDarkMode] = useState(false);
+  useMemo(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
-      {load  ? (
-        <div className="skeletton flex gap-4 m-5">
+      {load ? (
+        <div className="skeletton grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-5">
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
           <Skeleton
             height={140}
             width={270}
+            baseColor={darkMode ? "#374151" : ""}
+            highlightColor={darkMode ? "#293a4f" : ""}
             className="rounded-full bg-red-600 flex overflow-hidden"
           />
         </div>
       ) : (
-        <div className=" flex gap-2 ">
-          <section className="bg-white dark:bg-[#37415197] dark:text-white   shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+        <div className=" grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4  ">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[280px] md:w-[19rem] px-5 py-2 rounded-md my-1 md:my-5"
+          >
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Ventas</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
@@ -78,9 +99,15 @@ export const ChartHomeC3 = () => {
             </div>
             <div className="ventasNumm ">
               <span className="text-xl font-bold p-2 block">
-                {("$ " + TotalVentas).replace(
-                  /(\d)(?=(\d\d\d)+(?!\d))/g,
-                  "$1,"
+                {TotalVentas === 0 ? (
+                  "$ 0"
+                ) : (
+                  <>
+                    {("$ " + TotalVentas).replace(
+                      /(\d)(?=(\d\d\d)+(?!\d))/g,
+                      "$1,"
+                    )}
+                  </>
                 )}
               </span>
             </div>
@@ -97,14 +124,14 @@ export const ChartHomeC3 = () => {
                 />
               </svg>
               <span className="text-[#4ade80]">
-                {porcentage + "%"} Estable{" "}
+                {porcentage === "NaN" ? "0%" : <>{porcentage + "%"} Estable </>}
               </span>
             </div>
             <div className="my-1">
               <span className="mx-2">{ventas.length}</span>Productos vendidos
             </div>
           </section>
-          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[280px] md:w-[19rem] px-5 py-2 rounded-md my-1 md:my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Pedidos</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
@@ -149,7 +176,7 @@ export const ChartHomeC3 = () => {
               <span className="mx-2">{compras.length}</span>Productos vendidos
             </div>
           </section>
-          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[20rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[280px] md:w-[19rem] px-5 py-2 rounded-md my-1 md:my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Diferencia</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">
@@ -209,7 +236,7 @@ export const ChartHomeC3 = () => {
               Productos en movimiento
             </div>
           </section>
-          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[18rem] px-5 py-2 rounded-md my-5">
+          <section className="bg-white dark:bg-[#37415197] dark:text-white  shadow-lg w-[280px] md:w-[19rem] px-5 py-2 ml-1 rounded-md my-1 md:my-5">
             <div className="principal flex items-center justify-between">
               <div className="text font-bold mx-2 block">Usuarios</div>
               <div className="icon bg-[#019afa4b] inline-block   rounded-full p-1">

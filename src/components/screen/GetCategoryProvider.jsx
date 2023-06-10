@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { getBusiness } from "../../apis/ApiData";
 import moment from "moment-with-locales-es6";
@@ -20,7 +20,10 @@ export const GetCategoryProvider = () => {
     })();
   }, [id]);
 
-  const getProviderId = provider.filter((item) => item._id === id.id);
+  const getProviderId = useMemo(
+    () => provider.filter((item) => item._id === id.id),
+    [provider, id]
+  );
   return (
     <>
       {spiner ? (

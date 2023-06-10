@@ -1,4 +1,10 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -15,61 +21,45 @@ import { ChackSelection } from "../components/ChackSelection";
 
 import { useGetUsers } from "../hooks/context/GetUsersContext";
 import { TodoFunctions } from "../apis/ApiData";
-import {  Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { getBusiness, getUsersAdmin } from "../apis/ApiData";
-
 
 moment.locale("es");
 
 export const ChartHomeC5 = () => {
   const { getUsersAdmins, getCountData } = useGetUsers();
 
-
   const [dataVentas, setDataVentas] = useState([]);
 
-  useEffect(() => {
+  useMemo(() => {
     const initial = async () => {
       await getUsersAdmins();
       const response = await TodoFunctions.getComprasFv();
       setDataVentas(response.data.responseFv);
-    
+
       await getCountData();
-     
 
       const bussiness = await getBusiness();
       setCompras(bussiness.data.dataPedidos);
-      
-     
-      
-
     };
 
     initial();
   }, []);
 
-    const [compras, setCompras] = useState([]);
+  const [compras, setCompras] = useState([]);
 
+  useMemo(() => {
+    (async () => {
+      const bussiness = await getBusiness();
 
-  
+      setCompras(bussiness.data.dataPedidoProvedor);
 
-    useEffect(() => {
-        (async () => {
-
-           
-            const bussiness = await getBusiness();
-            
-            setCompras(bussiness.data.dataPedidoProvedor);
-         
-            await getUsersAdmin();
-         
-
-        })();
-    }, []);
+      await getUsersAdmin();
+    })();
+  }, []);
 
   const defaultColDef = ChackSelection();
   const gridRef = useRef();
-
-
 
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -96,22 +86,22 @@ export const ChartHomeC5 = () => {
     },
 
     {
-        headerName: "Total",
-        field: "totalCompra",
-        chartDataType: "category",
-        filter: "agTextColumnFilter",
+      headerName: "Total",
+      field: "totalCompra",
+      chartDataType: "category",
+      filter: "agTextColumnFilter",
     },
     {
       headerName: "Mayores Precios",
-      field: 'change',
-      cellRenderer: 'agSparklineCellRenderer',
+      field: "change",
+      cellRenderer: "agSparklineCellRenderer",
       cellRendererParams: {
         sparklineOptions: {
-          type: 'bar',
-          fill: '#019afa',
-          stroke: '#91cc75',
+          type: "bar",
+          fill: "#019afa",
+          stroke: "#91cc75",
           highlightStyle: {
-            fill: '#5994f5',
+            fill: "#5994f5",
           },
           valueAxisDomain: [0, 1],
           paddingOuter: 0,
@@ -131,8 +121,6 @@ export const ChartHomeC5 = () => {
       chartDataType: "category",
       filter: "agTextColumnFilter",
     },
-
-
   ]);
 
   const onFilterTextBoxChanged = useCallback(() => {
@@ -141,20 +129,19 @@ export const ChartHomeC5 = () => {
     );
   }, []);
   const [darkMode, setDarkMode] = useState(false);
-useEffect(() => {
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    setDarkMode(true);
-  }
-}, []);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       {dataVentas.length > 0 ? (
         <>
-
           <div className="panel_second_h w-[100%] mx-auto flex-col lg:flex-row flex justify-between items-center">
-          <div className="buttons">
-          <h1 className="font-bold text-xl text-white">Compras</h1>
-          </div>
+            <div className="buttons">
+              <h1 className="font-bold text-xl text-white">Compras</h1>
+            </div>
 
             <div className="search bg-white mb-3 flex dark:bg-[#37415197] dark:text-white items-center p-2 rounded-full justify-end my-5">
               <div className="icon_search mx-1">
@@ -184,11 +171,13 @@ useEffect(() => {
             </div>
           </div>
           <div
-        className={darkMode ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden " : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"}
-       
-        id="myGrid"
-      >
-
+            className={
+              darkMode
+                ? "ag-theme-alpine-dark h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto rounded-lg overflow-hidden "
+                : " rounded-lg overflow-hidden ag-theme-alpine h-[300px] w-[300px] md:w-[100%] md:h-[600px] shadow-2xl mx-auto"
+            }
+            id="myGrid"
+          >
             <AgGridReact
               ref={gridRef}
               localeText={AG_GRID_LOCALE_EN}
@@ -196,13 +185,13 @@ useEffect(() => {
               rowData={compras.map((item, i) => {
                 return {
                   _id: item._id,
-                  name: item.name,
+                  name: item.nameProduct,
                   cantidadProductos: item.cantidadProductos,
                   totalCompra: ("$ " + item.totalComprap).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g,
                     "$1,"
                   ),
-                  change:[item.totalComprap],
+                  change: [item.totalComprap],
                   total: ("$ " + item.totalComprap).replace(
                     /(\d)(?=(\d\d\d)+(?!\d))/g,
                     "$1,"
@@ -214,7 +203,6 @@ useEffect(() => {
               })}
               defaultColDef={defaultColDef}
               animateRows={true}
-
               rowDragManaged={true}
               enableRangeSelection={true}
               icons={true}

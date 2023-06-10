@@ -1,4 +1,10 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 import moment from "moment-with-locales-es6";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -19,13 +25,11 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
   const gridRef = useRef();
   const { getSubProductsContent, subProductsData } = useContextSubProducts();
 
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
       await getSubProductsContent(id);
     })();
   }, []);
-
-
 
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -102,8 +106,6 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
     },
   ]);
 
-  
-
   const onBtnExport = useCallback(() => {
     gridRef.current.api.exportDataAsCsv();
   }, []);
@@ -119,7 +121,6 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
       setNormal(api);
     }, 2000);
   }, []);
-  
 
   const totalSuma = dataInventorySubProducts.map(
     (item) => item.priceVenta * item.unidad
@@ -139,20 +140,18 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
     return money.format(total);
   };
 
-  
-
   const onFilterTextBoxChanged = useCallback(() => {
     gridRef.current.api.setQuickFilter(
       document.getElementById("filter-text-box").value
     );
   }, []);
 
-   const [darkMode, setDarkMode] = useState(false);
-   useEffect(() => {
-     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-       setDarkMode(true);
-     }
-   }, []);
+  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setDarkMode(true);
+    }
+  }, []);
   return (
     <>
       <div className="panel_opciones bg-white dark:text-white dark:bg-[#37415197] w-[90%] md:w-full md:mx-auto mt-4 mb-4  rounded-md p-2">
@@ -367,6 +366,8 @@ export const DataSubProducts = ({ dataInventorySubProducts, id, upload }) => {
           pivotPanelShow="always"
           rowDragManaged={true}
           icons={true}
+          loadingCellRenderer={"loadingCellRenderer"}
+          loadingOverlayComponent={"loadingOverlayComponent"}
           pagination={true}
           paginationPageSize={10}
           paginateChildRows={true}
