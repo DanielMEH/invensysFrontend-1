@@ -34,236 +34,255 @@
     <meta http-equiv="window-target" content="_top" />
 
     <script src="https://js.stripe.com/v3/"></script>
-
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <title>Invensys</title>
   </head>
   <script type="text/javascript" nonce="XUwBKNNipUqG3I8">
-document.addEventListener('DOMContentLoaded', function () {
-/**
-* provides the current user's cookie consent
-* in order to use it:
-* 1. inline privacy/cookieConsent.js in the page you need to use it.
-* please note that this library relies on window.PCM.isCountryNeedCookieBanner to be initialised
-* before using (calling getValue function) it
-* 2. in your js file:
-*
-* var privacyCookieConsent = B.require('privacyCookieConsent');
-* var consent = privacyCookieConsent.getValue();
-*/
-B.define('privacyCookieConsent', function () {
-var consentGroupIsAllowed = {
-analytical: 'C0002%3A1',
-marketing: 'C0004%3A1'
-};
-var optanonConsentCookieName = 'OptanonConsent';
-var optanonBoxClosedCookieName = 'OptanonAlertBoxClosed';
-var halfOfYearMillis = 180 * 24 * 60 * 60 * 1000;
-function isDefined(value) {
-return value && value !== "undefined";
-}
-function parseConsentToObject(consent) {
-var result = {};
-if (typeof consent === 'string') {
-var parts = consent.split('&');
-parts.forEach(function (part) {
-var keyAndValue = part.split('=');
-result[keyAndValue[0]] = keyAndValue[1];
-});
-}
-return result;
-}
-function isConsentValid(consent, alertBoxClosed) {
-return isDefined(consent) &&
-isDefined(alertBoxClosed) &&
-new Date() - new Date(alertBoxClosed) <= halfOfYearMillis;
-}
-function getCookie(name) {
-name += "=";
-var cookies = document.cookie.split(";");
-for (var i = 0; i < cookies.length; i += 1) {
-var cookie = cookies[i];
-while (cookie.charAt(0) === " ") {
-cookie = cookie.substring(1, cookie.length);
-}
-if (cookie.indexOf(name) === 0) {
-return cookie.substring(name.length, cookie.length);
-}
-}
-return null;
-}
-function doesGeolocationRequireBanner() {
-// In case window.PCM is not defined, fallback to opt-out
-return window.PCM ? window.PCM.isCountryNeedCookieBanner : true;
-}
-function getExplicitConsent() {
-var consent = getCookie(optanonConsentCookieName);
-var alertBoxClosed = getCookie(optanonBoxClosedCookieName);
-if (isConsentValid(consent, alertBoxClosed)) {
-var consentObject = parseConsentToObject(consent);
-return Object
-.keys(consentGroupIsAllowed)
-.map(function (purpose) {
-var result = {};
-result[purpose] = consentObject.groups.indexOf(consentGroupIsAllowed[purpose]) > -1;
-return result;
-})
-.reduce(
-function (result, currentValue) {
-return Object.assign(result, currentValue);
-}, {
-functional: true
-}
-);
-}
-}
-function getImplicitConsent() {
-var consentValue = !doesGeolocationRequireBanner();
-return {
-functional: true,
-analytical: consentValue,
-marketing: consentValue
-};
-}
-function getValue() {
-var consent = getExplicitConsent();
-if (!consent) {
-consent = getImplicitConsent();
-}
-return consent;
-}
-return {
-getValue: getValue
-};
-});
-//c360 javascript tracker first iteration
-//sends a track request to c360 http tracker
-//in order to use it:
-//1. inline the c360Tracker.js in the page you need to use it
-//2. in your js file:
-//
-// var c360Tracker = B.require('c360Tracker');
-// var event = {
-// action_name:"accommodation_checkout_confirmation_viewed",
-// action_version :"0.2.0",
-// content : { "transaction_id" : 123434},
-// user : { "BKNG_user_id": 123434}
-// };
-// c360Tracker.track(event);
-B.define('c360Tracker', function () {
-/**
-* @var {string} EXPERIMENT_HASH
-*/
-var EXPERIMENT_HASH = 'GfCDATBaFOeBfIcDZDWcDLfMRRKe';
-/**
-* @var {number} isExperimentErrorsPropagate
-*/
-var isExperimentErrorsPropagate = B.et && B.et.track && B.et.track(EXPERIMENT_HASH) || 0;
-var enrichedContext = {};
-var configuration = {
-validateInput: false
-};
-var TRACKER_NAME = 'C360JSTracker';
-var track = function (event) {
-if (event == null) {
-return "event object is null or empty";
-} else {
-//if (enrichedContext.userID != null) {
-// event.user = {BKNG_user_id: enrichedContext.userID};
-//}
-var validationResult = new ValidationResult(true);
-if (configuration.validateInput) {
-validationResult = validateInput(event);
-}
-if (!validationResult.success) {
-return validationResult.message;
-}
-send(event);
-}
-};
-function send(data) {
-data.context = enrichedContext;
-data.tracker = {
-tracker_name: TRACKER_NAME,
-tracker_type: "Client",
-tracker_version: "0.1.0"
-};
-return $.ajax({
-url: '/c360/v1/track',
-type: 'POST',
-data: JSON.stringify(data),
-}).fail(function(jqXHR, textStatus, errorThrown) {
-B.et && B.et.stage && B.et.stage(EXPERIMENT_HASH, 1);
-if (isExperimentErrorsPropagate) {
-var errorMessage = TRACKER_NAME + ' tracking failure: (' + errorThrown + ') [Response ' + jqXHR.status +': '+ jqXHR.responseText + ']';
-B.reportError && B.reportError(errorThrown, errorMessage);
-}
-});
-}
-enrich();
-var scheme =
-{
-"type": "object",
-"properties": {
-"action_name": {
-"type": "string",
-"description": "action name (ex. element viewed)",
-},
-"action_version": {
-"type": "string",
-"description": "action version"
-},
-"content": {
-"type": "object",
-"description": "content defined by the registered producer scheme"
-}
-}
-};
-function ValidationResult(success, message) {
-this.success = success;
-this.message = message;
-}
-function validateInput(event) {
-var result = validateObject(event, scheme);
-return result;
-}
-function validateObject(obj, scheme) {
-if (scheme.properties != null) {
-var propsArray = Object.getOwnPropertyNames(scheme.properties);
-for (var i = 0; i < propsArray.length; i++) {
-var propertyName = propsArray[i];
-if (obj[propertyName] == null) {
-return new ValidationResult(false, "property " + propertyName + " is not defined");
-}
-if (scheme.properties[propertyName].type == "object") {
-var validationResult = validateObject(obj[propertyName], scheme.properties[propertyName]);
-if (validationResult.success === false) {
-return validationResult;
-}
-}
-}
-}
-return new ValidationResult(true);
-}
-function enrich() {
-enrichedContext = {
-page: {
-page_referrer: document.referrer,
-page_url: window.location.href,
-page_title: document.title
-},
-local: {
-currency: B.env.b_selected_currency
-},
-};
-//if (B.env.b_user_genius_status != null && B.env.b_user_genius_status.b_user_id != null)
-// enrichedContext.userID = B.env.b_user_genius_status.b_user_id;
-}
-return {
-track: track
-};
-});
-})
-</script>
+    document.addEventListener("DOMContentLoaded", function () {
+      /**
+       * provides the current user's cookie consent
+       * in order to use it:
+       * 1. inline privacy/cookieConsent.js in the page you need to use it.
+       * please note that this library relies on window.PCM.isCountryNeedCookieBanner to be initialised
+       * before using (calling getValue function) it
+       * 2. in your js file:
+       *
+       * var privacyCookieConsent = B.require('privacyCookieConsent');
+       * var consent = privacyCookieConsent.getValue();
+       */
+      B.define("privacyCookieConsent", function () {
+        var consentGroupIsAllowed = {
+          analytical: "C0002%3A1",
+          marketing: "C0004%3A1",
+        };
+        var optanonConsentCookieName = "OptanonConsent";
+        var optanonBoxClosedCookieName = "OptanonAlertBoxClosed";
+        var halfOfYearMillis = 180 * 24 * 60 * 60 * 1000;
+        function isDefined(value) {
+          return value && value !== "undefined";
+        }
+        function parseConsentToObject(consent) {
+          var result = {};
+          if (typeof consent === "string") {
+            var parts = consent.split("&");
+            parts.forEach(function (part) {
+              var keyAndValue = part.split("=");
+              result[keyAndValue[0]] = keyAndValue[1];
+            });
+          }
+          return result;
+        }
+        function isConsentValid(consent, alertBoxClosed) {
+          return (
+            isDefined(consent) &&
+            isDefined(alertBoxClosed) &&
+            new Date() - new Date(alertBoxClosed) <= halfOfYearMillis
+          );
+        }
+        function getCookie(name) {
+          name += "=";
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i += 1) {
+            var cookie = cookies[i];
+            while (cookie.charAt(0) === " ") {
+              cookie = cookie.substring(1, cookie.length);
+            }
+            if (cookie.indexOf(name) === 0) {
+              return cookie.substring(name.length, cookie.length);
+            }
+          }
+          return null;
+        }
+        function doesGeolocationRequireBanner() {
+          // In case window.PCM is not defined, fallback to opt-out
+          return window.PCM ? window.PCM.isCountryNeedCookieBanner : true;
+        }
+        function getExplicitConsent() {
+          var consent = getCookie(optanonConsentCookieName);
+          var alertBoxClosed = getCookie(optanonBoxClosedCookieName);
+          if (isConsentValid(consent, alertBoxClosed)) {
+            var consentObject = parseConsentToObject(consent);
+            return Object.keys(consentGroupIsAllowed)
+              .map(function (purpose) {
+                var result = {};
+                result[purpose] =
+                  consentObject.groups.indexOf(consentGroupIsAllowed[purpose]) >
+                  -1;
+                return result;
+              })
+              .reduce(
+                function (result, currentValue) {
+                  return Object.assign(result, currentValue);
+                },
+                {
+                  functional: true,
+                }
+              );
+          }
+        }
+        function getImplicitConsent() {
+          var consentValue = !doesGeolocationRequireBanner();
+          return {
+            functional: true,
+            analytical: consentValue,
+            marketing: consentValue,
+          };
+        }
+        function getValue() {
+          var consent = getExplicitConsent();
+          if (!consent) {
+            consent = getImplicitConsent();
+          }
+          return consent;
+        }
+        return {
+          getValue: getValue,
+        };
+      });
+      //c360 javascript tracker first iteration
+      //sends a track request to c360 http tracker
+      //in order to use it:
+      //1. inline the c360Tracker.js in the page you need to use it
+      //2. in your js file:
+      //
+      // var c360Tracker = B.require('c360Tracker');
+      // var event = {
+      // action_name:"accommodation_checkout_confirmation_viewed",
+      // action_version :"0.2.0",
+      // content : { "transaction_id" : 123434},
+      // user : { "BKNG_user_id": 123434}
+      // };
+      // c360Tracker.track(event);
+      B.define("c360Tracker", function () {
+        /**
+         * @var {string} EXPERIMENT_HASH
+         */
+        var EXPERIMENT_HASH = "GfCDATBaFOeBfIcDZDWcDLfMRRKe";
+        /**
+         * @var {number} isExperimentErrorsPropagate
+         */
+        var isExperimentErrorsPropagate =
+          (B.et && B.et.track && B.et.track(EXPERIMENT_HASH)) || 0;
+        var enrichedContext = {};
+        var configuration = {
+          validateInput: false,
+        };
+        var TRACKER_NAME = "C360JSTracker";
+        var track = function (event) {
+          if (event == null) {
+            return "event object is null or empty";
+          } else {
+            //if (enrichedContext.userID != null) {
+            // event.user = {BKNG_user_id: enrichedContext.userID};
+            //}
+            var validationResult = new ValidationResult(true);
+            if (configuration.validateInput) {
+              validationResult = validateInput(event);
+            }
+            if (!validationResult.success) {
+              return validationResult.message;
+            }
+            send(event);
+          }
+        };
+        function send(data) {
+          data.context = enrichedContext;
+          data.tracker = {
+            tracker_name: TRACKER_NAME,
+            tracker_type: "Client",
+            tracker_version: "0.1.0",
+          };
+          return $.ajax({
+            url: "/c360/v1/track",
+            type: "POST",
+            data: JSON.stringify(data),
+          }).fail(function (jqXHR, textStatus, errorThrown) {
+            B.et && B.et.stage && B.et.stage(EXPERIMENT_HASH, 1);
+            if (isExperimentErrorsPropagate) {
+              var errorMessage =
+                TRACKER_NAME +
+                " tracking failure: (" +
+                errorThrown +
+                ") [Response " +
+                jqXHR.status +
+                ": " +
+                jqXHR.responseText +
+                "]";
+              B.reportError && B.reportError(errorThrown, errorMessage);
+            }
+          });
+        }
+        enrich();
+        var scheme = {
+          type: "object",
+          properties: {
+            action_name: {
+              type: "string",
+              description: "action name (ex. element viewed)",
+            },
+            action_version: {
+              type: "string",
+              description: "action version",
+            },
+            content: {
+              type: "object",
+              description: "content defined by the registered producer scheme",
+            },
+          },
+        };
+        function ValidationResult(success, message) {
+          this.success = success;
+          this.message = message;
+        }
+        function validateInput(event) {
+          var result = validateObject(event, scheme);
+          return result;
+        }
+        function validateObject(obj, scheme) {
+          if (scheme.properties != null) {
+            var propsArray = Object.getOwnPropertyNames(scheme.properties);
+            for (var i = 0; i < propsArray.length; i++) {
+              var propertyName = propsArray[i];
+              if (obj[propertyName] == null) {
+                return new ValidationResult(
+                  false,
+                  "property " + propertyName + " is not defined"
+                );
+              }
+              if (scheme.properties[propertyName].type == "object") {
+                var validationResult = validateObject(
+                  obj[propertyName],
+                  scheme.properties[propertyName]
+                );
+                if (validationResult.success === false) {
+                  return validationResult;
+                }
+              }
+            }
+          }
+          return new ValidationResult(true);
+        }
+        function enrich() {
+          enrichedContext = {
+            page: {
+              page_referrer: document.referrer,
+              page_url: window.location.href,
+              page_title: document.title,
+            },
+            local: {
+              currency: B.env.b_selected_currency,
+            },
+          };
+          //if (B.env.b_user_genius_status != null && B.env.b_user_genius_status.b_user_id != null)
+          // enrichedContext.userID = B.env.b_user_genius_status.b_user_id;
+        }
+        return {
+          track: track,
+        };
+      });
+    });
+  </script>
   <script type="text/javascript" nonce="XUwBKNNipUqG3I8">
     window.PCM = {
       isCountryNeedCookieBanner: 0,
